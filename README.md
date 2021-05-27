@@ -10,6 +10,8 @@
 
 ```shell
 $ git clone https://github.com/websauce-projart/roesti-quiz.git
+$ cd roesti-quiz
+$ composer install
 $ npm install
 ```
 
@@ -20,6 +22,9 @@ Duplicate `.env.example` to `.env`, edit it at your will
 ### Usage
 
 -   `php artisan serve` – Start the server
+-   `npm run dev` – Build assets
+-   `npm run watch` – Build assets, look for changes and auto-refresh
+-   `npm run prod` – Build assets and minify output
 
 ## Workflow
 
@@ -45,7 +50,16 @@ $ git merge <name>
 
 ## Good practices
 
-**Naming**<br>
+**CSS conventions**
+
+[ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
+
+[BEM](http://getbem.com/introduction/)<br>
+`.profile__picture`<br>
+`.quiz__button--disabled`<br>
+`.form__label--valid`
+
+**Git naming**<br>
 _Convention naming examples_
 
 Branches:<br>
