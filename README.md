@@ -9,7 +9,7 @@
 ### Installation
 
 ```shell
-$ git clone https://github.com/websauce-projart/roesti-quiz.git`
+$ git clone https://github.com/websauce-projart/roesti-quiz.git
 $ npm install
 ```
 
