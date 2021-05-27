@@ -1,6 +1,6 @@
 # Roesti Quiz
 
-**A progressive web application (PWA) for dueling friends with culture question about Switzerland **
+**A progressive web application (PWA) for dueling friends with culture question about Switzerland**
 
 ![GitHub](https://img.shields.io/github/license/websauce-projart/roesti-quiz)
 
