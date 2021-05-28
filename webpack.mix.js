@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +11,12 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.js("resources/js/app.js", "public/js")
+    .vue()
+    .sourceMaps()
+    .browserSync({
+        port: 8000,
+        open: false,
+        notify: false
+    })
+    .postCss("resources/css/app.css", "public/css");
