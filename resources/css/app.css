@@ -1,7 +1,16 @@
 /********************************
- * CSS
+ * CSS entry point
  ********************************/
+
+/**
+ * Class naming: BEM
+ * Folder structure: ITCSS
+ */
 
 /* Settings
  ********************************/
- @import "settings/variable.css";
+@import "settings/colors.css";
+@import "settings/margins.css";
+
+/* Tools
+ ********************************/
