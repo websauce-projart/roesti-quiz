@@ -1,13 +1,29 @@
 /********************************
- * CSS entry point
+ * CSS ENTRY POINT
  ********************************/
 
 /**
  * Class naming: BEM
- * Folder structure: ITCSS
+ * Folder structure: simplified ITCSS
  */
 
-/* Settings
+/* Settings (variables, libraries)
  ********************************/
-@import "settings/colors.css";
-@import "settings/margins.css";
+@import "~sanitize.css";
+@import "settings/colors";
+@import "settings/margins";
+
+/* Elements (bare HTML elements)
+ ********************************/
+@import "elements/headings";
+
+/* Objects (layouts, grid, wrapper)
+ ********************************/
+@import "objects/grid";
+
+/* Components (ui and design based)
+ ********************************/
+@import "components/buttons";
+
+/* Utilities (helpers)
+ ********************************/
