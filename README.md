@@ -21,10 +21,10 @@ Duplicate `.env.example` to `.env`, edit it at your will
 
 ### Usage
 
--   `php artisan serve` – Start the server
--   `npm run dev` – Build assets
--   `npm run watch` – Build assets, look for changes and auto-refresh
--   `npm run prod` – Build assets and minify output
+-   `php artisan serve` – Start the server on `localhost:8000`
+-   `npm run watch` – Start browsersync on `localhost:3000`
+-   `npm run dev` – Build assets for developement
+-   `npm run prod` – Build assets for production (minify output)
 
 ## Workflow
 
@@ -47,6 +47,18 @@ $ git merge <name>
 
 6. You can now delete your branch: `git branch -d <name>`
 7. Don't forget to push everything on the repo: `git push origin main`
+
+## Technologies
+
+**Frameworks**
+
+-   [Laravel](https://laravel.com/) – PHP Framework
+-   [Vue3](https://vuejs.org/) – Javascript Framework
+
+**CSS**
+
+-   [PostCSS](https://postcss.org/) – Pre-processor, nesting element, autoprefixer, ...
+-   [Sanitize.css](https://github.com/csstools/sanitize.css) – Default HTML elements styling
 
 ## Good practices
 
