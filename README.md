@@ -21,17 +21,17 @@ Duplicate `.env.example` to `.env`, edit it at your will
 
 ### Usage
 
--   `php artisan serve` – Start the server on `localhost:8000`
--   `npm run watch` – Start browsersync on `localhost:3000`
--   `npm run dev` – Build assets for developement
--   `npm run prod` – Build assets for production (minify output)
+-  `php artisan serve` – Start the server on [localhost:8000](http://localhost:8000)
+-  `npm run watch` – Start browsersync on [localhost:3000](http://localhost:8000)
+-  `npm run dev` – Build assets for developement
+-  `npm run prod` – Build assets for production (minify output)
 
 ## Workflow
 
-**`main` branch**
+### The `main` branch
 This branch should always be the last working version. Please make sure your feature is not breaking anything while merging
 
-**Add feature**
+### Add feature
 
 1. Make sur to have the last version of the main branch: `git pull`
 2. Create new branch and go on it: `git checkout -b <name>`
@@ -48,21 +48,16 @@ $ git merge <name>
 6. You can now delete your branch: `git branch -d <name>`
 7. Don't forget to push everything on the repo: `git push origin main`
 
-## Technologies
+## What it use
 
-**Frameworks**
-
--   [Laravel](https://laravel.com/) – PHP Framework
--   [Vue3](https://vuejs.org/) – Javascript Framework
-
-**CSS**
-
--   [PostCSS](https://postcss.org/) – Pre-processor, nesting element, autoprefixer, ...
--   [Sanitize.css](https://github.com/csstools/sanitize.css) – Default HTML elements styling
+-  [Laravel](https://laravel.com/) – PHP Framework
+-  [Vue3](https://vuejs.org/) – Javascript Framework
+-  [PostCSS](https://postcss.org/) – Pre-processor, nesting element, autoprefixer, ...
+-  [Sanitize.css](https://github.com/csstools/sanitize.css) – Default HTML elements styling
 
 ## Good practices
 
-**CSS conventions**
+### CSS conventions
 
 [ITCSS](https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/)
 
@@ -71,7 +66,8 @@ $ git merge <name>
 `.quiz__button--disabled`<br>
 `.form__label--valid`
 
-**Git naming**<br>
+### Git naming
+
 _Convention naming examples_
 
 Branches:<br>
@@ -86,7 +82,8 @@ Commit:<br>
 `Remove unused CSS`<br>
 …
 
-**Coding style**<br>
+### Coding style
+
 [.editorconfig](https://editorconfig.org/) – Helps maintain consistent coding styles
 
 ## About
