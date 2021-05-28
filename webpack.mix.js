@@ -11,12 +11,13 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js")
-    .vue()
+mix.vue()
     .sourceMaps()
+    .js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css")
     .browserSync({
-        port: 8000,
+        proxy: "localhost:8000",
+        port: 3000,
         open: false,
         notify: false
-    })
-    .postCss("resources/css/app.css", "public/css");
+    });
