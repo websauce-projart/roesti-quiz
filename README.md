@@ -48,6 +48,12 @@ $ git merge <name>
 6. You can now delete your branch: `git branch -d <name>`
 7. Don't forget to push everything on the repo: `git push origin main`
 
+## Technologies
+
+-   [Laravel](https://laravel.com/) – PHP Framework
+-   [Vue3](https://vuejs.org/) – Javascript Framework
+-   [PostCSS](https://postcss.org/) – Pre-processor, nesting element, autoprefixer, ...
+
 ## Good practices
 
 **CSS conventions**
