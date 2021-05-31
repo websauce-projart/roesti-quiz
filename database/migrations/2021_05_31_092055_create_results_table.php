@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamesTable extends Migration
+class CreateResultsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,24 @@ class CreateGamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('games', function (Blueprint $table) {
-            $table->integer('id_user1')->unsigned();
-            $table->foreign('id_user1')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            $table->integer('id_user2')->unsigned();
-            $table->foreign('id_user2')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            $table->integer('user1_score');
-            $table->integer('user2_score');
-            $table->timestamps();
-            $table->boolean('gameIsOver')->default(false);
+        Schema::create('results', function (Blueprint $table) {
+            $table->increments('id');
 
+            $table->integer('id_user')->unsigned();
+            $table->foreign('id_user')
+                    ->references('id')
+                    ->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->integer('id_round')->unsigned();
+            $table->foreign('id_round')
+                    ->references('id')
+                    ->on('rounds')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+            $table->timestamps();
         });
     }
 
@@ -41,6 +41,6 @@ class CreateGamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('games');
+        Schema::dropIfExists('results');
     }
 }
