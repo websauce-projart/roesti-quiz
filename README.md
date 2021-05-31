@@ -28,7 +28,7 @@ Duplicate `.env.example` to `.env`, edit it at your will
 
 ## Workflow
 
-### The `main` branch
+### The `main` branch
 This branch should always be the last working version. Please make sure your feature is not breaking anything while merging
 
 ### Add feature
