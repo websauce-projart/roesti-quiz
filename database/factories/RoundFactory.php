@@ -22,8 +22,7 @@ class RoundFactory extends Factory
     public function definition()
     {
         return [
-            'id_user1_game' => rand(1,5),
-            'id_user2_game' => rand(6,10),
+            'id_game' => rand(1,20),
             'id_category' => rand(1,7),
             'id_user_winner' => rand(1,10),
         ];

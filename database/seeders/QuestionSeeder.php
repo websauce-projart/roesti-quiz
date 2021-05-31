@@ -29,7 +29,7 @@ class QuestionSeeder extends Seeder
         foreach($arrayQuestions as $question => $answer ){
             DB::table('questions')->insert([
                 'label' => $question,
-                'answer' => $answer,
+                'correct_answer' => $answer,
                 'created_at' => now(),
                 'updated_at' => now(),
                 'id_author' => rand(1,2)
