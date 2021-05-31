@@ -16,7 +16,7 @@ mix.vue()
     .js("resources/js/app.js", "public/js")
     .postCss("resources/css/app.css", "public/css")
     .browserSync({
-        proxy: "localhost:8000",
+        proxy: "localhost",
         port: 3000,
         open: false,
         notify: false
