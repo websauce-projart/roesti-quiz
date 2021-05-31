@@ -34,8 +34,12 @@ class CreateRoundsTable extends Migration
             $table->foreign('id_category')
                     ->references('id')
                     ->on('categories')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+                    ->onDelete('restrict')
+                    ->onUpdate('restrict');
+
+            // $table->foreignId("id_category")->constrained()
+            //         ->onUpdate("cascade")
+            //         ->onDelete("cascade");
             
             $table->integer('id_winner')->unsigned();
             $table->foreign('id_winner')
