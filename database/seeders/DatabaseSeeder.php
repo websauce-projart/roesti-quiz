@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
             //UserSeeder::class,
             //GameSeeder::class,
             //CategorySeeder::class,
-            QuestionSeeder::class,
-            RoundSeeder::class,
+            //QuestionSeeder::class,
+            //RoundSeeder::class,
         ]);
     }
 }

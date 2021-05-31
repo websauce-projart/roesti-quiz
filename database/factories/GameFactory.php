@@ -21,9 +21,15 @@ class GameFactory extends Factory
      */
     public function definition()
     {
+        $idUserOne = rand(1,10);
+        $idUserTwo = $idUserOne;
+        while($idUserOne == $idUserTwo){
+            $idUserTwo = rand(1,10);
+        };
+
         return [
-            'id_user1' => rand(1,5),
-            'id_user2' => rand(6,10),
+            'id_user2' => $idUserOne,
+            'id_user1' => $idUserTwo,
             'user1_score' => 0,
             'user2_score' => 0,
         ];
