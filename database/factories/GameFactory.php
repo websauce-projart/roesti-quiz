@@ -22,8 +22,8 @@ class GameFactory extends Factory
     public function definition()
     {
         return [
-            'id_user1' => rand(0,4),
-            'id_user2' => rand(5,10),
+            'id_user1' => rand(1,5),
+            'id_user2' => rand(6,10),
             'user1_score' => 0,
             'user2_score' => 0,
         ];

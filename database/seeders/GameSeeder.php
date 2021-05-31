@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Round;
 use Illuminate\Database\Seeder;
+use App\Models\Game;
 
-class RoundSeeder extends Seeder
+class GameSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +14,8 @@ class RoundSeeder extends Seeder
      */
     public function run()
     {
-        Round::factory()
-        ->count(5)
-        ->create();
+        Game::factory()
+            ->count(20)
+            ->create();
     }
 }
