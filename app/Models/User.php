@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'pseudo',
         'email',
         'password',
         'admin'
@@ -49,7 +49,21 @@ class User extends Authenticatable
      * @var array
      */
 
+     
+    //À changer
     public function games() {
         return $this->hasMany(Game::class);
+    }
+
+    public function questions() {
+        return $this->hasMany(Question::class);
+    }
+
+    public function results() {
+        return $this->hasMany(Result::class);
+    }
+
+    public function rounds() {
+        return $this->belongsTo(Round::class);
     }
 }
