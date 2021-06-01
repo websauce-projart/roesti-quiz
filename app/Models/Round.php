@@ -16,7 +16,7 @@ class Round extends Model
         'id_user_winner'];
 
     //À changer
-    public function games() {
+    public function game() {
         return $this->belongsTo(Game::class);
     }
     

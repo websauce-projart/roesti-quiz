@@ -15,11 +15,11 @@ class UserAnswer extends Model
         'user_answer'
     ];
 
-    public function questions() {
+    public function question() {
         return $this->belongsTo(Question::class);
     }
 
-    public function results() {
+    public function result() {
         return $this->belongsTo(Result::class);
     }
 }

@@ -21,12 +21,16 @@ class Game extends Model
 
     //À changer
     //https://laracasts.com/discuss/channels/eloquent/a-relationship-of-two-foreign-keys-to-the-same-table
-    public function user1() {
-        return $this->belongsTo(User::class);
-    }
+    // public function user1() {
+    //     return $this->belongsTo(User::class);
+    // }
 
-    public function user2() {
-        return $this->belongsTo(User::class);
+    // public function user2() {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function users() {
+        return $this->belongsToMany(User::class);
     }
 
     public function rounds() {

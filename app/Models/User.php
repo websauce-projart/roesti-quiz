@@ -55,19 +55,23 @@ class User extends Authenticatable
     //     return $this->hasMany(Game::class);
     // }
 
-    public function game1() {
-        return $this->hasMany(Game::class, 'id_user1');
-    }
+    // public function game1() {
+    //     return $this->hasMany(Game::class, 'id_user1');
+    // }
 
-    public function game2() {
-        return $this->hasMany(Game::class, 'id_user2');
-    }
+    // public function game2() {
+    //     return $this->hasMany(Game::class, 'id_user2');
+    // }
 
-    public function otherUser() {
-        if($this->game1->id == $this->id) {
-            return $this->game1;
-        }
-        return $this->game2;
+    // public function otherUser() {
+    //     if($this->game1->id == $this->id) {
+    //         return $this->game1;
+    //     }
+    //     return $this->game2;
+    // }
+
+    public function games() {
+        return $this->belongsToMany(Game::class);
     }
 
     public function questions() {
@@ -78,7 +82,7 @@ class User extends Authenticatable
         return $this->hasMany(Result::class);
     }
 
-    public function rounds() {
+    public function round() {
         return $this->belongsTo(Round::class);
     }
 }
