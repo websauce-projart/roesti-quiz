@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'title',
         'description'
@@ -18,7 +20,7 @@ class Category extends Model
         return $this->belongsToMany(Question::class);
     }
 
-    public function rounds() {
+    public function round() {
         return $this->belongsTo(Round::class);
     }
 }

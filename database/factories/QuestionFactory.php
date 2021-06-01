@@ -22,7 +22,7 @@ class QuestionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'label' => $this->faker->str_random(20),
         ];
     }
 }

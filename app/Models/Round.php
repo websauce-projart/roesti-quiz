@@ -11,13 +11,12 @@ class Round extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_user1_game',
-        'id_user2_game',
+        'id_game',
         'id_category',
         'id_user_winner'];
 
     //À changer
-    public function games() {
+    public function game() {
         return $this->belongsTo(Game::class);
     }
     

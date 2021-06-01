@@ -53,15 +53,30 @@ class User extends Authenticatable
 		$this->attributes["password"] = Hash::make($password);
 	}
 
-	/**
-	 * Function that authorize a user to have multiple Games
-	 *
-	 * @var array
-	 */
+
 	//À changer
+	// public function games() {
+	//     return $this->hasMany(Game::class);
+	// }
+
+	// public function game1() {
+	//     return $this->hasMany(Game::class, 'id_user1');
+	// }
+
+	// public function game2() {
+	//     return $this->hasMany(Game::class, 'id_user2');
+	// }
+
+	// public function otherUser() {
+	//     if($this->game1->id == $this->id) {
+	//         return $this->game1;
+	//     }
+	//     return $this->game2;
+	// }
+
 	public function games()
 	{
-		return $this->hasMany(Game::class);
+		return $this->belongsToMany(Game::class);
 	}
 
 	public function questions()
@@ -74,7 +89,7 @@ class User extends Authenticatable
 		return $this->hasMany(Result::class);
 	}
 
-	public function rounds()
+	public function round()
 	{
 		return $this->belongsTo(Round::class);
 	}

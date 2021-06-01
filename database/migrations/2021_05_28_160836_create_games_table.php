@@ -15,23 +15,11 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_user1')->unsigned();
-            $table->foreign('id_user1')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            $table->integer('id_user2')->unsigned();
-            $table->foreign('id_user2')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+
             $table->integer('user1_score');
             $table->integer('user2_score');
             $table->timestamps();
             $table->boolean('gameIsOver')->default(false);
-
         });
     }
 

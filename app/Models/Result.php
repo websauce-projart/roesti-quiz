@@ -14,11 +14,11 @@ class Result extends Model
         'id_round'
     ];
 
-    public function rounds() {
+    public function round() {
         return $this->belongsTo(Round::class);
     }
 
-    public function users() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
 
