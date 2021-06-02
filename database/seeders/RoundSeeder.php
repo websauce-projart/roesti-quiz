@@ -16,15 +16,7 @@ class RoundSeeder extends Seeder
 	public function run()
 	{
 		Round::factory()
-			->count(1)
+			->count(3)
 			->create();
-
-		// For each round, attach to an existing game (find according to id)
-		$rounds = Round::all();
-		$game = Game::find(1);
-
-		foreach ($rounds as $round) {
-			$round->game()->attach($game);
-		}
 	}
 }
