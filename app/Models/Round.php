@@ -8,27 +8,31 @@ use App\Models\Game;
 
 class Round extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    protected $fillable = [
-        'game_id',
-        'category_id'
-    ];
+	protected $fillable = [
+		'game_id',
+		'category_id'
+	];
 
-    //À changer
-    public function game() {
-        return $this->belongsTo(Game::class);
-    }
-    
-    public function categories() {
-        return $this->hasMany(Categorie::class);
-    }
+	//À changer
+	public function game()
+	{
+		return $this->belongsTo(Game::class);
+	}
 
-    public function results() {
-        return $this->hasMany(Result::class);
-    }
+	public function categories()
+	{
+		return $this->hasMany(Categorie::class);
+	}
 
-    public function questions() {
-        return $this->belongsToMany(Question::class);
-    }
+	public function results()
+	{
+		return $this->hasMany(Result::class);
+	}
+
+	public function questions()
+	{
+		return $this->belongsToMany(Question::class);
+	}
 }

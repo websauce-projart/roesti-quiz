@@ -2,39 +2,29 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Question;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class QuestionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        $arrayQuestions = [
-            'Blablablabal' => 0,
-            'onaodn' => 1,
-            'HeyHey' => 1,
-            'oadoandoa' => 0,
-            'oqoqopmpca' => 0,
-            'oamdoamo' => 0,
-            'nondpqmdpma' => 1,
-            'omcomomdowd' => 0,
-            'qomdpqmdpm' => 1,
-        ];
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Question::factory()
+			->count(10)
+			->create();
 
-        foreach($arrayQuestions as $question => $answer ){
-            DB::table('questions')->insert([
-                'label' => $question,
-                'answer_boolean' => $answer,
-                'answer_label' => 'answer label',
-                'created_at' => now(),
-                'updated_at' => now(),
-                'author_id' => 1
-            ]);
-        };  
-    }
+		// For each question, attach to an existing category (find according to id)
+		$questions = Question::all();
+		$category = Category::find(1);
+
+		foreach ($questions as $question) {
+			$question->categories()->attach($category);
+		}
+	}
 }
