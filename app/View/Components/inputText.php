@@ -11,18 +11,20 @@ class inputText extends Component
     public $id;
     public $placeholder;
     public $icon;
+    public $type;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($label, $id, $placeholder, $icon)
+    public function __construct($label, $id, $placeholder, $icon="", $type="text")
     {
         $this->label = $label;
         $this->id = $id;
         $this->placeholder = $placeholder;
         $this->icon = $icon;
+        $this->type = $type;
 
     }
 

@@ -406,7 +406,12 @@
 @if (Auth::check())
     You are logged. <a href="{{ url('logout') }}">Logout</a>
 @else
-    <a href="{{ url('login') }}">Login</a>
+    <a href="{{ url('login') }}">Login</a> | 
+    <a href="{{ url('register') }}">Register</a>
+@endif
+
+@if (Session::has('success'))
+    {{ Session::get('success') }}
 @endif
 
 <body class="antialiased">
