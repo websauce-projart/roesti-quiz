@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Ajouter une question</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
 </head>
 
 <body>
     <div>
-    @if(session()->has('ok'))
-    <div class="alert alert-success alert-dismissible">
-        {!! session('ok') !!}
-    </div>
-    @endif
+        @if(session()->has('ok'))
+            <div class="alert alert-success alert-dismissible">
+                {!! session('ok') !!}
+            </div>
+        @endif
         <form action="{{ route('question.store') }}" method="post" accept-charset="UTF-8">
             @csrf
             <label for="label">Entrez la question: </label>
@@ -31,10 +31,10 @@
             </br>
             <p>Sélectionner une ou plusieurs catégories</p>
             @foreach($data as $category)
-            <input type="checkbox" id="{{$category->title}}" name="categories[]" value="{{$category->id}}">
-            <label for="{{$category->title}}">{{$category->title}}</label>
-            {!! $errors->first('categories', '<small class="help-block">:message</small>') !!}
-            </br>
+                <input type="checkbox" id="{{$category->title}}" name="categories[]" value="{{$category->id}}">
+                <label for="{{$category->title}}">{{$category->title}}</label>
+                {!! $errors->first('categories', '<small class="help-block">:message</small>') !!}
+                </br>
             @endforeach
             <input type="submit" name="submit" value="Envoyer"/>
         </form>

@@ -27,7 +27,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        dd('hey');
+        //dd('hey');
     }
 
     /**
@@ -46,7 +46,7 @@ class QuestionController extends Controller
             $request->answer_boolean = 0;
         };
 
-        $user = 1;
+        $user = auth()->user()->id;
         $response = [
             'label' => $request->label,
             'answer_label' => $request->answer_label,
