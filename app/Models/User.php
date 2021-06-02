@@ -50,7 +50,14 @@ class User extends Authenticatable
      * @var array
      */
 
-     
+	 /**
+	  * Hash user password
+	  **/
+	 public function setPasswordAttribute($password)
+	 {
+	 	$this->attributes["password"] = Hash::make($password);
+	 }
+
     //À changer
     // public function games() {
     //     return $this->hasMany(Game::class);
@@ -116,7 +123,7 @@ class User extends Authenticatable
     public function getOtherUser($gameId) {
         $user1 = Game::where('id', $gameId)->first()->users[0];
         $user2 = Game::where('id', $gameId)->first()->users[1];
-        
+
         if($user1->id == $this->id) {
             return $user2;
         }
@@ -131,6 +138,6 @@ class User extends Authenticatable
         }
 
         return $score;
-        
+
     }
 }
