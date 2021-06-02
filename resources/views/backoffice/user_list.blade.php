@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('backoffice/template_backoffice')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ajouter une question</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
-</head>
-
-<body>
-    <table class="table">
+@section('contenu')
+<table class="table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -43,6 +33,4 @@
                 @endforeach
             </tbody>
         </table>
-</body>
-
-</html>
+@endsection

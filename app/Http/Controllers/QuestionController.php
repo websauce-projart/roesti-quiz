@@ -29,7 +29,7 @@ class QuestionController extends Controller
     public function index()
     {
         $data = $this->getCategories();
-        return view('add_question')->with('data', $data);
+        return view('backoffice/add_question')->with('data', $data);
     }
 
     /**
