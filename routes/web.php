@@ -38,4 +38,12 @@ Route::get("/logout", [LoginController::class, "logout"]);
 /********************************
  * Add questions form 
  ********************************/
-Route::resource('question', QuestionController::class);
+
+
+/********************************
+ * Routes accessible only by admin users 
+ ********************************/
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::resource('question', QuestionController::class);
+});
