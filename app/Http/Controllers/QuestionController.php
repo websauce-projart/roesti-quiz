@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\QuestionRequest;
+use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->getCategories();
+        return view('add_question')->with('data', $data);
     }
 
     /**
@@ -24,7 +27,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        dd('hey');
     }
 
     /**
@@ -33,9 +36,30 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request)
     {
-        //
+        if($request->answer_label == null){
+            $request->answer_label = 'none';
+        };
+
+        if($request->answer_boolean == null){
+            $request->answer_boolean = 0;
+        };
+
+        $user = 1;
+        $response = [
+            'label' => $request->label,
+            'answer_label' => $request->answer_label,
+            'answer_boolean' => $request->answer_boolean,
+            'author_id' => $user,
+        ];
+
+        
+        $question = Question::create($response);
+
+        $question->categories()->attach($request->categories);
+
+        return redirect('question')->withOk("La question a été créée.");
     }
 
     /**
@@ -81,5 +105,16 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function getCategories()
+    {
+        return Category::getAll();
     }
 }

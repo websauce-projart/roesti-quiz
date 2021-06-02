@@ -11,8 +11,10 @@ class Question extends Model
 
     protected $fillable = [
         'label',
-        'correct_answer',
-        'id_author'
+        'answer_label',
+        'answer_boolean',
+        'answer_label',
+        'author_id'
     ];
 
     public function user() {
@@ -20,7 +22,7 @@ class Question extends Model
     }
 
     public function categories() {
-        return $this->belongsToMany(Categorie::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function rounds() {

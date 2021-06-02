@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +21,5 @@ Route::get('/', function () {
 });
 
 Route::get('/games', [GameController::class, 'displayGames']);
+
+Route::resource('question', QuestionController::class);

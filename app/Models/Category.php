@@ -22,4 +22,8 @@ class Category extends Model
     public function round() {
         return $this->belongsTo(Round::class);
     }
+
+    public static function getAll(){
+        return Category::all();
+    }
 }
