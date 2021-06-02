@@ -16,21 +16,22 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
-            $table->integer('id_round')->unsigned();
-            $table->foreign('id_round')
+            $table->integer('round_id')->unsigned();
+            $table->foreign('round_id')
                     ->references('id')
                     ->on('rounds')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
-            $table->timestamps();
+            $table->integer('time');
+            $table->integer('score');
         });
     }
 

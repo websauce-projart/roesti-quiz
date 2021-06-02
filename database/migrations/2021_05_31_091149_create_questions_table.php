@@ -15,11 +15,15 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
+
             $table->string('label');
-            $table->boolean('correct_answer');
+            $table->string('answer_label');
+            $table->boolean('answer_boolean');
+
             $table->timestamps();
-            $table->integer('id_author')->unsigned();
-            $table->foreign('id_author')
+
+            $table->integer('author_id')->unsigned();
+            $table->foreign('author_id')
                     ->references('id')
                     ->on('users')
                     ->onDelete('cascade')

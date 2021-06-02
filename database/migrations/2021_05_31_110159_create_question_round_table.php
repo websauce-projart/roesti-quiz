@@ -14,17 +14,16 @@ class CreateQuestionRoundTable extends Migration
     public function up()
     {
         Schema::create('question_round', function (Blueprint $table) {
-            $table->integer('id_question')->unsigned();
-            $table->foreign('id_question')->references('id')->on('questions')
+            $table->integer('question_id')->unsigned();
+            $table->foreign('question_id')->references('id')->on('questions')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
 
-            $table->integer('id_round')->unsigned();
-            $table->foreign('id_round')->references('id')->on('rounds')
+            $table->integer('round_id')->unsigned();
+            $table->foreign('round_id')->references('id')->on('rounds')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
                     
-            $table->timestamps();
         });
     }
 
