@@ -9,9 +9,11 @@ class UserAnswer extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'id_question',
-        'id_result',
+        'question_id',
+        'result_id',
         'user_answer'
     ];
 

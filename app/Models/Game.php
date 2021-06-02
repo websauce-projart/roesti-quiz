@@ -10,13 +10,11 @@ use App\Models\Round;
 class Game extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
     
     protected $fillable =[
-        'id_user1',
-        'id_user2',
-        'user1_score',
-        'user2_score',
-        'gameIsOver'
+        'active_user_id'
     ];
 
     //À changer

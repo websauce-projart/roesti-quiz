@@ -12,8 +12,7 @@ class Category extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'title',
-        'description'
+        'title'
     ];
 
     public function questions() {
