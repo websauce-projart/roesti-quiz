@@ -14,6 +14,8 @@ class CreateUserAnswersTable extends Migration
     public function up()
     {
         Schema::create('user_answers', function (Blueprint $table) {
+            $table->increments('id');
+
             $table->integer('question_id')->unsigned();
             $table->foreign('question_id')->references('id')->on('questions')
                     ->onDelete('restrict')
