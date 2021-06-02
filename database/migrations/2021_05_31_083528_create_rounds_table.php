@@ -41,6 +41,10 @@ class CreateRoundsTable extends Migration
      */
     public function down()
     {
+        Schema::table('rounds', function (Blueprint $table) {
+            $table->dropForeign(['game_id']);
+            $table->dropForeign(['category_id']);
+        });
         Schema::dropIfExists('rounds');
     }
 }

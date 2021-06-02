@@ -42,6 +42,10 @@ class CreateResultsTable extends Migration
      */
     public function down()
     {
+        Schema::table('results', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['round_id']);
+        });
         Schema::dropIfExists('results');
     }
 }

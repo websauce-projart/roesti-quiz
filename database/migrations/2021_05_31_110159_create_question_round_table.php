@@ -34,6 +34,10 @@ class CreateQuestionRoundTable extends Migration
      */
     public function down()
     {
+        Schema::table('question_round', function (Blueprint $table) {
+            $table->dropForeign(['question_id']);
+            $table->dropForeign(['round_id']);
+        });
         Schema::dropIfExists('question_round');
     }
 }

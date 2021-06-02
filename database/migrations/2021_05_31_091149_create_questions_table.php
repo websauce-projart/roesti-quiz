@@ -38,6 +38,9 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropForeign(['author_id']);
+        });
         Schema::dropIfExists('questions');
     }
 }
