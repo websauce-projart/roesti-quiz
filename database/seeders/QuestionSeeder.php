@@ -29,10 +29,11 @@ class QuestionSeeder extends Seeder
         foreach($arrayQuestions as $question => $answer ){
             DB::table('questions')->insert([
                 'label' => $question,
-                'correct_answer' => $answer,
+                'answer_boolean' => $answer,
+                'answer_label' => 'answer label',
                 'created_at' => now(),
                 'updated_at' => now(),
-                'id_author' => rand(1,2)
+                'author_id' => 1
             ]);
         };  
     }

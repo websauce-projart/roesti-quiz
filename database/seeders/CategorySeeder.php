@@ -24,8 +24,7 @@ class CategorySeeder extends Seeder
 
         foreach($arrayCategories as $key => $value ){
             DB::table('categories')->insert([
-                'title' => $key,
-                'description' => $value,
+                'title' => $key
             ]);
         };
     }

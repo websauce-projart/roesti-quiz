@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Game;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GameFactory extends Factory
@@ -21,10 +22,8 @@ class GameFactory extends Factory
      */
     public function definition()
     {
-
         return [
-            'user1_score' => 0,
-            'user2_score' => 0,
+            'active_user_id' => 1,
         ];
     }
 }
