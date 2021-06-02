@@ -34,3 +34,8 @@ Route::resource('question', QuestionController::class);
 Route::get("/login", [LoginController::class, "showLoginView"]);
 Route::post("/login", [LoginController::class, "authenticate"]);
 Route::get("/logout", [LoginController::class, "logout"]);
+
+/********************************
+ * Add questions form 
+ ********************************/
+Route::resource('question', QuestionController::class);
