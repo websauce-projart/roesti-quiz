@@ -14,19 +14,12 @@ class CreateGameUserTable extends Migration
     public function up()
     {
         Schema::create('game_user', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('game_id')->unsigned()->index();
+            $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
             $table->increments('id');
             $table->timestamps();
-            
-            $table->integer('id_user')->unsigned();
-            $table->foreign('id_user')->references('id')->on('users')
-                    ->onDelete('restrict')
-                    ->onUpdate('restrict');
-
-            $table->integer('id_game')->unsigned();
-            $table->foreign('id_game')->references('id')->on('games')
-                    ->onDelete('restrict')
-                    ->onUpdate('restrict');
-
         });
     }
 
