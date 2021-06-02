@@ -23,7 +23,7 @@ class GameFactory extends Factory
 	public function definition()
 	{
 		return [
-			'active_user_id' => 1,
+			'active_user_id' => 2,
 		];
 	}
 }

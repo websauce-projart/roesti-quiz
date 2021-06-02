@@ -24,8 +24,8 @@ class RoundFactory extends Factory
 		return [
 			'game_id' => 1,
 			'category_id' => 1,
-			'created_at' => now(),
-			'updated_at' => now()
+			// 'created_at' => now(),
+			// 'updated_at' => now()
 		];
 	}
 }
