@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,16 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-Route::get('/games', [GameController::class, 'displayGames']);
 
-Route::get('/test', function() {
-	return view('test');
-});
+/********************************
+ * Game loop
+ ********************************/
+Route::get('/games', [GameController::class, 'displayGames']);
+Route::resource('question', QuestionController::class);
+
+/********************************
+ * Login & Subscription
+ ********************************/
+Route::get("/login", [LoginController::class, "showLoginView"]);
+Route::post("/login", [LoginController::class, "authenticate"]);
+Route::get("/logout", [LoginController::class, "logout"]);

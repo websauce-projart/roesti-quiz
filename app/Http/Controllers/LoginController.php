@@ -19,13 +19,14 @@ class LoginController extends Controller
 	}
 
 	/**
-	 *
+	 * Logout and redirect to homepage
+	 * @return redirect
 	 */
 	public function logout(Request $request)
 	{
 		Auth::logout();
-		$request->session()->invalidate(); // pas sûr ?
-		$request->session()->regenerateToken(); // lié au remember_me ?
+		$request->session()->invalidate();
+		$request->session()->regenerateToken();
 		return redirect("/");
 	}
 
@@ -44,13 +45,14 @@ class LoginController extends Controller
 		]);
 
 		if (Auth::attempt($credentials)) {
-			$request->session()->regenerate(); // ça sert à quoi ?
+			$request->session()->regenerate();
 
-			return redirect()->intended('/'); // renvoit sur l'url initialement désirée, mais renvoit sur l'uri précisée en arugment comme fallback
+			// redirect where user usually attempted to go, but on homepage as a fallback
+			return redirect()->intended('/');
 		}
 
 		return back()->withErrors([
-			"loginFailed" => ["Désolé, le pseudo ou le mot de passe n'est pas correct"]
+			"loginFailed" => true
 		]);
 	}
 }
