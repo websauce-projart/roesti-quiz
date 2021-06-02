@@ -34,3 +34,11 @@ Route::resource('question', QuestionController::class);
 Route::get("/login", [LoginController::class, "showLoginView"]);
 Route::post("/login", [LoginController::class, "authenticate"]);
 Route::get("/logout", [LoginController::class, "logout"]);
+
+/********************************
+ * Routes accessible only by admin users 
+ ********************************/
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::resource('question', QuestionController::class);
+});
