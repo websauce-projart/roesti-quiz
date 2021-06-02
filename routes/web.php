@@ -7,6 +7,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\QuestionController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,13 +36,23 @@ Route::resource('question', QuestionController::class);
 Route::get("/register", [RegisterController::class, "showRegisterView"]);
 Route::post("/register", [RegisterController::class, "register"]);
 
-//Email verification
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+
+//Email confirmation
+Route::get("/verify", [RegisterController::class, "showVerifyEmailView"])
+->middleware('auth')->name('verification.notice');
+
+Route::get('/verify/{id}/{hash}', [RegisterController::class, "handleVerificationEmail"])
+->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', [RegisterController::class, 'resendVerificationEmail'])
+->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+
+Route::get('/protege', function() { //Route de test
+    return 'lol';
+})->middleware('verified');;
 
 //Login
-Route::get("/login", [LoginController::class, "showLoginView"]);
+Route::get("/login", [LoginController::class, "showLoginView"])->name('login');
 Route::post("/login", [LoginController::class, "authenticate"]);
 
 //Logout

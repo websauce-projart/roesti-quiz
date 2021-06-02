@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class RegisterController extends Controller
 {
@@ -55,5 +56,34 @@ class RegisterController extends Controller
         'email' => $data['email'],
         'password' => $data['password']
       ]);
-    } 
+    }
+    
+    //Doc vérification email:
+    //https://laravel.com/docs/8.x/verification
+
+    /**
+     * Return verify email notice view
+     *
+     * @return view
+     */
+    public function showVerifyEmailView() {
+      return view('verify_email');
+    }
+
+        
+    /**
+     * Handle requests generated when the user clicks the email verification link
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function handleVerificationEmail(EmailVerificationRequest $request) {
+      $request->fulfill();
+      return redirect('/')->with('verify', '✔️ Merci d\'avoir confirmé votre adresse email! ✔️');;
+    }
+
+    public function resendVerificationEmail(Request $request) {
+      $request->user()->sendEmailVerificationNotification();
+      return back()->with('resent', 'Un nouveau mail de verification vous a été envoyé!');
+    }
 }
