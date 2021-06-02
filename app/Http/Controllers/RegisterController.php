@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;    
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -35,8 +35,10 @@ class RegisterController extends Controller
         ]);
            
         $data = $request->all();
-        $check = $this->create($data);
-         
+        $user = $this->create($data);
+
+        event(new Registered($user)); //dispatch event to send verification email
+        
         return redirect("/")->withSuccess('😊 Votre compte a été crée! 😊');
     }
     

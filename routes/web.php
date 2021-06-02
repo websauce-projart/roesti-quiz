@@ -31,10 +31,20 @@ Route::resource('question', QuestionController::class);
 /********************************
  * Login & Registration
  ********************************/
+//Register
 Route::get("/register", [RegisterController::class, "showRegisterView"]);
 Route::post("/register", [RegisterController::class, "register"]);
+
+//Email verification
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+//Login
 Route::get("/login", [LoginController::class, "showLoginView"]);
 Route::post("/login", [LoginController::class, "authenticate"]);
+
+//Logout
 Route::get("/logout", [LoginController::class, "logout"]);
 
 /********************************
