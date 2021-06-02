@@ -28,7 +28,7 @@ Duplicate `.env.example` to `.env`, edit it at your will
 
 ## Workflow
 
-### The `main` branch
+### The `main` branch
 This branch should always be the last working version. Please make sure your feature is not breaking anything while merging
 
 ### Add feature
@@ -48,7 +48,7 @@ $ git merge <name>
 6. You can now delete your branch: `git branch -d <name>`
 7. Don't forget to push everything on the repo: `git push origin main`
 
-## What it use
+## What it uses
 
 -  [Laravel](https://laravel.com/) – PHP Framework
 -  [Vue3](https://vuejs.org/) – Javascript Framework
