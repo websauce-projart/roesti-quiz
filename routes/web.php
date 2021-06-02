@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\QuestionController;
 
 /*
@@ -21,16 +22,17 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-
 /********************************
  * Game loop
  ********************************/
-Route::get('/games', [GameController::class, 'displayGames']);
+Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 Route::resource('question', QuestionController::class);
 
 /********************************
- * Login & Subscription
+ * Login & Registration
  ********************************/
+Route::get("/register", [RegisterController::class, "showRegisterView"]);
+Route::post("/register", [RegisterController::class, "register"]);
 Route::get("/login", [LoginController::class, "showLoginView"]);
 Route::post("/login", [LoginController::class, "authenticate"]);
 Route::get("/logout", [LoginController::class, "logout"]);
@@ -42,3 +44,4 @@ Route::get("/logout", [LoginController::class, "logout"]);
 Route::group(['middleware' => ['admin']], function () {
     Route::resource('question', QuestionController::class);
 });
+

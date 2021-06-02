@@ -38,7 +38,6 @@ class LoginController extends Controller
 	 */
 	public function authenticate(Request $request)
 	{
-
 		$credentials = $request->validate([
 			"pseudo" => "required",
 			"password" => "required",

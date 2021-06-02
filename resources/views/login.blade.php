@@ -13,7 +13,7 @@
 <body>
 
     @if ($errors->has('loginFailed'))
-        Désolé, le pseudo ou le mot de passe n'est pas correct
+    Désolé, le pseudo ou le mot de passe n'est pas correct
     @endif
 
     <form action="" method="post">
