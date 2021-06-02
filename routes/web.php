@@ -41,4 +41,5 @@ Route::get("/logout", [LoginController::class, "logout"]);
 
 Route::group(['middleware' => ['admin']], function () {
     Route::resource('question', QuestionController::class);
+    Route::resource('user', UserController::class);
 });

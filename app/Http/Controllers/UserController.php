@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -14,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::all();
+        return view('backoffice/user_list')->with('users',$users);
     }
 
     /**
@@ -55,9 +57,10 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::FindOrFail($id);
+        return view('backoffice/edit_user', compact('user'));
     }
 
     /**
@@ -67,9 +70,11 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, $id)
     {
-        //
+        $this->setAdmin($request);
+        User::findOrFail($id)->update($request->all());
+        return redirect('user')->withOk("L'utilisateur " . $request->input('pseudo') . " a été modifié");
     }
 
     /**
@@ -78,8 +83,15 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return redirect()->back();
+    }
+
+    private function setAdmin($request) {
+        if (!$request->has('admin')) {
+           $request->merge(['admin'=>0]);
+        }
     }
 }
