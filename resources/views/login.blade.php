@@ -13,12 +13,13 @@
 <body>
 
     @if ($errors->has('loginFailed'))
-        {{ $errors->first('loginFailed') }}
+        Désolé, le pseudo ou le mot de passe n'est pas correct
     @endif
 
     <form action="" method="post">
         @csrf
 
+        {{-- Gérer les erreurs de saisie avec vue --}}
         <label for="pseudo">Pseudo</label>
         <input id="pseudo" name="pseudo" type="text" value="{{ old('pseudo') }}">
         <label for="password">Password</label>
