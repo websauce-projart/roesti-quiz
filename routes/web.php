@@ -21,3 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/games', [GameController::class, 'displayGames']);
+
+Route::get('/test', function() {
+	return view('test');
+});
