@@ -5,9 +5,9 @@
     <div>
         <nav>
             <ol>
-                <li><a href="/">Acceuil</a></li>
-                <li><a href="/profil">Profil</a></li>
-                <li><a href="/settings">Réglages</a></li>
+                <li><a href="{{url('logout')}}">Acceuil</a></li>
+                <li><a href="{{url('profil')}}">Profil</a></li>
+                <li><a href="{{url('settings')}}">Réglages</a></li>
             </ol>
         </nav>
     </div>
