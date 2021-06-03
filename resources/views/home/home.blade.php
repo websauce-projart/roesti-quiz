@@ -1,7 +1,7 @@
 @extends('home/template_home')
 
 @section('title')
-RöstiQuiz - Acceuil
+RöstiQuiz - Accueil
 @endsection
 
 @section('contenu')
