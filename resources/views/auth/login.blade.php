@@ -16,8 +16,8 @@
 
     <header>
         <div>
-            <button onclick="window.location.href='{{url(websauce/register)}}'">Créer un compte</button>
-            <button onclick="window.location.href='{{url(websauce/forgot-password)}}'">Mot de passe perdu</button>
+            <button onclick="window.location.href='{{url(register)}}'">Créer un compte</button>
+            <button onclick="window.location.href='{{url(forgot-password)}}'">Mot de passe perdu</button>
         </div>
     </header>
 
