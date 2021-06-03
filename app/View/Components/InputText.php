@@ -17,12 +17,13 @@ class InputText extends Component
      *
      * @return void
      */
-    public function __construct($label, $id, $placeholder, $icon="")
+    public function __construct($label, $id, $placeholder, $icon="", $type="text")
     {
         $this->label = $label;
         $this->id = $id;
         $this->placeholder = $placeholder;
         $this->icon = $icon;
+        $this->type = $type;
     }
 
     /**
