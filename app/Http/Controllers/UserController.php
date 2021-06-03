@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
@@ -93,5 +94,35 @@ class UserController extends Controller
         if (!$request->has('admin')) {
            $request->merge(['admin'=>0]);
         }
+    }
+
+    public function displaySearch()
+    {
+        $currentUser = Auth::user();
+        $users = User::all();
+        $games = $currentUser->games;
+        $tabGamesStarted = [];
+        $listUser = [];
+        $data = [];
+
+        foreach($games as $game) {
+            $opponent = $currentUser->getOtherUser($game->id);
+            array_push($tabGamesStarted, $opponent->id);
+        }
+
+        foreach($users as $user) {
+            array_push($listUser, $user->id);
+        }
+
+        array_push($tabGamesStarted, $currentUser);
+
+        $listUser = array_diff($listUser, $tabGamesStarted);
+
+        
+        foreach($listUser as $userId) {
+            array_push($data, User::findorfail($userId));
+        }
+
+        return view('home/new_game')->with('data', $data);
     }
 }
