@@ -11,10 +11,11 @@
                 Choix de ta catégorie
     </h1>
 
-    <form action="" method="post">
+    <form action="{{ url('/game') }}" method="post">
+        @csrf
 
         @foreach ($categories as $category)
-            <input name="categories" id="{{ $category }}" type="radio">
+            <input required name="categories" id="{{ $category }}" type="radio" value="{{ $category }}">
             <label for="{{ $category }}">{{ $category }}</label>
         @endforeach
 

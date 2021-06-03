@@ -9,105 +9,40 @@ use App\Models\User;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Display view for the main game loop
+	 **/
+	public function showGameloopView()
+	{
+		return view("gameloop/game");
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+	/**
+	 * Test
+	 */
+	public function displayGames()
+	{
+		$activeUserId = 1;
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Game $game)
-    {
-        //
-    }
+		$user = User::where('id', $activeUserId)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
+		$games = $user->games;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        //
-    }
+		$data = [];
+		foreach ($games as $game) {
+			$gameId = $game->id;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
-    }
+			$opponent = $user->getOtherUser($gameId);
 
-    /*Game Loop*/
-    public function displayGames() {
-        $activeUserId = 1;
-            
-        $user = User::where('id', $activeUserId)->first();
+			$gameData = array(
+				"user" => $user,
+				"opponent" => $opponent,
+				"game" => $game
+			);
 
-        $games = $user->games;
-
-        $data = [];
-        foreach($games as $game) {
-            $gameId = $game->id;
-            
-            $opponent = $user->getOtherUser($gameId);
-            
-            $gameData = array(
-                "user" => $user,
-                "opponent" => $opponent,
-                "game" => $game
-            );
-
-            array_push($data, $gameData);
-        }
-        return view('gameloop/games')->with('data', $data);
-    } 
-
+			array_push($data, $gameData);
+		}
+		return view('gameloop/games')->with('data', $data);
+	}
 }

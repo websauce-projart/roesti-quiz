@@ -2,84 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Round;
 use Illuminate\Http\Request;
 
 class RoundController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
+	/**
+	 * Store round
+	 */
+	public function store(Request $request)
+	{
+		$category_title = $request->input("categories");
+		$category_id = Category::where("title", $category_title)->first()->id;
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Round  $round
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Round $round)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Round  $round
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Round $round)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Round  $round
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Round $round)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Round  $round
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Round $round)
-    {
-        //
-    }
+		Round::create([
+			"game_id" => session("game_id"),
+			"category_id" => $category_id
+		]);
+	}
 }
