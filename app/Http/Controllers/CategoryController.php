@@ -40,7 +40,11 @@ class CategoryController extends Controller
 		session(["game_id" => $game_id]);
 
 		// Return view
-		return view("gameloop.choose_categories", [
+		$faker->seed(124);
+		$categories_titles = Category::pluck("title");
+		$categories = $faker->randomElements($categories_titles, 3);
+
+		return view("gameloop/choose_categories", [
 			"categories" => $categories
 		]);
 	}

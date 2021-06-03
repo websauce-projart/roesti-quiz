@@ -28,23 +28,21 @@ Route::get('/', function () {
 Route::group(['middleware' => ['verified']], function () {
 
 
-/********************************
- * Home
- ********************************/
+	/********************************
+	 * Home
+	 ********************************/
 
-Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-Route::post('/newgame', [UserController::class, 'displaySearch']);
-Route::post('/THOMAS', [GameController::class, 'store']);
-
-
-/********************************
- * Game loop
- ********************************/
-Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
-Route::get("/category", [CategoryController::class, 'getRandomCategories']);
-Route::post("/results", [RoundController::class, "createRound"]);
+	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
+	Route::post('/newgame', [UserController::class, 'displaySearch']);
+	Route::post('/THOMAS', [GameController::class, 'store']);
 
 
+
+	/********************************
+	 * Game loop
+	 ********************************/
+	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
+	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
 });
 /********************************
  * Login & Registration
