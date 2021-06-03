@@ -11,7 +11,7 @@
 </head>
 <div class="topnav">
   
-  <a class="active" href="/backoffice">Home</a>
+  <a class="active" href="backoffice">Home</a>
   <a href="backoffice/user">Liste des utilisateurs</a>
   <a href="backoffice/question">Ajouter des questions</a>
   @if(Auth::check())
