@@ -58,10 +58,6 @@ Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmai
 Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
 ->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-Route::get('/protege', function() { //Route de test
-    return view('karim');
-})->middleware('verified');
-
 //Login
 Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
 Route::post("/login", [AuthController::class, "authenticate"]);
