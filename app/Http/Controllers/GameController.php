@@ -6,6 +6,7 @@ use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -85,20 +86,19 @@ class GameController extends Controller
         //
     }
 
-    /*Game Loop*/
-    public function displayGames() {
-        $activeUserId = 1;
+    //Returning vie Home with the datas
+
+    public function displayHome() {
+        $activeUserId = Auth::user()->id;
             
         $user = User::where('id', $activeUserId)->first();
-
         $games = $user->games;
 
         $data = [];
         foreach($games as $game) {
             $gameId = $game->id;
-            
+
             $opponent = $user->getOtherUser($gameId);
-            
             $gameData = array(
                 "user" => $user,
                 "opponent" => $opponent,
@@ -107,7 +107,7 @@ class GameController extends Controller
 
             array_push($data, $gameData);
         }
-        return view('gameloop/games')->with('data', $data);
+        return view('home/home')->with('data', $data);
     } 
 
 }

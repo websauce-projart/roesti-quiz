@@ -19,9 +19,13 @@ use App\Http\Controllers\QuestionController;
 |
 */
 
-Route::get('/', function () {
-	return view('welcome');
-});
+/********************************
+ * Home
+ ********************************/
+
+Route::get('/', [GameController::class, 'displayHome']);
+Route::post('/newgame', [UserController::class, 'displaySearch']);
+
 
 /********************************
  * Game loop
