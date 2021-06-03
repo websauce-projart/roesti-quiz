@@ -16,26 +16,13 @@ class CategorySeeder extends Seeder
 	public function run()
 	{
 
-		Category::factory()
-			->create([
-				"title" => "Art"
-			]);
+		$categories = ['Langues', 'Géographique', 'Sport', 'Histoire', 'Art', 'Gastronomie', 'Média'];
 
-		/*
-		$arrayCategories = [
-			'Langues' => 'Description',
-			'Géographique' => 'Description',
-			'Sport' => 'Description',
-			'Histoire' => 'Description',
-			'Art' => 'Description',
-			'Gastronomie' => 'Description',
-			'Média' => 'Description'
-		];
-
-		foreach ($arrayCategories as $key => $value) {
-			DB::table('categories')->insert([
-				'title' => $key
-			]);
-		}; */
+		foreach ($categories as $category) {
+			Category::factory()
+				->create([
+					"title" => $category
+				]);
+		};
 	}
 }
