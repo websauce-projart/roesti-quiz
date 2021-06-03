@@ -17,7 +17,7 @@
     <header>
         <div>
             <a href="{{ url('register') }}">Créer un compte</a> |
-            <a href="#">Mot de passe oublié?</a>
+            <a href="{{ url('forgot-password') }}">Mot de passe oublié?</a>
         </div>
     </header>
 
@@ -30,7 +30,7 @@
         {{-- Gérer les erreurs de saisie avec vue --}}
 
         <div>
-            <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." icon="😃"
+            <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email" icon="😃"
                 value="{{ old('pseudo') }}"></x-input-text>
             {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
         </div>

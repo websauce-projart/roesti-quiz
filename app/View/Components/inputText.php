@@ -4,9 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class inputText extends Component
+class InputText extends Component
 {
-
     public $label;
     public $id;
     public $placeholder;
@@ -18,14 +17,12 @@ class inputText extends Component
      *
      * @return void
      */
-    public function __construct($label, $id, $placeholder, $icon="", $type="text")
+    public function __construct($label, $id, $placeholder, $icon="")
     {
         $this->label = $label;
         $this->id = $id;
         $this->placeholder = $placeholder;
         $this->icon = $icon;
-        $this->type = $type;
-
     }
 
     /**
