@@ -82,10 +82,10 @@ Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
  ********************************/
 
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('backoffice', function () {
+    Route::get('/backoffice', function () {
         return view('backoffice/home_backoffice');
     });
-    Route::resource('backoffice/question', QuestionController::class);
-    Route::resource('backoffice/user', UserController::class);
+    Route::resource('/backoffice/question', QuestionController::class);
+    Route::resource('/backoffice/user', UserController::class);
 });
 
