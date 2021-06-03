@@ -101,22 +101,28 @@ class UserController extends Controller
         $currentUser = Auth::user();
         $users = User::all();
         $games = $currentUser->games;
+        $tabGamesStarted = [];
+        $listUser = [];
         $data = [];
 
         foreach($games as $game) {
-            $gameId = $game->id;
-
-            $opponent = $currentUser->getOtherUser($gameId);
-
-            $gameData = array(
-                "user" => $currentUser,
-                "opponent" => $opponent,
-                "game" => $game
-            );
-
-            array_push($data, $gameData);
+            $opponent = $currentUser->getOtherUser($game->id);
+            array_push($tabGamesStarted, $opponent->id);
         }
-        dd($data);
-        return view('home/new_game');
+
+        foreach($users as $user) {
+            array_push($listUser, $user->id);
+        }
+
+        array_push($tabGamesStarted, $currentUser);
+
+        $listUser = array_diff($listUser, $tabGamesStarted);
+
+        
+        foreach($listUser as $userId) {
+            array_push($data, User::findorfail($userId));
+        }
+
+        return view('home/new_game')->with('data', $data);
     }
 }

@@ -31,6 +31,7 @@ Route::get('/', function () {
  ********************************/
 Route::get('/', [GameController::class, 'displayHome']);
 Route::post('/newgame', [UserController::class, 'displaySearch']);
+Route::post('/THOMAS', [GameController::class, 'store']);
 
 
 /********************************
