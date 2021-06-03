@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -22,7 +23,7 @@ use App\Http\Controllers\RegisterController;
 */
 
 Route::get('/', function () {
-	return view('welcome');
+	return redirect()->route('login');
 });
 
 /********************************
@@ -37,30 +38,30 @@ Route::post("/results", [RoundController::class, "createRound"]);
  * Login & Registration
  ********************************/
 //Register
-Route::get("/register", [RegisterController::class, "showRegisterView"]);
-Route::post("/register", [RegisterController::class, "register"]);
+Route::get("/register", [AuthController::class, "showRegisterView"]);
+Route::post("/register", [AuthController::class, "register"]);
 
 
 //Email confirmation
-Route::get("/verify", [RegisterController::class, "showVerifyEmailView"])
-	->middleware('auth')->name('verification.notice');
+Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
+->middleware('auth')->name('verification.notice');
 
-Route::get('/verify/{id}/{hash}', [RegisterController::class, "handleVerificationEmail"])
-	->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
+->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::post('/email/verification-notification', [RegisterController::class, 'resendVerificationEmail'])
-	->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
+->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-Route::get('/protege', function () { //Route de test
-	return 'lol';
-})->middleware('verified');;
+Route::get('/protege', function() { //Route de test
+    return view('karim');
+})->middleware('verified');
 
 //Login
-Route::get("/login", [LoginController::class, "showLoginView"])->name('login');
-Route::post("/login", [LoginController::class, "authenticate"]);
+Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
+Route::post("/login", [AuthController::class, "authenticate"]);
 
 //Logout
-Route::get("/logout", [LoginController::class, "logout"]);
+Route::get("/logout", [AuthController::class, "logout"]);
 
 /********************************
  * Routes accessible only by admin users

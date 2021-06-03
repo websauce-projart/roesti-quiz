@@ -11,28 +11,33 @@
 </head>
 
 <body>
+
+    <header>
+        <input type="button" value="Retour au login" onclick="window.history.back()" /> 
+    </header>
+
     <form action="" method="post">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
 
         <div>
-        <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." ></x-input-text>
+        <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." icon="😃"></x-input-text>
         {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div>
-        <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." ></x-input-text>
+        <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧"></x-input-text>
         {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div>
-        <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre mot de passe..." type="password"></x-input-text>
+        <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre mot de passe..." type="password" icon="🔒"></x-input-text>
         {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div>
-        <x-input-text label="Confirmation du mot de passe" id="password_confirmation" placeholder="Confirmez votre mot de passe..." type="password"></x-input-text>
+        <x-input-text label="Confirmation du mot de passe" id="password_confirmation" placeholder="Confirmez votre mot de passe..." type="password" icon="🔒"></x-input-text>
         {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
