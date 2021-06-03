@@ -2,22 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Round;
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    public $timestamps = false;
+	public $timestamps = false;
 
-    protected $fillable = [
-        'title'
-    ];
+	protected $fillable = [
+		'title'
+	];
 
-    public function questions() {
-        return $this->belongsToMany(Question::class);
-    }
+	public function questions()
+	{
+		return $this->belongsToMany(Question::class);
+	}
 
     public function round() {
         return $this->belongsTo(Round::class);

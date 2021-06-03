@@ -23,8 +23,9 @@ class QuestionFactory extends Factory
 	{
 		return [
 			'label' => $this->faker->sentence(),
+			'answer_boolean' => $this->faker->boolean(),
 			'answer_label' => $this->faker->sentence(),
-			'answer_boolean' => $this->faker->boolean()
+			'author_id' => 2
 		];
 	}
 }
