@@ -27,6 +27,13 @@ Route::get('/', function () {
 });
 
 /********************************
+ * Home
+ ********************************/
+Route::get('/', [GameController::class, 'displayHome']);
+Route::post('/newgame', [UserController::class, 'displaySearch']);
+
+
+/********************************
  * Game loop
  ********************************/
 Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
@@ -44,16 +51,16 @@ Route::post("/register", [AuthController::class, "register"]);
 
 //Email confirmation
 Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
-->middleware('auth')->name('verification.notice');
+	->middleware('auth')->name('verification.notice');
 
 Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
-->middleware(['auth', 'signed'])->name('verification.verify');
+	->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
-->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+	->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-Route::get('/protege', function() { //Route de test
-    return view('karim');
+Route::get('/protege', function () { //Route de test
+	return view('karim');
 })->middleware('verified');
 
 //Login
