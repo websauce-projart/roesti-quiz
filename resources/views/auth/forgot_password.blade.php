@@ -16,7 +16,7 @@
         <input type="button" value="Retour au login" onclick="window.history.back()" />
     </header>
 
-    <form action="{{url(forgot-password)}}" method="post">
+    <form action="{{url(/forgot-password)}}" method="post">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
