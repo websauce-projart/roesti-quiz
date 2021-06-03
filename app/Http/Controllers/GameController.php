@@ -10,110 +10,111 @@ use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        //
-    }
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function index(Request $request)
+	{
+		//
+	}
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create()
+	{
+		//
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $activeUserId = Auth::user()->id;
-        $opponentId = $request->user;
-        $game = Game::create(['active_user_id' => $activeUserId]);
-        $game->users()->attach($activeUserId);
-        $game->users()->attach($opponentId);
-        return view('THOMAS')->with('data', $game->id);
-    }
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store(Request $request)
+	{
+		$activeUserId = Auth::user()->id;
+		$opponentId = $request->user;
+		$game = Game::create(['active_user_id' => $activeUserId]);
+		$game->users()->attach($activeUserId);
+		$game->users()->attach($opponentId);
+		return view('THOMAS')->with('data', $game->id);
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Game $game)
-    {
-        //
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  \App\Models\Game  $game
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show()
+	{
+		return view("gameloop/game");
+	}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  \App\Models\Game  $game
+	 * @return \Illuminate\Http\Response
+	 */
+	public function edit(Game $game)
+	{
+		//
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        //
-    }
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @param  \App\Models\Game  $game
+	 * @return \Illuminate\Http\Response
+	 */
+	public function update(Request $request, Game $game)
+	{
+		//
+	}
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
-    }
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  \App\Models\Game  $game
+	 * @return \Illuminate\Http\Response
+	 */
+	public function destroy(Game $game)
+	{
+		//
+	}
 
-    //Returning vie Home with the datas
+	//Returning vie Home with the datas
 
-    public function displayHome() {
-        $activeUserId = Auth::user()->id;
+	public function displayHome()
+	{
+		$activeUserId = Auth::user()->id;
 
-        $user = User::where('id', $activeUserId)->first();
-        $games = $user->games;
+		$user = User::where('id', $activeUserId)->first();
+		$games = $user->games;
 
-        $data = [];
-        foreach($games as $game) {
-            $gameId = $game->id;
+		$data = [];
+		foreach ($games as $game) {
+			$gameId = $game->id;
 
-            $opponent = $user->getOtherUser($gameId);
-            $gameData = array(
-                "user" => $user,
-                "opponent" => $opponent,
-                "game" => $game
-            );
+			$opponent = $user->getOtherUser($gameId);
+			$gameData = array(
+				"user" => $user,
+				"opponent" => $opponent,
+				"game" => $game
+			);
 
-            array_push($data, $gameData);
-        }
-        return view('home/home')->with('data', $data);
-    }
+			array_push($data, $gameData);
+		}
+		return view('home/home')->with('data', $data);
+	}
 
 	/**
 	 * Display view for the main game loop

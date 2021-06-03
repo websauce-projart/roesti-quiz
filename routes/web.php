@@ -25,25 +25,25 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', function () {
 	return redirect()->route('login');
 });
+
 Route::group(['middleware' => ['verified']], function () {
-
-
-	/********************************
-	 * Home
-	 ********************************/
-
-	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-	Route::post('/newgame', [UserController::class, 'displaySearch']);
-	Route::post('/THOMAS', [GameController::class, 'store']);
-
-
 
 	/********************************
 	 * Game loop
 	 ********************************/
 	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
+	Route::post("/game", [RoundController::class, "store"]);
+
+
+	/********************************
+	 * Home
+	 ********************************/
+	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
+	Route::post('/newgame', [UserController::class, 'displaySearch']);
+	Route::post('/THOMAS', [GameController::class, 'store']);
 });
+
 /********************************
  * Login & Registration
  ********************************/
