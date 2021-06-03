@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
 use App\Models\Round;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\GameController;
 
 class RoundController extends Controller
 {
+
 	/**
-	 * Store round
+	 * Create a round, store it and return the next view
+	 * @return view Results page
 	 */
 	public function createRound(Request $request)
 	{
@@ -21,6 +25,18 @@ class RoundController extends Controller
 			"category_id" => $category_id
 		]);
 
-		return view("gameloop.results");
+		$users = GameController::getPlayers(1);
+		$users_id = [];
+		foreach ($users as $user) {
+			array_push($users_id, $user->user_id);
+		}
+
+		return view(
+			"gameloop.results",
+			[
+				"users_id" => $users_id,
+				"category_title" => $category_title
+			]
+		);
 	}
 }

@@ -20,10 +20,8 @@ class CategoryController extends Controller
 	}
 
 	/**
-	 * Get random categories
-	 *
-	 * @param $number Get the number of categories
-	 * @return view
+	 *	Get 3 random categories, store the game ID in session and return the next view
+	 * @return view Choose categories
 	 **/
 	public function getRandomCategories(Faker $faker)
 	{
@@ -39,12 +37,7 @@ class CategoryController extends Controller
 		// Store id of the game for next view
 		session(["game_id" => $game_id]);
 
-		// Return view
-		$faker->seed(124);
-		$categories_titles = Category::pluck("title");
-		$categories = $faker->randomElements($categories_titles, 3);
-
-		return view("gameloop/choose_categories", [
+		return view("gameloop.choose_categories", [
 			"categories" => $categories
 		]);
 	}

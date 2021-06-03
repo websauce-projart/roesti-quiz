@@ -26,23 +26,25 @@ Route::get('/', function () {
 	return redirect()->route('login');
 });
 
+/********************************
+ * Verified user
+ ********************************/
 Route::group(['middleware' => ['verified']], function () {
 
-	/********************************
-	 * Game loop
-	 ********************************/
-	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
-	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
-	Route::post("/game", [RoundController::class, "store"]);
-
-
-	/********************************
-	 * Home
+	/* Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
 	Route::post('/newgame', [UserController::class, 'displaySearch']);
 	Route::post('/THOMAS', [GameController::class, 'store']);
+
+
+	/* Gameloop
+	 ********************************/
+	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
+	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
+	Route::post("/results", [RoundController::class, "createRound"]);
 });
+
 
 /********************************
  * Login & Registration
@@ -73,10 +75,10 @@ Route::post("/login", [AuthController::class, "authenticate"]);
 //Logout
 Route::get("/logout", [AuthController::class, "logout"]);
 
-/********************************
- * Routes accessible only by admin users
- ********************************/
 
+/********************************
+ * Admin backoffice
+ ********************************/
 Route::group(['middleware' => ['admin']], function () {
 	Route::get('backoffice', function () {
 		return view('backoffice/home_backoffice');
