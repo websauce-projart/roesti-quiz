@@ -16,8 +16,8 @@
 
     <header>
         <div>
-            <button onclick="window.location.href='/register'">register</button>
-            <button onclick="window.location.href='/forgot-password'">password</button>
+            <button onclick="window.location.href='/register'">Créer un compte</button>
+            <button onclick="window.location.href='/forgot-password'">Mot de passe perdu</button>
         </div>
     </header>
 
