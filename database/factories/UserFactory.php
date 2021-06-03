@@ -15,21 +15,21 @@ class UserFactory extends Factory
 	 */
 	protected $model = User::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
-    {
-        return [
-				'pseudo' => $this->faker->username(),
-				'email' => $this->faker->unique()->safeEmail(),
-				'email_verified_at' => now(),
-				'password' => 'password',
-				'remember_token' => Str::random(10),
-        ];
-    }
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array
+	 */
+	public function definition()
+	{
+		return [
+			'pseudo' => $this->faker->username(),
+			'email' => $this->faker->unique()->safeEmail(),
+			'email_verified_at' => now(),
+			'password' => 'password',
+			'remember_token' => Str::random(10),
+		];
+	}
 
 	/**
 	 * Indicate that the model's email address should be unverified.
