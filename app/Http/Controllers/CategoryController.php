@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Faker\Generator as Faker;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -26,11 +27,17 @@ class CategoryController extends Controller
 	 **/
 	public function getRandomCategories(Faker $faker)
 	{
-		$faker->seed(124);
+		// Define a seed so the player doesn't manipulation category generation
+		$game_id = 1;
+		$round_id = 1;
+		$user_id = Auth::user()->id;
+		$faker->seed($user_id + $game_id + $round_id);
+
+		// Get titles from category
 		$categories_titles = Category::pluck("title");
 		$categories = $faker->randomElements($categories_titles, 3);
 
-		return view("gameloop/choose_categories", [
+		return view("gameloop.choose_categories", [
 			"categories" => $categories
 		]);
 	}

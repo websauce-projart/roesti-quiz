@@ -11,20 +11,12 @@
                 Choix de ta catégorie
     </h1>
 
-    @foreach ($categories as $category)
-        {{ strtolower($category) }}
-    @endforeach
-
-
     <form action="" method="post">
-        <fieldset>
 
-            {{-- @foreach ($categories as $category)
-                <input name="cat_{{ $category->id }}" id="cat_{{ $category->id }}" type="checkbox">
-                <label for="cat_{{ $category->id }}">{{ $category->title }}</label>
-            @endforeach --}}
-
-        </fieldset>
+        @foreach ($categories as $category)
+            <input name="categories" id="{{ $category }}" type="radio">
+            <label for="{{ $category }}">{{ $category }}</label>
+        @endforeach
 
         <input type="submit" value="C'est parti mon roesti">
     </form>
