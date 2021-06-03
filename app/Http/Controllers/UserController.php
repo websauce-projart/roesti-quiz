@@ -75,7 +75,7 @@ class UserController extends Controller
     {
         $this->setAdmin($request);
         User::findOrFail($id)->update($request->all());
-        return redirect('user')->withOk("L'utilisateur " . $request->input('pseudo') . " a été modifié");
+        return redirect('backoffice/user')->withOk("L'utilisateur " . $request->input('pseudo') . " a été modifié");
     }
 
     /**
