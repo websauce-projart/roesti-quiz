@@ -11,24 +11,24 @@
 </head>
 
 <body>
-<div class="col-sm-offset-4 col-sm-4">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Modification d'un utilisateur</div>
-        <div class="panel-body">
-            <div class="col-sm-12">
-                <form method="POST" action="{{route('user.update', [$user->id])}}" accept-charset="UTF-8" class="form-horizontalpanel">
+<div>
+    <div>
+        <div>Modification d'un utilisateur</div>
+        <div>
+            <div>
+                <form method="POST" action="{{route('user.update', [$user->id])}}" accept-charset="UTF-8">
                     @csrf
                     @method('PUT')
-                    <div class="form-group {!! $errors->has('pseudo') ? 'has-error' : '' !!}">
-                        <input type="text" name="pseudo" value="{{$user->pseudo}}" placeholder="Pseudo" class="form-control">  
+                    <div class="{!! $errors->has('pseudo') ? 'has-error' : '' !!}">
+                        <input type="text" name="pseudo" value="{{$user->pseudo}}" placeholder="Pseudo">  
                         {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
                     </div>
-                    <div class="form-group {!! $errors->has('email') ? 'has-error' : '' !!}">
-                        <input type="email" name="email" value="{{$user->email}}" placeholder="Email" class="form-control">  
+                    <div class="{!! $errors->has('email') ? 'has-error' : '' !!}">
+                        <input type="email" name="email" value="{{$user->email}}" placeholder="Email">  
                         {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
                     </div>
-                    <div class="form-group">
-                        <div class="checkbox">
+                    <div>
+                        <div>
                             <label>
                                 @if($user->admin)
                                    <input name="admin" value="1" type="checkbox" checked>
