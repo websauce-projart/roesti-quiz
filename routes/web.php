@@ -66,10 +66,10 @@ Route::post("/login", [AuthController::class, "authenticate"]);
 Route::get("/logout", [AuthController::class, "logout"]);
 
 //Password reset
-Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
+Route::get('websauce/forgot-password', [AuthController::class, 'showForgotPasswordView'])
 ->middleware('guest')->name('password.request');
 
-Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
+Route::post('websauce/forgot-password', [AuthController::class, 'sendPasswordEmail'])
 ->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
