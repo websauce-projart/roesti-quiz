@@ -15,7 +15,7 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
     }
@@ -38,7 +38,12 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $activeUserId = Auth::user()->id;
+        $opponentId = $request->user;
+        $game = Game::create(['active_user_id' => $activeUserId]);
+        $game->users()->attach($activeUserId);
+        $game->users()->attach($opponentId);
+        return view('THOMAS')->with('data', $game->id);
     }
 
     /**
