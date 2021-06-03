@@ -13,7 +13,7 @@
 <body>
 
     <header>
-        <input type="button" value="Retour au login" onclick="window.history.back()" /> 
+        <input type="button" value="Retour au login" onclick="window.history.back()" />
     </header>
 
     <form action="" method="post">

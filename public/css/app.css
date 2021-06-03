@@ -633,8 +633,8 @@ h6 {
 	border-style: none;
 }
 
-.btn--primary{
-	background-color: #FFBB40; /* Yellow BG*/
+.btn--primary, .btn--secondary:hover{
+	background-color: #FFBf2f; /* Yellow BG*/
 	color: #003769; /*Blue text*/
 	box-shadow: -6px 6px  #FE450E;
 }
@@ -643,6 +643,12 @@ h6 {
 	background-color: #4092E8; /* Blue BG*/
 	color: #fff; /*Blue text*/
 	box-shadow: -6px 6px  #003769;
+}
+
+.btn--primary:hover{
+	background-color: #FE450E; /* Yellow BG*/
+	color: #fff; /*Blue text*/
+	box-shadow: -6px 6px #FFBf2f ;
 }
 
 /********************************
