@@ -15,7 +15,7 @@
     <header>
         <div>
             <a href="{{ url('register') }}">Créer un compte</a> |
-            <a href="#">Mot de passe oublié?</a>
+            <a href="{{ url('forgot-password') }}">Mot de passe oublié?</a>
         </div>
     </header>
 

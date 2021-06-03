@@ -57,6 +57,18 @@ Route::post("/login", [AuthController::class, "authenticate"]);
 //Logout
 Route::get("/logout", [AuthController::class, "logout"]);
 
+//Password reset
+Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
+->middleware('guest')->name('password.request');
+
+Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
+->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
+->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
+
 /********************************
  * Routes accessible only by admin users 
  ********************************/
