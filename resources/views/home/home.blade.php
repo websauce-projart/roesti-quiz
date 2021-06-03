@@ -26,7 +26,7 @@ RöstiQuiz - Accueil
             @if($gamedata['game']->active_user_id == $gamedata['user']->id)
                 <div>
                     <p>À toi de jouer</p>
-                    <form method="POST" action="{{url('/')}}" accept-charset="UTF-8">
+                    <form method="POST" action="" accept-charset="UTF-8">
                         @csrf
                         <input class="" type="submit" value="->">
                     </form>
@@ -34,7 +34,7 @@ RöstiQuiz - Accueil
             @else
                 <div>
                     <p>N'a pas encore relevé ton défi...</p>
-                    <form method="POST" action="{{url('/')}}" accept-charset="UTF-8">
+                    <form method="POST" action="" accept-charset="UTF-8">
                         @csrf
                         <input class="" type="submit" value="->">
                     </form>

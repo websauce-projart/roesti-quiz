@@ -44,7 +44,7 @@ Route::resource('question', QuestionController::class);
  * Login & Registration
  ********************************/
 //Register
-Route::get("/register", [AuthController::class, "showRegisterView"]);
+Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
 Route::post("/register", [AuthController::class, "register"]);
 
 
@@ -63,7 +63,7 @@ Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
 Route::post("/login", [AuthController::class, "authenticate"]);
 
 //Logout
-Route::get("/logout", [AuthController::class, "logout"]);
+Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
 
 //Password reset
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])

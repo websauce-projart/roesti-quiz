@@ -13,7 +13,8 @@
 <body>
 
     <header>
-        <input type="button" value="Retour au login" onclick="window.history.back()" />
+        <!-- <input type="button" value="Retour au login" onclick="window.history.back()" /> -->
+        <a href="{{ route('login') }}">Retour au login</a>
     </header>
 
     <form action="" method="post">

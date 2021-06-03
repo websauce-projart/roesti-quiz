@@ -12,11 +12,11 @@
 
 <body>
 
-    <header>
+    <!-- <header>
         <input type="button" value="Retour au login" onclick="window.history.back()" /> 
-    </header>
+    </header> -->
 
-    <form action="/reset-password" method="post">
+    <form action="" method="post">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}

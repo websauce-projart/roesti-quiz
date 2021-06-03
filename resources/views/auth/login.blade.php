@@ -16,8 +16,8 @@
 
     <header>
         <div>
-            <button onclick="window.location.href='{{url(register)}}'">Créer un compte</button>
-            <button onclick="window.location.href='{{url(forgot-password)}}'">Mot de passe perdu</button>
+            <a href="{{ route('register') }}">Créer un compte</a> |
+            <a href="{{ route('password.request') }}">Mot de passe oublié?</a>
         </div>
     </header>
 
