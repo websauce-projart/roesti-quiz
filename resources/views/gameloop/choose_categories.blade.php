@@ -11,7 +11,7 @@
                 Choix de ta catégorie
     </h1>
 
-    <form action="{{ url('/game') }}" method="post">
+    <form action="{{ url('/results') }}" method="post">
         @csrf
 
         @foreach ($categories as $category)

@@ -30,7 +30,7 @@ Route::get('/', function () {
  ********************************/
 Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 Route::get("/category", [CategoryController::class, 'getRandomCategories']);
-Route::post("/game", [RoundController::class, "store"]);
+Route::post("/results", [RoundController::class, "createRound"]);
 
 
 /********************************

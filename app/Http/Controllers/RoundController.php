@@ -11,7 +11,7 @@ class RoundController extends Controller
 	/**
 	 * Store round
 	 */
-	public function store(Request $request)
+	public function createRound(Request $request)
 	{
 		$category_title = $request->input("categories");
 		$category_id = Category::where("title", $category_title)->first()->id;
@@ -20,5 +20,7 @@ class RoundController extends Controller
 			"game_id" => session("game_id"),
 			"category_id" => $category_id
 		]);
+
+		return view("gameloop.results");
 	}
 }
