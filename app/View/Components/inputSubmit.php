@@ -4,9 +4,10 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class inputSubmit extends Component
+class InputSubmit extends Component
 {
     public $label;
+
     /**
      * Create a new component instance.
      *

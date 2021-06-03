@@ -4,9 +4,8 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class inputText extends Component
+class InputText extends Component
 {
-
     public $label;
     public $id;
     public $placeholder;
