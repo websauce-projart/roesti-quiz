@@ -114,7 +114,7 @@ class UserController extends Controller
             array_push($listUser, $user->id);
         }
 
-        array_push($tabGamesStarted, $currentUser);
+        array_push($tabGamesStarted, $currentUser->id);
 
         $listUser = array_diff($listUser, $tabGamesStarted);
 
