@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -25,29 +26,39 @@ class AuthController extends Controller
     }
 
     /**
-     * Handle an authentication attempt.
+     * Handle an authentication attempt
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function authenticate(Request $request)
     {
-        // dd($request);
-        $credentials = $request->validate([
+        Validator::make($request->all(), [
             "pseudo" => "required",
             "password" => "required",
-        ]);
+        ])->validate();
 
+        $pseudo = $request->pseudo;
+        $password = $request->password;
         $remember = $request->input('remember_token');
 
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
+        if (filter_var($pseudo, FILTER_VALIDATE_EMAIL)) {
+            //user sent their email 
+            Auth::attempt(['email' => $pseudo, 'password' => $password], $remember);
+        } else {
+            //they sent their username instead 
+            Auth::attempt(['pseudo' => $pseudo, 'password' => $password], $remember);
+        }
 
+        //was any of those correct ?
+        if (Auth::check()) {
+            $request->session()->regenerate();
             // redirect where user usually attempted to go, but on homepage as a fallback
             return redirect()->intended('/protege');
         }
 
-        return back()->withErrors([
+        //Nope, something wrong during authentication 
+        return redirect()->route('login')->withErrors([
             "loginFailed" => true
         ]);
     }
@@ -56,7 +67,7 @@ class AuthController extends Controller
      * Logout
      ********************************/
 
-     /**
+    /**
      * Logout and redirect to homepage
      * @return redirect
      */
