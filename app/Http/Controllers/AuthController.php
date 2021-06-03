@@ -58,7 +58,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             $request->session()->regenerate();
             // redirect where user usually attempted to go, but on homepage as a fallback
-            return redirect()->intended('/protege');
+            return redirect()->intended('/home');
         }
 
         //Nope, something wrong during authentication 

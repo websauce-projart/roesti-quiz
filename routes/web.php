@@ -21,6 +21,17 @@ use App\Http\Controllers\QuestionController;
 Route::get('/', function () {
 	return redirect()->route('login');
 });
+Route::group(['middleware' => ['verified']], function () {
+    
+
+/********************************
+ * Home
+ ********************************/
+
+Route::get('/home', [GameController::class, 'displayHome'])->name('home');
+Route::post('/newgame', [UserController::class, 'displaySearch']);
+Route::post('/THOMAS', [GameController::class, 'store']);
+
 
 /********************************
  * Game loop
@@ -28,6 +39,7 @@ Route::get('/', function () {
 Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 Route::resource('question', QuestionController::class);
 
+});
 /********************************
  * Login & Registration
  ********************************/
