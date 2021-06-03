@@ -21,9 +21,6 @@
         </div>
     </header>
 
-
-
-
     <form action="" method="post">
         @csrf
 
