@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Luckiest Guy">
 </head>
 
 <body>

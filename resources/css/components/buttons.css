@@ -1,3 +1,29 @@
 /********************************
  * Buttons
  ********************************/
+.btn{
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	margin-top: 1rem;
+	margin: 0 auto;
+	width: 95%;
+	max-width: 600px;
+	text-align: center;
+	display: block;
+	font-size: 22px;
+	font-family:  "Luckiest Guy", sans-serif;
+	border-radius: 1rem;
+	border-style: none;
+}
+
+.btn--primary{
+	background-color: #FFBB40; /* Yellow BG*/
+	color: #003769; /*Blue text*/
+	box-shadow: -6px 6px  #FE450E;
+}
+
+.btn--secondary{
+	background-color: #4092E8; /* Blue BG*/
+	color: #fff; /*Blue text*/
+	box-shadow: -6px 6px  #003769;
+}
