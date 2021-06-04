@@ -43,9 +43,10 @@ Route::group(['middleware' => ['verified']], function () {
 	 ********************************/
 	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
-	Route::post("/results", [RoundController::class, "createRound"]);
 
 	Route::get('/quiz', [QuizController::class, 'getQuestions']);
+	Route::post("/results", [RoundController::class, "createRound"])->name('results');
+	Route::get("/LUKA", [RoundController::class, 'prepareNextRound'])->name('luka');
 });
 
 

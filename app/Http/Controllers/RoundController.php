@@ -19,9 +19,10 @@ class RoundController extends Controller
 	{
 		$category_title = $request->input("categories");
 		$category_id = Category::where("title", $category_title)->first()->id;
+		$game_id = session("game_id");
 
 		Round::create([
-			"game_id" => session("game_id"),
+			"game_id" => $game_id,
 			"category_id" => $category_id
 		]);
 
@@ -38,5 +39,17 @@ class RoundController extends Controller
 				"category_title" => $category_title
 			]
 		);
+	}
+
+	/**
+	 * Get the next round and return the gameloop view
+	 * @return view Gameloop
+	 */
+	public function prepareNextRound()
+	{
+		$next_round = Round::orderBy("created_at", "desc")->first();
+		return view("gameloop.LUKA", [
+			"round_id" => $next_round->id
+		]);
 	}
 }
