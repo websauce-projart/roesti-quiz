@@ -587,7 +587,7 @@ textarea,
  * Colors variables
  ********************************/
 :root {
-    --color-main: #000;
+    --color-main: #FFBf2f;
     --color-secondary: #000;
 }
 
@@ -624,7 +624,8 @@ h6 {
 	margin-top: 1rem;
 	margin: 0 auto;
 	width: 95%;
-	max-width: 600px;
+	max-width: 350px;
+	min-width: 250px;
 	text-align: center;
 	display: block;
 	font-size: 22px;
@@ -651,6 +652,20 @@ h6 {
 	box-shadow: -6px 6px #FFBf2f ;
 }
 
+/********************************
+ * Text inputs
+ ********************************/
+
+ .textbox{
+    border-radius: 0.5rem;
+    border-style: none; 
+    width: 95%;
+	max-width: 350px;
+	display: block;
+    margin: auto;
+    
+
+ }
 /********************************
  * CSS ENTRY POINT
  ********************************/

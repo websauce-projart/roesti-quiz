@@ -24,6 +24,7 @@
 /* Components (ui and design based)
  ********************************/
 @import "components/buttons";
+@import "components/textbox";
 
 /* Utilities (helpers)
  ********************************/
