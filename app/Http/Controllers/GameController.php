@@ -63,14 +63,6 @@ class GameController extends Controller
 	}
 
 	/**
-	 * Display view for the main game loop
-	 **/
-	public function showGameloopView()
-	{
-		return view("gameloop/game");
-	}
-
-	/**
 	 * Test
 	 */
 	public function displayGames()
