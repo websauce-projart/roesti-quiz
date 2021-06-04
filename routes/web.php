@@ -30,6 +30,9 @@ Route::group(['middleware' => ['verified']], function () {
 
 Route::get('/home', [GameController::class, 'displayHome'])->name('home');
 Route::post('/newgame', [UserController::class, 'displaySearch']);
+Route::get('/', function () {
+	return redirect()->route('home');
+});
 Route::post('/THOMAS', [GameController::class, 'store']);
 
 
