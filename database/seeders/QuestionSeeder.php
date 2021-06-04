@@ -111,6 +111,78 @@ class QuestionSeeder extends Seeder
 								'2',
 							]
 							],
+							['label' => 'La Chaux-de-Fonds a plus d\'habitants que Fribourg',
+							'answer_label' => '',
+							'answer_boolean' => true,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'Les habitant·es de Gland sont nommés les "Glandus"',
+							'answer_label' => 'Ils se nomment les Glandois·es',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'C\'est à Bulle que le savon a été inventé',
+							'answer_label' => 'Sérieusement ?',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'Alain Berset est membre du Conseil fédéral Suisse depuis 2012',
+							'answer_label' => '',
+							'answer_boolean' => true,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'La Suisse compte plus de 7\'000 lacs',
+							'answer_label' => '',
+							'answer_boolean' => true,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'Le tunnel ferroviaire du Gothard est le 3e plus long du monde',
+							'answer_label' => 'Ben non, c\'est le premier !',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'La Romandie occupe 32% de la Suisse',
+							'answer_label' => 'Le présentateur est discalculique, c\'est bien 23%',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							['label' => 'Le plus grand escalier du monde se trouve en Valais',
+							'answer_label' => 'Non, c\'est dans le canton de Berne !',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'2',
+							]
+							],
+							/*['label' => '',
+							'answer_label' => '',
+							'answer_boolean' => false,
+							'author_id' => '1',
+							'categories' => [
+								'3',
+							]
+							],*/
 						];
 
 		foreach ($questions as $question) {
