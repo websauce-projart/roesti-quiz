@@ -14,6 +14,6 @@ RöstiQuiz - Choisi ta victime
          <label for="{{$user->id}}">{{$user->pseudo}}</label>
       </div>
       @endforeach
-      <input class="" type="submit" value="Suivant">
+      <x-input-submit label="Suivant"></x-input-submit>
    </form>
 @endsection

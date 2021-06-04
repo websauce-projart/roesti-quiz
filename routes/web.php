@@ -21,14 +21,19 @@ use App\Http\Controllers\QuestionController;
 Route::get('/', function () {
 	return redirect()->route('login');
 });
+
+/********************************
+ * Group User
+ ********************************/
+
 Route::group(['middleware' => ['verified']], function () {
-    
 
 /********************************
  * Home
  ********************************/
 
 Route::get('/home', [GameController::class, 'displayHome'])->name('home');
+Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
 Route::post('/newgame', [UserController::class, 'displaySearch']);
 Route::post('/THOMAS', [GameController::class, 'store']);
 

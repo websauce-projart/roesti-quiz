@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Result;
 
 class UserController extends Controller
 {
@@ -124,5 +125,27 @@ class UserController extends Controller
         }
 
         return view('home/new_game')->with('data', $data);
+    }
+
+    public function displayProfile()
+    {
+        $currentUser = Auth::user();
+        $scores = Result::all()->where('user_id', $currentUser->id);
+        $scoreTotal = 0;
+        foreach($scores as $score){
+            $scoreTotal = $scoreTotal + $score->score;
+        };
+
+        $score = array(
+            "points" => $scoreTotal,
+            "titleScore" => 'TO IMPLEMENT IN USER CONTROLLER',
+        );
+
+        $data = array(
+            "user" => $currentUser,
+            "score" => $score,
+        );
+        
+        return view('profile/profile')->with('data', $data);
     }
 }
