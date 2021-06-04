@@ -34,14 +34,15 @@ Route::group(['middleware' => ['verified']], function () {
 	/* Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-	Route::post('/newgame', [UserController::class, 'displaySearch']);
-	Route::post('/THOMAS', [GameController::class, 'store']);
 
 
 	/* Gameloop
 	 ********************************/
 	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
-	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
+
+	Route::post('/newgame', [UserController::class, 'displaySearch']);
+	Route::post('/category', [GameController::class, 'store'])->name("category");
+	// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
 	Route::post("/results", [RoundController::class, "createRound"])->name('results');
 	Route::get("/LUKA", [RoundController::class, 'prepareNextRound'])->name('luka');
 });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\CategoryController;
 
 class GameController extends Controller
 {
@@ -35,7 +37,13 @@ class GameController extends Controller
 		$game = Game::create(['active_user_id' => $activeUserId]);
 		$game->users()->attach($activeUserId);
 		$game->users()->attach($opponentId);
-		return view('THOMAS')->with('data', $game->id);
+
+		$categories = CategoryController::getRandomCategories();
+
+		return view("gameloop.choose_categories", [
+			"categories" => $categories,
+			'data' => $game->id
+		]);
 	}
 
 	//Returning vie Home with the datas
