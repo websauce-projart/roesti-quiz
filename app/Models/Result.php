@@ -13,7 +13,9 @@ class Result extends Model
 
     protected $fillable = [
         'user_id',
-        'round_id'
+        'round_id',
+        'time',
+        'score'
     ];
 
     public function round() {

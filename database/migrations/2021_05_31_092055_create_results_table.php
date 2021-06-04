@@ -30,8 +30,8 @@ class CreateResultsTable extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
-            $table->integer('time');
-            $table->integer('score');
+            $table->integer('time')->default(0);
+            $table->integer('score')->default(0);;
         });
     }
 
