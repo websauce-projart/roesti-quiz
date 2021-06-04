@@ -22,11 +22,7 @@ class Category extends Model
 		return $this->belongsToMany(Question::class);
 	}
 
-    public function round() {
-        return $this->belongsTo(Round::class);
-    }
-
-    public static function getAll(){
-        return Category::all();
+    public function rounds() {
+        return $this->hasMany(Round::class);
     }
 }

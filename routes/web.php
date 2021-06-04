@@ -1,11 +1,15 @@
 <?php
 
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
-
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +41,28 @@ Route::post('/THOMAS', [GameController::class, 'store']);
 
 
 /********************************
- * Game loop
+ * Verified user
  ********************************/
-Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
-Route::resource('question', QuestionController::class);
+Route::group(['middleware' => ['verified']], function () {
+
+	/* Home
+	 ********************************/
+	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
+	Route::post('/newgame', [UserController::class, 'displaySearch']);
+	Route::post('/THOMAS', [GameController::class, 'store']);
+
+
+	/* Gameloop
+	 ********************************/
+	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
+	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
+
+	Route::post("/results", [RoundController::class, "createRound"])->name('results');
+
+	Route::get("/quiz", [QuizController::class, 'showQuiz'])->name('quiz');
+	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
+});
+
 
 });
 /********************************
@@ -81,9 +103,8 @@ Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
 Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
 
 /********************************
- * Routes accessible only by admin users 
+ * Admin backoffice
  ********************************/
-
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/backoffice', function () {
         return view('backoffice/home_backoffice');
@@ -91,4 +112,3 @@ Route::group(['middleware' => ['admin']], function () {
     Route::resource('/backoffice/question', QuestionController::class);
     Route::resource('/backoffice/user', UserController::class);
 });
-
