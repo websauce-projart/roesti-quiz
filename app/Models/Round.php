@@ -21,9 +21,9 @@ class Round extends Model
 		return $this->belongsTo(Game::class);
 	}
 
-	public function categories()
+	public function category()
 	{
-		return $this->hasMany(Categorie::class);
+		return $this->belongsTo(Category::class);
 	}
 
 	public function results()

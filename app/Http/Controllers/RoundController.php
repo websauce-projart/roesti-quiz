@@ -21,7 +21,7 @@ class RoundController extends Controller
 		$category_id = Category::where("title", $category_title)->first()->id;
 		$game_id = session("game_id");
 
-		Round::create([
+		$round = Round::create([
 			"game_id" => $game_id,
 			"category_id" => $category_id
 		]);
@@ -32,6 +32,11 @@ class RoundController extends Controller
 			array_push($users_id, $user->user_id);
 		}
 
+		$this->prepareNextRound($round);
+
+		// Store id of the game for next view
+		session(["round_id" => $round->id]);
+
 		return view(
 			"gameloop.results",
 			[
@@ -40,16 +45,25 @@ class RoundController extends Controller
 			]
 		);
 	}
-
+	
 	/**
-	 * Get the next round and return the gameloop view
-	 * @return view Gameloop
+	 * Pick 10 questions from the round's category and store them
+	 *
+	 * @param  mixed $request
+	 * @return void
 	 */
-	public function prepareNextRound()
+	public function prepareNextRound($round)
 	{
-		$next_round = Round::orderBy("created_at", "desc")->first();
-		return view("gameloop.LUKA", [
-			"round_id" => $next_round->id
-		]);
+		//Retrieve next round category
+        $category_id = $round->category()->first()->id;
+
+		//Retrieve 10 questions from the category
+        $questions = Category::where('id', $category_id)->first()->questions()->get();
+        $questions = $questions->shuffle()->slice(0, 10);
+
+		//Add thoses questions into QuestionRound table
+		foreach($questions as $question) {
+			$question->rounds()->attach($round);
+		}
 	}
 }

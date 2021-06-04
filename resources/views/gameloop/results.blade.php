@@ -9,6 +9,6 @@
     User1: {{ $users_id[0] }} – User2: {{ $users_id[1] }}<br>
     {{ $category_title }} - {{ session('game_id') }}
 
-    <a href="{{ route('luka') }}">play</a>
+    <a href="{{ route('quiz') }}">play</a>
 
 @endsection

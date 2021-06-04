@@ -10,7 +10,6 @@ use App\Http\Controllers\RoundController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
-use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,9 +43,10 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
 	Route::get("/category", [CategoryController::class, 'getRandomCategories']);
 
-	Route::get('/quiz', [QuizController::class, 'getQuestions']);
 	Route::post("/results", [RoundController::class, "createRound"])->name('results');
-	Route::get("/LUKA", [RoundController::class, 'prepareNextRound'])->name('luka');
+
+	Route::get("/quiz", [QuizController::class, 'showQuiz'])->name('quiz');
+	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
 });
 
 
