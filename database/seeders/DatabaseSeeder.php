@@ -63,16 +63,13 @@ class DatabaseSeeder extends Seeder
 
 		/**
 		 * For each question, attach to:
-		 * - an existing category (found according to id)
 		 * - an existing round (found according to id)
 		 * - an answer from one user
 		 */
 		$questions = Question::all();
-		$category = Category::find(1);
 		$round = Round::find(1);
 
 		foreach ($questions as $question) {
-			$question->categories()->attach($category);
 			$question->rounds()->attach($round);
 		}
 	}
