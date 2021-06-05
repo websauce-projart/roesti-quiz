@@ -26,7 +26,7 @@ class RoundController extends Controller
 			"category_id" => $category_id
 		]);
 
-		$users = GameController::getPlayers(1);
+		$users = GameController::getPlayers($game_id);
 		$users_id = [];
 		foreach ($users as $user) {
 			array_push($users_id, $user->user_id);
