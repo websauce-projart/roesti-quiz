@@ -25,45 +25,37 @@ use App\Http\Controllers\QuizController;
 Route::get('/', function () {
 	return redirect()->route('login');
 });
+
 Route::group(['middleware' => ['verified']], function () {
-    
-
-/********************************
- * Home
- ********************************/
-
-Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-Route::post('/newgame', [UserController::class, 'displaySearch']);
-Route::get('/', function () {
-	return redirect()->route('home');
-});
-Route::post('/THOMAS', [GameController::class, 'store']);
-
-
-/********************************
- * Verified user
- ********************************/
-Route::group(['middleware' => ['verified']], function () {
-
-	/* Home
+	/********************************
+	 * Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-
-
-	/* Gameloop
-	 ********************************/
-	Route::get('/games', [GameController::class, 'displayGames']); //Route de tests
-
 	Route::post('/newgame', [UserController::class, 'displaySearch']);
-	Route::post('/category', [GameController::class, 'store'])->name("category");
-	// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
-	Route::post("/results", [RoundController::class, "createRound"])->name('results');
+	Route::get('/', function () {
+		return redirect()->route('home');
+	});
 
-	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
-	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
-});
+	/********************************
+	 * Verified user
+	 ********************************/
+	Route::group(['middleware' => ['verified']], function () {
+
+		/* Home
+	 ********************************/
+		Route::get('/home', [GameController::class, 'displayHome'])->name('home');
 
 
+		/* Gameloop
+	 ********************************/
+		Route::post('/newgame', [UserController::class, 'displaySearch']);
+		Route::post('/category', [GameController::class, 'store'])->name("category");
+		// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
+		Route::post("/results", [RoundController::class, "createRound"])->name('results');
+
+		Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
+		Route::post("/quiz", [QuizController::class, 'handleAnswers']);
+	});
 });
 /********************************
  * Login & Registration
@@ -75,13 +67,13 @@ Route::post("/register", [AuthController::class, "register"]);
 
 //Email confirmation
 Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
-->middleware('auth')->name('verification.notice');
+	->middleware('auth')->name('verification.notice');
 
 Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
-->middleware(['auth', 'signed'])->name('verification.verify');
+	->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
-->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+	->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 //Login
 Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
@@ -92,13 +84,13 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
 
 //Password reset
 Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
-->middleware('guest')->name('password.request');
+	->middleware('guest')->name('password.request');
 
 Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
-->middleware('guest')->name('password.email');
+	->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
-->middleware('guest')->name('password.reset');
+	->middleware('guest')->name('password.reset');
 
 Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
 
@@ -106,9 +98,9 @@ Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
  * Admin backoffice
  ********************************/
 Route::group(['middleware' => ['admin']], function () {
-    Route::get('/backoffice', function () {
-        return view('backoffice/home_backoffice');
-    });
-    Route::resource('/backoffice/question', QuestionController::class);
-    Route::resource('/backoffice/user', UserController::class);
+	Route::get('/backoffice', function () {
+		return view('backoffice/home_backoffice');
+	});
+	Route::resource('/backoffice/question', QuestionController::class);
+	Route::resource('/backoffice/user', UserController::class);
 });
