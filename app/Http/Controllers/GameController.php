@@ -103,6 +103,7 @@ class GameController extends Controller
 
 		$categories = CategoryController::getRandomCategories();
 
+		session(["game_id" => $game->id]);
 		return view("gameloop.choose_categories", [
 			"categories" => $categories,
 			'data' => $game->id
