@@ -26,6 +26,10 @@ Route::get('/', function () {
 	return redirect()->route('login');
 });
 
+Route::get('/avatar', function() {
+	return view('create_avatar');
+});
+
 Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Home
