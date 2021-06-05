@@ -26,8 +26,9 @@
  ********************************/
 @import "components/buttons";
 @import "components/textbox";
-@import "components/help-block.css";
-@import "components/checkbox.css";
+@import "components/help-block";
+@import "components/checkbox";
+@import "components/speech-bubble";
 
 /* Utilities (helpers)
  ********************************/

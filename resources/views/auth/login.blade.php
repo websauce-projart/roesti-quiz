@@ -21,7 +21,7 @@
         </div>
     </header>
 
-    <form action="" method="post">
+    <form class="speech-bubble" action="" method="post">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
