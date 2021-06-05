@@ -15,12 +15,19 @@ use Illuminate\Support\Facades\Auth;
 class QuizController extends Controller
 {
 
-    public function showQuiz()
+    public function displayQuiz()
     {
         //Retrieve user, round and questions data
         $user_id = Auth::user()->id;
         $round_id = session("round_id");
         $questions = Round::where('id', $round_id)->first()->questions()->get();
+
+        //Checks if result already exists
+        $result_to_check = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
+        if(!is_null($result_to_check)) {
+            // dd($result->round()->first()->id);
+            return $this->displayEndgame($result_to_check);
+        }
 
         //Create Result
         $result = Result::create([
@@ -89,6 +96,29 @@ class QuizController extends Controller
 
         $game->active_user_id = $opponent->id;
         $game->save();
+
+        return $this->displayEndgame($result);
+    }
+
+    public function displayEndgame($result) {
+        $round_id = Result::where('id', $result->id)->first()->round()->first()->id;        
+
+        //Count correct answers
+        $questions = Round::where('id', $round_id)->first()->questions()->get();
+        $correct_answers_count = 0;
+        foreach ($questions as $question) {
+            $answer_boolean = $question->answer_boolean;
+            $user_answer = UserAnswer::where('question_id', $question->id)->where('result_id', $result->id)->first()->user_answer;
+            if($answer_boolean == $user_answer) {
+                $correct_answers_count++;
+            }
+        }
+
+        //Retrieve time
+        $time = $result->time;
+
+        //Retrieve score
+        $score = $result->score;
 
         return view('gameloop/endgame')
         ->with('count', $correct_answers_count)

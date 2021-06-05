@@ -59,7 +59,7 @@ Route::group(['middleware' => ['verified']], function () {
 	// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
 	Route::post("/results", [RoundController::class, "createRound"])->name('results');
 
-	Route::get("/quiz", [QuizController::class, 'showQuiz'])->name('quiz');
+	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
 	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
 });
 
