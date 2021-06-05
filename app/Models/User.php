@@ -9,6 +9,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use App\Notifications\VerifyEmail;
+use App\Notifications\ResetPassword;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
@@ -77,6 +79,28 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 	public function round()
 	{
 		return $this->belongsTo(Round::class);
+	}
+
+	/**
+	 * Send the email verification notification.
+	 *
+	 * @return void
+	 */
+	public function sendEmailVerificationNotification()
+	{
+		$this->notify(new VerifyEmail); // my notification
+	}
+
+	/**
+	 * Send the password reset notification.
+	 *
+	 * @return void
+	 */
+	public function sendPasswordResetNotification($token)
+	{
+		$url = 'https://example.com/reset-password?token=' . $token;
+
+		$this->notify(new ResetPassword($url));
 	}
 
 	private function isUser1($gameId)
