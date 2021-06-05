@@ -26,6 +26,9 @@ Route::get('/', function () {
 	return redirect()->route('login');
 });
 
+/********************************
+ * Verified user
+ ********************************/
 Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Home
@@ -37,26 +40,17 @@ Route::group(['middleware' => ['verified']], function () {
 	});
 
 	/********************************
-	 * Verified user
-	 ********************************/
-	Route::group(['middleware' => ['verified']], function () {
+	* Gameloop
+	********************************/
+	Route::post('/newgame', [UserController::class, 'displaySearch']);
+	Route::post('/category', [GameController::class, 'store'])->name("category");
+	// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
+	Route::post("/results", [RoundController::class, "createRound"])->name('results');
 
-		/* Home
-	 ********************************/
-		Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-
-
-		/* Gameloop
-	 ********************************/
-		Route::post('/newgame', [UserController::class, 'displaySearch']);
-		Route::post('/category', [GameController::class, 'store'])->name("category");
-		// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
-		Route::post("/results", [RoundController::class, "createRound"])->name('results');
-
-		Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
-		Route::post("/quiz", [QuizController::class, 'handleAnswers']);
-	});
+	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
+	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
 });
+
 /********************************
  * Login & Registration
  ********************************/
