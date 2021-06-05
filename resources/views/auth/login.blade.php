@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
 
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
 
 
 </head>
 
 <body>
-
+    
     <header>
         <div>
             <a href="{{ route('register') }}">Créer un compte</a> |
@@ -26,19 +26,17 @@
 
         {{-- Gérer les erreurs de saisie avec vue --}}
 
-        <div>
-            <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email" icon="😃"
-                value="{{ old('pseudo') }}"></x-input-text>
+        <div class="center">
+            <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email" icon="😃" value="{{ old('pseudo') }}"></x-input-text>
             {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
-            <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="🔒"
-                value="{{ old('password') }}" type="password"></x-input-text>
+        <div class="center">
+            <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="🔒" value="{{ old('password') }}" type="password"></x-input-text>
             {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
+        <div class="checkbox center">
             <input type="checkbox" id="remember_token" name="remember_token" value="true">
             <label for="remember_token">Se souvenir de moi ?</label>
         </div>
@@ -75,6 +73,7 @@
         {{ Session::get('email-resent') }}
         @endif
     </div>
+
 
 </body>
 

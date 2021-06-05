@@ -16,6 +16,7 @@
 /* Elements (bare HTML elements)
  ********************************/
 @import "elements/headings";
+@import "elements/background";
 
 /* Objects (layouts, grid, wrapper)
  ********************************/
@@ -25,6 +26,8 @@
  ********************************/
 @import "components/buttons";
 @import "components/textbox";
+@import "components/help-block.css";
+@import "components/checkbox.css";
 
 /* Utilities (helpers)
  ********************************/

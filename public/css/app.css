@@ -612,9 +612,36 @@ h6 {
 }
 
 /********************************
+ * Background
+ ********************************/
+body,html{
+    width:100%;
+    height: 100%;
+  }
+  body{
+    margin:0;
+    padding:0;
+    background:#29b6f6;
+  }
+  
+/********************************
  * Grid CSS
  ********************************/
+ .grid-container {
+    display: grid;
+    grid-column-gap: 20px;
+    grid-template-columns: auto;
+    background-color: #2196F3; /* developpment purposes*/
+    padding: 10px;
+  }
 
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8); /* developpment purposes*/
+    border: 1px solid rgba(0, 0, 0, 0.8); /* developpment purposes*/
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
 /********************************
  * Buttons
  ********************************/
@@ -622,9 +649,9 @@ h6 {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	margin-top: 1rem;
-	margin: 0 auto;
+	margin: auto;
 	width: 95%;
-	max-width: 350px;
+	max-width: 400px;
 	min-width: 250px;
 	text-align: center;
 	display: block;
@@ -641,15 +668,35 @@ h6 {
 }
 
 .btn--secondary{
-	background-color: #4092E8; /* Blue BG*/
-	color: #fff; /*Blue text*/
+	background-color: #4092E8; /* sky BG*/
+	color: #fff; /*white text*/
 	box-shadow: -6px 6px  #003769;
 }
 
+.btn--tertiary{
+	background-color: #fff; /* white BG*/
+	color: #003769; /*Blue text*/
+	box-shadow: -3px 3px  #4092E8;
+	font-family:  "Roboto", sans-serif;
+	font-weight: 900;
+}
+
 .btn--primary:hover{
-	background-color: #FE450E; /* Yellow BG*/
-	color: #fff; /*Blue text*/
+	background-color: #FE450E; /* Orange BG*/
+	color: #fff; /*white text*/
 	box-shadow: -6px 6px #FFBf2f ;
+}
+
+.btn--primary:active, .btn--secondary:active{
+	transform: translateX(-6px);
+	transform: translateY(6px);
+	box-shadow: none;
+}
+
+.btn--tertiary:active{
+	transform: translateX(-3px);
+	transform: translateY(3px);
+	box-shadow: none;
 }
 
 /********************************
@@ -665,6 +712,25 @@ h6 {
     margin: auto;
     
 
+ }
+/********************************
+ * error texts and help-blocks
+ ********************************/
+.help-block{
+    
+}
+
+.center{
+    margin: auto;
+    text-align: center;
+}
+/********************************
+ * checkboxes
+ ********************************/
+
+ .checkbox{
+     
+    padding: 1rem;
  }
 /********************************
  * CSS ENTRY POINT
