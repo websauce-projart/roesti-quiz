@@ -131,7 +131,7 @@ class GameController extends Controller
 
 			array_push($data, $gameData);
 		}
-		return view('home/home')->with('data', $data);
+		return view('home/home')->with('data', $data)->with('user', $user);
 	}
 
 	/**

@@ -3,6 +3,7 @@
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\RoundController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,7 @@ Route::get('/', function () {
 Route::get('/avatar', function() {
 	return view('create_avatar');
 });
+Route::post('/avatar', [AvatarController::class, 'setAvatar']);
 
 Route::group(['middleware' => ['verified']], function () {
 	/********************************

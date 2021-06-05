@@ -22,6 +22,9 @@ class CreateUsersTable extends Migration
 			$table->boolean('admin')->default(false);
 			$table->rememberToken();
 			$table->timestamps();
+			$table->string('bouche')->default(null)->nullable();
+			$table->string('yeux')->default(null)->nullable();
+			$table->string('couleur')->default(null)->nullable();
 		});
 	}
 

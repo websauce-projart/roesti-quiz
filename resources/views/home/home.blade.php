@@ -6,6 +6,12 @@ RöstiQuiz - Accueil
 
 @section('contenu')
 
+        <div style="border: 1px solid black; position: relative; width: 94px; height: 94px;">
+            <span style="position: absolute; background-color: {{$user->couleur}}; width:100%; height: 100%;"></span>
+            <span style="position: absolute; background-image:url({{$user->yeux}}); width:100%; height: 100%;"></span>
+            <span style="position: absolute; background-image:url({{$user->bouche}}); width:100%; height: 100%;"></span>
+        </div>
+
     @if(sizeof($data) == 0)
         <div>
             Tu n'as encore aucune partie en cours.
