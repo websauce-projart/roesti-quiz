@@ -6,18 +6,35 @@
 
 @section('content')
 
-    {{ $users[0]['pseudo'] }} vs. {{ $users[1]['pseudo'] }}<br>
+    {{ $user->pseudo }} vs. {{ $opponent->pseudo }}<br>
 
     @foreach ($rounds as $round)
         <div>
             [Round {{ $loop->index + 1 }}: {{ $round['category'] }}]
-            {{ $round['results'][0] }} –
+            
+            @if ($round['results'][0] == null)
+            À ton tour!
+            @else
+            {{ $round['results'][0] }}
+            @endif
+            
+             –
+
+            @if ($round['results'][1] == null)
+            En attente...
+            @else
             {{ $round['results'][1] }}
+            @endif
+
         </div>
     @endforeach
 
     <hr>
 
+    @if($game->active_user_id == $user->id)
     <a href="{{ route('quiz') }}">play</a>
-
+    @else
+    <a href="{{ route('home') }}">Retour au menu</a>
+    @endif
+    
 @endsection

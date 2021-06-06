@@ -22,22 +22,19 @@
 
             @foreach ($data as $gamedata)
                 <div>
-                    {{ $gamedata['opponent']->pseudo }}
+                    <strong>{{ $gamedata['opponent']->pseudo }}</strong>
                     @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
                         <div>
                             <p>À toi de jouer</p>
-                            <form method="POST" action="{{ route('results') }}" accept-charset="UTF-8">
+                            <form method="POST" action="{{ route('getResults') }}" accept-charset="UTF-8">
                                 @csrf
+                                <input type="hidden" name="game_id" value="{{$gamedata['game']->id}}">
                                 <input type="submit" value="->">
                             </form>
                         </div>
                     @else
                         <div>
                             <p>N'a pas encore relevé ton défi...</p>
-                            <form method="POST" action="{{ route('results') }}" accept-charset="UTF-8">
-                                @csrf
-                                <input type="submit" value="->">
-                            </form>
                         </div>
                     @endif
 

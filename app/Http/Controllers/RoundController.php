@@ -44,7 +44,8 @@ class RoundController extends Controller
 	{
 		$category_title = $request->input("categories");
 		$category_id = Category::where("title", $category_title)->first()->id;
-		$game_id = session("game_id");
+		$game = session("game");
+		$game_id = $game->id;
 
 		$round = Round::create([
 			"game_id" => $game_id,
@@ -59,10 +60,10 @@ class RoundController extends Controller
 
 		$this->prepareNextRound($round);
 
-		// Store id of the game for next view
-		session(["round_id" => $round->id]);
+		// Store round for next view
+		session(["round" => $round]);
 
-		return ResultController::showResultsView($game_id);
+		return ResultController::showResultsView();
 	}
 
 	/**

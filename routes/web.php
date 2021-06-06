@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoundController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\ResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,6 @@ use App\Http\Controllers\QuizController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-	return redirect()->route('login');
-});
 
 /********************************
  * Verified user
@@ -50,13 +47,15 @@ Route::group(['middleware' => ['verified']], function () {
 	 ********************************/
 	Route::post('/newgame', [UserController::class, 'displaySearch']);
 	Route::post('/category', [GameController::class, 'store'])->name("category");
-	Route::get("/results", function () {
-		return redirect()->route("home");
-	});
-	Route::post("/results", [RoundController::class, "createRound"])->name('results');
+
+	Route::post('/getResults', [ResultController::class, 'redirectToResult'])->name('getResults');
+	Route::get('/results', [ResultController::class, 'showResultsView'])->name('results');
+	Route::post("/results", [RoundController::class, "createRound"]);
 
 	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
 	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
+
+	Route::get('/endgame', [QuizController::class, 'displayEndgame'])->name('endgame');
 });
 
 /********************************

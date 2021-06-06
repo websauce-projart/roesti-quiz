@@ -13,6 +13,6 @@ ENDGAME
         <li><strong>Temps total : </strong> {{$time}} secondes</li>
         <li><strong>Score final : </strong> {{$score}}</li>
     </ul>
-    <a href="#">Score général</a>
+    <a href="{{ route('results') }}">Score général</a>
 </form>
 @endsection

@@ -19,15 +19,13 @@ class QuizController extends Controller
     {
         //Retrieve user, round and questions data
         $user_id = Auth::user()->id;
-        $round_id = session("round_id");
-        $questions = Round::where('id', $round_id)->first()->questions()->get();
-
-        //Checks if result already exists
-        $result_to_check = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
-        if(!is_null($result_to_check)) {
-            // dd($result->round()->first()->id);
-            return $this->displayEndgame($result_to_check);
+        $round = session("round");
+        if(!isset($round)) {
+            //Redirect to home if coming from endgame page
+            return redirect()->route('home');
         }
+        $round_id = $round->id;
+        $questions = Round::where('id', $round_id)->first()->questions()->get();
 
         //Create Result
         $result = Result::create([
@@ -91,16 +89,24 @@ class QuizController extends Controller
 
         //Toggle active_user_id in Games table
         $round_id = $result->round_id;
-        $game = Round::where('id', $round_id)->first()->game;
-        $opponent = $user->getOtherUser($game->id);
+        $results_count = count(Round::where('id', $round_id)->first()->results()->get());
+        if($results_count != 2) {
+            $game = Round::where('id', $round_id)->first()->game;
+            $opponent = $user->getOtherUser($game->id);
+            $game->active_user_id = $opponent->id;
+            $game->save();
+        }
 
-        $game->active_user_id = $opponent->id;
-        $game->save();
-
-        return $this->displayEndgame($result);
+        return redirect()->route('endgame')->with(['result' => $result]);
     }
 
-    public function displayEndgame($result) {
+    public function displayEndgame() {
+        $result = session('result');
+
+        if(!isset($result)) {
+            return redirect()->route('home');
+        }
+
         $round_id = Result::where('id', $result->id)->first()->round()->first()->id;        
 
         //Count correct answers
@@ -120,6 +126,19 @@ class QuizController extends Controller
         //Retrieve score
         $score = $result->score;
 
+        //Clean session
+        $dataToClean = [
+            'round',
+            'result',
+            'questions'
+        ];
+
+        foreach ($dataToClean as $data) {
+            if(session()->has($data)) {
+                session()->forget($data);
+            }
+        }
+        
         return view('gameloop/endgame')
         ->with('count', $correct_answers_count)
         ->with('time', $time)

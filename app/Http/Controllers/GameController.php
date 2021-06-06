@@ -76,18 +76,29 @@ class GameController extends Controller
 		$game->users()->attach($activeUserId);
 		$game->users()->attach($opponentId);
 
-		$categories = CategoryController::getRandomCategories();
+		session(["game" => $game]);
 
-		session(["game_id" => $game->id]);
-		return view("gameloop.choose_categories", [
-			"categories" => $categories,
-			'data' => $game->id
-		]);
+		return CategoryController::displayCategoryView();
+		
 	}
 
 	//Returning vie Home with the datas
 	public function displayHome()
 	{
+		//Clean session
+        $dataToClean = [
+            'game',
+            'round',
+            'result',
+            'questions'
+        ];
+
+        foreach ($dataToClean as $data) {
+            if(session()->has($data)) {
+                session()->forget($data);
+            }
+        }
+
 		$activeUserId = Auth::user()->id;
 
 		$user = User::where('id', $activeUserId)->first();

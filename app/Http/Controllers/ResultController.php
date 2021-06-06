@@ -8,6 +8,9 @@ use App\Models\Result;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\RoundController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Game;
+use Illuminate\Http\Request;
 
 class ResultController extends Controller
 {
@@ -37,10 +40,20 @@ class ResultController extends Controller
 	 * @param $game_id ID of the game which contains the results
 	 * @return view gameloop.results
 	 */
-	public static function showResultsView($game_id)
+	public static function showResultsView()
 	{
-		// NOTE: il faudrait probablement prendre l'objet Game plutôt que juste son ID, mais ça dépend si on peut/doit stocker l'objet game dans une session
-		$users = GameController::getPlayers($game_id);
+		$gameToRetrieve = session('game');
+		if(!isset($gameToRetrieve)) {
+			return redirect()->route('home');
+		}
+		$game_id = $gameToRetrieve->id;
+		
+
+		$game = Game::where('id', $game_id)->first();
+		$user = User::where('id', Auth::user()->id)->first();
+		// dd($user);
+		$opponent = $user->getOtherUser($game_id);
+		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
 
 		$processedRounds = [];
@@ -49,11 +62,10 @@ class ResultController extends Controller
 
 			$results = [];
 
-			foreach ($users as $user) {
-				$score = self::getScore($user, $round);
+			foreach ($users as $player) {
+				$score = self::getScore($player, $round);
 				array_push($results, $score);
 			}
-
 
 			$processedRound = [
 				"category" => $category->title,
@@ -62,12 +74,38 @@ class ResultController extends Controller
 			array_push($processedRounds, $processedRound);
 		}
 
-		return view(
-			"gameloop.results",
-			[
-				"users" => $users,
-				"rounds" => $processedRounds
-			]
-		);
+		return view('gameloop/results')->with([
+			"game" => $game,
+			"user" => $user,
+			"opponent" => $opponent,
+			"rounds" => $processedRounds
+		]);
+	}
+
+	public function redirectToResult(Request $request) {
+		$user = User::where('id', Auth::user()->id)->first();
+		$game = Game::where('id', $request->game_id)->first();
+		$isCorrectUser = false;
+		$players = $game->users()->get();
+		foreach ($players as $player) {
+			if($player->id == $user->id) {
+				$isCorrectUser = true;
+			}
+		}
+		if($isCorrectUser) {
+			if(!$game->active_user_id == $user->id) {return redirect()->route('home');}
+			$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
+			
+			$results = Result::where('round_id', $round->id)->get();
+			if(count($results) >= 2) {
+				session(['game' => $game]);
+				// return redirect()->route('category');
+				return CategoryController::displayCategoryView();
+			}
+			session(['round' => $round]);
+			session(['game' => $game]);
+			return redirect()->route('results');
+		}
+		
 	}
 }
