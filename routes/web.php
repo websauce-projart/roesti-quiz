@@ -36,6 +36,7 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/', function () {
 		return redirect()->route('home');
 	});
+	Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
 
 	/********************************
 	 * Profile

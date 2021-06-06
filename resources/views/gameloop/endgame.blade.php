@@ -5,7 +5,7 @@ ENDGAME
 @endsection
 
 @section('content')
-<form action="" method="POST">
+<form action="{{ route('displayGame') }}" method="POST">
 @csrf
     <strong>BRAVO LE VEAU!</strong>
     <ul>
@@ -13,6 +13,7 @@ ENDGAME
         <li><strong>Temps total : </strong> {{$time}} secondes</li>
         <li><strong>Score final : </strong> {{$score}}</li>
     </ul>
-    <a href="#">Score général</a>
+    <input type="hidden" name="game_id" value="{{ $game->id }}">
+    <input type="submit" value="Score général">
 </form>
 @endsection

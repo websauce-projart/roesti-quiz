@@ -21,14 +21,14 @@ class QuizController extends Controller
         $user_id = Auth::user()->id;
         $round_id = session("round_id");
         $questions = Round::where('id', $round_id)->first()->questions()->get();
-
+        
         //Checks if result already exists
         $result_to_check = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
         if(!is_null($result_to_check)) {
             // dd($result->round()->first()->id);
             return $this->displayEndgame($result_to_check);
         }
-
+        
         //Create Result
         $result = Result::create([
             "user_id" => $user_id,
@@ -101,8 +101,8 @@ class QuizController extends Controller
     }
 
     public function displayEndgame($result) {
-        $round_id = Result::where('id', $result->id)->first()->round()->first()->id;        
-
+        $round_id = Result::where('id', $result->id)->first()->round()->first()->id;
+        $game = Round::where('id', $round_id)->first()->game;
         //Count correct answers
         $questions = Round::where('id', $round_id)->first()->questions()->get();
         $correct_answers_count = 0;
@@ -123,6 +123,7 @@ class QuizController extends Controller
         return view('gameloop/endgame')
         ->with('count', $correct_answers_count)
         ->with('time', $time)
-        ->with('score', $score);
+        ->with('score', $score)
+        ->with('game', $game);
     }
 }
