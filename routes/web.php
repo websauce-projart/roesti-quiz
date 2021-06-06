@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
@@ -33,10 +34,16 @@ Route::group(['middleware' => ['verified']], function () {
  ********************************/
 
 Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
 Route::post('/newgame', [UserController::class, 'displaySearch']);
 Route::post('/THOMAS', [GameController::class, 'store']);
 
+/********************************
+ * Profile
+ ********************************/
+Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
+Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
+Route::get('/update-password',[AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+Route::post('/update-password',[AuthController::class, 'updatePassword'])->name('updatePassword');
 
 /********************************
  * Game loop

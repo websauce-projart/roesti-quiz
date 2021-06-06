@@ -16,13 +16,11 @@ INSERT ROSTI HERE
 </div>
 </br>
 <div>
-    <form method="POST" action="" accept-charset="UTF-8">
-        @csrf
-        <input class="" type="submit" value="Changer de mot de passe">
-    </form>
+<a href="{{route('updatePasswordForm')}}">Modifier mon mot de passe</a></li>
 </br>
-<form class="form-horizontal" method="post" action=""
-onsubmit="return confirm('You have created a new batch. Click OK to confirm or you can ignore by clicking Cancel.');">
+<form class="form-horizontal" method="post" action="{{route('deleteAccount')}}"
+onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte ?');">
+@csrf
 <input type="submit" value="Supprimer mon compte">
 </form>
 </div>

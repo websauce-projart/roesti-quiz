@@ -11,27 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class GameController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store a newly created game in the database. Attach the new game to both players in game_user table.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -45,54 +25,12 @@ class GameController extends Controller
         $game->users()->attach($opponentId);
         return view('THOMAS')->with('data', $game->id);
     }
-
+    
     /**
-     * Display the specified resource.
+     * Display the home page when a user is logged in with his datas, the opponents and his current games.
      *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function show(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
-    }
-
-    //Returning vie Home with the datas
-
     public function displayHome() {
         $activeUserId = Auth::user()->id;
             

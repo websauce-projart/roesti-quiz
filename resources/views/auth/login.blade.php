@@ -25,7 +25,9 @@
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
-
+        @if (Session::has('account-deleted'))
+        {{ Session::get('account-deleted') }}
+        @endif
         <div>
             <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email" icon="😃"
                 value="{{ old('pseudo') }}"></x-input-text>
