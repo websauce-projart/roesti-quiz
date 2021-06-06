@@ -12,7 +12,6 @@
     </div>
     <div>
     <a href="{{route('logout')}}">Se déconnecter</a>
-    <a href="{{route('logout')}}">Supprimer son compte</a>
     </div>
 </div>
 @endsection

@@ -108,7 +108,7 @@ class QuizController extends Controller
         }
 
         $round_id = Result::where('id', $result->id)->first()->round()->first()->id;        
-
+        $game = Round::where('id', $round_id)->first()->game;
         //Count correct answers
         $questions = Round::where('id', $round_id)->first()->questions()->get();
         $correct_answers_count = 0;
@@ -142,6 +142,7 @@ class QuizController extends Controller
         return view('gameloop/endgame')
         ->with('count', $correct_answers_count)
         ->with('time', $time)
-        ->with('score', $score);
+        ->with('score', $score)
+        ->with('game', $game);
     }
 }

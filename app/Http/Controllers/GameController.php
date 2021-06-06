@@ -122,38 +122,9 @@ class GameController extends Controller
 		return view('home/home')->with('data', $data);
 	}
 
-	/**
-	 * Test
-	 */
-	public function displayGames()
+	public function displayGame(Request $request)
 	{
-		$activeUserId = 1;
-
-		$user = User::where('id', $activeUserId)->first();
-
-		$games = $user->games;
-
-    }
-    /*public function displayHome() {
-        $activeUserId = Auth::user()->id;
-            
-        $user = User::where('id', $activeUserId)->first();
-        $games = $user->games;
-
-		$data = [];
-		foreach ($games as $game) {
-			$gameId = $game->id;
-
-			$opponent = $user->getOtherUser($gameId);
-
-			$gameData = array(
-				"user" => $user,
-				"opponent" => $opponent,
-				"game" => $game
-			);
-
-			array_push($data, $gameData);
-		}
-		return view('gameloop/games')->with('data', $data);
-	}*/
+		$game_id = $request->game_id;
+		return ResultController::showResultsView($game_id);
+	}
 }

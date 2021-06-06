@@ -5,7 +5,7 @@ ENDGAME
 @endsection
 
 @section('content')
-<form action="" method="POST">
+<form action="{{ route('displayGame') }}" method="POST">
 @csrf
     <strong>BRAVO LE VEAU!</strong>
     <ul>
