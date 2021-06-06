@@ -22,13 +22,14 @@ Duplicate `.env.example` to `.env`, edit it at your will
 ### Usage
 
 -  `php artisan serve` – Start the server on [localhost:8000](http://localhost:8000)
--  `npm run watch` – Start browsersync on [localhost:3000](http://localhost:8000)
+-  `npm run watch` – Start browsersync on [localhost:3000](http://localhost:3000)
 -  `npm run dev` – Build assets for developement
 -  `npm run prod` – Build assets for production (minify output)
 
 ## Workflow
 
 ### The `main` branch
+
 This branch should always be the last working version. Please make sure your feature is not breaking anything while merging
 
 ### Add feature
