@@ -1,13 +1,10 @@
 <?php
 
-use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoundController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 
@@ -40,11 +37,13 @@ Route::group(['middleware' => ['verified']], function () {
 	});
 
 	/********************************
-	* Gameloop
-	********************************/
+	 * Gameloop
+	 ********************************/
 	Route::post('/newgame', [UserController::class, 'displaySearch']);
 	Route::post('/category', [GameController::class, 'store'])->name("category");
-	// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
+	Route::get("/results", function () {
+		return redirect()->route("home");
+	});
 	Route::post("/results", [RoundController::class, "createRound"])->name('results');
 
 	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');

@@ -6,8 +6,17 @@
 
 @section('content')
 
-    User1: {{ $users_id[0] }} – User2: {{ $users_id[1] }}<br>
-    {{ $category_title }} - {{ session('game_id') }}
+    {{ $users[0]['pseudo'] }} vs. {{ $users[1]['pseudo'] }}<br>
+
+    @foreach ($rounds as $round)
+        <div>
+            [Round {{ $loop->index + 1 }}: {{ $round['category'] }}]
+            {{ $round['results'][0] }} –
+            {{ $round['results'][1] }}
+        </div>
+    @endforeach
+
+    <hr>
 
     <a href="{{ route('quiz') }}">play</a>
 

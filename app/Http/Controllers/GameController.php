@@ -84,14 +84,21 @@ class GameController extends Controller
 	 */
 	public static function getPlayers($game_id)
 	{
-		return DB::table("game_user")->where("game_id", $game_id)->get();
+		$gameUsers_data = DB::table("game_user")->where("game_id", $game_id)->get();
+		$users = [];
+		foreach ($gameUsers_data as $data) {
+			$user_id = $data->user_id;
+			$user = User::find($user_id);
+			array_push($users, $user);
+		}
+		return $users;
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return view THOMAS
+	 * @param Request $request
+	 * @return view Categories
 	 */
 	public function store(Request $request)
 	{
