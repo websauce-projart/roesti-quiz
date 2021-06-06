@@ -49,7 +49,7 @@
     <div>
         <form method="POST" action="{{ url('/newgame') }}" accept-charset="UTF-8">
             @csrf
-            <input class="" type="submit" value="Nouvelle Partie">
+            <x-input-submit label="Nouvelle partie"></x-input-submit>
         </form>
     </div>
 @endsection

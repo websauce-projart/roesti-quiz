@@ -13,41 +13,9 @@ use App\Http\Controllers\CategoryController;
 class GameController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the home page when a user is logged in with his datas, the opponents and his current games.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function edit(Game $game)
     {
@@ -152,6 +120,13 @@ class GameController extends Controller
 
 		$games = $user->games;
 
+    }
+    /*public function displayHome() {
+        $activeUserId = Auth::user()->id;
+            
+        $user = User::where('id', $activeUserId)->first();
+        $games = $user->games;
+
 		$data = [];
 		foreach ($games as $game) {
 			$gameId = $game->id;
@@ -167,5 +142,5 @@ class GameController extends Controller
 			array_push($data, $gameData);
 		}
 		return view('gameloop/games')->with('data', $data);
-	}
+	}*/
 }

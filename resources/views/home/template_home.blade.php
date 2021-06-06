@@ -6,8 +6,7 @@
         <nav>
             <ol>
                 <li><a href="{{route('home')}}">Accueil</a></li>
-                <li><a href="#">Profil</a></li>
-                <li><a href="#">Réglages</a></li>
+                <li><a href="{{route('profile')}}">Profil</a></li>
             </ol>
         </nav>
     </div>

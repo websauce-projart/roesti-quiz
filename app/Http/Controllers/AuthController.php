@@ -215,4 +215,49 @@ class AuthController extends Controller
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
     }
+
+    public function showUpdatePassword(){
+        return view('profile/update_password');
+    }
+    
+    /**
+     * User changing his password in his profile. Calidate the old and new password, if matching and updates the database.
+     *
+     * @param  mixed $request
+     * @return void
+     */
+
+    public function updatePassword(Request $request) {
+
+            
+             $this->validate($request, [
+            'oldpassword' => 'required',
+            'newpassword' => 'required|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'required|min:6'
+            ]);
+
+           $hashedPassword = Auth::user()->password;
+     
+           if (Hash::check($request->oldpassword , $hashedPassword )) {
+    
+             if (!Hash::check($request->newpassword , $hashedPassword)) {
+                $user = Auth::user();
+                $user->password = $request->newpassword;
+                $user->save();
+                session()->flash('message','Le mot de passe a été changé avec succès !');
+                return redirect()->back();
+                }
+     
+                else{
+                      session()->flash('message','Le nouveau mot de passe doit être différent de l\'ancien !');
+                      return redirect()->back();
+                    }
+     
+               }
+     
+              else{
+                   session()->flash('message','L\'ancien mot de passe n\'est pas le bon ...');
+                   return redirect()->back();
+                 }
+    }
 }
