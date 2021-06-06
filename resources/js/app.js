@@ -4,10 +4,13 @@
 require("./bootstrap");
 
 import { createApp } from "vue";
-import Component from "./HelloWorld.vue";
-
-// const app = createApp(Component);
-
+import AvatarEditor from "./components/avatar/AvatarEditor.vue";
+// import ElementScroller from "./components/avatar/ElementScroller.vue";
 
 
-app.mount("#app");
+const avatarEditor = createApp({
+    components: {
+        AvatarEditor,
+        // ElementScroller
+    }
+}).mount("#avatar-editor");

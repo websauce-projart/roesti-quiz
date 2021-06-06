@@ -28,9 +28,7 @@ Route::get('/', function () {
 	return redirect()->route('login');
 });
 
-Route::get('/avatar', function() {
-	return view('create_avatar');
-});
+Route::get('/avatar', [AvatarController::class, 'displayAvatarEditor']);
 Route::post('/avatar', [AvatarController::class, 'setAvatar']);
 
 Route::group(['middleware' => ['verified']], function () {

@@ -31,6 +31,9 @@ class DatabaseSeeder extends Seeder
 		 * 1. Table population
 		 ********************************/
 		$this->call([
+			EyeSeeder::class,
+			MouthSeeder::class,
+			PoseSeeder::class,
 			UserSeeder::class,
 			CategorySeeder::class,
 			QuestionSeeder::class,

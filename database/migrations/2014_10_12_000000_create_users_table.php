@@ -22,9 +22,27 @@ class CreateUsersTable extends Migration
 			$table->boolean('admin')->default(false);
 			$table->rememberToken();
 			$table->timestamps();
-			$table->string('bouche')->default(null)->nullable();
-			$table->string('yeux')->default(null)->nullable();
-			$table->string('couleur')->default(null)->nullable();
+
+			$table->integer('eye_id')->unsigned()->nullable();
+            $table->foreign('eye_id')
+                    ->references('id')
+                    ->on('eyes')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
+			$table->integer('mouth_id')->unsigned()->nullable();
+			$table->foreign('mouth_id')
+				->references('id')
+				->on('mouths')
+				->onDelete('cascade')
+				->onUpdate('cascade');
+
+			$table->integer('pose_id')->unsigned()->nullable();
+			$table->foreign('pose_id')
+				->references('id')
+				->on('poses')
+				->onDelete('cascade')
+				->onUpdate('cascade');
 		});
 	}
 
