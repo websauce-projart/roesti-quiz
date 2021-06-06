@@ -9,6 +9,7 @@ use App\Http\Controllers\RoundController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,17 +46,21 @@ Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Gameloop
 	 ********************************/
-	Route::post('/newgame', [UserController::class, 'displaySearch']);
-	Route::post('/category', [GameController::class, 'store'])->name("category");
+	Route::post('/home', [UserController::class, 'displaySearch']);
 
-	Route::post('/getResults', [ResultController::class, 'redirectToResult'])->name('getResults');
+	Route::post('/newgame', [GameController::class, 'createGame'])->name('newgame');
+
+	Route::get('category', [CategoryController::class, 'displayCategoryView'])->name('category');
+
 	Route::get('/results', [ResultController::class, 'showResultsView'])->name('results');
 	Route::post("/results", [RoundController::class, "createRound"]);
 
-	Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
-	Route::post("/quiz", [QuizController::class, 'handleAnswers']);
+	Route::get("/quiz", [QuizController::class, 'showQuizView'])->name('quiz');
+	Route::post("/quiz", [QuizController::class, 'createAnswers']);
 
-	Route::get('/endgame', [QuizController::class, 'displayEndgame'])->name('endgame');
+	Route::get('/endgame', [QuizController::class, 'showEndgameView'])->name('endgame');
+
+	Route::post('/getresults', [ResultController::class, 'redirectToResult'])->name('getresults');
 });
 
 /********************************

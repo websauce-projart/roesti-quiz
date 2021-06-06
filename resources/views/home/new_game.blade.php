@@ -5,7 +5,7 @@
 @endsection
 
 @section('contenu')
-    <form method="POST" action="{{ route('category') }}" accept-charset="UTF-8">
+    <form method="POST" action="{{ route('newgame') }}" accept-charset="UTF-8">
         @csrf
         <input class="" type="text">
         @foreach ($data as $user)

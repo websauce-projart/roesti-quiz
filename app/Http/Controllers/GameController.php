@@ -68,7 +68,7 @@ class GameController extends Controller
 	 * @param Request $request
 	 * @return view Categories
 	 */
-	public function store(Request $request)
+	public function createGame(Request $request)
 	{
 		$activeUserId = Auth::user()->id;
 		$opponentId = $request->user;
@@ -78,7 +78,9 @@ class GameController extends Controller
 
 		session(["game" => $game]);
 
-		return CategoryController::displayCategoryView();
+
+		return redirect()->route('category');
+		// return CategoryController::displayCategoryView();
 		
 	}
 

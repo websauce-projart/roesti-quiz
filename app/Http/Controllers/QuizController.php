@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class QuizController extends Controller
 {
 
-    public function displayQuiz()
+    public function showQuizView()
     {
         //Retrieve user, round and questions data
         $user_id = Auth::user()->id;
@@ -40,7 +40,7 @@ class QuizController extends Controller
         return view('gameloop/quiz')->with('questions', $questions);
     }
 
-    public function handleAnswers(Request $request)
+    public function createAnswers(Request $request)
     {
         //Retrieve user, questions and result data
         $user_id = Auth::user()->id;
@@ -100,7 +100,7 @@ class QuizController extends Controller
         return redirect()->route('endgame')->with(['result' => $result]);
     }
 
-    public function displayEndgame() {
+    public function showEndgameView() {
         $result = session('result');
 
         if(!isset($result)) {

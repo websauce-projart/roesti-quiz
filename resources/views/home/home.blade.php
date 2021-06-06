@@ -26,7 +26,7 @@
                     @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
                         <div>
                             <p>À toi de jouer</p>
-                            <form method="POST" action="{{ route('getResults') }}" accept-charset="UTF-8">
+                            <form method="POST" action="{{ route('getresults') }}" accept-charset="UTF-8">
                                 @csrf
                                 <input type="hidden" name="game_id" value="{{$gamedata['game']->id}}">
                                 <input type="submit" value="->">
@@ -44,7 +44,7 @@
         </div>
     @endif
     <div>
-        <form method="POST" action="{{ url('/newgame') }}" accept-charset="UTF-8">
+        <form method="POST" action="" accept-charset="UTF-8">
             @csrf
             <x-input-submit label="Nouvelle partie"></x-input-submit>
         </form>
