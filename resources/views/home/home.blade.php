@@ -6,6 +6,10 @@
 
 @section('contenu')
 
+    <div id="home"></div>
+    <script src="js/app.js"></script>
+
+
     @if (sizeof($data) == 0)
         <div>
             Tu n'as encore aucune partie en cours.

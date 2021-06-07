@@ -4,7 +4,7 @@
 require("./bootstrap");
 
 import { createApp } from "vue";
-import Component from "./HelloWorld.vue";
+import Home from "./home.vue";
 
-const app = createApp(Component);
-app.mount("#app");
+const home = createApp(Home);
+home.mount("#home");
