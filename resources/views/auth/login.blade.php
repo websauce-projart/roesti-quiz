@@ -19,6 +19,10 @@
         </div>
     </header>
 
+	<div class="center">
+		<img src="img/logo_v2_1.svg" alt="logo roesti quiz"/>
+	</div>
+
     <form class="speech-bubble" action="" method="post">
         @csrf
 
