@@ -47,7 +47,7 @@ class ResultController extends Controller
 			return redirect()->route('home');
 		}
 		$game_id = $gameToRetrieve->id;
-		
+
 
 		$game = Game::where('id', $game_id)->first();
 		$user = User::where('id', Auth::user()->id)->first();
@@ -68,6 +68,7 @@ class ResultController extends Controller
 			}
 
 			$processedRound = [
+				"id" => $round->id,
 				"category" => $category->title,
 				"results" => $results
 			];
@@ -95,7 +96,7 @@ class ResultController extends Controller
 		if($isCorrectUser) {
 			if(!$game->active_user_id == $user->id) {return redirect()->route('home');}
 			$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
-			
+
 			$results = Result::where('round_id', $round->id)->get();
 			if(count($results) >= 2) {
 				session(['game' => $game]);
@@ -106,6 +107,6 @@ class ResultController extends Controller
 			session(['game' => $game]);
 			return redirect()->route('results');
 		}
-		
+
 	}
 }

@@ -41,8 +41,8 @@ Route::group(['middleware' => ['verified']], function () {
 	 ********************************/
 	Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
 	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
-	Route::get('/update-password',[AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
-	Route::post('/update-password',[AuthController::class, 'updatePassword'])->name('updatePassword');
+	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
 
 	/********************************
 	 * Gameloop
@@ -55,6 +55,8 @@ Route::group(['middleware' => ['verified']], function () {
 
 	Route::get('/results', [ResultController::class, 'showResultsView'])->name('results');
 	Route::post("/results", [RoundController::class, "createRound"]);
+
+	Route::post("/history", [RoundController::class, "showHistoryView"])->name("round_history");
 
 	Route::get("/quiz", [QuizController::class, 'showQuizView'])->name('quiz');
 	Route::post("/quiz", [QuizController::class, 'createAnswers']);
