@@ -6,6 +6,8 @@
 
 @section('content')
 
+<div id="results"></div>
+    <script src="js/app.js"></script>
     {{ $user->pseudo }} vs. {{ $opponent->pseudo }}<br>
 
     @foreach ($rounds as $round)

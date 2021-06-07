@@ -1,11 +1,10 @@
 <template>
-    <game-home></game-home>
+    <input-text v-for="card in 6"></input-text>
 </template>
 
 <script>
     import inputText from './components/inputText.vue';
-    import gameHome from './components/gameHome.vue';
     export default {
-        components: {inputText, gameHome}
+        components: {inputText}
     }
 </script>
