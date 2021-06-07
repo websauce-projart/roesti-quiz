@@ -33,7 +33,7 @@
                             <form method="POST" action="{{ route('getresults') }}" accept-charset="UTF-8">
                                 @csrf
                                 <input type="hidden" name="game_id" value="{{$gamedata['game']->id}}">
-                                <input type="submit" value="->">
+                                <x-next-button label="->"/>
                             </form>
                         </div>
                     @else
@@ -41,8 +41,6 @@
                             <p>N'a pas encore relevé ton défi...</p>
                         </div>
                     @endif
-
-
                 </div>
             @endforeach
         </div>
