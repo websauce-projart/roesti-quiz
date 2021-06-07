@@ -114,14 +114,29 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $user1;
 	}
 
-	public function getUserScore($gameId)
-	{
-		if ($this->isUser1($gameId)) {
-			$score = Game::where('id', $gameId)->first()->user1_score;
-		} else {
-			$score = Game::where('id', $gameId)->first()->user2_score;
-		}
+	// public function getUserScore($gameId)
+	// {
+	// 	if ($this->isUser1($gameId)) {
+	// 		$score = Game::where('id', $gameId)->first()->user1_score;
+	// 	} else {
+	// 		$score = Game::where('id', $gameId)->first()->user2_score;
+	// 	}
 
-		return $score;
+	// 	return $score;
+	// }
+
+	public function getAllPotentialOpponents() {
+		$games = $this->games()->get();
+		$opponents = collect();
+		foreach($games as $game) {
+			$opponent = $this->getOtherUser($game->id);
+			$opponents->push($opponent);
+		}
+		$opponents->push($this);
+
+		$allUsers = User::all()->where('admin', 0);
+
+		$potentialOpponents = $allUsers->diff($opponents);
+		return $potentialOpponents;
 	}
 }

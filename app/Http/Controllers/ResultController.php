@@ -39,17 +39,15 @@ class ResultController extends Controller
 	 * @param $game_id ID of the game which contains the results
 	 * @return view gameloop.results
 	 */
-	public static function showResultsView()
+	public static function showResultsView($game_id)
 	{
-		$gameToRetrieve = session('game');
-		if(!isset($gameToRetrieve)) {
-			return redirect()->route('home');
-		}
-		$game_id = $gameToRetrieve->id;
-		
+		//Checks if the user is in the game -- TO IMPLEMENT
 
+
+		//Retrieve data
 		$game = Game::where('id', $game_id)->first();
-		$user = User::where('id', Auth::user()->id)->first();
+		$user_id = Auth::user()->id;
+		$user = User::where('id', $user_id)->first();
 		$opponent = $user->getOtherUser($game_id);
 		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
@@ -118,7 +116,7 @@ class ResultController extends Controller
 
 			if(count($results) >= 2) {
 				//The user is the one choosing the category
-				return CategoryController::displayCategoryView();
+				return CategoryController::displayCategoryView($game->id);
 
 			} else {
 				//The category has already been chosen, the user go the results and play

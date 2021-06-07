@@ -79,32 +79,11 @@ class UserController extends Controller
      */
     public function displaySearch()
     {
-        $currentUser = Auth::user();
-        $users = User::all();
-        $games = $currentUser->games;
-        $tabGamesStarted = [];
-        $listUser = [];
-        $data = [];
+        $user_id = Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+        $potentialOpponents = $user->getAllPotentialOpponents()->all();
 
-        foreach($games as $game) {
-            $opponent = $currentUser->getOtherUser($game->id);
-            array_push($tabGamesStarted, $opponent->id);
-        }
-
-        foreach($users as $user) {
-            array_push($listUser, $user->id);
-        }
-
-        array_push($tabGamesStarted, $currentUser->id);
-
-        $listUser = array_diff($listUser, $tabGamesStarted);
-
-        
-        foreach($listUser as $userId) {
-            array_push($data, User::findorfail($userId));
-        }
-
-        return view('home/new_game')->with('data', $data);
+        return view('home/search')->with('opponents', $potentialOpponents);
     }
     
     /**

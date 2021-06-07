@@ -11,7 +11,7 @@
                 Choix de ta catégorie
     </h1>
 
-    <form action="{{ route('results') }}" method="post">
+    <form action="{{ route('category', $data) }}" method="post">
         @csrf
 
         @foreach ($categories as $category)

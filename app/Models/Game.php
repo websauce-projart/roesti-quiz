@@ -24,5 +24,30 @@ class Game extends Model
     public function rounds() {
         return $this->hasMany(Round::class);
     }
+
+    public static function isExistingAlready($user, $opponent) {
+        $games = $user->games()->get();
+        foreach($games as $game) {
+            if($opponent == $user->getOtherUser($game->id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getLastRound() {
+        $round = $this->rounds()->orderBy("created_at", "desc")->first();
+        return $round;
+    }
+
+    public function userExistsInGame($user_id) {
+        $users = $this->users()->get();
+        foreach($users as $user) {
+            if($user->id === $user_id) {
+                return true;
+            }
+        }
+        return false;
+    }
     
 }
