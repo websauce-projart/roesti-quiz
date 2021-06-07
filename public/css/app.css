@@ -623,7 +623,10 @@ body,html{
     padding:0;
     background: #fefefe;;
   }
-  
+.white-bg{
+	background-color: #fefefe;
+}
+
 /********************************
  * Grid CSS
  ********************************/

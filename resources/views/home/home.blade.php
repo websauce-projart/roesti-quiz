@@ -6,7 +6,9 @@
 
 @section('contenu')
 
-    <div id="home"></div>
+    <div id="app">
+		 <home :test=@json($data)></home>
+	 </div>
     <script src="js/app.js"></script>
 
 

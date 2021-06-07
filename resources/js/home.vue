@@ -1,10 +1,12 @@
 <template>
-    <input-text v-for="card in 6"></input-text>
+<navbar></navbar>
 </template>
 
 <script>
-    import inputText from './components/inputText.vue';
+    import navbar from './elements/nav.vue';
+
     export default {
-        components: {inputText}
-    }
+        components: {navbar},
+
+		}
 </script>
