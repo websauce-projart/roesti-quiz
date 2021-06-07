@@ -22,10 +22,11 @@
 
         {{-- Gérer les erreurs de saisie avec vue --}}
 
-        <div>
+        <div class="center">
             <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
+        <br>
         </div>
 
         <div>
