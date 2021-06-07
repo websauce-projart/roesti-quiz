@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\Round;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -24,13 +25,13 @@ class CategoryController extends Controller
 	 *	Get 3 random categories, store the game ID in session and return the next view
 	 * @return view Choose categories
 	 **/
-	public static function getRandomCategories($round_id)
+	public static function getRandomCategories($round_count)
 	{
 		// Define a seed so the player doesn't manipulation category generation
 		$user_id = Auth::id();
 
 		$faker = \Faker\Factory::create();
-		$faker->seed($user_id + $round_id);
+		$faker->seed($user_id * $round_count);
 
 		// Get titles from category
 		$categories_titles = Category::pluck("title");
@@ -41,8 +42,10 @@ class CategoryController extends Controller
 
 	public static function displayCategoryView() {
 		$game = session('game');
-		$round = Round::where('game_id', $game->id)->get()->sortByDesc('id')->first();
-		$categories = CategoryController::getRandomCategories($round->id);
+		// $round = Round::where('game_id', $game->id)->get();
+		// dd($round);
+		$round_count = $game->rounds()->count();
+		$categories = CategoryController::getRandomCategories($round_count);
 
 		return view("gameloop.choose_categories", [
 			"categories" => $categories,
