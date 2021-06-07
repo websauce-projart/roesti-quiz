@@ -32,7 +32,13 @@
     <hr>
 
     @if($game->active_user_id == $user->id)
-    <a href="{{ route('quiz') }}">play</a>
+    <a href="{{ route('redirectFromResults') }}">
+        @if(($lastRound->results()->count()) < 2)
+        C'est parti mon röesti!
+        @else
+        Revanche
+        @endif
+    </a>
     @else
     <a href="{{ route('home') }}">Retour au menu</a>
     @endif

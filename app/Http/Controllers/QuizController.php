@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Round;
 use App\Models\Result;
-use App\Models\Category;
-use App\Models\Question;
 use App\Models\UserAnswer;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
@@ -144,5 +141,24 @@ class QuizController extends Controller
         ->with('time', $time)
         ->with('score', $score)
         ->with('game', $game);
+    }
+
+    public function redirectFromResults() {
+        //Unexpected arrival on the page, user get redirected to home
+        $game = session('game');
+        if(!isset($game)) {
+            return redirect()->route('home');
+        };
+
+        //User come from results and either:
+        $round = session('round');
+
+        //just ended the round and now must choose a new category
+        if(!isset($round)) {
+            return redirect()->route('category');
+        }
+
+        //start the round
+        return redirect()->route('quiz');
     }
 }

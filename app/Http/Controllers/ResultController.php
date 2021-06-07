@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\GameController;
 use App\Http\Controllers\RoundController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Game;
@@ -51,10 +50,11 @@ class ResultController extends Controller
 
 		$game = Game::where('id', $game_id)->first();
 		$user = User::where('id', Auth::user()->id)->first();
-		// dd($user);
 		$opponent = $user->getOtherUser($game_id);
 		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
+		$lastRound = $rounds->sortByDesc('id')->first();
+		
 
 		$processedRounds = [];
 		foreach ($rounds as $round) {
@@ -78,33 +78,54 @@ class ResultController extends Controller
 			"game" => $game,
 			"user" => $user,
 			"opponent" => $opponent,
-			"rounds" => $processedRounds
+			"rounds" => $processedRounds,
+			"lastRound" => $lastRound
 		]);
 	}
 
-	public function redirectToResult(Request $request) {
+	public function redirectFromHome(Request $request) {
 		$user = User::where('id', Auth::user()->id)->first();
 		$game = Game::where('id', $request->game_id)->first();
-		$isCorrectUser = false;
 		$players = $game->users()->get();
+
+		//Verify if user is in the game
+		$isCorrectUser = false;
 		foreach ($players as $player) {
 			if($player->id == $user->id) {
 				$isCorrectUser = true;
 			}
 		}
 		if($isCorrectUser) {
-			if(!$game->active_user_id == $user->id) {return redirect()->route('home');}
-			$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
-			
-			$results = Result::where('round_id', $round->id)->get();
-			if(count($results) >= 2) {
-				session(['game' => $game]);
-				// return redirect()->route('category');
-				return CategoryController::displayCategoryView();
+			$players = $game->users()->get();
+
+			//The user isn't in the game, he gets redirected
+			if(!$players->contains($user)) {
+				return redirect()->route('home');
 			}
-			session(['round' => $round]);
+
+			
+			//The user isn't the active player, he go to the results
+			$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
 			session(['game' => $game]);
-			return redirect()->route('results');
+			if($game->active_user_id !== $user->id) {
+				session(['round' => $round]);
+				return redirect()->route('results');
+			}
+
+			//The user is the active player
+			$results = Result::where('round_id', $round->id)->get();
+			
+
+			if(count($results) >= 2) {
+				//The user is the one choosing the category
+				return CategoryController::displayCategoryView();
+
+			} else {
+				//The category has already been chosen, the user go the results and play
+				session(['round' => $round]);
+				return redirect()->route('results');
+			}
+			
 		}
 		
 	}

@@ -61,7 +61,8 @@ Route::group(['middleware' => ['verified']], function () {
 
 	Route::get('/endgame', [QuizController::class, 'showEndgameView'])->name('endgame');
 
-	Route::post('/getresults', [ResultController::class, 'redirectToResult'])->name('getresults');
+	Route::post('/redirectfromhome', [ResultController::class, 'redirectFromHome'])->name('redirectFromHome');
+	Route::get('/redirectfromresults', [QuizController::class, 'redirectFromResults'])->name('redirectFromResults');
 });
 
 /********************************
