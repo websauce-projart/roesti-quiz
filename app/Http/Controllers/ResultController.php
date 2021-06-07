@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\RoundController;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\CategoryController;
 
 class ResultController extends Controller
 {
@@ -46,7 +47,7 @@ class ResultController extends Controller
 			return redirect()->route('home');
 		}
 		$game_id = $gameToRetrieve->id;
-		
+
 
 		$game = Game::where('id', $game_id)->first();
 		$user = User::where('id', Auth::user()->id)->first();
@@ -54,7 +55,7 @@ class ResultController extends Controller
 		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
 		$lastRound = $rounds->sortByDesc('id')->first();
-		
+
 
 		$processedRounds = [];
 		foreach ($rounds as $round) {
@@ -68,6 +69,7 @@ class ResultController extends Controller
 			}
 
 			$processedRound = [
+				"id" => $round->id,
 				"category" => $category->title,
 				"results" => $results
 			];
@@ -103,7 +105,7 @@ class ResultController extends Controller
 				return redirect()->route('home');
 			}
 
-			
+
 			//The user isn't the active player, he go to the results
 			$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
 			session(['game' => $game]);
@@ -114,7 +116,7 @@ class ResultController extends Controller
 
 			//The user is the active player
 			$results = Result::where('round_id', $round->id)->get();
-			
+
 
 			if(count($results) >= 2) {
 				//The user is the one choosing the category
@@ -125,8 +127,8 @@ class ResultController extends Controller
 				session(['round' => $round]);
 				return redirect()->route('results');
 			}
-			
+
 		}
-		
+
 	}
 }
