@@ -22,6 +22,10 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
+Route::get('vue', function () {
+	return view('home/homeVue');
+});
+
 /********************************
  * Verified user
  ********************************/
