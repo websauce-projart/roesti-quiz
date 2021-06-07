@@ -21,7 +21,7 @@ class CreateQuestionRoundTable extends Migration
 
             $table->integer('round_id')->unsigned();
             $table->foreign('round_id')->references('id')->on('rounds')
-                    ->onDelete('restrict')
+                    ->onDelete('cascade')
                     ->onUpdate('restrict');
                     
         });
