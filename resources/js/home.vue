@@ -8,7 +8,14 @@
 	import inputText from './components/inputText.vue';
 	import gameHome from './components/gameHome.vue';
     export default {
-        components: {navbar, inputText, gameHome}
-		}
+        components: {navbar, inputText, gameHome},
+        props:[
+            'classes',
+            ],
+        setup(props) {
+            console.log(props.classes)
+        }
+    }
+
 </script>
 

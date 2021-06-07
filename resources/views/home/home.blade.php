@@ -10,6 +10,10 @@
 		 <home :test=@json($data)></home>
 	 </div>
     <script src="js/app.js"></script>
+    <!-- <div id="app">
+        <home :classes='@json($data)'></home>
+    </div>
+    <script src="js/app.js"></script> -->
 
 
     @if (sizeof($data) == 0)
@@ -21,14 +25,13 @@
     @else
         <div>
             @if (sizeof($data) == 1)
-                <p>Partie en cours</p>
+                <h1>Partie en cours</h1>
             @else
-                <p>Parties en cours</p>
+                <h1>Parties en cours</h1>
             @endif
 
             @foreach ($data as $gamedata)
                 <div>
-                    <strong>{{ $gamedata['opponent']->pseudo }}</strong>
                     @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
                         <div>
                             <p>À toi de jouer</p>
@@ -42,6 +45,14 @@
                         <div>
                             <p>N'a pas encore relevé ton défi...</p>
                         </div>
+                            <x-form-game-play value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-play>
+                    @endif
+                </div>
+            @endforeach
+            @foreach ($data as $gamedata)
+                <div>
+                    @if ($gamedata['game']->active_user_id !== $gamedata['user']->id)
+                            <x-form-game-wait value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-wait>
                     @endif
                 </div>
             @endforeach
