@@ -3,9 +3,16 @@
 </template>
 
 <script>
-    import inputText from './components/inputText.vue';
-    import gameHome from './components/gameHome.vue';
+    import GameHome from './components/gameHome.vue'
     export default {
-        components: {inputText, gameHome}
+        components: {
+                GameHome
+            },
+        props:[
+            'classes',
+            ],
+        setup(props) {
+            console.log(props.classes)
+        }
     }
 </script>
