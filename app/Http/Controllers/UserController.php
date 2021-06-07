@@ -56,6 +56,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::findOrFail($id);
+        $games = $user->games;
+
+        foreach($games as $game) {
+            Game::findOrFail($game->id)->delete();
+        }
         User::findOrFail($id)->delete();
         return redirect()->back();
     }
