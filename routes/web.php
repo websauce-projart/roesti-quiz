@@ -59,14 +59,14 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
 	Route::post('/category/{game_id}', [RoundController::class, 'createRound']); //Checké
 
-	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké - contrôle à implémenter
+	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké
 
 	Route::get("/quiz/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
 	Route::post("/quiz/{result_id}", [QuizController::class, 'createAnswers']); //Checké, manque le calcul du temps
 
 	Route::get('/endgame/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké
 
-	Route::post('/redirectfromhome', [ResultController::class, 'redirectFromHome'])->name('redirectFromHome');
+	Route::get('/join/{game_id}', [ResultController::class, 'redirectFromHome'])->name('join');
 	Route::get('/play/{game_id}', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké, reste des trucs à tester
 });
 

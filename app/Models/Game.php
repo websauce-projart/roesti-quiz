@@ -35,6 +35,16 @@ class Game extends Model
         return false;
     }
 
+    public static function getGameFromUsers($user1, $user2) {
+        $games = $user1->games()->get();
+        foreach($games as $game) {
+            if($user2->id == $user1->getOtherUser($game->id)->id) {
+                return $game;
+            }
+        }
+        return null;
+    }
+
     public function getLastRound() {
         $round = $this->rounds()->orderBy("created_at", "desc")->first();
         return $round;

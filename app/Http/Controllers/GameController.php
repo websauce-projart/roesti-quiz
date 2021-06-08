@@ -77,7 +77,18 @@ class GameController extends Controller
 		
 		//Checks if game exists already
 		if(Game::isExistingAlready($user, $opponent)) {
-			return redirect()->route('home');
+			$game = Game::getGameFromUsers($user, $opponent);
+			$round_count = $game->rounds()->get()->count();
+
+			//If user created a game but left before choosing a category
+			if($round_count == 0) {
+				return redirect()->route('category', [$game]);
+			}
+
+			//If at least a round exists already
+			if($round_count > 0) {
+				return redirect()->route('results', [$game]);
+			}
 		};
 		
 		//Create game
@@ -116,7 +127,8 @@ class GameController extends Controller
 		return view('home/home')->with('data', $data);
 	}
 
-	//Cette fonction est-elle utilisée quelque part?????
+
+	// Cette fonction est-elle utilisée quelque part?????
 	// public function displayGame(Request $request)
 	// {
 	// 	$game_id = $request->game_id;

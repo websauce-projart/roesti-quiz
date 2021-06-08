@@ -17,20 +17,21 @@ class QuizController extends Controller
     {
         //Retrieve data
         $user_id = Auth::user()->id;
-        $questions = Round::where('id', $round_id)->first()->questions()->get();
+        $round = Round::where('id', $round_id)->first();
+        $game = $round->game()->first();
 
         //Checks if this user is in this game, is the active player, and have no result for this round, else redirect to home
         // -- TO IMPLEMENT
-
-
         
         
-
         //Create Result
         $result = Result::create([
             "user_id" => $user_id,
             "round_id" => $round_id
         ]);
+
+        //Retrieve questions to send
+        $questions = $round->questions()->get();
 
         //Return Quiz view
         return view('gameloop/quiz')

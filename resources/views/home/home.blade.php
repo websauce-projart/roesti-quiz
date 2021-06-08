@@ -26,16 +26,13 @@ RöstiQuiz - Accueil
         <div>
             <p>
                 @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
-                À toi de jouer
+                <a href="{{ route('join', [$gamedata['game']]) }}">À toi de jouer</a>
+                
                 @else
-                N'a pas encore relevé ton défi...
+                <a href="{{ route('join', [$gamedata['game']]) }}">N'a pas encore relevé ton défi...</a>
+                
                 @endif
             </p>
-            <form method="POST" action="{{ route('redirectFromHome') }}" accept-charset="UTF-8">
-                @csrf
-                <input type="hidden" name="game_id" value="{{$gamedata['game']->id}}">
-                <input type="submit" value="->">
-            </form>
         </div>
 
 

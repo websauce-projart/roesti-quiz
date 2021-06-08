@@ -47,14 +47,23 @@ class CategoryController extends Controller
 		$user_id = Auth::user()->id;
 		$game = Game::where('id', $game_id)->first();
 
-		if($game->active_user_id !== $user_id) {	//À vérifier si fonctionne
-			dd('active: '.$game->active_user_id." | user: ". $user_id);
+		if($game->active_user_id !== $user_id) {
 			return redirect()->route('home');
 		}
 		
 
 		if(!is_null($game->getLastRound())) { //À vérifier si fonctionne
-			if($game->getLastRound()->results()->get()->count() !== 2) {
+			$last_round = $game->getLastRound();
+			$results_count = $last_round->results()->get()->count();
+
+			//User choose the category and created the round but left before doing the quizz
+			if($results_count == 0) {
+				return redirect()->route('results', [$game]);
+			} 
+
+			//The current round is not over, user shouldn't choose a category
+			if($results_count !== 2) {
+				dd($results_count);
 				return redirect()->route('home');
 			}
 		}
