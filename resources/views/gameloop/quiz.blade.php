@@ -5,7 +5,7 @@ GAME
 @endsection
 
 @section('content')
-<form action="{{ route('quiz', [$result_id]) }}" method="POST">
+<form action="{{ route('postquiz', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result_id]) }}" method="POST">
 @csrf
     @foreach($questions as $question)
     <div>

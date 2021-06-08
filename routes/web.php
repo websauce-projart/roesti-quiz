@@ -54,21 +54,21 @@ Route::group(['middleware' => ['verified']], function () {
 
 	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
 
-	Route::post('/creategame', [GameController::class, 'createGame'])->name('creategame'); //Checké
+	Route::post('/game', [GameController::class, 'createGame'])->name('creategame'); //Checké
 
-	Route::get('/category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
-	Route::post('/category/{game_id}', [RoundController::class, 'createRound']); //Checké
+	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
+	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']); //Checké
 
-	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké - contrôle à implémenter
+	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results'); //Checké
 
+	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
 
-	Route::get("/quiz/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
-	Route::post("/quiz/{result_id}", [QuizController::class, 'createAnswers']); //Checké, manque le calcul du temps
+	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz'); //Checké - contrôler à implémenter
 
-	Route::get('/endgame/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké
+	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké - contrôles à implémenter
 
-	Route::get('/join/{game_id}', [ResultController::class, 'redirectFromHome'])->name('join');
-	Route::get('/play/{game_id}', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké, reste des trucs à tester
+	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join'); //Checké -  contrôles à tester
+	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké - contrôler à tester
 });
 
 /********************************
