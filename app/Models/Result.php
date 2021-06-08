@@ -7,27 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class Result extends Model
 {
-    use HasFactory;
+	use HasFactory;
 
-    public $timestamps = false;
+	public $timestamps = false;
 
-    protected $fillable = [
-        'user_id',
-        'round_id',
-        'time',
-        'score'
-    ];
+	protected $fillable = [
+		'user_id',
+		'round_id',
+		'timestamp_start',
+		'timestamp_end',
+		'score'
+	];
 
-    public function round() {
-        return $this->belongsTo(Round::class);
-    }
+	public function round()
+	{
+		return $this->belongsTo(Round::class);
+	}
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
+	public function user()
+	{
+		return $this->belongsTo(User::class);
+	}
 
-    //le nommage risque de poser problème, à vérifier
-    public function useranswers() {
-        return $this->hasMany(UserAnswer::class);
-    }
+	//le nommage risque de poser problème, à vérifier
+	public function useranswers()
+	{
+		return $this->hasMany(UserAnswer::class);
+	}
 }
