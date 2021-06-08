@@ -40,16 +40,17 @@ class CategoryController extends Controller
 		return $categories;
 	}
 
-	public static function displayCategoryView() {
-		$game = session('game');
-		// $round = Round::where('game_id', $game->id)->get();
-		// dd($round);
-		$round_count = $game->rounds()->count();
+	public static function displayCategoryView($game_id) {
+		//Checks if the user is in the game and that it's its turn to choose the category
+		//TO IMPLEMENTS
+
+
+		$rounds = Round::where('game_id', $game_id)->get();
+		$round_count = $rounds->count();
 		$categories = CategoryController::getRandomCategories($round_count);
 
-		return view("gameloop.choose_categories", [
-			"categories" => $categories,
-			'data' => $game->id
-		]);
+		return view('gameloop/choose_categories')
+		->with('categories', $categories)
+		->with('data', $game_id);
 	}
 }

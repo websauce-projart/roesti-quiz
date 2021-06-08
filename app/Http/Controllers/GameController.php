@@ -70,55 +70,50 @@ class GameController extends Controller
 	 */
 	public function createGame(Request $request)
 	{
-		$activeUserId = Auth::user()->id;
-		$opponentId = $request->user;
-		$game = Game::create(['active_user_id' => $activeUserId]);
-		$game->users()->attach($activeUserId);
-		$game->users()->attach($opponentId);
-
-		session(["game" => $game]);
-
-
-		return redirect()->route('category');
-		// return CategoryController::displayCategoryView();
+		//Retrieve data
+		$user_id = Auth::user()->id;
+		$user = User::where('id', $user_id)->first();
+		$opponent = User::where('id', $request->user)->first();
 		
+		//Checks if game exists already - TO IMPLEMENT
+		// if(Game::isExistingAlready($user, $opponent)) {
+		// 	dd('game already exists');
+		// 	return redirect()->route('home');
+		// };
+		
+		//Create game
+		$game = Game::create(['active_user_id' => $user->id]);
+		$game->users()->attach($user->id);
+		$game->users()->attach($opponent->id);
+		// dd($game);
+
+		//Redirect to categories
+		return redirect()->route('category', [$game]);		
 	}
 
 	//Returning vie Home with the datas
 	public function displayHome()
 	{
-		//Clean session
-        $dataToClean = [
-            'game',
-            'round',
-            'result',
-            'questions'
-        ];
-
-        foreach ($dataToClean as $data) {
-            if(session()->has($data)) {
-                session()->forget($data);
-            }
-        }
-
-		$activeUserId = Auth::user()->id;
-
-		$user = User::where('id', $activeUserId)->first();
-		$games = $user->games;
-
-		$data = [];
+		
+		$user_id = Auth::user()->id;
+		$user = User::where('id', $user_id)->first();
+		$games = $user->games()->get();
+		$data = array();
+		
 		foreach ($games as $game) {
-			$gameId = $game->id;
-
-			$opponent = $user->getOtherUser($gameId);
+			
+			$game_id = $game->id;
+			$opponent = $user->getOtherUser($game_id);
+			
 			$gameData = array(
 				"user" => $user,
 				"opponent" => $opponent,
 				"game" => $game
 			);
-
 			array_push($data, $gameData);
 		}
+		
+		
 		return view('home/home')->with('data', $data);
 	}
 

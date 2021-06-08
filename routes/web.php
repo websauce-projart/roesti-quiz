@@ -30,11 +30,10 @@ Route::group(['middleware' => ['verified']], function () {
 	 * Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-	Route::post('/newgame', [UserController::class, 'displaySearch']);
 	Route::get('/', function () {
 		return redirect()->route('home');
 	});
-	Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
+
 
 	/********************************
 	 * Profile
@@ -47,24 +46,29 @@ Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Gameloop
 	 ********************************/
-	Route::post('/home', [UserController::class, 'displaySearch']);
 
-	Route::post('/newgame', [GameController::class, 'createGame'])->name('newgame');
 
-	Route::get('category', [CategoryController::class, 'displayCategoryView'])->name('category');
 
-	Route::get('/results', [ResultController::class, 'showResultsView'])->name('results');
-	Route::post("/results", [RoundController::class, "createRound"]);
 
-	Route::post("/history", [RoundController::class, "showHistoryView"])->name("round_history");
+	Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
 
-	Route::get("/quiz", [QuizController::class, 'showQuizView'])->name('quiz');
-	Route::post("/quiz", [QuizController::class, 'createAnswers']);
+	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
 
-	Route::get('/endgame', [QuizController::class, 'showEndgameView'])->name('endgame');
+	Route::post('/creategame', [GameController::class, 'createGame'])->name('creategame'); //Checké - contrôle à implémenter
+
+	Route::get('category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à implémenter
+	Route::post('/category/{game_id}', [RoundController::class, 'createRound']); //Checké
+
+	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké - contrôle à implémenter
+
+
+	Route::get("/quiz/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
+	Route::post("/quiz/{result_id}", [QuizController::class, 'createAnswers']); //Checké, manque le calcul du temps
+
+	Route::get('/endgame/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké
 
 	Route::post('/redirectfromhome', [ResultController::class, 'redirectFromHome'])->name('redirectFromHome');
-	Route::get('/redirectfromresults', [QuizController::class, 'redirectFromResults'])->name('redirectFromResults');
+	Route::get('/play/{game_id}', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké, reste des trucs à tester
 });
 
 /********************************

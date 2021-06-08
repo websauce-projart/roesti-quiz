@@ -5,13 +5,13 @@ GAME
 @endsection
 
 @section('content')
-<form action="" method="POST">
+<form action="{{ route('quiz', [$result_id]) }}" method="POST">
 @csrf
     @foreach($questions as $question)
     <div>
-        <strong>{{$question->label}} ?</strong>
+        <strong>{{$question->label}}</strong>
          <div>
-            Vrai?<input type="checkbox" name="{{$question->id}}">
+            Vrai<input type="checkbox" name="{{$question->id}}">
          </div>
     </div>
     @endforeach

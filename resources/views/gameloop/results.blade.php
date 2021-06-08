@@ -36,7 +36,7 @@
     <hr>
 
     @if($game->active_user_id == $user->id)
-    <a href="{{ route('redirectFromResults') }}">
+    <a href="{{ route('play', [$game]) }}">
         @if(($lastRound->results()->count()) < 2)
         C'est parti mon röesti!
         @else

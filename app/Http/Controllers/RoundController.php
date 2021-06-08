@@ -42,30 +42,19 @@ class RoundController extends Controller
 	 * Create a round, store it and return the next view
 	 * @return view Results page
 	 */
-	public function createRound(Request $request)
+	public function createRound(Request $request, $game_id)
 	{
 		$category_title = $request->input("categories");
 		$category_id = Category::where("title", $category_title)->first()->id;
-		$game = session("game");
-		$game_id = $game->id;
 
 		$round = Round::create([
 			"game_id" => $game_id,
 			"category_id" => $category_id
 		]);
 
-		$users = GameController::getPlayers($game_id);
-		$users_id = [];
-		foreach ($users as $user) {
-			array_push($users_id, $user->user_id);
-		}
+		$this->prepareQuestions($round);
 
-		$this->prepareNextRound($round);
-
-		// Store round for next view
-		session(["round" => $round]);
-
-		return ResultController::showResultsView();
+		return redirect()->route('results', [$game_id]);
 	}
 
 	/**
@@ -74,7 +63,7 @@ class RoundController extends Controller
 	 * @param  mixed $request
 	 * @return void
 	 */
-	public function prepareNextRound($round)
+	public function prepareQuestions($round)
 	{
 		//Retrieve next round category
 		$category_id = $round->category()->first()->id;
