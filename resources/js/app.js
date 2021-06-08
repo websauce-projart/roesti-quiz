@@ -11,6 +11,3 @@ const app = createApp({
       Home
     }
   }).mount('#app');
-
-// const results = createApp(Results);
-// home.mount("#results");
