@@ -1,67 +1,48 @@
 @extends('home/template_home')
 
 @section('title')
-    RöstiQuiz - Accueil
+RöstiQuiz - Accueil
 @endsection
 
 @section('contenu')
-
-    <div id="app">
-		 <home :test=@json($data)></home>
-	 </div>
-    <script src="js/app.js"></script>
+<div class="speech-bubble">
     <!-- <div id="app">
         <home :classes='@json($data)'></home>
     </div>
     <script src="js/app.js"></script> -->
 
-
-    @if (sizeof($data) == 0)
+    <div class="container--game">
+        @if (sizeof($data) == 0)
         <div>
             Tu n'as encore aucune partie en cours.
 
             Clique sur nouvelle partie pour un max de fun !
         </div>
-    @else
-        <div>
+        @else
+        <h1 class="home--game--h1">
             @if (sizeof($data) == 1)
-                <h1>Partie en cours</h1>
+            Partie en cours
             @else
-                <h1>Parties en cours</h1>
+            Parties en cours
             @endif
+        </h1>
 
-            @foreach ($data as $gamedata)
-                <div>
-                    @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
-                        <div>
-                            <p>À toi de jouer</p>
-                            <form method="POST" action="{{ route('getresults') }}" accept-charset="UTF-8">
-                                @csrf
-                                <input type="hidden" name="game_id" value="{{$gamedata['game']->id}}">
-                                <x-next-button label="->"/>
-                            </form>
-                        </div>
-                    @else
-                        <div>
-                            <p>N'a pas encore relevé ton défi...</p>
-                        </div>
-                            <x-form-game-play value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-play>
-                    @endif
-                </div>
-            @endforeach
-            @foreach ($data as $gamedata)
-                <div>
-                    @if ($gamedata['game']->active_user_id !== $gamedata['user']->id)
-                            <x-form-game-wait value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-wait>
-                    @endif
-                </div>
-            @endforeach
-        </div>
-    @endif
-    <div>
-        <form method="POST" action="" accept-charset="UTF-8">
-            @csrf
-            <x-input-submit label="Nouvelle partie"></x-input-submit>
-        </form>
+
+        @foreach ($data as $gamedata)
+            @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
+            <x-form-game-play value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-play>
+            @endif
+        @endforeach
+        @foreach ($data as $gamedata)
+            @if ($gamedata['game']->active_user_id !== $gamedata['user']->id)
+            <x-form-game-wait value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-wait>
+            @endif
+        @endforeach
+        @endif
     </div>
+</div>
+<form method="POST" action="" accept-charset="UTF-8">
+    @csrf
+    <x-input-submit label="Nouvelle partie"></x-input-submit>
+</form>
 @endsection

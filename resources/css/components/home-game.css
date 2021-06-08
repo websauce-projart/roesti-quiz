@@ -1,13 +1,13 @@
 /********************************
  * Home Game interface
  ********************************/
-.test{
+.home--game{
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	margin: 1rem auto;
 	width: 95%;
-	max-width: 400px;
-	min-width: 180px;
+	max-width: 30rem;
+	min-width: 20rem;
 	height: 80px;
 	display: block;
 	font-family:  "Luckiest Guy", sans-serif;
@@ -18,7 +18,19 @@
 	position:relative;
 }
 
-.test--pseudo{
+.home--game--h1{
+	display: block;
+	position: relative;
+	font-family:  "Roboto", sans-serif;
+	font-size: 1.2rem;
+	text-align: left;
+}
+
+.home--game--wait{
+	opacity: 0.5;
+}
+
+.home--game--pseudo{
 	font-size: 22px;
 	color: #003769;
 	position:absolute;
@@ -27,7 +39,7 @@
 	margin-top: 1rem 3rem;
 }
 
-.test--info{
+.home--game--info{
 	font-size: 16px;
 	color: #4092E8;
 	position:absolute;
@@ -37,7 +49,8 @@
 	padding-left: 2rem;
 }
 
-.test--submit{
+.home--game--submit{
+	display: flex;
 	border:none;
 	position:absolute;
 	bottom: 0rem;
@@ -48,20 +61,23 @@
 	opacity: 0;
 }
 
-.btn--primary, .btn--secondary:hover{
-	background-color: #FFBf2f; /* Yellow BG*/
-	color: #003769; /*Blue text*/
-	box-shadow: -6px 6px  #FE450E;
-}
+.home--game--play{
+	display:table;
+	height: 50px;
+	color: #fff;
+	background-color: #4092E8;	
+	border-radius: 50%;
+	width: 50px;
+	position: relative;
+	float: right;
+	margin-right: 1rem;
+ }
 
-.btn--primary:active, .btn--secondary:active{
-	transform: translateX(-6px);
-	transform: translateY(6px);
-	box-shadow: none;
-}
-
-.btn--tertiary:active{
-	transform: translateX(-3px);
-	transform: translateY(3px);
-	box-shadow: none;
-}
+ .home--game--play--text{
+	display:table-cell;
+	vertical-align:middle;
+	font-family:  "Luckiest Guy", sans-serif;
+	position:relative;
+	align-content: center;
+	text-align: center;
+ }
