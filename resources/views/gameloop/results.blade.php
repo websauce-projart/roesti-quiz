@@ -8,7 +8,7 @@
 
     {{ $user->pseudo }} vs. {{ $opponent->pseudo }}<br>
     @foreach ($rounds as $round)
-        <form action="{{ route('round_history') }}" method="POST">
+        <form action="" method="POST">
             @csrf
 
             <input type="hidden" name="round_id" value="{{ $round['id'] }}">
