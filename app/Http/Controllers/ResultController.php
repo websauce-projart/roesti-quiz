@@ -41,12 +41,21 @@ class ResultController extends Controller
 	 */
 	public static function showResultsView($game_id)
 	{
-		//Checks if the user is in the game -- TO IMPLEMENT
+		//Checks if the user is in the game and that there is at least one round
+		$game = Game::where('id', $game_id)->first();
+		$user_id = Auth::user()->id;
+
+		if(!$game->userExistsInGame($user_id)) {
+			return redirect()->route('home');
+		}
+
+		if(is_null($game->getLastRound())) {	//À tester
+			return redirect()->route('home');
+		}
+
 
 
 		//Retrieve data
-		$game = Game::where('id', $game_id)->first();
-		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
 		$opponent = $user->getOtherUser($game_id);
 		$users = [$user, $opponent];

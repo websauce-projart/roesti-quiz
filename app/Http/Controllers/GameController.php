@@ -75,11 +75,10 @@ class GameController extends Controller
 		$user = User::where('id', $user_id)->first();
 		$opponent = User::where('id', $request->user)->first();
 		
-		//Checks if game exists already - TO IMPLEMENT
-		// if(Game::isExistingAlready($user, $opponent)) {
-		// 	dd('game already exists');
-		// 	return redirect()->route('home');
-		// };
+		//Checks if game exists already
+		if(Game::isExistingAlready($user, $opponent)) {
+			return redirect()->route('home');
+		};
 		
 		//Create game
 		$game = Game::create(['active_user_id' => $user->id]);
@@ -117,9 +116,10 @@ class GameController extends Controller
 		return view('home/home')->with('data', $data);
 	}
 
-	public function displayGame(Request $request)
-	{
-		$game_id = $request->game_id;
-		return ResultController::showResultsView($game_id);
-	}
+	//Cette fonction est-elle utilisée quelque part?????
+	// public function displayGame(Request $request)
+	// {
+	// 	$game_id = $request->game_id;
+	// 	return ResultController::showResultsView($game_id);
+	// }
 }

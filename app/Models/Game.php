@@ -28,7 +28,7 @@ class Game extends Model
     public static function isExistingAlready($user, $opponent) {
         $games = $user->games()->get();
         foreach($games as $game) {
-            if($opponent == $user->getOtherUser($game->id)) {
+            if($opponent->id == $user->getOtherUser($game->id)->id) {
                 return true;
             }
         }
