@@ -24,7 +24,8 @@ class ResultFactory extends Factory
 		return [
 			"user_id" => 2,
 			"round_id" => 1,
-			"time" => 12,
+			"timestamp_start" => null,
+			"timestamp_end" => null,
 			"score" => 52
 		];
 	}

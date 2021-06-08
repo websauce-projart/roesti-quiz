@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Game;
+use App\Models\Question;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Round extends Model
 {
@@ -14,6 +15,13 @@ class Round extends Model
 		'game_id',
 		'category_id'
 	];
+
+	public function getQuestions()
+	{
+		$questions = $this->questions();
+		$roundQuestions = $questions->wherePivot("round_id", $this->id)->get();
+		return $roundQuestions;
+	}
 
 	//À changer
 	public function game()
