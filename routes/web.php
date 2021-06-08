@@ -26,6 +26,7 @@ use App\Http\Controllers\CategoryController;
  * Verified user
  ********************************/
 Route::group(['middleware' => ['verified']], function () {
+
 	/********************************
 	 * Home
 	 ********************************/
@@ -47,9 +48,6 @@ Route::group(['middleware' => ['verified']], function () {
 	 * Gameloop
 	 ********************************/
 
-
-
-
 	// Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
 
 	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
@@ -69,7 +67,11 @@ Route::group(['middleware' => ['verified']], function () {
 
 	Route::get('/join/{game_id}', [ResultController::class, 'redirectFromHome'])->name('join');
 	Route::get('/play/{game_id}', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké, reste des trucs à tester
+
+	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
 });
+
+
 
 /********************************
  * Login & Registration

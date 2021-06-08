@@ -8,41 +8,38 @@
 
     {{ $user->pseudo }} vs. {{ $opponent->pseudo }}<br>
     @foreach ($rounds as $round)
-        <form action="" method="POST">
-            @csrf
+        <div>
+            <a href="{{ route('round_history', [$game, $round['id']]) }}">
+                [Round {{ $loop->index + 1 }}: {{ $round['category'] }}]
 
-            <input type="hidden" name="round_id" value="{{ $round['id'] }}">
-            <input type="submit">
-            [Round {{ $loop->index + 1 }}: {{ $round['category'] }}]
+                @if ($round['results'][0] == null)
+                    À ton tour!
+                @else
+                    {{ $round['results'][0] }}
+                @endif
 
-            @if ($round['results'][0] == null)
-                À ton tour!
-            @else
-                {{ $round['results'][0] }}
-            @endif
+                –
 
-            –
+                @if ($round['results'][1] == null)
+                    En attente...
+                @else
+                    {{ $round['results'][1] }}
+                @endif
+            </a>
+        </div>
 
-            @if ($round['results'][1] == null)
-                En attente...
-            @else
-                {{ $round['results'][1] }}
-            @endif
-
-            </input>
-        </form>
     @endforeach
 
     <hr>
 
-    @if($game->active_user_id == $user->id)
-    <a href="{{ route('play', [$game]) }}">
-        @if(($lastRound->results()->count()) < 2)
-        C'est parti mon röesti!
-        @else
-        Revanche
-        @endif
-    </a>
+    @if ($game->active_user_id == $user->id)
+        <a href="{{ route('play', [$game]) }}">
+            @if ($lastRound->results()->count() < 2)
+                C'est parti mon röesti!
+            @else
+                Revanche
+            @endif
+        </a>
     @else
         <a href="{{ route('home') }}">Retour au menu</a>
     @endif
