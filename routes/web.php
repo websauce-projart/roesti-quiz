@@ -55,18 +55,18 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::post('/game', [GameController::class, 'createGame'])->name('creategame'); //Checké
 
 	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
-	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']); //Checké
+	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']); //Terminé
 
-	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results'); //Checké
+	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results'); //Terminé
 
-	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
+	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Terminé
 
-	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz'); //Checké - contrôler à implémenter
+	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz'); //Terminé
 
-	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké - contrôles à implémenter
+	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Terminé
 
-	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join'); //Checké -  contrôles à tester
-	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké - contrôler à tester
+	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join'); //Terminé
+	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Terminé
 
 	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
 });
