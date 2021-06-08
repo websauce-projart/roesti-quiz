@@ -6,8 +6,8 @@ require("./bootstrap");
 import { createApp } from "vue";
 import Home from "./home.vue";
 
-const app = createApp({
+const home = createApp({
     components: {
       Home
     }
-  }).mount('#app');
+  }).mount('#home');
