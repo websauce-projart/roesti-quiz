@@ -66,7 +66,7 @@ class DatabaseSeeder extends Seeder
 		 * - an existing round (found according to id)
 		 * - an answer from one user
 		 */
-		$questions = Question::all();
+		$questions = Question::all()->take(10);
 		$round = Round::find(1);
 
 		foreach ($questions as $question) {

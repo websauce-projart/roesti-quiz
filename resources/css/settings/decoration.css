@@ -1,0 +1,8 @@
+/********************************
+ * CSS Decoration
+ ********************************/
+:root {
+	--boxshadow-main: -6px 6px var(--color-contrast);
+	--boxshadow-second: -6px 6px var(--color-black);
+	--boxshadow-tertiary: -3px 3px var(--color-background);
+}

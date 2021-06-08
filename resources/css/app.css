@@ -12,6 +12,8 @@
 @import "~sanitize.css";
 @import "settings/colors";
 @import "settings/margins";
+@import "settings/fonts";
+@import "settings/decoration.css"; /* box-shadow, borders, … */
 
 /* Elements (bare HTML elements)
  ********************************/

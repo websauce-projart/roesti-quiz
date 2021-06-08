@@ -33,20 +33,20 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/', function () {
 		return redirect()->route('home');
 	});
-	
+
 
 	/********************************
 	 * Profile
 	 ********************************/
 	Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
 	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
-	Route::get('/update-password',[AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
-	Route::post('/update-password',[AuthController::class, 'updatePassword'])->name('updatePassword');
+	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
 
 	/********************************
 	 * Gameloop
 	 ********************************/
-	
+
 
 
 
@@ -59,7 +59,8 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
 	Route::post('/category/{game_id}', [RoundController::class, 'createRound']); //Checké
 
-	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké
+	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké - contrôle à implémenter
+
 
 	Route::get("/quiz/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Checké - contrôle à implémenter
 	Route::post("/quiz/{result_id}", [QuizController::class, 'createAnswers']); //Checké, manque le calcul du temps

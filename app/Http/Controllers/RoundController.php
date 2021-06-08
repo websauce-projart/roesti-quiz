@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Game;
 use App\Models\User;
 use App\Models\Round;
+use App\Models\Result;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ResultController;
-use App\Models\Result;
+use App\Models\UserAnswer;
 
 class RoundController extends Controller
 {
@@ -86,5 +88,53 @@ class RoundController extends Controller
 		$category_id = $round->category_id;
 		$category = Category::where("id", $category_id)->first();
 		return $category;
+	}
+
+
+
+	/**
+	 * Show the round history view
+	 * @param Requestion $request
+	 * @return View Round history
+	 */
+	public function showHistoryView(Request $request)
+	{
+		$game_id = session('game')->id;
+
+		// Retrieve questions of the round
+		$round_id = $request->input("round_id");
+		$round = Round::find($round_id);
+		$questions = $round->getQuestions();
+
+		// Retrieve players
+		$user = User::where('id', Auth::user()->id)->first();
+		$opponent = $user->getOtherUser($game_id);
+
+		// Retrieve answers for user and opponent
+		$round_result = Result::where("round_id", $round_id);
+		$user_result = $round_result->where("user_id", $user->id)->first();
+		$opponent_result = $round_result->where("user_id", $opponent->id)->first();
+
+		$user_answers = null;
+		if ($user_result) {
+			$user_answers = UserAnswer::where("result_id", $user_result->id)->get();
+		}
+
+		$opponent_answers = null;
+		if ($opponent_result) {
+			$opponent_answers = UserAnswer::where("result_id", $opponent_result->id)->get();
+		}
+
+		return view("gameloop.round_history", [
+			"questions" => $questions,
+			"user" => [
+				"object" => $user,
+				"answers" => $user_answers
+			],
+			"opponent" => [
+				"object" => $opponent,
+				"answers" => $opponent_answers
+			]
+		]);
 	}
 }

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\RoundController;
-use Illuminate\Support\Facades\Auth;
-use App\Models\Game;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\CategoryController;
 
 class ResultController extends Controller
 {
@@ -75,6 +76,7 @@ class ResultController extends Controller
 			}
 
 			$processedRound = [
+				"id" => $round->id,
 				"category" => $category->title,
 				"results" => $results
 			];
