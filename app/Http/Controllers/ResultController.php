@@ -42,19 +42,18 @@ class ResultController extends Controller
 	 */
 	public static function showResultsView($game_id)
 	{
-		//Checks if the user is in the game and that there is at least one round
 		$game = Game::where('id', $game_id)->first();
 		$user_id = Auth::user()->id;
 
+		//Checks if the user is in the game
 		if (!$game->userExistsInGame($user_id)) {
 			return redirect()->route('home');
 		}
 
+		//Checks if there is at least one round in the game
 		if (is_null($game->getLastRound())) {
 			return redirect()->route('home');
 		}
-
-
 
 		//Retrieve data
 		$user = User::where('id', $user_id)->first();
@@ -63,7 +62,7 @@ class ResultController extends Controller
 		$rounds = RoundController::getRounds($game_id);
 		$lastRound = $rounds->sortByDesc('id')->first();
 
-
+		//Process data
 		$processedRounds = [];
 		foreach ($rounds as $round) {
 			$category = RoundController::getCategory($round);
@@ -83,6 +82,7 @@ class ResultController extends Controller
 			array_push($processedRounds, $processedRound);
 		}
 
+		//Return view
 		return view('gameloop/results')->with([
 			"game" => $game,
 			"user" => $user,
@@ -98,30 +98,30 @@ class ResultController extends Controller
 		$game = Game::where('id', $request->game_id)->first();
 		$players = $game->users()->get();
 
-		//The user isn't in the game, he gets redirected	-- à tester
+		//If the player doesn't belong to the game -> redirected to home
 		if (!$players->contains($user)) {
 			return redirect()->route('home');
 		}
 
-		//Tester si la game n'a pas de round
+		//If the game has no rounds created -> redirected to home
 		$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
 		if(is_null($round)) {
 			return redirect()->route('category', [$game]);
 		}
 
-		//The user isn't the active player, he go to the results	-- à tester
+		//If the player isn't the active player -> redirected to home
 		if ($game->active_user_id !== $user->id) {
 			return redirect()->route('results', [$game]);
 		}
 
-		//The user is the active player
+		//If the user is the active player:
 		$results = Result::where('round_id', $round->id)->get();
-
 		if (count($results) >= 2) {
-			//The user is the one choosing the category		-- à tester
+			//The game has more than 2 results, so the user is the one choosing the category
 			return redirect()->route('category', [$game]);
+			
 		} else {
-			//The category has already been chosen, the user go the results and play	-- à tester
+			//The category has already been chosen, the user go the results and play
 			return redirect()->route('results', [$game]);
 		}
 	}
