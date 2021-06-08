@@ -97,12 +97,9 @@ class RoundController extends Controller
 	 * @param Requestion $request
 	 * @return View Round history
 	 */
-	public function showHistoryView(Request $request)
+	public function showHistoryView($game_id, $round_id)
 	{
-		$game_id = session('game')->id;
-
 		// Retrieve questions of the round
-		$round_id = $request->input("round_id");
 		$round = Round::find($round_id);
 		$questions = $round->getQuestions();
 
