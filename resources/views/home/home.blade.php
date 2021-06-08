@@ -17,6 +17,15 @@ RöstiQuiz - Accueil
             Tu n'as encore aucune partie en cours.
 
             Clique sur nouvelle partie pour un max de fun !
+            <p>
+                @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
+                <a href="{{ route('join', [$gamedata['game']]) }}">À toi de jouer</a>
+                
+                @else
+                <a href="{{ route('join', [$gamedata['game']]) }}">N'a pas encore relevé ton défi...</a>
+                
+                @endif
+            </p>
         </div>
         @else
         <h1 class="home--game--h1">

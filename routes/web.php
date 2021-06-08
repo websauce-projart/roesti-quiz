@@ -50,13 +50,13 @@ Route::group(['middleware' => ['verified']], function () {
 
 
 
-	Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
+	// Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
 
 	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
 
-	Route::post('/creategame', [GameController::class, 'createGame'])->name('creategame'); //Checké - contrôle à implémenter
+	Route::post('/creategame', [GameController::class, 'createGame'])->name('creategame'); //Checké
 
-	Route::get('category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à implémenter
+	Route::get('/category/{game_id}', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
 	Route::post('/category/{game_id}', [RoundController::class, 'createRound']); //Checké
 
 	Route::get('/results/{game_id}', [ResultController::class, 'showResultsView'])->name('results'); //Checké - contrôle à implémenter
@@ -67,7 +67,7 @@ Route::group(['middleware' => ['verified']], function () {
 
 	Route::get('/endgame/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Checké
 
-	Route::post('/redirectfromhome', [ResultController::class, 'redirectFromHome'])->name('redirectFromHome');
+	Route::get('/join/{game_id}', [ResultController::class, 'redirectFromHome'])->name('join');
 	Route::get('/play/{game_id}', [QuizController::class, 'redirectFromResults'])->name('play'); //Checké, reste des trucs à tester
 });
 
