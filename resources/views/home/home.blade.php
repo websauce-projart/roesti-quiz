@@ -17,16 +17,6 @@ RöstiQuiz - Accueil
             Tu n'as encore aucune partie en cours.
 
             Clique sur nouvelle partie pour un max de fun !
-            <p>
-                @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
-                <a href="{{ route('join', [$gamedata['game']]) }}">À toi de jouer</a>
-                
-                @else
-                <a href="{{ route('join', [$gamedata['game']]) }}">N'a pas encore relevé ton défi...</a>
-                
-                @endif
-            </p>
-        </div>
         @else
         <h1 class="home--game--h1">
             @if (sizeof($data) == 1)
@@ -39,12 +29,23 @@ RöstiQuiz - Accueil
 
         @foreach ($data as $gamedata)
             @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
-            <x-form-game-play value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-play>
+            <div class="home--game">
+                <span class="home--game--pseudo">{{ $gamedata['opponent']->pseudo }}</span>
+                <span class="home--game--info">À toi de jouer</span>
+                <span class="home--game--play">
+                    <span class="home--game--play--text">-></span>
+                </span>
+                <a href="{{ route('join', [$gamedata['game']]) }}" class="home--game--submit"></a>
+            </div>
             @endif
         @endforeach
         @foreach ($data as $gamedata)
             @if ($gamedata['game']->active_user_id !== $gamedata['user']->id)
-            <x-form-game-wait value="{{$gamedata['game']->id}}" pseudo="{{ $gamedata['opponent']->pseudo }}"></x-form-game-wait>
+            <div class="home--game home--game--wait">
+                <span class="home--game--pseudo">{{ $gamedata['opponent']->pseudo }}</span>
+                <span class="home--game--info">N'a pas encore relevé ton défi...</span>
+                <a href="{{ route('join', [$gamedata['game']]) }}" class="home--game--submit"></a>
+            </div>
             @endif
         @endforeach
         @endif
