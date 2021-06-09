@@ -631,6 +631,12 @@ textarea,
 	--boxshadow-second-blurred: 0px 2px 15px -5px var(--color-text);
 }
 
+.cards-container{
+	display:block;
+	width: 20rem;
+	margin:auto;
+}
+
 /********************************
  * Background
  ********************************/
@@ -643,12 +649,6 @@ body {
 	font-family: var(--font-text);
 	font-size: var(--fontsize-m);
 	background: var(--color-background);
-}
-
-.cards-container{
-	display:block;
-	width: 20rem;
-	margin:auto;
 }
 
 /********************************
@@ -684,6 +684,11 @@ input {
 	padding: var(--margin-s);
 	font-size: var(--fontsize-m);
 	box-shadow: var(--boxshadow-second-blurred);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-shadow: none;
 }
 
 /* Checkboxes

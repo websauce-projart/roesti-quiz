@@ -1,10 +1,10 @@
-@extends('home/template_home')
+@extends('template')
 
 @section('title')
-    RöstiQuiz - Choisis ta victime
+    Choisis ta victime
 @endsection
 
-@section('contenu')
+@section('content')
     <form method="POST" action="{{ route('creategame') }}" accept-charset="UTF-8">
         @csrf
         <input class="" type="text">

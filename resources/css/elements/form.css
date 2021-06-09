@@ -12,6 +12,11 @@ input {
 	box-shadow: var(--boxshadow-second-blurred);
 }
 
+input[type="checkbox"],
+input[type="radio"] {
+	box-shadow: none;
+}
+
 /* Checkboxes
  ********************************/
 input[type="checkbox"] {
