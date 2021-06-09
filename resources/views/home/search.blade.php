@@ -4,7 +4,7 @@
     Choisis ta victime
 @endsection
 
-@section('contenu')
+@section('content')
 <form method="POST" action="{{ route('creategame') }}" accept-charset="UTF-8">
         @csrf
 <div class="speech-bubble">

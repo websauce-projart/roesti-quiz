@@ -5,19 +5,22 @@ require("./bootstrap");
 
 import { createApp } from "vue";
 import CardsApp from "./cardsApp";
-import Home from "./home.vue";
+import Home from "./pages/home.vue";
+import NewGame from "./pages/new_game.vue";
 
 
-const app = createApp({
+
+/*const app = createApp({
     components: {
       Home,
 		CardsApp
     },
 
-  }).mount('#app');
+  }).mount('#app');*/
 
 // const results = createApp(Results);
 // home.mount("#results");
+
 const home = createApp({
     components: {
       Home
