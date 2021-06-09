@@ -625,6 +625,12 @@ textarea,
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 }
 
+.cards-container{
+	display:block;
+	width: 20rem;
+	margin:auto;
+}
+
 /********************************
  * Headings HTML Elements
  ********************************/
@@ -783,7 +789,7 @@ body,html{
 	content: '';
 	position: absolute;
 	bottom: 0;
-	left: 50%;
+	left: 30%;
 	width: 0;
 	height: 0;
 	border: 35px solid transparent;
@@ -793,6 +799,7 @@ body,html{
 	margin-left: -17.5px;
 	margin-bottom: -35px;
 }
+
 /********************************
  * Home Game interface
  ********************************/
@@ -878,6 +885,26 @@ body,html{
 	align-content: center;
 	text-align: center;
  }
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+  background: #f5f5f5;
+  border-radius: 0.4em;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30rem;
+  /* max-height: 350px; */
+  width: 20rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-top: 2rem;
+}
+
+
 /********************************
  * CSS ENTRY POINT
  ********************************/

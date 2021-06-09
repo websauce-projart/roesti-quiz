@@ -4,12 +4,16 @@
 require("./bootstrap");
 
 import { createApp } from "vue";
+import CardsApp from "./cardsApp";
 import Home from "./home.vue";
+
 
 const app = createApp({
     components: {
-      Home
-    }
+      Home,
+		CardsApp
+    },
+
   }).mount('#app');
 
 // const results = createApp(Results);

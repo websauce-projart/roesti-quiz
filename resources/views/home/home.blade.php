@@ -6,8 +6,10 @@ RöstiQuiz - Accueil
 
 @section('contenu')
 <div class="speech-bubble">
-    <!-- <div id="app">
-        <home :classes='@json($data)'></home>
+   <!-- <div id="app">
+		<div class="cards-container">
+        <cards-app></cards-app>
+		</div>
     </div>
     <script src="js/app.js"></script> -->
 
