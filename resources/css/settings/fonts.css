@@ -1,7 +1,7 @@
 /********************************
  * Fonts
  ********************************/
-@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto&display=swap"); /* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@500&display=swap"); /* fonts */
 
 :root {
 	--font-headings: "Luckiest Guy", sans-serif;

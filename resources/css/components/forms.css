@@ -1,0 +1,21 @@
+/********************************
+ * Forms
+ ********************************/
+.form {
+	display: flex;
+	flex-direction: column;
+	max-width: 346px;
+	margin: 0 auto;
+}
+.form--center {
+	text-align: center;
+	justify-content: center;
+}
+
+.form__row {
+	margin-bottom: var(--margin-xs);
+}
+
+.form__row--left {
+	text-align: left;
+}

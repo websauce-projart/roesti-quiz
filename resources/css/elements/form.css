@@ -1,0 +1,46 @@
+/********************************
+ * Form
+ ********************************/
+label {
+	color: var(--color-text);
+}
+input {
+	color: var(--color-text-lighter);
+	background-color: var(--color-white);
+	padding: var(--margin-s);
+	font-size: var(--fontsize-m);
+	box-shadow: var(--boxshadow-second-blurred);
+	border-style: none;
+	width: 100%;
+	border-radius: 0.5rem;
+	display: block;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-shadow: none;
+	display: inline-block;
+	width: auto;
+}
+
+/* Checkboxes
+ ********************************/
+input[type="checkbox"] {
+	appearance: none;
+	background-color: transparent;
+}
+input[type="checkbox"]::after {
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	display: block;
+	border: 2px solid var(--color-text);
+	content: "";
+}
+input[type="checkbox"]:checked::before {
+	display: block;
+	content: "✔";
+	position: absolute;
+	font-size: 0.8rem;
+	margin-left: 3px;
+}

@@ -1,49 +1,18 @@
-@extends('home/template_home')
+@extends('template')
 
 @section('title')
-RöstiQuiz - Accueil
+    Accueil
 @endsection
 
-@section('contenu')
-
-@if (sizeof($data) == 0)
-<div>
-    Tu n'as encore aucune partie en cours.
-
-    Clique sur nouvelle partie pour un max de fun !
-</div>
-@else
-<div>
-    @if (sizeof($data) == 1)
-    <p>Partie en cours</p>
-    @else
-    <p>Parties en cours</p>
-    @endif
-
-    @foreach ($data as $gamedata)
-    <div>
-        <strong>{{ $gamedata['opponent']->pseudo }}</strong>
-        <div>
-            <p>
-                @if ($gamedata['game']->active_user_id == $gamedata['user']->id)
-                <a href="{{ route('join', [$gamedata['game']]) }}">À toi de jouer</a>
-                
-                @else
-                <a href="{{ route('join', [$gamedata['game']]) }}">N'a pas encore relevé ton défi...</a>
-                
-                @endif
-            </p>
-        </div>
-
-
+@section('content')
+<div class="speech-bubble">
+    <div id="vue_home">
+        <home data_url='/api/test'></home>
     </div>
-    @endforeach
+    <script src="js/app.js"></script>
 </div>
-@endif
-<div>
-    <form method="POST" action="" accept-charset="UTF-8">
-        @csrf
-        <x-input-submit label="Nouvelle partie"></x-input-submit>
-    </form>
-</div>
+<form method="POST" action="" accept-charset="UTF-8">
+    @csrf
+    <x-input-submit label="Nouvelle partie"></x-input-submit>
+</form>
 @endsection

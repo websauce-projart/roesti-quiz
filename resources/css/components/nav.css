@@ -1,0 +1,12 @@
+/********************************
+ * Navigation objects
+ ********************************/
+
+.topnav {
+	display: flex;
+	align-items: center;
+}
+
+.topnav--right {
+	justify-content: right;
+}
