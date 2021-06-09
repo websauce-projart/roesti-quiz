@@ -19,24 +19,29 @@
         </div>
     </header>
 
-    <form action="" method="post">
+	<div class="center">
+		<img src="img/logo_v2_1.svg" alt="logo roesti quiz"/>
+	</div>
+
+    <form class="speech-bubble" action="" method="post">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
-
-        <div>
+        @if (Session::has('account-deleted'))
+        {{ Session::get('account-deleted') }}
+        @endif
+        <div class="center">
             <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email" icon="😃"
                 value="{{ old('pseudo') }}"></x-input-text>
             {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
-            <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="🔒"
-                value="{{ old('password') }}" type="password"></x-input-text>
+        <div class="center">
+            <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="🔒" value="{{ old('password') }}" type="password"></x-input-text>
             {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
+        <div class="checkbox center">
             <input type="checkbox" id="remember_token" name="remember_token" value="true">
             <label for="remember_token">Se souvenir de moi ?</label>
         </div>
@@ -73,6 +78,7 @@
         {{ Session::get('email-resent') }}
         @endif
     </div>
+
 
 </body>
 

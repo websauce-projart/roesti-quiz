@@ -17,22 +17,47 @@ class Game extends Model
         'active_user_id'
     ];
 
-    //À changer
-    //https://laracasts.com/discuss/channels/eloquent/a-relationship-of-two-foreign-keys-to-the-same-table
-    // public function user1() {
-    //     return $this->belongsTo(User::class);
-    // }
-
-    // public function user2() {
-    //     return $this->belongsTo(User::class);
-    // }
-
     public function users() {
         return $this->belongsToMany(User::class);
     }
 
     public function rounds() {
         return $this->hasMany(Round::class);
+    }
+
+    public static function isExistingAlready($user, $opponent) {
+        $games = $user->games()->get();
+        foreach($games as $game) {
+            if($opponent->id == $user->getOtherUser($game->id)->id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static function getGameFromUsers($user1, $user2) {
+        $games = $user1->games()->get();
+        foreach($games as $game) {
+            if($user2->id == $user1->getOtherUser($game->id)->id) {
+                return $game;
+            }
+        }
+        return null;
+    }
+
+    public function getLastRound() {
+        $round = $this->rounds()->orderBy("created_at", "desc")->first();
+        return $round;
+    }
+
+    public function userExistsInGame($user_id) {
+        $users = $this->users()->get();
+        foreach($users as $user) {
+            if($user->id === $user_id) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

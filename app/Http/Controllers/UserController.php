@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserUpdateRequest;
+use App\Models\Game;
+use App\Models\Result;
 
 class UserController extends Controller
 {
@@ -18,38 +20,6 @@ class UserController extends Controller
     {
         $users = User::all();
         return view('backoffice/user_list')->with('users',$users);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
     }
 
     /**
@@ -86,6 +56,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::findOrFail($id);
+        $games = $user->games;
+
+        foreach($games as $game) {
+            Game::findOrFail($game->id)->delete();
+        }
         User::findOrFail($id)->delete();
         return redirect()->back();
     }
@@ -95,34 +71,82 @@ class UserController extends Controller
            $request->merge(['admin'=>0]);
         }
     }
-
+    
+    /**
+     * Display the view to look for a new player to play against. Only a user that the demanding user is not yet playing against appears.
+     *
+     * @return void
+     */
     public function displaySearch()
     {
+        $user_id = Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+        $potentialOpponents = $user->getAllPotentialOpponents()->all();
+
+        return view('home/search')->with('opponents', $potentialOpponents);
+    }
+    
+    /**
+     * Display view profile for a user with his total score, his ranking, the avatar.
+     *
+     * @return void
+     */
+    public function displayProfile()
+    {
+        $ranking = [
+            '0' => 'egal 0',
+            '1000' => 'moins de milles',
+            '5000' => 'moins de 5 milles',
+        ];
+    
         $currentUser = Auth::user();
-        $users = User::all();
-        $games = $currentUser->games;
-        $tabGamesStarted = [];
-        $listUser = [];
-        $data = [];
+
+        $scores = Result::all()->where('user_id', $currentUser->id);
+        $scoreTotal = 0;
+        foreach($scores as $score){
+            $scoreTotal = $scoreTotal + $score->score;
+        };
+
+        foreach($ranking as $condition => $label){
+
+            if($scoreTotal == 0){
+                $labelTitle = $label;
+                break;
+            }else if($scoreTotal < $condition){
+                $labelTitle = $label;
+                break;
+            }
+        }
+
+        $score = array(
+            "points" => $scoreTotal,
+            "titleScore" => $labelTitle.'Change in UserController function displayProfile to adapt the labels of each ranking',
+        );
+
+        $data = array(
+            "user" => $currentUser,
+            "score" => $score,
+        );
+        
+        return view('profile/profile')->with('data', $data);
+    }
+    
+    /**
+     * Delete the user with everything connected to it in the database, redirect him on the login page.
+     *
+     * @return void
+     */
+    public function deleteAccount()
+    {
+        $user = Auth::user();
+        $games = $user->games;
 
         foreach($games as $game) {
-            $opponent = $currentUser->getOtherUser($game->id);
-            array_push($tabGamesStarted, $opponent->id);
+            Game::findOrFail($game->id)->delete();
         }
-
-        foreach($users as $user) {
-            array_push($listUser, $user->id);
-        }
-
-        array_push($tabGamesStarted, $currentUser->id);
-
-        $listUser = array_diff($listUser, $tabGamesStarted);
-
         
-        foreach($listUser as $userId) {
-            array_push($data, User::findorfail($userId));
-        }
-
-        return view('home/new_game')->with('data', $data);
+        User::findOrFail($user->id)->delete();
+        session()->flash('account-deleted','Votre compte a bien été supprimé !');
+        return redirect()->route('login');
     }
 }

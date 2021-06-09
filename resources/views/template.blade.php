@@ -7,13 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
 </head>
+
 <body>
 
-<div>
-@yield('nav')
-@yield('contenu')
+    <div>
+        @yield('nav')
+        @yield('contenu')
 </body>
 
 </html>

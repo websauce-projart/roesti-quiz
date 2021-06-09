@@ -2,127 +2,232 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
+use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
-use App\Models\Category;
-use App\Models\Question;
 use App\Models\UserAnswer;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class QuizController extends Controller
 {
 
-    public function displayQuiz()
-    {
-        //Retrieve user, round and questions data
-        $user_id = Auth::user()->id;
-        $round_id = session("round_id");
-        $questions = Round::where('id', $round_id)->first()->questions()->get();
+	public function showQuizView($game_id, $round_id)
+	{
+		//Retrieve data
+		$user_id = Auth::user()->id;
+		$questions = Round::where('id', $round_id)->first()->questions()->get();
+		$round = Round::where('id', $round_id)->first();
+		$result = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
 
-        //Checks if result already exists
-        $result_to_check = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
-        if(!is_null($result_to_check)) {
-            // dd($result->round()->first()->id);
-            return $this->displayEndgame($result_to_check);
-        }
+		//Checks if round belongs to the game
+		if ($round->game()->first()->id != $game_id) {
+			return redirect()->route('home');
+		}
 
-        //Create Result
-        $result = Result::create([
-            "user_id" => $user_id,
-            "round_id" => $round_id
-        ]);
+		//Checks if this user is in the game
+		$game = Game::where('id', $game_id)->first();
+		if (!$game->userExistsInGame($user_id)) {
+			return redirect()->route('home');
+		}
 
-        //Send result and questions data to be used in next method
-        session(["result" => $result]);
-        session(["questions" => $questions]);
+		//Checks if the round is the last in the game
+		if ($game->getLastRound()->id != $round_id) {
+			return redirect()->route('results', [$game_id]);
+		}
 
-        return view('gameloop/quiz')->with('questions', $questions);
-    }
+		//Checks if the user is the active player
+		if ($game->active_user_id !== $user_id) {
+			return redirect()->route('results', [$game->id]);
+		}
 
-    public function handleAnswers(Request $request)
-    {
-        //Retrieve user, questions and result data
-        $user_id = Auth::user()->id;
+		//Checks if there is not already results for this round for this user
+		if (!is_null($result)) {
+			return redirect()->route('results', [$game->id]);
+		}
+
+		//Create Result
+		$result = Result::create([
+			"user_id" => $user_id,
+			"round_id" => $round_id,
+			"timestamp_start" => now()
+		]);
+
+		//Return Quiz view
+		return view('gameloop/quiz', [
+			"questions" => $questions,
+			"game_id" => $game->id,
+			"round_id" => $round->id,
+			"result_id" => $result->id
+		]);
+	}
+
+	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
+	{
+		//Retrieve data
+		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
-        $questions = session('questions');
-        $result = session('result');
+		$result = Result::where('id', $result_id)->first();
+		$questions = $result->round()->first()->questions()->get();
 
-        //Create UserAnswers for each question
-        foreach ($questions as $question) {
-            if ($request->has($question->id)) {
-                UserAnswer::create([
-                    "question_id" => $question->id,
-                    "result_id" => $result->id,
-                    "user_answer" => 1
-                ]);
-            } else {
-                UserAnswer::create([
-                    "question_id" => $question->id,
-                    "result_id" => $result->id,
-                    "user_answer" => 0
-                ]);
-            }
-        }
+		//Checks if the result belongs to the round
+		if ($result->round()->first()->id != $round_id) {
+			return redirect()->route('home');
+		}
 
-        //Calculate how many answers are correct
-        $correct_answers_count = 0;
-        foreach ($questions as $question) {
-            $answer_boolean = $question->answer_boolean;
-            $user_answer = $request->has($question->id);
-            if($answer_boolean == $user_answer) {
-                $correct_answers_count++;
-            }
-        }
+		//Checks if the round belongs to the game
+		if (Round::where('id', $round_id)->first()->game()->first()->id != $game_id) {
+			return redirect()->route('home');
+		}
 
-        //Retrieve created_at et updated_at from Result and substract to find how many time the user needed for the quiz
-        //and update "time" in Results table
-        //todo....
-        $time = 10;
-        $result->time = $time;
-        $result->save();
-    
-        //Calculate and update "score" in Results table
-        $score = $correct_answers_count * $time;
-        $result->score = $score;
-        $result->save();
+		//Checks if results belong to user
+		if ($result->user_id != $user->id) {
+			return redirect()->route('home');
+		}
 
-        //Toggle active_user_id in Games table
-        $round_id = $result->round_id;
-        $game = Round::where('id', $round_id)->first()->game;
-        $opponent = $user->getOtherUser($game->id);
+		//Checks if result has not already some UserAnswers
+		if ($result->UserAnswers()->count() != 0) {
+			return redirect()->route('home');
+		}
 
-        $game->active_user_id = $opponent->id;
-        $game->save();
+		//Calculate time to finish the quizz
+		$result->timestamp_end = now();
+		$result->save();
+		$timestamp_start = new Carbon($result->timestamp_start);
+		$timestamp_end = new Carbon($result->timestamp_end);
+		$time = $timestamp_start->diffInSeconds($timestamp_end);
 
-        return $this->displayEndgame($result);
-    }
+		//Create UserAnswers for each question
+		foreach ($questions as $question) {
+			if ($request->has($question->id)) {
+				UserAnswer::create([
+					"question_id" => $question->id,
+					"result_id" => $result_id,
+					"user_answer" => 1
+				]);
+			} else {
+				UserAnswer::create([
+					"question_id" => $question->id,
+					"result_id" => $result_id,
+					"user_answer" => 0
+				]);
+			}
+		}
 
-    public function displayEndgame($result) {
-        $round_id = Result::where('id', $result->id)->first()->round()->first()->id;        
+		//Calculate how many answers are correct
+		$correct_answers_count = 0;
+		foreach ($questions as $question) {
+			$answer_boolean = $question->answer_boolean;
+			$user_answer = $request->has($question->id);
+			if ($answer_boolean == $user_answer) {
+				$correct_answers_count++;
+			}
+		}
 
-        //Count correct answers
-        $questions = Round::where('id', $round_id)->first()->questions()->get();
-        $correct_answers_count = 0;
-        foreach ($questions as $question) {
-            $answer_boolean = $question->answer_boolean;
-            $user_answer = UserAnswer::where('question_id', $question->id)->where('result_id', $result->id)->first()->user_answer;
-            if($answer_boolean == $user_answer) {
-                $correct_answers_count++;
-            }
-        }
+		//Calculate and update "score" in Results table
+		$score = $correct_answers_count * $time;
+		$result->score = $score;
+		$result->save();
 
-        //Retrieve time
-        $time = $result->time;
+		//Toggle active_user_id in Games table
+		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
+		if ($results_count != 2) {
+			$game = Round::where('id', $round_id)->first()->game;
+			$opponent = $user->getOtherUser($game->id);
+			$game->active_user_id = $opponent->id;
+			$game->save();
+		}
 
-        //Retrieve score
-        $score = $result->score;
 
-        return view('gameloop/endgame')
-        ->with('count', $correct_answers_count)
-        ->with('time', $time)
-        ->with('score', $score);
-    }
+		return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id])->with(['result' => $result]);
+	}
+
+	public function showEndgameView($game_id, $round_id, $result_id)
+	{
+		//Retrieve data
+		$user_id = Auth::user()->id;
+		$user = User::where('id', $user_id)->first();
+		$result = Result::where('id', $result_id)->first();
+		$round_id = $result->round()->first()->id;
+		$game = Round::where('id', $round_id)->first()->game;
+
+		//Checks if the result belongs to the round
+		if ($result->round()->first()->id != $round_id) {
+			return redirect()->route('home');
+		}
+
+		//Checks if the round belongs to the game
+		if (Round::where('id', $round_id)->first()->game()->first()->id != $game_id) {
+			return redirect()->route('home');
+		}
+
+		//Checks if results belong to user
+		if ($result->user_id != $user->id) {
+			return redirect()->route('home');
+		}
+
+		//Checks if the round is the last in the game
+		if ($game->getLastRound()->id != $round_id) {
+			return redirect()->route('results', [$game_id]);
+		}
+
+		//Count correct answers
+		$questions = Round::where('id', $round_id)->first()->questions()->get();
+		$correct_answers_count = 0;
+		foreach ($questions as $question) {
+			$answer_boolean = $question->answer_boolean;
+			$user_answer = UserAnswer::where('question_id', $question->id)->where('result_id', $result->id)->first()->user_answer;
+			if ($answer_boolean == $user_answer) {
+				$correct_answers_count++;
+			}
+		}
+
+		//Retrieve time
+		// This is duplicated code with createAnswers --> refactoring needed !
+		$timestamp_start = new Carbon($result->timestamp_start);
+		$timestamp_end = new Carbon($result->timestamp_end);
+		$time = $timestamp_start->diffInSeconds($timestamp_end);
+
+
+		//Retrieve score
+		$score = $result->score;
+
+		return view('gameloop/endgame')
+			->with('count', $correct_answers_count)
+			->with('time', $time)
+			->with('score', $score)
+			->with('game', $game);
+	}
+
+	public function redirectFromResults($game_id)
+	{
+		$game = Game::where('id', $game_id)->first();
+		$user_id = Auth::user()->id;
+		$user = User::where('id', $user_id)->first();
+
+		//Checks if user belongs to the game
+		if (!$game->userExistsInGame($user->id)) {
+			return redirect()->route('home');
+		}
+
+		if ($game->active_user_id != $user->id) {
+			return redirect()->route('home');
+		}
+
+		//User come from results and either
+		$round = $game->getLastRound();
+		$results_count = $round->results()->get()->count();
+
+
+		if ($results_count == 2) {
+			//just ended the round and now must choose a new category
+			return redirect()->route('category', [$game]);
+
+		} else if ($results_count == 0 || $results_count == 1) {
+			//start the round
+			return redirect()->route('quiz', ['game_id' => $game->id, 'round_id' => $round->id]);
+		}
+	}
 }

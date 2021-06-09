@@ -6,9 +6,42 @@
 
 @section('content')
 
-    User1: {{ $users_id[0] }} – User2: {{ $users_id[1] }}<br>
-    {{ $category_title }} - {{ session('game_id') }}
+    {{ $user->pseudo }} vs. {{ $opponent->pseudo }}<br>
+    @foreach ($rounds as $round)
+        <div>
+            <a href="{{ route('round_history', [$game, $round['id']]) }}">
+                [Round {{ $loop->index + 1 }}: {{ $round['category'] }}]
 
-    <a href="{{ route('quiz') }}">play</a>
+                @if ($round['results'][0] == null)
+                    À ton tour!
+                @else
+                    {{ $round['results'][0] }}
+                @endif
+
+                –
+
+                @if ($round['results'][1] == null)
+                    En attente...
+                @else
+                    {{ $round['results'][1] }}
+                @endif
+            </a>
+        </div>
+
+    @endforeach
+
+    <hr>
+
+    @if ($game->active_user_id == $user->id)
+        <a href="{{ route('play', [$game]) }}">
+            @if ($lastRound->results()->count() < 2)
+                C'est parti mon röesti!
+            @else
+                Revanche
+            @endif
+        </a>
+    @else
+        <a href="{{ route('home') }}">Retour au menu</a>
+    @endif
 
 @endsection

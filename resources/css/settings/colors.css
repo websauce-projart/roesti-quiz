@@ -2,6 +2,9 @@
  * Colors variables
  ********************************/
 :root {
-    --color-main: #000;
-    --color-secondary: #000;
+	--color-text: #003769;
+	--color-background: #4092e8;
+	--color-white: #fff;
+	--color-main: #ffbf2f;
+	--color-contrast: #fe450e;
 }

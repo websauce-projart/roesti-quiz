@@ -1,17 +1,16 @@
 <?php
 
-use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoundController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ResultController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,44 +23,61 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-	return redirect()->route('login');
-});
 
 Route::get('/avatar', [AvatarController::class, 'displayAvatarEditor']);
 Route::post('/avatar', [AvatarController::class, 'setAvatar']);
 
+/********************************
+ * Verified user
+ ********************************/
 Route::group(['middleware' => ['verified']], function () {
+
 	/********************************
 	 * Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-	Route::post('/newgame', [UserController::class, 'displaySearch']);
 	Route::get('/', function () {
 		return redirect()->route('home');
 	});
 
+
 	/********************************
-	 * Verified user
+	 * Profile
 	 ********************************/
-	Route::group(['middleware' => ['verified']], function () {
+	Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
+	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
+	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
 
-		/* Home
+	/********************************
+	 * Gameloop
 	 ********************************/
-		Route::get('/home', [GameController::class, 'displayHome'])->name('home');
 
+	// Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
 
-		/* Gameloop
-	 ********************************/
-		Route::post('/newgame', [UserController::class, 'displaySearch']);
-		Route::post('/category', [GameController::class, 'store'])->name("category");
-		// Route::get("/category", [CategoryController::class, 'getRandomCategories'])->name("category");
-		Route::post("/results", [RoundController::class, "createRound"])->name('results');
+	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
 
-		Route::get("/quiz", [QuizController::class, 'displayQuiz'])->name('quiz');
-		Route::post("/quiz", [QuizController::class, 'handleAnswers']);
-	});
+	Route::post('/game', [GameController::class, 'createGame'])->name('creategame'); //Checké
+
+	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
+	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']); //Terminé
+
+	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results'); //Terminé
+
+	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Terminé
+
+	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz'); //Terminé
+
+	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Terminé
+
+	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join'); //Terminé
+	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Terminé
+
+	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
 });
+
+
+
 /********************************
  * Login & Registration
  ********************************/

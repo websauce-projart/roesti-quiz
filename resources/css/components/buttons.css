@@ -1,35 +1,59 @@
 /********************************
  * Buttons
  ********************************/
-.btn{
-	padding-top: 1rem;
-	padding-bottom: 1rem;
+.btn {
+	padding: 1rem;
+	margin: auto;
 	margin-top: 1rem;
-	margin: 0 auto;
-	width: 95%;
-	max-width: 600px;
+	width: 100%;
+	max-width: 400px;
+	min-width: 250px;
 	text-align: center;
-	display: block;
-	font-size: 22px;
-	font-family:  "Luckiest Guy", sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: var(--fontsize-l);
+	font-family: var(--font-headings);
 	border-radius: 1rem;
 	border-style: none;
 }
 
-.btn--primary, .btn--secondary:hover{
-	background-color: #FFBf2f; /* Yellow BG*/
-	color: #003769; /*Blue text*/
-	box-shadow: -6px 6px  #FE450E;
+.btn--primary,
+.btn--secondary:hover {
+	background-color: var(--color-main);
+	color: var(--color-text);
+	box-shadow: var(--boxshadow-main);
 }
 
-.btn--secondary{
-	background-color: #4092E8; /* Blue BG*/
-	color: #fff; /*Blue text*/
-	box-shadow: -6px 6px  #003769;
+.btn--secondary {
+	background-color: var(--color-background);
+	color: var(--color-white);
+	box-shadow: var(--boxshadow-second);
 }
 
-.btn--primary:hover{
-	background-color: #FE450E; /* Yellow BG*/
-	color: #fff; /*Blue text*/
-	box-shadow: -6px 6px #FFBf2f ;
+.btn--tertiary {
+	background-color: var(--color-white);
+	color: var(--color-text);
+	box-shadow: -3px 3px var(--color-background);
+	font-family: var(--font-text);
+	font-weight: 900;
+}
+
+.btn--primary:hover {
+	background-color: var(--color-contrast);
+	color: var(--color-white);
+	box-shadow: var(--boxshadow-tertiary);
+}
+
+.btn--primary:active,
+.btn--secondary:active {
+	transform: translateX(-6px);
+	transform: translateY(6px);
+	box-shadow: none;
+}
+
+.btn--tertiary:active {
+	transform: translateX(-3px);
+	transform: translateY(3px);
+	box-shadow: none;
 }

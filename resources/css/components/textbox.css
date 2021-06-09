@@ -1,0 +1,14 @@
+/********************************
+ * Text inputs
+ ********************************/
+
+ .textbox{
+    border-radius: 0.5rem;
+    border-style: none; 
+    width: 95%;
+	max-width: 350px;
+	display: block;
+    margin: auto;
+    
+
+ }
