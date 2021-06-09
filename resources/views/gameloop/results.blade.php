@@ -60,6 +60,10 @@
                     </a>
 
                 @endforeach
+
+                <div class="roundBadge--phantom">
+                    {{-- This is just to avoid the last item to go behind the bottombar button. Maybe there is a better way with CSS; and if you know how, please tell me. --}}
+                </div>
             </section>
 
 

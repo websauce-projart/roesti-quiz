@@ -1125,11 +1125,10 @@ img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-top: var(--margin-m);
 	background-color: var(--color-white);
 	overflow: scroll;
 	padding: var(--margin-m) 0;
-	height: calc(100vh - 300px);
+	height: calc(100vh - 380px);
 }
 
 .roundBadge__container:after {
@@ -1158,6 +1157,13 @@ img {
 	text-decoration: none;
 	box-shadow: var(--boxshadow-second-small);
 	transition: var(--animation-hover);
+}
+
+.roundBadge--phantom {
+	display: block;
+	min-height: 20px;
+	width: 1px;
+	opacity: 0;
 }
 
 .roundBadge:hover {
