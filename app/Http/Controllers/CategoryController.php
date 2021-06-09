@@ -42,17 +42,15 @@ class CategoryController extends Controller
 	}
 
 	public static function displayCategoryView($game_id) {
-		//Checks if the user is in the game, that it's its turn to choose the category 
-		//and that the last round in game has 2 results or that there is not last round
 		$user_id = Auth::user()->id;
 		$game = Game::where('id', $game_id)->first();
 
+		//Checks that the user is the active user in game
 		if($game->active_user_id !== $user_id) {
 			return redirect()->route('home');
 		}
-		
 
-		if(!is_null($game->getLastRound())) { //À vérifier si fonctionne
+		if(!is_null($game->getLastRound())) {
 			$last_round = $game->getLastRound();
 			$results_count = $last_round->results()->get()->count();
 
@@ -67,9 +65,6 @@ class CategoryController extends Controller
 				return redirect()->route('home');
 			}
 		}
-
-		
-
 
 		$rounds = Round::where('game_id', $game_id)->get();
 		$round_count = $rounds->count();

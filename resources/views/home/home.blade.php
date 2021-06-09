@@ -1,10 +1,10 @@
-@extends('home/template_home')
+@extends('template')
 
 @section('title')
-RöstiQuiz - Accueil
+    Accueil
 @endsection
 
-@section('contenu')
+@section('content')
 <div class="speech-bubble">
 
     <div class="container--game">
