@@ -3,26 +3,26 @@
  ********************************/
 .btn {
 	padding: 1rem;
-	margin: auto;
-	margin-top: 1rem;
+	padding-top: 1.6rem; /* fix weird font placement */
 	width: 100%;
 	max-width: 400px;
 	min-width: 250px;
 	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	font-size: var(--fontsize-l);
 	font-family: var(--font-headings);
 	border-radius: 1rem;
-	border-style: none;
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+	letter-spacing: 0.08rem;
 }
 
-.btn--primary,
-.btn--secondary:hover {
+.btn--primary {
 	background-color: var(--color-main);
 	color: var(--color-text);
 	box-shadow: var(--boxshadow-main);
+}
+.btn--primary:hover {
+	background-color: var(--color-main-darker);
 }
 
 .btn--secondary {
@@ -39,16 +39,11 @@
 	font-weight: 900;
 }
 
-.btn--primary:hover {
-	background-color: var(--color-contrast);
-	color: var(--color-white);
-	box-shadow: var(--boxshadow-tertiary);
-}
-
 .btn--primary:active,
-.btn--secondary:active {
-	transform: translateX(-6px);
-	transform: translateY(6px);
+.btn--primary:focus,
+.btn--secondary:active,
+.btn--secondary:focus {
+	transform: translate(-6px, 6px);
 	box-shadow: none;
 }
 

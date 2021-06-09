@@ -10,6 +10,7 @@ input {
 	padding: var(--margin-s);
 	font-size: var(--fontsize-m);
 	box-shadow: var(--boxshadow-second-blurred);
+	border-style: none;
 }
 
 input[type="checkbox"],
