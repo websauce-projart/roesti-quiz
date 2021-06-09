@@ -18,12 +18,18 @@
 
 /* Elements (bare HTML elements)
  ********************************/
+@import "elements/body";
 @import "elements/headings";
-@import "elements/background";
+@import "elements/text"; /* Everything related to paragraphs, links, ... */
+@import "elements/form";
+@import "elements/images";
 
 /* Objects (layouts, grid, wrapper)
  ********************************/
 @import "objects/grid";
+@import "objects/containers";
+@import "objects/headers";
+@import "objects/nav";
 
 /* Components (ui and design based)
  ********************************/

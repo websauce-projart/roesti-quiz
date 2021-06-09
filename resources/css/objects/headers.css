@@ -1,0 +1,14 @@
+/********************************
+ * Headers
+ ********************************/
+.header--login {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	padding: var(--margin-m) 0;
+	& .logo {
+		max-width: 375px;
+		align-self: center;
+	}
+}

@@ -1,0 +1,13 @@
+/********************************
+ * Background
+ ********************************/
+body,
+html {
+	margin: 0;
+	max-width: 100%;
+}
+body {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-m);
+	background: var(--color-background);
+}

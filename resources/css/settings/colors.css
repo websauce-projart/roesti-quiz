@@ -3,8 +3,10 @@
  ********************************/
 :root {
 	--color-text: #003769;
-	--color-background: #4092e8;
+	--color-text-lighter: #335f87;
+	--color-background: #e7f9fd;
 	--color-white: #fff;
 	--color-main: #ffbf2f;
+	--color-secondary: #4092e8;
 	--color-contrast: #fe450e;
 }
