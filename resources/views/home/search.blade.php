@@ -9,7 +9,7 @@
         @csrf
 <div class="speech-bubble">
         <div id="vue_new_game">
-        <new-game></new-game>
+                <new-game :datas=<?php echo json_encode($opponents); ?>></new-game>
         </div>
 </div>
         <input class="" type="submit" value="Suivant">

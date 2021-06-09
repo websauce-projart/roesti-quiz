@@ -73,7 +73,7 @@ class GameController extends Controller
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
-		$opponent = User::where('id', $request->user)->first();
+		$opponent = User::where('pseudo', $request->user)->first();
 		
 		//Checks if game exists already
 		if(Game::isExistingAlready($user, $opponent)) {
