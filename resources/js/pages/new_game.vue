@@ -6,45 +6,57 @@
       <label :for="`${data}`">{{ data }}</label>
     </li>
   </ul>
-  <div></div>
+  <div class="test--random--par" v-if="showRandomPlayer()" :key="searchText">
+    <div class="test--text test--random">Tu n'as pas d'ami ?</div>
+
+    <div class="btn btn--secondary" @click="randomPlayer()">Victime aléatoire</div>
+  </div>
 </template>
 
 <script>
 import { ref } from "vue";
 
 export default {
-  components: {},
-
-  data() {
-    return {};
-  },
-
   props: {
     datas: Object,
   },
 
   setup(props) {
     let searchText = ref("");
-    console.log(searchText);
+
     let list = [];
+
+    function showRandomPlayer() {
+      if (searchText.value == "") return true;
+      else {
+        return false;
+      }
+    }
+
+    function randomPlayer(){
+      var keys = Object.keys(props.datas);
+      return props.datas[keys[ keys.length * Math.random() << 0]].pseudo;
+    }
 
     function filteredList() {
       list = [];
       let datas = props.datas;
 
-      for(let index in datas){
-        list.push(datas[index].pseudo)
+      if (searchText.value == "") {
+        return list;
       }
 
-      return list.filter(data => data.toLowerCase().includes(searchText.value.toLowerCase()))
+      for (let index in datas) {
+        list.push(datas[index].pseudo);
+      }
+
+      return list.filter((data) =>
+        data.toLowerCase().includes(searchText.value.toLowerCase())
+      );
     }
 
-    return { searchText, filteredList };
+    return { searchText, filteredList, showRandomPlayer, randomPlayer };
   },
-
-  mounted: function () {},
-
-  methods: {},
 };
 </script>
 
