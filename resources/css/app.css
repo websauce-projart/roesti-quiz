@@ -14,13 +14,14 @@
 @import "settings/margins";
 @import "settings/fonts";
 @import "settings/decoration.css"; /* box-shadow, borders, … */
+@import "settings/animations";
 @import "settings/cards-container.css";
 
 /* Elements (bare HTML elements)
  ********************************/
 @import "elements/body";
 @import "elements/headings";
-@import "elements/text"; /* Everything related to paragraphs, links, ... */
+@import "elements/text"; /* button, p, a, … */
 @import "elements/form";
 @import "elements/images";
 
@@ -39,6 +40,8 @@
 @import "components/headings";
 @import "components/home-game";
 @import "components/nav";
+@import "components/results";
+@import "components/round-badge";
 @import "components/speech-bubble";
 
 /* Utilities (helpers)

@@ -1,10 +1,14 @@
 /********************************
  * Navigation objects
  ********************************/
-
 .topnav {
 	display: flex;
 	align-items: center;
+	margin-bottom: var(--margin-s);
+	& a,
+	& button {
+		padding: var(--margin-s);
+	}
 }
 
 .topnav--right {

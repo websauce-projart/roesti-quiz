@@ -1,0 +1,25 @@
+/********************************
+ * Results
+ ********************************/
+.results {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	max-width: 345px; /* same as round-badge */
+	margin: 0 auto;
+}
+
+.results__player {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.results__versusLabel {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-xl);
+	color: var(--color-main);
+	text-shadow: var(--boxshadow-second-small);
+}

@@ -8,12 +8,10 @@
 
     <body>
         <div class="container">
-            <header class="header">
-                <nav class="topnav">
-                    <a href="{{ route('login') }}">back</a>
-                </nav>
+            <nav class="topnav">
+                <a href="{{ route('login') }}">back</a>
                 <h1 class="pageTitle">Créer un compte</h1>
-            </header>
+            </nav>
 
             <form action="" method="post" class="form">
                 @csrf

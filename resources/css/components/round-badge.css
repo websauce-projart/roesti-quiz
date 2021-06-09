@@ -1,0 +1,53 @@
+/********************************
+ * Round badge
+ ********************************/
+.roundBadge__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: var(--margin-m);
+	background-color: var(--color-white);
+	overflow: scroll;
+	padding: var(--margin-m) 0;
+}
+
+.roundBadge {
+	position: relative;
+	display: flex;
+	padding: var(--margin-s);
+	margin: var(--margin-s) 0;
+	width: 100%;
+	max-width: 345px; /* same as results */
+	background-color: var(--color-secondary);
+	border-radius: var(--borderradius-s);
+	text-decoration: none;
+	box-shadow: var(--boxshadow-second-small);
+	transition: var(--animation-hover);
+}
+
+.roundBadge:hover {
+	background-color: var(--color-secondary-darker);
+}
+
+.roundBadge:active {
+	transform: translate(-3px, 3px);
+	box-shadow: none;
+}
+
+.roundBadge::after {
+	--size: 25px;
+	font-family: var(--font-headings);
+	content: attr(data-index);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-white);
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	padding-top: 5px;
+	box-shadow: var(--boxshadow-second-blurred);
+	position: absolute;
+	top: -12px;
+	left: calc(50% - (var(--size) / 2)); /* width and  */
+}
