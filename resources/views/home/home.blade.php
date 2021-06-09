@@ -6,12 +6,6 @@ RöstiQuiz - Accueil
 
 @section('contenu')
 <div class="speech-bubble">
-   <!-- <div id="app">
-		<div class="cards-container">
-        <cards-app></cards-app>
-		</div>
-    </div>
-    <script src="js/app.js"></script> -->
 
     <div class="container--game">
         @if (sizeof($data) == 0)
