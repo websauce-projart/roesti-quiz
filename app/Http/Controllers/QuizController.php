@@ -45,7 +45,10 @@ class QuizController extends Controller
 
 		//Checks if there is not already results for this round for this user
 		if (!is_null($result)) {
-			return redirect()->route('results', [$game->id]);
+			if($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
+				//TO IMPLEMENTS
+			}
+			return redirect()->route('results', [$game->id]);	//User has played trought the game already
 		}
 
 		//Create Result

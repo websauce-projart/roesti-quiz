@@ -107,6 +107,12 @@ class RoundController extends Controller
 		$user = User::where('id', Auth::user()->id)->first();
 		$opponent = $user->getOtherUser($game_id);
 
+		//Checks if user has played the round already
+		$result = Result::where('user_id', $user->id)->where('round_id', $round_id)->first();
+		if(is_null($result)) {
+			return redirect()->route('results', [$game_id]);
+		}
+
 		// Retrieve answers for user and opponent
 		$round_result = Result::where("round_id", $round_id);
 		$user_result = $round_result->where("user_id", $user->id)->first();
