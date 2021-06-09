@@ -27,7 +27,7 @@
 }
 
 .btn--secondary {
-	background-color: var(--color-background);
+	background-color: var(--color-secondary);
 	color: var(--color-white);
 	box-shadow: var(--boxshadow-second);
 }
