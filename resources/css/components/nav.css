@@ -8,9 +8,14 @@
 	& a,
 	& button {
 		padding: var(--margin-s);
+		margin-left: var(--margin-s-negative);
 	}
 }
 
 .topnav--right {
 	justify-content: right;
+	& a,
+	& button {
+		margin-right: var(--margin-s-negative);
+	}
 }

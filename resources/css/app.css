@@ -32,6 +32,7 @@
 
 /* Components (ui and design based)
  ********************************/
+ @import "components/bottombar"; /* for next buttons */
 @import "components/buttons";
 @import "components/card";
 @import "components/checkbox";

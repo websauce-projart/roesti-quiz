@@ -11,7 +11,7 @@
     </div>
     <script src="js/app.js"></script>
 </div>
-<form method="POST" action="" accept-charset="UTF-8">
+<form class="bottombar" method="POST" action="" accept-charset="UTF-8">
     @csrf
     <x-input-submit label="Nouvelle partie"></x-input-submit>
 </form>

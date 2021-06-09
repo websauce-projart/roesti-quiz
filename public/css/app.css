@@ -611,7 +611,9 @@ textarea,
 	--margin-xl: 150px;
 	--margin-m: 25px;
 	--margin-s: 18px;
-	--margin-xs: 12px;
+	--margin-xs: 14px;
+
+	--margin-s-negative: -18px;
 }
 
 /********************************
@@ -641,6 +643,7 @@ textarea,
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
+	--boxshadow--innerWhite: var(--color-white) 0px -230px 15px -6em inset;
 
 	/* Border radius
 	 ********************************/
@@ -791,6 +794,26 @@ img {
 	padding: 0 var(--margin-s);
 }
 
+.container--fullheight {
+	height: 100vh;
+}
+
+/********************************
+ * Bottom bar
+ * Basically a container for the button
+ ********************************/
+.bottombar {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	padding: var(--margin-m) var(--margin-s);
+}
+
 /********************************
  * Buttons
  ********************************/
@@ -889,11 +912,11 @@ img {
 	display: flex;
 	flex-direction: column;
 	max-width: 346px;
-	margin: 0 auto;
 }
 .form--center {
 	text-align: center;
 	justify-content: center;
+	margin: 0 auto;
 }
 
 .form__row {
@@ -902,6 +925,10 @@ img {
 
 .form__row--left {
 	text-align: left;
+}
+
+.form__row--space {
+	margin-bottom: var(--margin-m);
 }
 
 /********************************
@@ -918,7 +945,8 @@ img {
 .header--login {
 	justify-content: center;
 	align-content: center;
-	flex-direction: column
+	flex-direction: column;
+	margin-bottom: var(--margin-m)
 }
 .header--login .logo {
 		max-width: 375px;
@@ -1032,11 +1060,17 @@ img {
 .topnav a,
 	.topnav button {
 		padding: var(--margin-s);
+		margin-left: var(--margin-s-negative);
 	}
 
 .topnav--right {
-	justify-content: right;
+	justify-content: right
 }
+
+.topnav--right a,
+	.topnav--right button {
+		margin-right: var(--margin-s-negative);
+	}
 
 /********************************
  * Results
@@ -1095,6 +1129,18 @@ img {
 	background-color: var(--color-white);
 	overflow: scroll;
 	padding: var(--margin-m) 0;
+	height: calc(100vh - 300px);
+}
+
+.roundBadge__container:after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 150px;
+	box-shadow: var(--boxshadow--innerWhite);
 }
 
 .roundBadge {
@@ -1230,7 +1276,7 @@ img {
  ********************************/
 
 /* Components (ui and design based)
- ********************************/
+ ********************************/ /* for next buttons */
 
 /* Utilities (helpers)
  ********************************/

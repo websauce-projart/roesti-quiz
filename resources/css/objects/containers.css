@@ -6,3 +6,7 @@
 	margin: 0 auto;
 	padding: 0 var(--margin-s);
 }
+
+.container--fullheight {
+	height: 100vh;
+}

@@ -10,6 +10,7 @@
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
+	--boxshadow--innerWhite: var(--color-white) 0px -230px 15px -6em inset;
 
 	/* Border radius
 	 ********************************/

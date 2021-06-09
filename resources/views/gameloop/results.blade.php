@@ -63,7 +63,7 @@
             </section>
 
 
-            <div>
+            <div class="bottombar bg--white">
                 @if ($game->active_user_id == $user->id)
                     <a class="btn btn--primary" href="{{ route('play', [$game]) }}">
                         @if ($lastRound->results()->count() < 2)
