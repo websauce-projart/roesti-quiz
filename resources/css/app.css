@@ -44,6 +44,7 @@
 @import "components/results";
 @import "components/round-badge";
 @import "components/speech-bubble";
+@import "components/avatar";
 
 /* Utilities (helpers)
  ********************************/

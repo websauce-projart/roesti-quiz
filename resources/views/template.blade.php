@@ -8,8 +8,13 @@
     <title>Rösti Quiz | @yield('title')</title>
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @stack('css')
 </head>
 
-@yield('content')
+<body>
+    @yield('content')
+    @stack('script')
+</body>
+
 
 </html>

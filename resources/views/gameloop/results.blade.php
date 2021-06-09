@@ -16,7 +16,11 @@
                 <div class="results">
                     <div class="results__player">
                         <div class="results__player__img">
-                            <img src="https://picsum.photos/id/1025/80" alt="">
+                            <x-avatar 
+                            posePath="{{ $user->getPosePath() }}"
+                            eyePath="{{ $user->getMouthPath() }}"
+                            mouthPath="{{ $user->getEyePath() }}"
+                            ></x-avatar>
                         </div>
                         <div class="results__player__pseudo">{{ $user->pseudo }}</div>
                         <div class="results__player__score">1</div>
@@ -26,7 +30,11 @@
 
                     <div class="results__player">
                         <div class="results__player__img">
-                            <img src="https://picsum.photos/id/1003/80" alt="">
+                            <x-avatar 
+                            posePath="{{ $opponent->getPosePath() }}"
+                            eyePath="{{ $opponent->getMouthPath() }}"
+                            mouthPath="{{ $opponent->getEyePath() }}"
+                            ></x-avatar>
                         </div>
                         <div class="results__player__pseudo">{{ $opponent->pseudo }}</div>
                         <div class="results__player__score">0</div>

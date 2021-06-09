@@ -28,6 +28,9 @@ class UserFactory extends Factory
 			'email_verified_at' => now(),
 			'password' => 'password',
 			'remember_token' => Str::random(10),
+			'mouth_id' => 1,
+			'eye_id' => 1,
+			'pose_id' => 1
 		];
 	}
 

@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Models\Game;
+use App\Models\Eye;
+use App\Models\Mouth;
+use App\Models\Pose;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -81,6 +84,18 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $this->belongsTo(Round::class);
 	}
 
+	public function eye() {
+        return $this->belongsTo(Eye::class);
+    }
+
+	public function mouth() {
+        return $this->belongsTo(Mouth::class);
+    }
+
+	public function pose() {
+        return $this->belongsTo(Pose::class);
+    }
+
 	/**
 	 * Send the email verification notification.
 	 *
@@ -98,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 	 */
 	public function sendPasswordResetNotification($token)
 	{
-		$url = 'https://example.com/reset-password?token=' . $token;
+		$url = 'https://pingouin.heig-vd.ch/websauce/reset-password?token=' . $token;
 
 		$this->notify(new ResetPassword($url));
 	}
@@ -138,5 +153,20 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
 		$potentialOpponents = $allUsers->diff($opponents);
 		return $potentialOpponents;
+	}
+
+	public function getPosePath() {
+		$pose_id = $this->pose_id;
+		return Pose::where('id', $pose_id)->first()->path;
+	}
+
+	public function getMouthPath() {
+		$mouth_id = $this->mouth_id;
+		return Mouth::where('id', $mouth_id)->first()->path;
+	}
+
+	public function getEyePath() {
+		$eye_id = $this->eye_id;
+		return Eye::where('id', $eye_id)->first()->path;
 	}
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoundController;
@@ -21,6 +22,10 @@ use App\Http\Controllers\CategoryController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+Route::get('/avatar', [AvatarController::class, 'displayAvatarEditor']);
+Route::post('/createavatar', [AvatarController::class, 'createAvatar'])->name('createAvatar');
 
 /********************************
  * Verified user
@@ -48,6 +53,9 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
 	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
 	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
+	Route::get('/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
+	Route::post('/update-avatar', [AvatarController::class, 'updateAvatar']);
+
 
 	/********************************
 	 * Gameloop

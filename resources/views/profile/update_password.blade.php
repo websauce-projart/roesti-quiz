@@ -1,10 +1,10 @@
-@extends('home/template_home')
+@extends('template')
 
 @section('title')
-RöstiQuiz - Modifier le mot de passe
+Modifier le mot de passe
 @endsection
 
-@section('contenu')
+@section('content')
     @if (Session::has('message'))
     {{ Session::get('message') }}
     @endif

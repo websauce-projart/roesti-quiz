@@ -45,6 +45,11 @@ class ResultController extends Controller
 		$game = Game::where('id', $game_id)->first();
 		$user_id = Auth::user()->id;
 
+		//Checks if game exists
+		if(is_null($game)) {
+			return redirect()->route('home');
+		}
+
 		//Checks if the user is in the game
 		if (!$game->userExistsInGame($user_id)) {
 			return redirect()->route('home');
