@@ -13,7 +13,6 @@
 
 <body>
     <div>
-        @yield('nav')
         @yield('contenu')
     </div>
 </body>

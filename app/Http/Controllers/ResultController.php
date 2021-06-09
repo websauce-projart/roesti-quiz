@@ -98,26 +98,18 @@ class ResultController extends Controller
 		$game = Game::where('id', $request->game_id)->first();
 		$players = $game->users()->get();
 
-		//Verify if user is in the game
-		// $isCorrectUser = false;
-		// foreach ($players as $player) {
-		// 	if ($player->id == $user->id) {
-		// 		$isCorrectUser = true;
-		// 	}
-		// }
-		// if (!$isCorrectUser) {
-		// 	return redirect()->route('home');
-		// }
-
-
 		//The user isn't in the game, he gets redirected	-- à tester
 		if (!$players->contains($user)) {
 			return redirect()->route('home');
 		}
 
+		//Tester si la game n'a pas de round
+		$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
+		if(is_null($round)) {
+			return redirect()->route('category', [$game]);
+		}
 
 		//The user isn't the active player, he go to the results	-- à tester
-		$round = Round::where('game_id', $game->id)->orderBy('created_at', 'DESC')->first();
 		if ($game->active_user_id !== $user->id) {
 			return redirect()->route('results', [$game]);
 		}

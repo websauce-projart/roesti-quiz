@@ -14,14 +14,39 @@ use Illuminate\Support\Carbon;
 class QuizController extends Controller
 {
 
-	public function showQuizView($round_id)
+	public function showQuizView($game_id, $round_id)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
+		$round = Round::where('id', $round_id)->first();
+		$game = $round->game()->first();
+		$result = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
+		
+		//Checks if this user is in this game,
+		if(!$game->userExistsInGame($user_id)) {
+			dd('userexist');
+			return redirect()->route('home');
+		}
 
-		//Checks if this user is in this game, is the active player, and have no result for this round, else redirect to home
-		// -- TO IMPLEMENT
+		//Checker si le round appartient à la game
+
+		//if the round is the last in this game,
+		// if($game->getLastRound()
+		// )
+
+		
+
+
+		//is the active player,
+		if($game->active_user_id !== $user_id) {
+			return redirect()->route('results', [$game->id]);
+		}
+		//and have no result for this round
+		if(is_null($result)) {
+
+		}
+
 
 		//Create Result
 		$result = Result::create([
@@ -33,11 +58,13 @@ class QuizController extends Controller
 		//Return Quiz view
 		return view('gameloop/quiz', [
 			"questions" => $questions,
+			"game_id" => $game->id,
+			"round_id" => $round->id,
 			"result_id" => $result->id
 		]);
 	}
 
-	public function createAnswers(Request $request, $result_id)
+	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;
@@ -45,17 +72,26 @@ class QuizController extends Controller
 		$result = Result::where('id', $result_id)->first();
 		$questions = $result->round()->first()->questions()->get();
 
+		//Checks if result has not already some UserAnswers
+		if($result->UserAnswers()->count() != 0) {
+			return redirect()->route('home');
+		}
+
+		//Checks if results belong to user, else redirect
+		if ($result->user_id != $user->id) {
+			return redirect()->route('home');
+		}
+
+		//Vérifier que le result apparatient à au round 
+		
+		//et le round à la game
+
 		// Calculate time to finish the quizz
 		$result->timestamp_end = now();
 		$result->save();
 		$timestamp_start = new Carbon($result->timestamp_start);
 		$timestamp_end = new Carbon($result->timestamp_end);
 		$time = $timestamp_start->diffInSeconds($timestamp_end);
-
-		//Checks if results belong to user and if result has not already some UserAnswers, else redirect
-		if ($result->user_id != $user->id || $result->UserAnswers()->count() != 0) {
-			return redirect()->route('home');
-		}
 
 		//Create UserAnswers for each question
 		foreach ($questions as $question) {
@@ -90,7 +126,6 @@ class QuizController extends Controller
 		$result->save();
 
 		//Toggle active_user_id in Games table
-		$round_id = $result->round_id;
 		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
 		if ($results_count != 2) {
 			$game = Round::where('id', $round_id)->first()->game;
@@ -99,10 +134,11 @@ class QuizController extends Controller
 			$game->save();
 		}
 
-		return redirect()->route('endgame', [$result->id])->with(['result' => $result]);
+		
+		return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id])->with(['result' => $result]);
 	}
 
-	public function showEndgameView($result_id)
+	public function showEndgameView($game_id, $round_id, $result_id)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;
@@ -115,6 +151,10 @@ class QuizController extends Controller
 		if ($result->user_id != $user->id) {
 			return redirect()->route('home');
 		}
+
+		//that result belongs to round
+
+		//that round belongs to game
 
 		//Count correct answers
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
@@ -164,6 +204,6 @@ class QuizController extends Controller
 			return redirect()->route('category');
 		} else if ($results_count == 0)
 			//start the round
-			return redirect()->route('quiz', ['round_id' => $round->id]);
+			return redirect()->route('quiz', ['game_id' => $game->id, 'round_id' => $round->id]);
 	}
 }

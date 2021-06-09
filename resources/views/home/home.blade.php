@@ -51,7 +51,10 @@ RöstiQuiz - Accueil
             @endif
         @endforeach
         @endif
+    <div id="home">
+        <home :datas='@json($data)'></home>
     </div>
+    <script src="js/app.js"></script>
 </div>
 <form method="POST" action="" accept-charset="UTF-8">
     @csrf

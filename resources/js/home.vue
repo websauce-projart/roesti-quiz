@@ -16,8 +16,15 @@
             ],
         setup(props) {
             console.log(props.classes)
-        }
-    }
+        },
 
+  methods: {
+    refresh() {
+      this.$nextTick(function () {
+        console.log('yo')
+      });
+    },
+  },
+};
 </script>
 
