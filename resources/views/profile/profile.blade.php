@@ -6,7 +6,12 @@ RöstiQuiz - Profil
 
 @section('contenu')
 <div>
-    INSERT ROSTI HERE
+    <x-avatar 
+    posePath="{{$data['user']->getPosePath()}}"
+    eyePath="{{$data['user']->getMouthPath()}}"
+    mouthPath="{{$data['user']->getEyePath()}}"
+    ></x-avatar>
+    <a href="{{route('updateAvatar')}}">Edit avatar</a>
 </div>
 </br>
 <div>

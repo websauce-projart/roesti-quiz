@@ -31,6 +31,7 @@
 @import "components/help-block";
 @import "components/checkbox";
 @import "components/speech-bubble";
+@import "components/avatar";
 
 /* Utilities (helpers)
  ********************************/

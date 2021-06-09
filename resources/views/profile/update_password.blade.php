@@ -1,4 +1,4 @@
-@extends('home/template_home')
+@extends('/home/template_home')
 
 @section('title')
 RöstiQuiz - Modifier le mot de passe

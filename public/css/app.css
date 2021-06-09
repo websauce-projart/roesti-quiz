@@ -787,6 +787,17 @@ body,html{
 	margin-left: -17.5px;
 	margin-bottom: -35px;
 }
+.avatar__container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.avatar__element {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 /********************************
  * CSS ENTRY POINT
  ********************************/

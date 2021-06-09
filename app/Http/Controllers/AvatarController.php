@@ -25,7 +25,7 @@ class AvatarController extends Controller
         $mouths = Mouth::all();
         $poses = Pose::all();
         
-        return view('avatar/avatar_editor')
+        return view('profile/update_avatar')
         ->with('eyes', $eyes)
         ->with('mouths', $mouths)
         ->with('poses', $poses);
@@ -33,5 +33,10 @@ class AvatarController extends Controller
 
     public function createAvatar(Request $request) {
         AvatarController::setAvatar($request);
+    }
+
+    public function updateAvatar(Request $request) {
+        AvatarController::setAvatar($request);
+        return redirect()->route('profile');
     }
 } 

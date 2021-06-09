@@ -48,6 +48,9 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
 	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
 	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
+	Route::get('/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
+	Route::post('/update-avatar', [AvatarController::class, 'updateAvatar']);
+
 
 	/********************************
 	 * Gameloop

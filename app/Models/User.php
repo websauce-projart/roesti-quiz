@@ -154,4 +154,19 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		$potentialOpponents = $allUsers->diff($opponents);
 		return $potentialOpponents;
 	}
+
+	public function getPosePath() {
+		$pose_id = $this->pose_id;
+		return Pose::where('id', $pose_id)->first()->path;
+	}
+
+	public function getMouthPath() {
+		$mouth_id = $this->mouth_id;
+		return Mouth::where('id', $mouth_id)->first()->path;
+	}
+
+	public function getEyePath() {
+		$eye_id = $this->eye_id;
+		return Eye::where('id', $eye_id)->first()->path;
+	}
 }

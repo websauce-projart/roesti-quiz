@@ -5,15 +5,10 @@
         <div id="mouths" class="avatar"></div>
 
     </div>
-    <div id="left" class="arrowContainer">
-        <span id="eyesLeft">←</span>
-        <span id="mouthsLeft">←</span>
-        <span id="posesLeft">←</span>
-    </div>
-    <div id="right" class="arrowContainer">
-        <span id="eyesRight">→</span>
-        <span id="mouthsRight">→</span>
-        <span id="posesRight">→</span>
+    <div id="buttonsContainer">
+        <span id="eyesRight">○</span>
+        <span id="mouthsRight">○</span>
+        <span id="posesRight">○</span>
     </div>
 </div>
 

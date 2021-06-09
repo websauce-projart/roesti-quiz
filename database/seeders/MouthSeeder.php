@@ -16,7 +16,7 @@ class MouthSeeder extends Seeder
     {
         for ($i=1; $i < 4; $i++) { 
             DB::table('mouths')->insert([
-                'path' => '/storage/img/avatar/mouths/assets_avatar_bouche'.$i.'.png'
+                'path' => '/img/avatar/mouths/assets_avatar_bouche'.$i.'.svg'
             ]);
         }
     }
