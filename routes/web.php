@@ -28,6 +28,11 @@ use App\Http\Controllers\CategoryController;
 Route::group(['middleware' => ['verified']], function () {
 
 	/********************************
+	 * Api homemade
+	 ********************************/
+	Route::get('/api/test', [GameController::class, 'requestHomeData']);
+
+	/********************************
 	 * Home
 	 ********************************/
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');

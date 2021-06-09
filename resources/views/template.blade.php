@@ -8,7 +8,6 @@
     <title>@yield('title')</title>
     <link rel="icon" href="{{ URL::asset('favicon.png') }}" type="image/png"/>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
 </head>
 
 <body>

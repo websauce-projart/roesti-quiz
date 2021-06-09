@@ -6,8 +6,8 @@ RöstiQuiz - Accueil
 
 @section('contenu')
 <div class="speech-bubble">
-    <div id="home">
-        <home :datas='@json($data)'></home>
+    <div id="vue_home">
+        <home data_url='/api/test'></home>
     </div>
     <script src="js/app.js"></script>
 </div>

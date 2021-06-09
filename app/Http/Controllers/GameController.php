@@ -104,7 +104,12 @@ class GameController extends Controller
 	//Returning vie Home with the datas
 	public function displayHome()
 	{
-		
+		return view('home/home');
+	}
+
+	//Returning vie Home with the datas
+	public function requestHomeData()
+	{
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
 		$games = $user->games()->get();
@@ -124,7 +129,7 @@ class GameController extends Controller
 		}
 		
 		
-		return view('home/home')->with('data', $data);
+		return response()->json($data);;
 	}
 
 
