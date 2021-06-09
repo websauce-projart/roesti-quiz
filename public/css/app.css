@@ -843,7 +843,7 @@ img {
 }
 
 .btn--secondary {
-	background-color: var(--color-background);
+	background-color: var(--color-secondary);
 	color: var(--color-white);
 	box-shadow: var(--boxshadow-second);
 }
@@ -1227,7 +1227,7 @@ img {
 
 .speech-bubble {
 	position: relative;
-	background: #89E2F5;
+	background: var(--color-background);
 	border-radius: .4em;
 	padding: 2rem;
 	margin: 1rem 1rem

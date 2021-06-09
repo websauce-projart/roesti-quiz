@@ -6,3 +6,8 @@
 </div>
 @endsection
 
+@section('contenu')
+<div>
+
+</div>
+@endsection
