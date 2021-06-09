@@ -1,5 +1,5 @@
 <template>
-  <div id="penislol">
+  <div id="cardscontainer">
 		<GameCardsStack
 			:cards="visibleCards"
 			@cardAccepted="handleCardAccepted"

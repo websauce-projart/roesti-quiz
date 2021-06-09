@@ -15,3 +15,9 @@
   margin-top: 2rem;
 }
 
+.card,
+.card * {
+  -ms-touch-action: none;
+  touch-action: none;
+}
+

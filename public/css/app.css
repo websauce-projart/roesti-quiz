@@ -636,6 +636,7 @@ textarea,
 .cards-container{
 	display:block;
 	width: 20rem;
+	height: 40rem;
 	margin:auto;
 }
 
@@ -834,6 +835,11 @@ img {
   align-items: center;
   position: absolute;
   margin-top: 2rem;
+}
+
+.card,
+.card * {
+  touch-action: none;
 }
 
 
