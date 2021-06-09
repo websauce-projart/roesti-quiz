@@ -842,7 +842,7 @@ img {
  ********************************/
 
  .checkbox{
-
+     
     padding: 1rem;
  }
 /********************************
@@ -969,7 +969,7 @@ img {
 	display:table;
 	height: 50px;
 	color: #fff;
-	background-color: #4092E8;
+	background-color: #4092E8;	
 	border-radius: 50%;
 	width: 50px;
 	position: relative;
