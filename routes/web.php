@@ -23,10 +23,6 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-
-Route::get('/avatar', [AvatarController::class, 'displayAvatarEditor']);
-Route::post('/createavatar', [AvatarController::class, 'createAvatar'])->name('createAvatar');
-
 /********************************
  * Verified user
  ********************************/
@@ -89,39 +85,43 @@ Route::group(['middleware' => ['verified']], function () {
 /********************************
  * Login & Registration
  ********************************/
-//Register
-Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
-Route::post("/register", [AuthController::class, "register"]);
+Route::group(['middleware' => ['guest']], function () {
+	//Register
+	Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
+	Route::post("/register", [AuthController::class, "register"]);
 
 
-//Email confirmation
-Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
-	->middleware('auth')->name('verification.notice');
+	//Email confirmation
+	Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
+		->middleware('auth')->name('verification.notice');
 
-Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
-	->middleware(['auth', 'signed'])->name('verification.verify');
+	Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
+		->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
-	->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+	Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
+		->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-//Login
-Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
-Route::post("/login", [AuthController::class, "authenticate"]);
+	//Login
+	Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
+	Route::post("/login", [AuthController::class, "authenticate"]);
 
-//Logout
-Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
+	//Logout
+	Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
 
-//Password reset
-Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
-	->middleware('guest')->name('password.request');
+	//Password reset
+	Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
+		->middleware('guest')->name('password.request');
 
-Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
-	->middleware('guest')->name('password.email');
+	Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
+		->middleware('guest')->name('password.email');
 
-Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
-	->middleware('guest')->name('password.reset');
+	Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
+		->middleware('guest')->name('password.reset');
 
-Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
+	Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
+});
+
+
 
 /********************************
  * Admin backoffice
