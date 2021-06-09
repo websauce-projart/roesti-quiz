@@ -30,12 +30,11 @@
 @import "objects/containers";
 @import "objects/headers";
 @import "objects/nav";
+@import "objects/forms";
 
 /* Components (ui and design based)
  ********************************/
 @import "components/buttons";
-@import "components/textbox";
-@import "components/help-block";
 @import "components/checkbox";
 @import "components/speech-bubble";
 @import "components/home-game";
@@ -43,3 +42,5 @@
 
 /* Utilities (helpers)
  ********************************/
+@import "utilities/colors";
+@import "utilities/align";

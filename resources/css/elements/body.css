@@ -11,3 +11,6 @@ body {
 	font-size: var(--fontsize-m);
 	background: var(--color-background);
 }
+main {
+	width: 100%;
+}

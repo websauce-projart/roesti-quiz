@@ -651,6 +651,9 @@ body {
 	font-size: var(--fontsize-m);
 	background: var(--color-background);
 }
+main {
+	width: 100%;
+}
 
 /********************************
  * Headings HTML Elements
@@ -686,11 +689,16 @@ input {
 	font-size: var(--fontsize-m);
 	box-shadow: var(--boxshadow-second-blurred);
 	border-style: none;
+	width: 100%;
+	border-radius: 0.5rem;
+	display: block;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
 	box-shadow: none;
+	display: inline-block;
+	width: auto;
 }
 
 /* Checkboxes
@@ -747,8 +755,9 @@ img {
  * Containers
  ********************************/
 .container {
-	max-width: 100%;
-	margin: 0 var(--margin-m);
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 var(--margin-s);
 }
 
 /********************************
@@ -781,6 +790,30 @@ img {
 
 .topnav--right {
 	justify-content: right;
+}
+
+/********************************
+ * Forms
+ ********************************/
+.form {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	max-width: 346px;
+	margin: 0 auto;
+}
+.form--center {
+	text-align: center;
+	justify-content: center;
+}
+
+.form__row {
+	margin-bottom: var(--margin-xs);
+}
+
+.form__row--left {
+	text-align: left;
 }
 
 /********************************
@@ -838,31 +871,6 @@ img {
 	box-shadow: none;
 }
 
-/********************************
- * Text inputs
- ********************************/
-
- .textbox{
-    border-radius: 0.5rem;
-    border-style: none; 
-    width: 95%;
-	max-width: 350px;
-	display: block;
-    margin: auto;
-    
-
- }
-/********************************
- * error texts and help-blocks
- ********************************/
-.help-block{
-    
-}
-
-.center{
-    margin: auto;
-    text-align: center;
-}
 /********************************
  * checkboxes
  ********************************/
@@ -1002,6 +1010,21 @@ img {
   margin-top: 2rem;
 }
 
+
+/********************************
+ * Colors
+ ********************************/
+.bg--white {
+	background: var(--color-white);
+}
+
+/********************************
+ * Alignements
+ ********************************/
+.center {
+	margin: auto;
+	text-align: center;
+}
 
 /********************************
  * CSS ENTRY POINT
