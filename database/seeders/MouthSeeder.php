@@ -14,9 +14,9 @@ class MouthSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 6; $i++) { 
+        for ($i=1; $i < 4; $i++) { 
             DB::table('mouths')->insert([
-                'path' => '/storage/img/avatar/bouches'.$i.'.png'
+                'path' => '/storage/img/avatar/mouths/assets_avatar_bouche'.$i.'.png'
             ]);
         }
     }

@@ -25,7 +25,7 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::get('/avatar', [AvatarController::class, 'displayAvatarEditor']);
-Route::post('/avatar', [AvatarController::class, 'setAvatar']);
+Route::post('/createavatar', [AvatarController::class, 'createAvatar'])->name('createAvatar');
 
 /********************************
  * Verified user
