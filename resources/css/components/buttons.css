@@ -13,7 +13,7 @@
 	border-radius: var(--borderradius-m);
 	cursor: pointer;
 	transition: var(--animation-hover);
-	letter-spacing: 0.08rem;
+	letter-spacing: var(--fontspacing-headings);
 	text-decoration: none;
 }
 

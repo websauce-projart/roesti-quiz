@@ -19,17 +19,17 @@
                             <img src="https://picsum.photos/id/1025/80" alt="">
                         </div>
                         <div class="results__player__pseudo">{{ $user->pseudo }}</div>
-                        <div class="results__player__score">75</div>
+                        <div class="results__player__score">1</div>
                     </div>
 
-                    <div class="results__versusLabel">vs.</div>
+                    <span class="results__versusLabel" aria-label="Versus">VS</span>
 
                     <div class="results__player">
                         <div class="results__player__img">
                             <img src="https://picsum.photos/id/1003/80" alt="">
                         </div>
                         <div class="results__player__pseudo">{{ $opponent->pseudo }}</div>
-                        <div class="results__player__score">85</div>
+                        <div class="results__player__score">0</div>
                     </div>
                 </div>
             </section>
@@ -41,9 +41,9 @@
                         href="{{ route('round_history', [$game, $round['id']]) }}">
                         <div class="roundBadge__score">
                             @if ($round['results'][0] == null)
-                                À ton tour!
+                                À ton tour
                             @else
-                                {{ $round['results'][0] }}
+                                {{ $round['results'][0] }} pts
                             @endif
                         </div>
                         <div class="roundBadge__category">
@@ -52,9 +52,9 @@
 
                         <div class="roundBadge__score">
                             @if ($round['results'][1] == null)
-                                En attente...
+                                En attente
                             @else
-                                {{ $round['results'][1] }}
+                                {{ $round['results'][1] }} pts
                             @endif
                         </div>
                     </a>

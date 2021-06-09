@@ -14,8 +14,9 @@
 .roundBadge {
 	position: relative;
 	display: flex;
+	justify-content: space-between;
 	padding: var(--margin-s);
-	margin: var(--margin-s) 0;
+	margin: var(--margin-xs) 0;
 	width: 100%;
 	max-width: 345px; /* same as results */
 	background-color: var(--color-secondary);
@@ -50,4 +51,28 @@
 	position: absolute;
 	top: -12px;
 	left: calc(50% - (var(--size) / 2)); /* width and  */
+}
+
+.roundBadge__score,
+.roundBadge__category {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 33.3%;
+	text-align: center;
+}
+
+.roundBadge__score {
+	font-size: var(--fontsize-m);
+	font-weight: bold;
+	text-align: center;
+	color: var(--color-white);
+}
+
+.roundBadge__category {
+	font-family: var(--font-headings);
+	color: var(--color-main);
+	letter-spacing: var(--fontspacing-headings);
+	padding-top: 5px;
+	font-weight: normal;
 }

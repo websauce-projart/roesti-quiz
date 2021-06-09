@@ -4,11 +4,19 @@
 .results {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 	max-width: 345px; /* same as round-badge */
 	margin: 0 auto;
+}
+
+.results__versusLabel {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-xl);
+	letter-spacing: var(--fontspacing-headings);
+	color: var(--color-main);
+	text-shadow: var(--boxshadow-second-small);
 }
 
 .results__player {
@@ -17,9 +25,15 @@
 	align-items: center;
 }
 
-.results__versusLabel {
+.results__player__pseudo {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-l);
+	letter-spacing: var(--fontspacing-headings);
+	margin-top: var(--margin-xs);
+}
+
+.results__player__score {
 	font-family: var(--font-headings);
 	font-size: var(--fontsize-xl);
-	color: var(--color-main);
-	text-shadow: var(--boxshadow-second-small);
+	color: var(--color-secondary);
 }

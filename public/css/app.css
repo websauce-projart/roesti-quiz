@@ -623,8 +623,10 @@ textarea,
 	--font-text: "Roboto", sans-serif;
 
 	--fontsize-xl: 2.813rem; /* 45px */
-	--fontsize-l: 1.375rem; /* 22px */
+	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
+
+	--fontspacing-headings: 0.08rem;
 }
 
 /********************************
@@ -673,6 +675,7 @@ body {
 	font-size: var(--fontsize-m);
 	font-weight: normal;
 	background: var(--color-background);
+	color: var(--color-text);
 }
 main {
 	width: 100%;
@@ -803,7 +806,7 @@ img {
 	border-radius: var(--borderradius-m);
 	cursor: pointer;
 	transition: var(--animation-hover);
-	letter-spacing: 0.08rem;
+	letter-spacing: var(--fontspacing-headings);
 	text-decoration: none;
 }
 
@@ -1043,11 +1046,19 @@ img {
 	display: -ms-flexbox;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 	max-width: 345px; /* same as round-badge */
 	margin: 0 auto;
+}
+
+.results__versusLabel {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-xl);
+	letter-spacing: var(--fontspacing-headings);
+	color: var(--color-main);
+	text-shadow: var(--boxshadow-second-small);
 }
 
 .results__player {
@@ -1058,11 +1069,17 @@ img {
 	align-items: center;
 }
 
-.results__versusLabel {
+.results__player__pseudo {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-l);
+	letter-spacing: var(--fontspacing-headings);
+	margin-top: var(--margin-xs);
+}
+
+.results__player__score {
 	font-family: var(--font-headings);
 	font-size: var(--fontsize-xl);
-	color: var(--color-main);
-	text-shadow: var(--boxshadow-second-small);
+	color: var(--color-secondary);
 }
 
 /********************************
@@ -1085,8 +1102,9 @@ img {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	justify-content: space-between;
 	padding: var(--margin-s);
-	margin: var(--margin-s) 0;
+	margin: var(--margin-xs) 0;
 	width: 100%;
 	max-width: 345px; /* same as results */
 	background-color: var(--color-secondary);
@@ -1123,6 +1141,32 @@ img {
 	position: absolute;
 	top: -12px;
 	left: calc(50% - (var(--size) / 2)); /* width and  */
+}
+
+.roundBadge__score,
+.roundBadge__category {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 33.3%;
+	text-align: center;
+}
+
+.roundBadge__score {
+	font-size: var(--fontsize-m);
+	font-weight: bold;
+	text-align: center;
+	color: var(--color-white);
+}
+
+.roundBadge__category {
+	font-family: var(--font-headings);
+	color: var(--color-main);
+	letter-spacing: var(--fontspacing-headings);
+	padding-top: 5px;
+	font-weight: normal;
 }
 
 /********************************
