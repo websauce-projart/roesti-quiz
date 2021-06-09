@@ -8,7 +8,7 @@
 
     <body>
         <div class="container">
-            <header class="header--login">
+            <header class="header header--login">
                 <nav class="topnav topnav--right">
                     <a href="{{ route('register') }}">Créer un compte</a>
                 </nav>

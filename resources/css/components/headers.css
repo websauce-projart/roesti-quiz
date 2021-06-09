@@ -1,12 +1,17 @@
 /********************************
  * Headers
  ********************************/
-.header--login {
+.header {
 	display: flex;
+	padding: var(--margin-m) 0;
+	& .pageTitle {
+		margin-left: var(--margin-m);
+	}
+}
+.header--login {
 	justify-content: center;
 	align-content: center;
 	flex-direction: column;
-	padding: var(--margin-m) 0;
 	& .logo {
 		max-width: 375px;
 		align-self: center;
