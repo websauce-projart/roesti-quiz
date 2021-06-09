@@ -1,0 +1,8 @@
+/********************************
+ * Text
+ * Everything related to paragraphs, links, ...
+ ********************************/
+p,
+a {
+	color: var(--color-text);
+}

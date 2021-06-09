@@ -123,6 +123,7 @@ class RoundController extends Controller
 		}
 
 		return view("gameloop.round_history", [
+			"game_id" => $game_id,
 			"questions" => $questions,
 			"user" => [
 				"object" => $user,

@@ -1,7 +1,7 @@
-@extends('home/template_home')
+@extends('template')
 
 @section('title')
-    RöstiQuiz - Choisis ta victime
+    Choisis ta victime
 @endsection
 
 @section('contenu')

@@ -1,0 +1,8 @@
+/********************************
+ * Headings
+ ********************************/
+.pageTitle {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-l);
+	font-weight: normal;
+}

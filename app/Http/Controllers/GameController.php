@@ -95,7 +95,6 @@ class GameController extends Controller
 		$game = Game::create(['active_user_id' => $user->id]);
 		$game->users()->attach($user->id);
 		$game->users()->attach($opponent->id);
-		// dd($game);
 
 		//Redirect to categories
 		return redirect()->route('category', [$game]);		

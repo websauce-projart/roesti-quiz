@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@500&display=swap);
 /* Document
  * ========================================================================== */
 
@@ -589,9 +589,13 @@ textarea,
  ********************************/
 :root {
 	--color-text: #003769;
-	--color-background: #4092e8;
+	--color-text-lighter: #335f87;
+	--color-text-alpha: rgba(51,94,135,0.23137);
+	--color-background: #e7f9fd;
 	--color-white: #fff;
 	--color-main: #ffbf2f;
+	--color-main-darker: #ffa012;
+	--color-secondary: #4092e8;
 	--color-contrast: #fe450e;
 }
 
@@ -599,8 +603,10 @@ textarea,
  * Margins variables
  ********************************/
 :root {
-    --margin-m: 25px;
-    --margin-xl: 150px;
+	--margin-xl: 150px;
+	--margin-m: 25px;
+	--margin-s: 18px;
+	--margin-xs: 12px;
 }
 
 /********************************
@@ -621,8 +627,34 @@ textarea,
  ********************************/
 :root {
 	--boxshadow-main: -6px 6px var(--color-contrast);
-	--boxshadow-second: -6px 6px var(--color-black);
+	--boxshadow-second: -6px 6px var(--color-text);
 	--boxshadow-tertiary: -3px 3px var(--color-background);
+
+	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
+}
+
+.cards-container{
+	display:block;
+	width: 20rem;
+	margin:auto;
+}
+
+/********************************
+ * Background
+ ********************************/
+body,
+html {
+	margin: 0;
+	max-width: 100%;
+}
+body {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-m);
+	font-weight: normal;
+	background: var(--color-background);
+}
+main {
+	width: 100%;
 }
 
 /********************************
@@ -638,20 +670,69 @@ h6 {
 }
 
 /********************************
- * Background
+ * Text
+ * Everything related to paragraphs, links, ...
  ********************************/
-body,html{
-    width:100%;
-    min-width: 400px;
-    height: 100%;
-  }
-  body{
-    margin:0;
-    padding:0;
-    background: #fefefe;;
-  }
-.white-bg{
-	background-color: #fefefe;
+p,
+a {
+	color: var(--color-text);
+}
+
+/********************************
+ * Form
+ ********************************/
+label {
+	color: var(--color-text);
+}
+input {
+	color: var(--color-text-lighter);
+	background-color: var(--color-white);
+	padding: var(--margin-s);
+	font-size: var(--fontsize-m);
+	box-shadow: var(--boxshadow-second-blurred);
+	border-style: none;
+	width: 100%;
+	border-radius: 0.5rem;
+	display: block;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	box-shadow: none;
+	display: inline-block;
+	width: auto;
+}
+
+/* Checkboxes
+ ********************************/
+input[type="checkbox"] {
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	background-color: transparent;
+}
+input[type="checkbox"]::after {
+	width: 16px;
+	height: 16px;
+	border-radius: 2px;
+	display: block;
+	border: 2px solid var(--color-text);
+	content: "";
+}
+input[type="checkbox"]:checked::before {
+	display: block;
+	content: "✔";
+	position: absolute;
+	font-size: 0.8rem;
+	margin-left: 3px;
+}
+
+/********************************
+ * Images
+ ********************************/
+img {
+	display: block;
+	max-width: 100%;
 }
 
 /********************************
@@ -673,32 +754,39 @@ body,html{
     text-align: center;
   }
 /********************************
+ * Containers
+ ********************************/
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 var(--margin-s);
+}
+
+/********************************
  * Buttons
  ********************************/
 .btn {
 	padding: 1rem;
-	margin: auto;
-	margin-top: 1rem;
+	padding-top: 1.6rem; /* fix weird font placement */
 	width: 100%;
 	max-width: 400px;
 	min-width: 250px;
 	text-align: center;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	font-size: var(--fontsize-l);
 	font-family: var(--font-headings);
 	border-radius: 1rem;
-	border-style: none;
+	cursor: pointer;
+	transition: all 0.2s ease-out;
+	letter-spacing: 0.08rem;
 }
 
-.btn--primary,
-.btn--secondary:hover {
+.btn--primary {
 	background-color: var(--color-main);
 	color: var(--color-text);
 	box-shadow: var(--boxshadow-main);
+}
+.btn--primary:hover {
+	background-color: var(--color-main-darker);
 }
 
 .btn--secondary {
@@ -715,16 +803,11 @@ body,html{
 	font-weight: 900;
 }
 
-.btn--primary:hover {
-	background-color: var(--color-contrast);
-	color: var(--color-white);
-	box-shadow: var(--boxshadow-tertiary);
-}
-
 .btn--primary:active,
-.btn--secondary:active {
-	transform: translateX(-6px);
-	transform: translateY(6px);
+.btn--primary:focus,
+.btn--secondary:active,
+.btn--secondary:focus {
+	transform: translate(-6px, 6px);
 	box-shadow: none;
 }
 
@@ -734,65 +817,89 @@ body,html{
 	box-shadow: none;
 }
 
-/********************************
- * Text inputs
- ********************************/
-
- .textbox{
-    border-radius: 0.5rem;
-    border-style: none; 
-    width: 95%;
-	max-width: 350px;
-	display: block;
-    margin: auto;
-    
-
- }
-/********************************
- * error texts and help-blocks
- ********************************/
-.help-block{
-    
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px; /* 5px rounded corners */
+  background: #f5f5f5;
+  border-radius: 0.4em;
+  padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 30rem;
+  /* max-height: 350px; */
+  width: 20rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  margin-top: 2rem;
 }
 
-.center{
-    margin: auto;
-    text-align: center;
-}
+
 /********************************
  * checkboxes
  ********************************/
 
  .checkbox{
-     
+
     padding: 1rem;
  }
 /********************************
- * Commentator speech bubble for BG
+ * Forms
  ********************************/
-
-.speech-bubble {
-	position: relative;
-	background: #89E2F5;
-	border-radius: .4em;
-	padding: 2rem;
-	margin: 1rem 1rem
+.form {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	max-width: 346px;
+	margin: 0 auto;
+}
+.form--center {
+	text-align: center;
+	justify-content: center;
 }
 
-.speech-bubble:after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 50%;
-	width: 0;
-	height: 0;
-	border: 35px solid transparent;
-	border-top-color: #89E2F5;
-	border-bottom: 0;
-	border-left: 0;
-	margin-left: -17.5px;
-	margin-bottom: -35px;
+.form__row {
+	margin-bottom: var(--margin-xs);
 }
+
+.form__row--left {
+	text-align: left;
+}
+
+/********************************
+ * Headers
+ ********************************/
+.header {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: var(--margin-m) 0
+}
+.header .pageTitle {
+		margin-left: var(--margin-m);
+	}
+.header--login {
+	justify-content: center;
+	align-content: center;
+	flex-direction: column
+}
+.header--login .logo {
+		max-width: 375px;
+		align-self: center;
+	}
+
+/********************************
+ * Headings
+ ********************************/
+.pageTitle {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-l);
+	font-weight: normal;
+}
+
 /********************************
  * Home Game interface
  ********************************/
@@ -862,7 +969,7 @@ body,html{
 	display:table;
 	height: 50px;
 	color: #fff;
-	background-color: #4092E8;	
+	background-color: #4092E8;
 	border-radius: 50%;
 	width: 50px;
 	position: relative;
@@ -879,6 +986,63 @@ body,html{
 	text-align: center;
  }
 /********************************
+ * Navigation objects
+ ********************************/
+
+.topnav {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+}
+
+.topnav--right {
+	justify-content: right;
+}
+
+/********************************
+ * Commentator speech bubble for BG
+ ********************************/
+
+.speech-bubble {
+	position: relative;
+	background: #89E2F5;
+	border-radius: .4em;
+	padding: 2rem;
+	margin: 1rem 1rem
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 30%;
+	width: 0;
+	height: 0;
+	border: 35px solid transparent;
+	border-top-color: #89E2F5;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -17.5px;
+	margin-bottom: -35px;
+}
+
+/********************************
+ * Colors
+ ********************************/
+.bg--white {
+	background: var(--color-white);
+}
+
+/********************************
+ * Alignements
+ ********************************/
+.center {
+	margin: auto;
+	text-align: center;
+}
+
+/********************************
  * CSS ENTRY POINT
  ********************************/
 
@@ -891,7 +1055,7 @@ body,html{
  ********************************/ /* box-shadow, borders, … */
 
 /* Elements (bare HTML elements)
- ********************************/
+ ********************************/ /* Everything related to paragraphs, links, ... */
 
 /* Objects (layouts, grid, wrapper)
  ********************************/

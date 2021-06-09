@@ -1,0 +1,19 @@
+/********************************
+ * Headers
+ ********************************/
+.header {
+	display: flex;
+	padding: var(--margin-m) 0;
+	& .pageTitle {
+		margin-left: var(--margin-m);
+	}
+}
+.header--login {
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	& .logo {
+		max-width: 375px;
+		align-self: center;
+	}
+}
