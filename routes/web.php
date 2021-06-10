@@ -31,7 +31,8 @@ Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Api homemade
 	 ********************************/
-	Route::get('/api/test', [GameController::class, 'requestHomeData']);
+	Route::get('/api/home', [GameController::class, 'requestHomeData']);
+	Route::get('/api/avatar/{user_id}', [AvatarController::class, 'dataAvatar']);
 
 	/********************************
 	 * Home

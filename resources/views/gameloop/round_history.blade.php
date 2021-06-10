@@ -21,12 +21,12 @@
                             {{ $question->label }}
                             @if ($question->answer_label)
                                 <div class="history__answer">
-											  @if ($question->answer_boolean)
-											  	Vrai
-											  @else
-												Faux: {{ $question->answer_label }}
-											  @endif
-											</div>
+                                    @if ($question->answer_boolean)
+                                        Vrai
+                                    @else
+                                        Faux: {{ $question->answer_label }}
+                                    @endif
+                                </div>
                             @endif
                         </div>
 
@@ -36,11 +36,13 @@
                                     eyePath="{{ $user['object']->getMouthPath() }}"
                                     mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
 
-											@if(isset($user['answers'][$loop->index]['user_answer']))
-												<div class="iconBadge iconBadge--small {{ $user['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}"></div>
-											@else
-												<div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
-											@endif
+                                @if (isset($user['answers'][$loop->index]['user_answer']))
+                                    <div
+                                        class="iconBadge iconBadge--small {{ $user['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+                                    </div>
+                                @else
+                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                @endif
                             </div>
 
                             <div class="history__player" aria-label="{{ $opponent['object']->pseudo }}">
@@ -49,11 +51,13 @@
                                     mouthPath="{{ $opponent['object']->getEyePath() }}"></x-avatar>
 
 
-											@if(isset($opponent['answers'][$loop->index]['user_answer']))
-												<div class="iconBadge iconBadge--small {{ $opponent['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}"></div>
-											@else
-												<div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
-											@endif
+                                @if (isset($opponent['answers'][$loop->index]['user_answer']))
+                                    <div
+                                        class="iconBadge iconBadge--small {{ $opponent['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+                                    </div>
+                                @else
+                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                @endif
                             </div>
                         </div>
 

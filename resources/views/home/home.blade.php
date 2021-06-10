@@ -7,7 +7,7 @@ Accueil
 @section('content')
 <div class="speech-bubble">
     <div id="vue_home">
-        <home data_url='/api/test'></home>
+        <home data_url='/api/home'></home>
     </div>
     <script src="js/app.js"></script>
 </div>

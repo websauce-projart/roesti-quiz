@@ -3,6 +3,15 @@
     class="home--game"
     :class="data.game.active_user_id !== data.user.id && 'home--game--wait'"
   >
+    <div class="avatar__container">
+      <img
+        src="/img/avatar/assets_avatar_background.svg"
+        class="avatar__element"
+      />
+      <img v-if="loaded" :src="this.pose" class="avatar__element" />
+      <img v-if="loaded" :src="this.eye" class="avatar__element" />
+      <img v-if="loaded" :src="this.mouth" class="avatar__element" />
+    </div>
     <span class="home--game--pseudo">{{ data.opponent.pseudo }}</span>
     <span
       class="home--game--info"
@@ -25,10 +34,40 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      avatarData: Object,
+      urlApi: "/api/avatar/",
+      urlImg: "/img/avatar/",
+      pose: String,
+      eye: String,
+      mouth: String,
+      loaded: false,
+    };
   },
   props: {
     data: Object,
+  },
+  mounted: async function () {
+    await this.fetchData();
+    this.concatUrl();
+    this.loaded = true;
+  },
+
+  methods: {
+    fetchData() {
+      let user = this.$props.data.opponent.id;
+      return axios
+        .get(this.urlApi + user)
+        .then((response) => {
+          this.avatarData = response.data;
+        })
+        .catch((errors) => console.log(errors));
+    },
+    concatUrl(){
+      this.pose = this.urlImg + 'poses/assets_avatar_pose' + this.avatarData.pose + '.svg';
+      this.eye = this.urlImg + 'eyes/assets_avatar_yeux' + this.avatarData.eye + '.svg';
+      this.mouth = this.urlImg + 'mouths/assets_avatar_bouche' + this.avatarData.mouth + '.svg';
+    }
   },
 };
 </script>
