@@ -15,13 +15,15 @@
 </div>
 
     <form action="{{ route('postquiz', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result_id]) }}"
-        method="POST">
+        method="POST"
+		  class="no-display"
+		  id="quizForm">
         @csrf
         @foreach ($questions as $question)
             <div>
                 <strong>{{ $question->label }}</strong>
                 <div>
-                    Vrai<input type="checkbox" name="{{ $question->id }}">
+                    Vrai<input type="checkbox" id="{{ $question->id }}">
                 </div>
             </div>
         @endforeach

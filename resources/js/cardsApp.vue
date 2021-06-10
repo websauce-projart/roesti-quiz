@@ -35,7 +35,8 @@ export default {
 
   methods: {
     handleCardAccepted() {
-      console.log("handleCardAccepted");
+      // console.log(this.qid[0]);
+		document.getElementById(this.qid[0]).checked = true;
     },
     handleCardRejected() {
       console.log("handleCardRejected");
@@ -45,6 +46,11 @@ export default {
     },
     removeCardFromDeck() {
       this.visibleCards.shift();
+		this.qid.shift();
+		let test= [];
+		if(this.qid.length === test.length){
+			document.getElementById('quizForm').submit();
+		}
     },
 
 	 createQuestionsArray(){

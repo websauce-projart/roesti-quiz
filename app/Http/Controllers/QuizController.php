@@ -48,8 +48,7 @@ class QuizController extends Controller
 			if($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
 				//TO IMPLEMENTS
 			}
-			/* COMMENTED FOR THE SAKE OF WORKING WITH THE CARDS ON THE QWIZZE*/
-			// return redirect()->route('results', [$game->id]);	//User has played trought the game already
+			return redirect()->route('results', [$game->id]);	//User has played trought the game already
 		}
 
 		//Create Result

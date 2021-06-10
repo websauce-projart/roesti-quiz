@@ -11,7 +11,7 @@
   >
     <h3 class="cardTitle">{{ card }}
 	 </h3>
-	 <h4 class="qid">{{ qid }}</h4>
+
   </div>
 </template>
 
@@ -115,6 +115,7 @@ export default {
       setTimeout(() => {
         this.isShowing = false;
         this.$emit("hideCard", this.card)
+
       }, 150);
     },
 
