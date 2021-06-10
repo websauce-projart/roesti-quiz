@@ -21,11 +21,11 @@ const app = createApp({
 // const results = createApp(Results);
 // home.mount("#results");
 
-// const home = createApp({
-//     components: {
-//       Home,
-//     },
-//   }).mount('#vue_home')
+const home = createApp({
+    components: {
+      Home,
+    },
+  }).mount('#vue_home')
 
 const newGame = createApp({
   components: {
