@@ -71,7 +71,7 @@ class ResultController extends Controller
 			"game" => $game,
 			"user" => $user,
 			"opponent" => $opponent,
-			"rounds" => $rounds,
+			"rounds" => $rounds->reverse(),
 			"lastRound" => $lastRound
 		]);
 	}
@@ -103,7 +103,7 @@ class ResultController extends Controller
 		if (count($results) >= 2) {
 			//The game has more than 2 results, so the user is the one choosing the category
 			return redirect()->route('category', [$game]);
-			
+
 		} else {
 			//The category has already been chosen, the user go the results and play
 			return redirect()->route('results', [$game]);

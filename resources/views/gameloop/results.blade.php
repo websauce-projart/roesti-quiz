@@ -16,7 +16,7 @@
                 <div class="results">
                     <div class="results__player">
                         <div class="results__player__img">
-                            <x-avatar 
+                            <x-avatar
                             posePath="{{ $user->getPosePath() }}"
                             eyePath="{{ $user->getMouthPath() }}"
                             mouthPath="{{ $user->getEyePath() }}"
@@ -30,7 +30,7 @@
 
                     <div class="results__player">
                         <div class="results__player__img">
-                            <x-avatar 
+                            <x-avatar
                             posePath="{{ $opponent->getPosePath() }}"
                             eyePath="{{ $opponent->getMouthPath() }}"
                             mouthPath="{{ $opponent->getEyePath() }}"
@@ -45,7 +45,7 @@
             <section class="roundBadge__container">
                 @foreach ($rounds as $round)
 
-                    <a class="roundBadge" data-index="{{ $loop->index + 1 }}"
+                    <a class="roundBadge" data-index="{{ count($rounds) - $loop->index }}"
                         href="{{ route('round_history', [$game, $round->id]) }}">
                         <div class="roundBadge__score">
                             @if($game->active_user_id == $user->id && $lastRound->id == $round->id && $round->results()->get()->count() != 2)
@@ -56,10 +56,10 @@
                                 En attente
                             @elseif($game->active_user_id != $user->id && $lastRound->id == $round->id && $round->results()->get()->count() > 0)
                                 {{ $round->getScore($user->id) }}
-                            @else 
+                            @else
                                 {{ $round->getScore($user->id) }}
                             @endif
-                           
+
                         </div>
                         <div class="roundBadge__category">
                             {{ $round->getCategory()->title }}
@@ -72,7 +72,7 @@
                                 En attente
                             @elseif($game->active_user_id != $opponent->id && $lastRound->id == $round->id && $round->results()->get()->count() > 0)
                                 {{ $round->getScore($opponent->id) }}
-                            @else 
+                            @else
                                 {{ $round->getScore($opponent->id) }}
                             @endif
                         </div>
