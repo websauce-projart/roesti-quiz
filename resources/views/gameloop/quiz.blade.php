@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-    GAME
+    Quiz
 @endsection
 
 @section('content')

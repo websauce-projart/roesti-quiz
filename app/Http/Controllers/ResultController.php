@@ -45,6 +45,11 @@ class ResultController extends Controller
 		$game = Game::where('id', $game_id)->first();
 		$user_id = Auth::user()->id;
 
+		//Checks if game exists
+		if(is_null($game)) {
+			return redirect()->route('home');
+		}
+
 		//Checks if the user is in the game
 		if (!$game->userExistsInGame($user_id)) {
 			return redirect()->route('home');
@@ -58,36 +63,15 @@ class ResultController extends Controller
 		//Retrieve data
 		$user = User::where('id', $user_id)->first();
 		$opponent = $user->getOtherUser($game_id);
-		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
 		$lastRound = $rounds->sortByDesc('id')->first();
-
-		//Process data
-		$processedRounds = [];
-		foreach ($rounds as $round) {
-			$category = RoundController::getCategory($round);
-
-			$results = [];
-
-			foreach ($users as $player) {
-				$score = self::getScore($player, $round);
-				array_push($results, $score);
-			}
-
-			$processedRound = [
-				"id" => $round->id,
-				"category" => $category->title,
-				"results" => $results
-			];
-			array_push($processedRounds, $processedRound);
-		}
 
 		//Return view
 		return view('gameloop/results')->with([
 			"game" => $game,
 			"user" => $user,
 			"opponent" => $opponent,
-			"rounds" => $processedRounds,
+			"rounds" => $rounds,
 			"lastRound" => $lastRound
 		]);
 	}

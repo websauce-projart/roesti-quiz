@@ -127,7 +127,6 @@ class UserController extends Controller
             "user" => $currentUser,
             "score" => $score,
         );
-        
         return view('profile/profile')->with('data', $data);
     }
     

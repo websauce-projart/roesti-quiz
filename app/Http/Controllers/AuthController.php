@@ -112,6 +112,12 @@ class AuthController extends Controller
 
         $data = $request->all();
         $user = $this->create($data);
+        
+        $user->eye_id = 1;
+        $user->mouth_id = 1;
+        $user->pose_id = 1;
+        $user->save();
+
 
         event(new Registered($user)); //dispatch event to send verification email
 
@@ -129,8 +135,11 @@ class AuthController extends Controller
         return User::create([
             'pseudo' => $data['pseudo'],
             'email' => $data['email'],
-            'password' => $data['password']
-        ]);
+            'password' => $data['password'],
+            'eye_id' => 1,
+            'mouth_id' => 1,
+            'pose_id' => 1
+        ]); 
     }
 
     /********************************
@@ -144,6 +153,7 @@ class AuthController extends Controller
      */
     public function showVerifyEmailView()
     {
+        dd('o');
         return redirect()->route('login')->withErrors([
             "account-verify" => true
         ]);

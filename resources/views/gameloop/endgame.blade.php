@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-ENDGAME
+ Résultat
 @endsection
 
 @section('content')

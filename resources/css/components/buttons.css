@@ -23,6 +23,8 @@
 	box-shadow: var(--boxshadow-main);
 }
 .btn--primary:hover {
+	box-shadow: -8px 8px var(--color-contrast);
+	transform: translate(2px, -2px);
 	background-color: var(--color-main-darker);
 }
 
