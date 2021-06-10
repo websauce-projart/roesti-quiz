@@ -1,0 +1,13 @@
+/********************************
+ * Bottom bar
+ * Basically a container for the button
+ ********************************/
+.bottombar {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding: var(--margin-m) var(--margin-s);
+}

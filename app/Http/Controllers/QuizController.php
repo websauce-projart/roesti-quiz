@@ -45,7 +45,10 @@ class QuizController extends Controller
 
 		//Checks if there is not already results for this round for this user
 		if (!is_null($result)) {
-			return redirect()->route('results', [$game->id]);
+			if($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
+				//TO IMPLEMENTS
+			}
+			return redirect()->route('results', [$game->id]);	//User has played trought the game already
 		}
 
 		//Create Result
@@ -127,7 +130,11 @@ class QuizController extends Controller
 		}
 
 		//Calculate and update "score" in Results table
-		$score = $correct_answers_count * $time;
+		if($correct_answers_count == 10 && $time <= 6) {
+			$score = 1000;
+		}else {
+			$score = round($correct_answers_count + ($correct_answers_count * (13 / $time) * 40));
+		}
 		$result->score = $score;
 		$result->save();
 

@@ -1,56 +1,61 @@
 <template>
-  <input type="text" v-model="searchText">
-  <ul v-if="filteredList().length == 5">
+  <input type="text" v-model="searchText" />
+  <ul>
     <li v-for="data in filteredList()" :key="data">
-      {{ data }}
+      <input type="radio" :id="`${data}`" name="user" :value="`${data}`" />
+      <label :for="`${data}`">{{ data }}</label>
     </li>
   </ul>
-</template>
+  <div class="test--random--par" v-if="showRandomPlayer()" :key="searchText">
+    <div class="test--text test--random">Tu n'as pas d'ami ?</div>
 
-// <div>
-//                 <input type="radio" id="{{ $opponent->id }}" name="user" value="{{ $opponent->id }}">
-//                 <label for="{{ $opponent->id }}">{{ $opponent->pseudo }}</label>
-//             </div>
+    <div class="btn btn--secondary" @click="randomPlayer()">Victime aléatoire</div>
+  </div>
+</template>
 
 <script>
 import { ref } from "vue";
 
 export default {
-  components: {},
-
-  data() {
-    return {
-      datasOrderd: [],
-    };
-  },
-
   props: {
     datas: Object,
   },
 
   setup(props) {
-    let searchText = ref('');
-    const list = [
-      'orange',
-      'red',
-      'blue',
-      'black',
-      'white'
-    ]
-    
-    function filteredList() {
-      return list.filter(data => data.toLowerCase().includes(searchText.value.toLowerCase()))
+    let searchText = ref("");
+
+    let list = [];
+
+    function showRandomPlayer() {
+      if (searchText.value == "") return true;
+      else {
+        return false;
+      }
     }
-    
-    return {searchText, filteredList}
-  },
 
-  mounted: function () {
-    
-  },
+    function randomPlayer(){
+      var keys = Object.keys(props.datas);
+      return props.datas[keys[ keys.length * Math.random() << 0]].pseudo;
+    }
 
-  methods: {
+    function filteredList() {
+      list = [];
+      let datas = props.datas;
 
+      if (searchText.value == "") {
+        return list;
+      }
+
+      for (let index in datas) {
+        list.push(datas[index].pseudo);
+      }
+
+      return list.filter((data) =>
+        data.toLowerCase().includes(searchText.value.toLowerCase())
+      );
+    }
+
+    return { searchText, filteredList, showRandomPlayer, randomPlayer };
   },
 };
 </script>

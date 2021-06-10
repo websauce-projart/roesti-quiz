@@ -2,7 +2,7 @@
  * Buttons
  ********************************/
 .btn {
-	padding: 1rem;
+	padding: var(--margin-s);
 	padding-top: 1.6rem; /* fix weird font placement */
 	width: 100%;
 	max-width: 400px;
@@ -10,10 +10,11 @@
 	text-align: center;
 	font-size: var(--fontsize-l);
 	font-family: var(--font-headings);
-	border-radius: 1rem;
+	border-radius: var(--borderradius-m);
 	cursor: pointer;
-	transition: all 0.2s ease-out;
-	letter-spacing: 0.08rem;
+	transition: var(--animation-hover);
+	letter-spacing: var(--fontspacing-headings);
+	text-decoration: none;
 }
 
 .btn--primary {
@@ -26,7 +27,7 @@
 }
 
 .btn--secondary {
-	background-color: var(--color-background);
+	background-color: var(--color-secondary);
 	color: var(--color-white);
 	box-shadow: var(--boxshadow-second);
 }

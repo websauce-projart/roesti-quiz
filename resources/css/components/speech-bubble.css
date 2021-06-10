@@ -4,7 +4,7 @@
 
 .speech-bubble {
 	position: relative;
-	background: #89E2F5;
+	background: var(--color-background);
 	border-radius: .4em;
 	padding: 2rem;
 	margin: 1rem 1rem

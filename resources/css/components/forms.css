@@ -5,11 +5,11 @@
 	display: flex;
 	flex-direction: column;
 	max-width: 346px;
-	margin: 0 auto;
 }
 .form--center {
 	text-align: center;
 	justify-content: center;
+	margin: 0 auto;
 }
 
 .form__row {
@@ -18,4 +18,8 @@
 
 .form__row--left {
 	text-align: left;
+}
+
+.form__row--space {
+	margin-bottom: var(--margin-m);
 }

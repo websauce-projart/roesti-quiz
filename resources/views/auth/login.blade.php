@@ -35,7 +35,7 @@
                         {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
                     </div>
 
-                    <div class="form__row form__row--left">
+                    <div class="form__row form__row--left form__row--space">
                         <input type="checkbox" id="remember_token" name="remember_token" value="true">
                         <label for="remember_token">Se souvenir de moi ?</label>
                     </div>

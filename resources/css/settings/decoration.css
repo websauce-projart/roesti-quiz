@@ -2,9 +2,18 @@
  * CSS Decoration
  ********************************/
 :root {
+	/* Box shadow
+	 ********************************/
 	--boxshadow-main: -6px 6px var(--color-contrast);
 	--boxshadow-second: -6px 6px var(--color-text);
+	--boxshadow-second-small: -3px 3px var(--color-text);
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
+	--boxshadow--innerWhite: var(--color-white) 0px -230px 15px -6em inset;
+
+	/* Border radius
+	 ********************************/
+	--borderradius-m: 1rem; /* 16px */
+	--borderradius-s: 0.625rem; /* 10px */
 }

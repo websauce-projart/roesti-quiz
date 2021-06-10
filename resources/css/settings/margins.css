@@ -5,5 +5,7 @@
 	--margin-xl: 150px;
 	--margin-m: 25px;
 	--margin-s: 18px;
-	--margin-xs: 12px;
+	--margin-xs: 14px;
+
+	--margin-s-negative: -18px;
 }

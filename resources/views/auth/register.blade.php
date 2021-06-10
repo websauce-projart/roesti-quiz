@@ -7,15 +7,13 @@
 @section('content')
 
     <body>
-        <div class="container">
-            <header class="header">
-                <nav class="topnav">
-                    <a href="{{ route('login') }}">back</a>
-                </nav>
+        <div class="container container--fullheight">
+            <nav class="topnav">
+                <a href="{{ route('login') }}">back</a>
                 <h1 class="pageTitle">Créer un compte</h1>
-            </header>
+            </nav>
 
-            <form action="" method="post" class="form">
+            <form action="" method="post" class="form form--center">
                 @csrf
 
                 {{-- Gérer les erreurs de saisie avec vue --}}
@@ -43,7 +41,7 @@
                     {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
                 </div>
 
-                <div class="form__row">
+                <div class="bottombar">
                     <x-input-submit label="Valider"></x-input-submit>
                 </div>
             </form>

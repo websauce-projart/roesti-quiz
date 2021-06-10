@@ -1,0 +1,96 @@
+/********************************
+ * Round badge
+ ********************************/
+.roundBadge__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--color-white);
+	overflow: scroll;
+	padding: var(--margin-m) 0;
+	height: calc(100vh - 380px);
+}
+
+.roundBadge__container:after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 150px;
+	box-shadow: var(--boxshadow--innerWhite);
+}
+
+.roundBadge {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	padding: var(--margin-s);
+	margin: var(--margin-xs) 0;
+	width: 100%;
+	max-width: 345px; /* same as results */
+	background-color: var(--color-secondary);
+	border-radius: var(--borderradius-s);
+	text-decoration: none;
+	box-shadow: var(--boxshadow-second-small);
+	transition: var(--animation-hover);
+}
+
+.roundBadge--phantom {
+	display: block;
+	min-height: 20px;
+	width: 1px;
+	opacity: 0;
+}
+
+.roundBadge:hover {
+	background-color: var(--color-secondary-darker);
+}
+
+.roundBadge:active {
+	transform: translate(-3px, 3px);
+	box-shadow: none;
+}
+
+.roundBadge::after {
+	--size: 25px;
+	font-family: var(--font-headings);
+	content: attr(data-index);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--color-white);
+	width: var(--size);
+	height: var(--size);
+	border-radius: 50%;
+	padding-top: 5px;
+	box-shadow: var(--boxshadow-second-blurred);
+	position: absolute;
+	top: -12px;
+	left: calc(50% - (var(--size) / 2)); /* width and  */
+}
+
+.roundBadge__score,
+.roundBadge__category {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 33.3%;
+	text-align: center;
+}
+
+.roundBadge__score {
+	font-size: var(--fontsize-m);
+	font-weight: bold;
+	text-align: center;
+	color: var(--color-white);
+}
+
+.roundBadge__category {
+	font-family: var(--font-headings);
+	color: var(--color-main);
+	letter-spacing: var(--fontspacing-headings);
+	padding-top: 5px;
+	font-weight: normal;
+}

@@ -2,9 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Eye;
+use App\Models\Pose;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Mouth;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -28,6 +31,9 @@ class UserFactory extends Factory
 			'email_verified_at' => now(),
 			'password' => 'password',
 			'remember_token' => Str::random(10),
+			'mouth_id' => Mouth::all()->random()->id,
+			'eye_id' => Eye::all()->random()->id,
+			'pose_id' => Pose::all()->random()->id
 		];
 	}
 

@@ -5,10 +5,15 @@
 	--color-text: #003769;
 	--color-text-lighter: #335f87;
 	--color-text-alpha: #335e873b;
+
 	--color-background: #e7f9fd;
 	--color-white: #fff;
+
 	--color-main: #ffbf2f;
 	--color-main-darker: #ffa012;
+
 	--color-secondary: #4092e8;
+	--color-secondary-darker: #3e78c5;
+
 	--color-contrast: #fe450e;
 }
