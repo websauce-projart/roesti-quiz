@@ -39,6 +39,7 @@
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
+@import "components/history";
 @import "components/home-game";
 @import "components/nav";
 @import "components/results";

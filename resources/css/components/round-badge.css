@@ -46,6 +46,8 @@
 
 .roundBadge:hover {
 	background-color: var(--color-secondary-darker);
+	transform: translate(2px, -2px);
+	box-shadow: var(--boxshadow-second-small-hover);
 }
 
 .roundBadge:active {

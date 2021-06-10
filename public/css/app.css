@@ -597,10 +597,8 @@ textarea,
 
 	--color-main: #ffbf2f;
 	--color-main-darker: #ffa012;
-
 	--color-secondary: #4092e8;
 	--color-secondary-darker: #3e78c5;
-
 	--color-contrast: #fe450e;
 }
 
@@ -638,8 +636,11 @@ textarea,
 	/* Box shadow
 	 ********************************/
 	--boxshadow-main: -6px 6px var(--color-contrast);
+	--boxshadow-main-hover: -8px 8px var(--color-contrast);
 	--boxshadow-second: -6px 6px var(--color-text);
+	--boxshadow-second-hover: -8px 8px var(--color-text);
 	--boxshadow-second-small: -3px 3px var(--color-text);
+	--boxshadow-second-small-hover: -5px 5px var(--color-text);
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
@@ -839,6 +840,8 @@ img {
 	box-shadow: var(--boxshadow-main);
 }
 .btn--primary:hover {
+	box-shadow: -8px 8px var(--color-contrast);
+	transform: translate(2px, -2px);
 	background-color: var(--color-main-darker);
 }
 
@@ -960,6 +963,54 @@ img {
 	font-family: var(--font-text);
 	font-size: var(--fontsize-l);
 	font-weight: normal;
+}
+
+/********************************
+ * History
+ ********************************/
+.history {
+	position: relative;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: var(--margin-m);
+	margin-bottom: var(--margin-xs);
+	background: var(--color-background);
+}
+
+.history__question {
+	font-weight: bold;
+	font-size: var(--fontsize-l);
+	margin-bottom: var(--margin-s);
+}
+
+.history__answer {
+	color: var(--color-text-lighter);
+	font-weight: normal;
+}
+
+.history__playersContainer {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.history__player {
+	position: relative;
+	width: 85px;
+	height: 85px;
+}
+
+.history__player__answer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 /********************************
@@ -1173,6 +1224,8 @@ img {
 
 .roundBadge:hover {
 	background-color: var(--color-secondary-darker);
+	transform: translate(2px, -2px);
+	box-shadow: var(--boxshadow-second-small-hover);
 }
 
 .roundBadge:active {
