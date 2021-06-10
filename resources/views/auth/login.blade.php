@@ -51,34 +51,15 @@
                 </form>
 
                 <div>
-                    @if (Session::has('account-created'))
-                        {{ Session::get('account-created') }}
+                    
+                    @if ($errors->has('login-failed'))
+                        😔 Désolé, le pseudo ou le mot de passe n'est pas correct... 😔
                     @endif
 
-                    @if ($errors->has('loginFailed'))
-                        😔 Désolé, le pseudo ou le mot de passe n'est pas correct 😔
+                    @if ($errors->has('account-verified'))
+                        ✔️ Merci d'avoir confirmé votre adresse email! ✔️
                     @endif
 
-                    @if (Session::has('account-verified'))
-                        {{ Session::get('account-verified') }}
-                    @endif
-
-                    @if ($errors->has('account-verify'))
-                        ⚠️ stp confirme ton mail ⚠️
-
-                        <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                            @csrf
-                            <button type="submit" class="btn btn--primary btn-link p-0 m-0 align-baseline">si ta perdu ton
-                                mail
-                                clic
-                                ici
-                                lol</button>
-                        </form>
-                    @endif
-
-                    @if (session('email-resent'))
-                        {{ Session::get('email-resent') }}
-                    @endif
                 </div>
             </main>
         </div>

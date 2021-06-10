@@ -86,8 +86,8 @@ Route::group(['middleware' => ['verified']], function () {
 /********************************
  * Login & Registration
  ********************************/
-Route::group(['middleware' => ['guest']], function () {
-	//Register
+// Route::group(['middleware' => ['verified']], function () {
+	 //Register
 	Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
 	Route::post("/register", [AuthController::class, "register"]);
 
@@ -107,16 +107,16 @@ Route::group(['middleware' => ['guest']], function () {
 
 	//Password reset
 	Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
-		->middleware('guest')->name('password.request');
+		->name('password.request');
 
 	Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
-		->middleware('guest')->name('password.email');
+		->name('password.email');
 
 	Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
-		->middleware('guest')->name('password.reset');
+		->name('password.reset');
 
 	Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
-});
+// });
 
 //Logout
 Route::get("/logout", [AuthController::class, "logout"])->name('logout');;

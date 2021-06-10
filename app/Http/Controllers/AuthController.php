@@ -58,12 +58,14 @@ class AuthController extends Controller
         if (Auth::check()) {
             $request->session()->regenerate();
             // redirect where user usually attempted to go, but on homepage as a fallback
+            // dd('auth 1');
+            // return back();
             return redirect()->intended('/home');
         }
 
         //Nope, something wrong during authentication 
         return redirect()->route('login')->withErrors([
-            "loginFailed" => true
+            "login-failed" => true
         ]);
     }
 
@@ -80,7 +82,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect("/");
+        return redirect()->route('login');
     }
 
     /********************************
@@ -120,8 +122,7 @@ class AuthController extends Controller
 
 
         event(new Registered($user)); //dispatch event to send verification email
-
-        return redirect()->route('login')->with('account-created', '😊 Votre compte a été crée! 😊');
+        return redirect()->route('verification.notice');
     }
 
     /**
@@ -153,10 +154,8 @@ class AuthController extends Controller
      */
     public function showVerifyEmailView()
     {
-        dd('o');
-        return redirect()->route('login')->withErrors([
-            "account-verify" => true
-        ]);
+        // dd('show verify email view');
+        return view("auth/verify");
     }
 
     /**
@@ -168,13 +167,14 @@ class AuthController extends Controller
     public function handleVerificationEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect()->route('login')->with('account-verified', '✔️ Merci d\'avoir confirmé votre adresse email! ✔️');;
+        return redirect()->route('login')->withErrors(['account-verified' => true]);;
     }
 
     public function resendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return redirect()->route('login')->with('email-resent', '📧 Un nouveau mail de verification vous a été envoyé! 📧');
+        // dd('resend verification email');
+        return redirect()->route('verification.notice')->withErrors(['email-resent' => true]);
     }
 
 
