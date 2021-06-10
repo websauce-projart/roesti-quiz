@@ -6,9 +6,18 @@
 
 @section('content')
 <div class="speech-bubble">
+<!--******** Cards section ******** -->
+<div id="cards">
+		<div class="cards-container">
+        <cards-app></cards-app>
+		</div>
+</div>
+<!-- **************************#*** -->
+
     <div id="vue_home">
         <home data_url='/api/test'></home>
     </div>
+
     <script src="js/app.js"></script>
 </div>
 <form method="POST" action="" accept-charset="UTF-8">

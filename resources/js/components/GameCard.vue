@@ -166,9 +166,9 @@ export default {
 </script>
 
 <style>
+
 .isCurrent{
 	color:blue;
-	z-index: +1;
-	margin-top: 1rem
+	margin-top: 1rem;
 }
 </style>
