@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\User;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\CategoryController;
+use App\Http\Requests\NewGameRequest;
 
 class GameController extends Controller
 {
@@ -68,7 +67,7 @@ class GameController extends Controller
 	 * @param Request $request
 	 * @return view Categories
 	 */
-	public function createGame(Request $request)
+	public function createGame(NewGameRequest $request)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;

@@ -1,4 +1,4 @@
-@extends('gameloop/template_gameloop')
+@extends('template')
 
 @section('title')
 ENDGAME
