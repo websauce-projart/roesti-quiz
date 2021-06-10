@@ -39,4 +39,18 @@ class AvatarController extends Controller
         AvatarController::setAvatar($request);
         return redirect()->route('profile');
     }
+
+    public function dataAvatar($user_id){
+        $user = User::where('id', $user_id)->first();
+        $mouth = $user->mouth_id;
+        $eye = $user->eye_id;
+        $pose = $user->pose_id;
+        $data =[
+                'mouth' => $mouth,
+                'eye' => $eye,
+                'pose' => $pose,
+        ];
+        
+        return response()->json($data);
+    }
 } 
