@@ -168,6 +168,9 @@ class QuizController extends Controller
 			$score = 1000;
 		} else {
 			$score = round($correct_answers_count + ($correct_answers_count * (13 / $time) * 40));
+			if($score > 1000) {
+				$score = 1000;
+			}
 		}
 		$result->score = $score;
 		$result->save();
