@@ -46,23 +46,34 @@
                 @foreach ($rounds as $round)
 
                     <a class="roundBadge" data-index="{{ $loop->index + 1 }}"
-                        href="{{ route('round_history', [$game, $round['id']]) }}">
+                        href="{{ route('round_history', [$game, $round->id]) }}">
                         <div class="roundBadge__score">
-                            @if ($round['results'][0] == null)
+                            @if($game->active_user_id == $user->id && $lastRound->id == $round->id && $round->results()->get()->count() != 2)
                                 À ton tour
-                            @else
-                                {{ $round['results'][0] }} pts
+                            @elseif($game->active_user_id == $user->id && $lastRound->id == $round->id && $round->results()->get()->count() == 2)
+                                {{ $round->getScore($user->id) }}
+                            @elseif($game->active_user_id != $user->id && $lastRound->id == $round->id && $round->results()->get()->count() == 0)
+                                En attente
+                            @elseif($game->active_user_id != $user->id && $lastRound->id == $round->id && $round->results()->get()->count() > 0)
+                                {{ $round->getScore($user->id) }}
+                            @else 
+                                {{ $round->getScore($user->id) }}
                             @endif
+                           
                         </div>
                         <div class="roundBadge__category">
-                            {{ $round['category'] }}
+                            {{ $round->getCategory()->title }}
                         </div>
 
                         <div class="roundBadge__score">
-                            @if ($round['results'][1] == null)
+                            @if($game->active_user_id == $opponent->id && $lastRound->id == $round->id && $round->results()->get()->count() != 2)
+                                À son tour
+                            @elseif($game->active_user_id != $opponent->id && $lastRound->id == $round->id && $round->results()->get()->count() == 0)
                                 En attente
-                            @else
-                                {{ $round['results'][1] }} pts
+                            @elseif($game->active_user_id != $opponent->id && $lastRound->id == $round->id && $round->results()->get()->count() > 0)
+                                {{ $round->getScore($opponent->id) }}
+                            @else 
+                                {{ $round->getScore($opponent->id) }}
                             @endif
                         </div>
                     </a>
