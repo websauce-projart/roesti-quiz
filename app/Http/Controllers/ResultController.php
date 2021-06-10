@@ -63,36 +63,15 @@ class ResultController extends Controller
 		//Retrieve data
 		$user = User::where('id', $user_id)->first();
 		$opponent = $user->getOtherUser($game_id);
-		$users = [$user, $opponent];
 		$rounds = RoundController::getRounds($game_id);
 		$lastRound = $rounds->sortByDesc('id')->first();
-
-		//Process data
-		$processedRounds = [];
-		foreach ($rounds as $round) {
-			$category = RoundController::getCategory($round);
-
-			$results = [];
-
-			foreach ($users as $player) {
-				$score = self::getScore($player, $round);
-				array_push($results, $score);
-			}
-
-			$processedRound = [
-				"id" => $round->id,
-				"category" => $category->title,
-				"results" => $results
-			];
-			array_push($processedRounds, $processedRound);
-		}
 
 		//Return view
 		return view('gameloop/results')->with([
 			"game" => $game,
 			"user" => $user,
 			"opponent" => $opponent,
-			"rounds" => $processedRounds,
+			"rounds" => $rounds->reverse(),
 			"lastRound" => $lastRound
 		]);
 	}
@@ -124,7 +103,7 @@ class ResultController extends Controller
 		if (count($results) >= 2) {
 			//The game has more than 2 results, so the user is the one choosing the category
 			return redirect()->route('category', [$game]);
-			
+
 		} else {
 			//The category has already been chosen, the user go the results and play
 			return redirect()->route('results', [$game]);

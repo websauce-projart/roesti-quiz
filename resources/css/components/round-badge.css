@@ -29,7 +29,7 @@
 	padding: var(--margin-s);
 	margin: var(--margin-xs) 0;
 	width: 100%;
-	max-width: 345px; /* same as results */
+	max-width: 400px; /* same as results */
 	background-color: var(--color-secondary);
 	border-radius: var(--borderradius-s);
 	text-decoration: none;
@@ -46,6 +46,8 @@
 
 .roundBadge:hover {
 	background-color: var(--color-secondary-darker);
+	transform: translate(2px, -2px);
+	box-shadow: var(--boxshadow-second-small-hover);
 }
 
 .roundBadge:active {

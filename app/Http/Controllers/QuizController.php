@@ -45,8 +45,8 @@ class QuizController extends Controller
 
 		//Checks if there is not already results for this round for this user
 		if (!is_null($result)) {
-			if($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
-				//TO IMPLEMENTS
+			if ($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
+				return QuizController::handleQuitting($user_id, $round_id, $game_id, $questions);
 			}
 			return redirect()->route('results', [$game->id]);	//User has played trought the game already
 		}
@@ -65,6 +65,40 @@ class QuizController extends Controller
 			"round_id" => $round->id,
 			"result_id" => $result->id
 		]);
+	}
+
+	private static function handleQuitting($user_id, $round_id, $game_id, $questions)
+	{	
+		
+		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
+		if ($results_count != 2) {
+			//Retrieve data
+			$game = Round::where('id', $round_id)->first()->game;
+			$user = User::where('id', $user_id)->first();
+			$opponent = $user->getOtherUser($game->id);
+			$result = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
+
+			//Toggle active_user_id
+			$game->active_user_id = $opponent->id;
+			$game->save();
+
+			//Update Result
+			$result->timestamp_end = new Carbon($result->timestamp_start);
+			$result->score = 0;
+			$result->save();
+
+			//Create false UserAnswers for each question
+			foreach ($questions as $question) {
+				UserAnswer::create([
+					"question_id" => $question->id,
+					"result_id" => $result->id,
+					"user_answer" => !($question->answer_boolean)
+				]);
+			}
+			
+			return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id]);
+		}
+		
 	}
 
 	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
@@ -130,10 +164,13 @@ class QuizController extends Controller
 		}
 
 		//Calculate and update "score" in Results table
-		if($correct_answers_count == 10 && $time <= 6) {
+		if ($correct_answers_count == 10 && $time <= 6) {
 			$score = 1000;
-		}else {
+		} else {
 			$score = round($correct_answers_count + ($correct_answers_count * (13 / $time) * 40));
+			if($score > 1000) {
+				$score = 1000;
+			}
 		}
 		$result->score = $score;
 		$result->save();
@@ -153,13 +190,14 @@ class QuizController extends Controller
 
 	public function showEndgameView($game_id, $round_id, $result_id)
 	{
+		
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
 		$result = Result::where('id', $result_id)->first();
 		$round_id = $result->round()->first()->id;
 		$game = Round::where('id', $round_id)->first()->game;
-
+		
 		//Checks if the result belongs to the round
 		if ($result->round()->first()->id != $round_id) {
 			return redirect()->route('home');
@@ -169,7 +207,7 @@ class QuizController extends Controller
 		if (Round::where('id', $round_id)->first()->game()->first()->id != $game_id) {
 			return redirect()->route('home');
 		}
-
+		
 		//Checks if results belong to user
 		if ($result->user_id != $user->id) {
 			return redirect()->route('home');
@@ -179,17 +217,20 @@ class QuizController extends Controller
 		if ($game->getLastRound()->id != $round_id) {
 			return redirect()->route('results', [$game_id]);
 		}
-
+		
 		//Count correct answers
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
 		$correct_answers_count = 0;
-		foreach ($questions as $question) {
-			$answer_boolean = $question->answer_boolean;
-			$user_answer = UserAnswer::where('question_id', $question->id)->where('result_id', $result->id)->first()->user_answer;
-			if ($answer_boolean == $user_answer) {
-				$correct_answers_count++;
+		if (!is_null(UserAnswer::where('result_id', $result_id)->first())) {
+			foreach ($questions as $question) {
+				$answer_boolean = $question->answer_boolean;
+				$user_answer = UserAnswer::where('question_id', $question->id)->where('result_id', $result->id)->first()->user_answer;
+				if ($answer_boolean == $user_answer) {
+					$correct_answers_count++;
+				}
 			}
 		}
+
 
 		//Retrieve time
 		// This is duplicated code with createAnswers --> refactoring needed !
@@ -231,7 +272,6 @@ class QuizController extends Controller
 		if ($results_count == 2) {
 			//just ended the round and now must choose a new category
 			return redirect()->route('category', [$game]);
-
 		} else if ($results_count == 0 || $results_count == 1) {
 			//start the round
 			return redirect()->route('quiz', ['game_id' => $game->id, 'round_id' => $round->id]);

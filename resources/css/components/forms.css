@@ -6,6 +6,17 @@
 	flex-direction: column;
 	max-width: 346px;
 }
+
+.form__field {
+	position: relative;
+	& [class^="icon-"] {
+		position: absolute;
+		right: var(--margin-s);
+		top: calc(50% - 8px);
+		color: var(--color-disable);
+	}
+}
+
 .form--center {
 	text-align: center;
 	justify-content: center;

@@ -26,13 +26,13 @@ class CategoryController extends Controller
 	 *	Get 3 random categories, store the game ID in session and return the next view
 	 * @return view Choose categories
 	 **/
-	public static function getRandomCategories($round_count)
+	public static function getRandomCategories($round_count, $game_id)
 	{
 		// Define a seed so the player doesn't manipulation category generation
 		$user_id = Auth::id();
 
 		$faker = \Faker\Factory::create();
-		$faker->seed($user_id * $round_count);
+		$faker->seed(($user_id + $round_count + $game_id) * $user_id);
 
 		// Get titles from category
 		$categories_titles = Category::pluck("title");
@@ -68,7 +68,7 @@ class CategoryController extends Controller
 
 		$rounds = Round::where('game_id', $game_id)->get();
 		$round_count = $rounds->count();
-		$categories = CategoryController::getRandomCategories($round_count);
+		$categories = CategoryController::getRandomCategories($round_count, $game_id);
 
 		return view('gameloop/choose_categories')
 		->with('categories', $categories)

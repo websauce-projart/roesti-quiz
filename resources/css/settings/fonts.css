@@ -10,6 +10,8 @@
 	--fontsize-xl: 2.813rem; /* 45px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
+	--fontsize-s: 0.875rem; /* 14px */
+	--fontsize-xs: 0.75rem; /* 12px */
 
 	--fontspacing-headings: 0.08rem;
 }

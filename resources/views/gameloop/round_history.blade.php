@@ -5,44 +5,66 @@
 @endsection
 
 @section('content')
-    <h1>Historique des réponses</h1>
-    <a href="{{ route('join', $game_id) }}">Retour</a>
 
-    @foreach ($questions as $question)
-        <div class="card">
+    <body class="bg--white">
+        <div class="container">
+            <nav class="topnav">
+                <a href="{{ route('join', $game_id) }}" class="icon-arrow-left" aria-label="Retour"></a>
+                <h1 class="pageTitle">Historique des réponses</h1>
+            </nav>
 
-            <div>
-                {{ $user['object']->pseudo }} a répondu:
-                @isset($user['answers'])
-                    @if ($user['answers'][$loop->index]['user_answer'])
-                        vrai
-                    @else
-                        faux
-                    @endif
-                @endisset
+            <div class="history__container">
+                @foreach ($questions as $question)
+                    <div class="history">
 
+                        <div class="history__question">
+                            {{ $question->label }}
+                            @if ($question->answer_label)
+                                <div class="history__answer">
+                                    @if ($question->answer_boolean)
+                                        Vrai
+                                    @else
+                                        Faux: {{ $question->answer_label }}
+                                    @endif
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="history__playersContainer">
+                            <div class="history__player" aria-label="{{ $user['object']->pseudo }}">
+                                <x-avatar posePath="{{ $user['object']->getPosePath() }}"
+                                    eyePath="{{ $user['object']->getMouthPath() }}"
+                                    mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
+
+                                @if (isset($user['answers'][$loop->index]['user_answer']))
+                                    <div
+                                        class="iconBadge iconBadge--small {{ $user['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+                                    </div>
+                                @else
+                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                @endif
+                            </div>
+
+                            <div class="history__player" aria-label="{{ $opponent['object']->pseudo }}">
+                                <x-avatar posePath="{{ $opponent['object']->getPosePath() }}"
+                                    eyePath="{{ $opponent['object']->getMouthPath() }}"
+                                    mouthPath="{{ $opponent['object']->getEyePath() }}"></x-avatar>
+
+
+                                @if (isset($opponent['answers'][$loop->index]['user_answer']))
+                                    <div
+                                        class="iconBadge iconBadge--small {{ $opponent['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+                                    </div>
+                                @else
+                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                @endif
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
             </div>
 
-            <div>
-                {{ $question->label }}
-                @if ($question->answer_label)
-                    <br><small>{{ $question->answer_label }}</small>
-                @endif
-            </div>
-
-            <div>
-                {{ $opponent['object']->pseudo }}
-                @isset($opponent['answers'])
-                    @if ($opponent['answers'][$loop->index]['user_answer'])
-                        vrai
-                    @else
-                        faux
-                    @endif
-                @endisset
-            </div>
-
-
-        </div>
-    @endforeach
-
-@endsection
+        @endsection
+    </div>
+</body>

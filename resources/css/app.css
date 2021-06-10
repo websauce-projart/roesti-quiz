@@ -32,19 +32,21 @@
 
 /* Components (ui and design based)
  ********************************/
- @import "components/bottombar"; /* for next buttons */
+@import "components/avatar";
+@import "components/bottombar"; /* for next buttons */
 @import "components/buttons";
 @import "components/card";
 @import "components/checkbox";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
+@import "components/history";
 @import "components/home-game";
+@import "components/icons";
 @import "components/nav";
 @import "components/results";
 @import "components/round-badge";
 @import "components/speech-bubble";
-@import "components/avatar";
 
 /* Utilities (helpers)
  ********************************/

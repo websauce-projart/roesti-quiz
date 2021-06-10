@@ -16,14 +16,6 @@ class Round extends Model
 		'category_id'
 	];
 
-	public function getQuestions()
-	{
-		$questions = $this->questions();
-		$roundQuestions = $questions->wherePivot("round_id", $this->id)->get();
-		return $roundQuestions;
-	}
-
-	//À changer
 	public function game()
 	{
 		return $this->belongsTo(Game::class);
@@ -42,5 +34,30 @@ class Round extends Model
 	public function questions()
 	{
 		return $this->belongsToMany(Question::class);
+	}
+
+	
+	public function getQuestions()
+	{
+		$questions = $this->questions();
+		$roundQuestions = $questions->wherePivot("round_id", $this->id)->get();
+		return $roundQuestions;
+	}
+
+	public function getResult($user_id) {
+		return Result::where('round_id', $this->id)->where('user_id', $user_id)->first();
+	}
+
+	public function getScore($user_id) {
+		$result = $this->getResult($user_id);
+		if(is_null($result)) {
+			return 'En attente';
+		} else {
+			return $result->score;
+		}
+	}
+
+	public function getCategory() {
+		return Category::where('id', $this->category_id)->first();
 	}
 }
