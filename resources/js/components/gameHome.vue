@@ -18,7 +18,7 @@
     >
       <span class="home--game--play--text icon-arrow-right2"></span>
     </span>
-    <a class="home--game--submit" :href="'game/' + data.game.id"></a>
+    <a class="home--game--submit" :href="'game/' + data.game.id + '/join'"></a>
   </div>
 </template>
 
