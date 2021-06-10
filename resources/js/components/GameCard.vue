@@ -9,8 +9,9 @@
     class="card"
     :style="{ transform: transformString }"
   >
-    <h3 class="cardTitle">{{ card }}</h3>
-	 <!-- change the prop (card / isCurrent). Adding questions data to cards -->
+    <h3 class="cardTitle">{{ card }}
+	 </h3>
+	 <h4 class="qid">{{ qid }}</h4>
   </div>
 </template>
 
@@ -38,6 +39,10 @@ export default {
       type: Boolean,
       required: true,
     },
+	 qid:{
+		 type: Number,
+		 required: true,
+	 }
   },
 
   data() {
@@ -109,8 +114,8 @@ export default {
     hideCard() {
       setTimeout(() => {
         this.isShowing = false;
-        this.$emit("hideCard", this.card);
-      }, 300);
+        this.$emit("hideCard", this.card)
+      }, 150);
     },
 
     playCard(interaction) {

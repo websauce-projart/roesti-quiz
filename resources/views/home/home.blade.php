@@ -7,11 +7,11 @@ Accueil
 @section('content')
 <div class="speech-bubble">
 <!--******** Cards section ******** -->
-<div id="cards">
+<!-- <div id="cards">
 		<div class="cards-container">
         <cards-app></cards-app>
 		</div>
-</div>
+</div> -->
 <!-- **************************#*** -->
 
     <div id="vue_home">

@@ -5,14 +5,14 @@
 @endsection
 
 @section('content')
-
+<div class="speech-bubble">
 <div id="cards">
 		<div class="cards-container">
-        <cards-app></cards-app>
+        <cards-app :datas="{{ $questions }}"></cards-app>
 		</div>
-</div>>
-<script src="js/app.js"></script>
-
+</div>
+<script src="/js/app.js"></script>
+</div>
 
     <form action="{{ route('postquiz', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result_id]) }}"
         method="POST">
@@ -29,4 +29,7 @@
             <x-input-submit label="Envoyer"></x-input-submit>
         </div>
     </form>
+
+
 @endsection
+

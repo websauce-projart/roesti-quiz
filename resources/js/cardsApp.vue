@@ -2,6 +2,7 @@
   <div id="cardscontainer">
 		<GameCardsStack
 			:cards="visibleCards"
+			:qid="qid"
 			@cardAccepted="handleCardAccepted"
 			@cardRejected="handleCardRejected"
 			@cardSkipped="handleCardSkipped"
@@ -22,8 +23,13 @@ export default {
 
   data() {
     return {
-      visibleCards: ["Test", "pouet", "chapeau", "yolo", "une de plus"]
+      visibleCards: [],
+		qid: Array,
     };
+  },
+
+  props: {
+	  datas: Object,
   },
 
 
@@ -39,15 +45,34 @@ export default {
     },
     removeCardFromDeck() {
       this.visibleCards.shift();
-    }
-  }
+    },
+
+	 createQuestionsArray(){
+		 let datas = this.$props.datas;
+		 let labels = [];
+		 let ids = [];
+
+		for (let index in datas) {
+       labels.push(datas[index].label);
+		 ids.push(datas[index].id);
+      }
+
+		this.visibleCards = labels;
+		this.qid = ids;
+	  }
+
+  },
+
+  created() {
+	  this.createQuestionsArray();
+  },
 };
 </script>
 
 <style>
 
 
-#Penislol {
+#cardscontainer {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   text-align: center;
 }
