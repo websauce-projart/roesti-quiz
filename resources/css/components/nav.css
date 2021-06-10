@@ -4,7 +4,7 @@
 .topnav {
 	display: flex;
 	align-items: center;
-	margin-bottom: var(--margin-s);
+	margin: var(--margin-s) 0;
 	& a,
 	& button {
 		padding: var(--margin-s);

@@ -594,6 +594,7 @@ textarea,
 
 	--color-background: #e7f9fd;
 	--color-white: #fff;
+	--color-disable: #b3b7c2;
 
 	--color-main: #ffbf2f;
 	--color-main-darker: #ffa012;
@@ -625,6 +626,8 @@ textarea,
 	--fontsize-xl: 2.813rem; /* 45px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
+	--fontsize-s: 0.875rem; /* 14px */
+	--fontsize-xs: 0.75rem; /* 12px */
 
 	--fontspacing-headings: 0.08rem;
 }
@@ -799,6 +802,17 @@ img {
 	height: 100vh;
 }
 
+.avatar__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar__element {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
 /********************************
  * Bottom bar
  * Basically a container for the button
@@ -916,6 +930,18 @@ img {
 	flex-direction: column;
 	max-width: 346px;
 }
+
+.form__field {
+	position: relative
+}
+
+.form__field [class^="icon-"] {
+		position: absolute;
+		right: var(--margin-s);
+		top: calc(50% - 8px);
+		color: var(--color-disable);
+	}
+
 .form--center {
 	text-align: center;
 	justify-content: center;
@@ -1004,14 +1030,14 @@ img {
 .history__player {
 	position: relative;
 	width: 85px;
-	height: 85px;
+	height: 85px
 }
 
-.history__player__answer {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-}
+.history__player .iconBadge {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
 
 /********************************
  * Home Game interface
@@ -1099,6 +1125,133 @@ img {
 	text-align: center;
  }
 /********************************
+ * Icons
+ ********************************/
+
+/* Icomoon part
+  ********************************/
+@font-face {
+	font-family: "icomoon";
+	src: url("/fonts/icomoon.eot?whvtr9");
+	src: url("/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
+		url("/fonts/icomoon.ttf?whvtr9") format("truetype"),
+		url("/fonts/icomoon.woff?whvtr9") format("woff");
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: "icomoon" !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-feature-settings: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	text-decoration: none;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-edit-pencil:before {
+	content: "\e900";
+}
+.icon-envelope:before {
+	content: "\e901";
+}
+.icon-lock-closed:before {
+	content: "\e902";
+}
+.icon-lock-open:before {
+	content: "\e903";
+}
+.icon-user:before {
+	content: "\e904";
+}
+.icon-checkmark:before {
+	content: "\e905";
+}
+.icon-close:before {
+	content: "\e906";
+}
+.icon-search:before {
+	content: "\e986";
+}
+.icon-cog:before {
+	content: "\e994";
+}
+.icon-menu:before {
+	content: "\e9bd";
+}
+.icon-volume-high:before {
+	content: "\ea26";
+}
+.icon-volume-mute:before {
+	content: "\ea2a";
+}
+.icon-arrow-right:before {
+	content: "\ea3c";
+}
+.icon-arrow-left:before {
+	content: "\ea40";
+}
+.icon-circle-right:before {
+	content: "\ea42";
+}
+.icon-circle-left:before {
+	content: "\ea44";
+}
+.icon-checkbox-checked:before {
+	content: "\ea52";
+}
+.icon-checkbox-unchecked:before {
+	content: "\ea53";
+}
+
+/* Custom part
+ ********************************/
+.icon-question-mark:before {
+	font-family: var(--font-text);
+	font-weight: bold;
+	content: "?";
+}
+.iconBadge {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--color-white);
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	font-size: var(--fontsize-s);
+	box-shadow: var(--boxshadow-second-blurred);
+}
+
+.iconBadge--small {
+	width: 30px;
+	height: 30px;
+}
+.iconBadge--false {
+	background: var(--color-contrast);
+}
+
+.iconBadge--true {
+	background: var(--color-secondary);
+}
+
+.iconBadge--unanswered {
+	background: var(--color-disable);
+}
+
+/********************************
  * Navigation objects
  ********************************/
 .topnav {
@@ -1106,7 +1259,7 @@ img {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	margin-bottom: var(--margin-s)
+	margin: var(--margin-s) 0
 }
 .topnav a,
 	.topnav button {
@@ -1306,17 +1459,6 @@ img {
 	margin-bottom: -35px;
 }
 
-.avatar__container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.avatar__element {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
 /********************************
  * Colors
  ********************************/

@@ -16,7 +16,7 @@
       class="home--game--play"
       v-if="data.game.active_user_id == data.user.id"
     >
-      <span class="home--game--play--text">-></span>
+      <span class="home--game--play--text icon-arrow-right2"></span>
     </span>
     <a class="home--game--submit" :href="'game/' + data.game.id"></a>
   </div>

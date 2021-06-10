@@ -34,10 +34,9 @@
 	position: relative;
 	width: 85px;
 	height: 85px;
-}
-
-.history__player__answer {
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	& .iconBadge {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+	}
 }

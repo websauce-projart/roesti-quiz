@@ -25,12 +25,12 @@
 
                     <div class="form__row">
                         <x-input-text label="Pseudo ou email" id="pseudo" placeholder="Entrez votre pseudo ou votre email"
-                            icon="😃" value="{{ old('pseudo') }}"></x-input-text>
+                            icon="user" value="{{ old('pseudo') }}"></x-input-text>
                         {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
                     </div>
 
                     <div class="form__row">
-                        <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="🔒"
+                        <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="lock-closed"
                             value="{{ old('password') }}" type="password"></x-input-text>
                         {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
                     </div>
