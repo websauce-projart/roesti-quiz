@@ -10,22 +10,22 @@ import NewGame from "./pages/new_game.vue";
 
 
 
-/*const app = createApp({
+const app = createApp({
     components: {
       Home,
 		CardsApp
     },
 
-  }).mount('#app');*/
+  }).mount('#cards');
 
 // const results = createApp(Results);
 // home.mount("#results");
 
-const home = createApp({
-    components: {
-      Home
-    },
-  }).mount('#vue_home')
+// const home = createApp({
+//     components: {
+//       Home,
+//     },
+//   }).mount('#vue_home')
 
 const newGame = createApp({
   components: {
