@@ -9,7 +9,7 @@
     <body class="bg--white">
         <div class="container">
             <nav class="topnav">
-                <a href="{{ route('join', $game_id) }}">back</a>
+                <a href="{{ route('join', $game_id) }}" class="icon-arrow-left2" aria-label="Retour"></a>
                 <h1 class="pageTitle">Historique des réponses</h1>
             </nav>
 
@@ -35,22 +35,25 @@
                                 <x-avatar posePath="{{ $user['object']->getPosePath() }}"
                                     eyePath="{{ $user['object']->getMouthPath() }}"
                                     mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
-                                @isset($user['answers'][$loop->index]['user_answer'])
-											<div class="history__player__answer">
-												{{ $user['answers'][$loop->index]['user_answer'] ? 'true' : 'false' }}
-											</div>
-                                @endisset
+
+											@if(isset($user['answers'][$loop->index]['user_answer']))
+												<div class="iconBadge iconBadge--small {{ $user['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}"></div>
+											@else
+												<div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+											@endif
                             </div>
 
                             <div class="history__player" aria-label="{{ $opponent['object']->pseudo }}">
                                 <x-avatar posePath="{{ $opponent['object']->getPosePath() }}"
                                     eyePath="{{ $opponent['object']->getMouthPath() }}"
                                     mouthPath="{{ $opponent['object']->getEyePath() }}"></x-avatar>
-                                @isset($opponent['answers'][$loop->index]['user_answer'])
-											<div class="history__player__answer">
-													{{ $opponent['answers'][$loop->index]['user_answer'] ? 'true' : 'false' }}
-											</div>
-                                @endisset
+
+
+											@if(isset($opponent['answers'][$loop->index]['user_answer']))
+												<div class="iconBadge iconBadge--small {{ $opponent['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}"></div>
+											@else
+												<div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+											@endif
                             </div>
                         </div>
 
