@@ -7,7 +7,7 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	max-width: 345px; /* same as round-badge */
+	max-width: 400px; /* same as round-badge */
 	margin: 0 auto;
 }
 
@@ -38,7 +38,7 @@
 	color: var(--color-secondary);
 }
 
-.results__player__img {	
+.results__player__img {
 	width: 85px;
 	height: 85px;
 }

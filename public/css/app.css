@@ -1287,7 +1287,7 @@ img {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	max-width: 345px; /* same as round-badge */
+	max-width: 400px; /* same as round-badge */
 	margin: 0 auto;
 }
 
@@ -1320,7 +1320,7 @@ img {
 	color: var(--color-secondary);
 }
 
-.results__player__img {	
+.results__player__img {
 	width: 85px;
 	height: 85px;
 }
@@ -1360,7 +1360,7 @@ img {
 	padding: var(--margin-s);
 	margin: var(--margin-xs) 0;
 	width: 100%;
-	max-width: 345px; /* same as results */
+	max-width: 400px; /* same as results */
 	background-color: var(--color-secondary);
 	border-radius: var(--borderradius-s);
 	text-decoration: none;

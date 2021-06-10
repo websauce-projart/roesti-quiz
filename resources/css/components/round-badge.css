@@ -29,7 +29,7 @@
 	padding: var(--margin-s);
 	margin: var(--margin-xs) 0;
 	width: 100%;
-	max-width: 345px; /* same as results */
+	max-width: 400px; /* same as results */
 	background-color: var(--color-secondary);
 	border-radius: var(--borderradius-s);
 	text-decoration: none;
