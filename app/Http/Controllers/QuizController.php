@@ -48,7 +48,7 @@ class QuizController extends Controller
 			if ($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
 				return QuizController::handleQuitting($user_id, $round_id, $game_id, $questions);
 			}
-			return redirect()->route('results', [$game->id]);	//User has played trought the game already
+			return redirect()->route('results', [$game->id]);	//User has played trough the game already
 		}
 
 		//Create Result
@@ -68,8 +68,8 @@ class QuizController extends Controller
 	}
 
 	private static function handleQuitting($user_id, $round_id, $game_id, $questions)
-	{	
-		
+	{
+
 		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
 		if ($results_count != 2) {
 			//Retrieve data
@@ -95,10 +95,10 @@ class QuizController extends Controller
 					"user_answer" => !($question->answer_boolean)
 				]);
 			}
-			
+
 			return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id]);
 		}
-		
+
 	}
 
 	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
@@ -190,14 +190,14 @@ class QuizController extends Controller
 
 	public function showEndgameView($game_id, $round_id, $result_id)
 	{
-		
+
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
 		$result = Result::where('id', $result_id)->first();
 		$round_id = $result->round()->first()->id;
 		$game = Round::where('id', $round_id)->first()->game;
-		
+
 		//Checks if the result belongs to the round
 		if ($result->round()->first()->id != $round_id) {
 			return redirect()->route('home');
@@ -207,7 +207,7 @@ class QuizController extends Controller
 		if (Round::where('id', $round_id)->first()->game()->first()->id != $game_id) {
 			return redirect()->route('home');
 		}
-		
+
 		//Checks if results belong to user
 		if ($result->user_id != $user->id) {
 			return redirect()->route('home');
@@ -217,7 +217,7 @@ class QuizController extends Controller
 		if ($game->getLastRound()->id != $round_id) {
 			return redirect()->route('results', [$game_id]);
 		}
-		
+
 		//Count correct answers
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
 		$correct_answers_count = 0;
