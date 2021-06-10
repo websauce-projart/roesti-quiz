@@ -1,0 +1,43 @@
+/********************************
+ * History
+ ********************************/
+.history {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: var(--margin-m);
+	margin-bottom: var(--margin-xs);
+	background: var(--color-background);
+}
+
+.history__question {
+	font-weight: bold;
+	font-size: var(--fontsize-l);
+	margin-bottom: var(--margin-s);
+}
+
+.history__answer {
+	color: var(--color-text-lighter);
+	font-weight: normal;
+}
+
+.history__playersContainer {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.history__player {
+	position: relative;
+	width: 85px;
+	height: 85px;
+}
+
+.history__player__answer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
