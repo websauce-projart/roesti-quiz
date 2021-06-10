@@ -8,9 +8,9 @@
 
 
     <div id="main-nav" class="container">
-        <header class="header header--login">
-            <nav class="topnav topnav--left">
-                <main-nav-button></main-nav-button>
+        <header class="header header--home">
+            <nav class="topnav">
+                <a href="{{ route("profile") }}" class="icon-user"></a>
             </nav>
             <img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
         </header>

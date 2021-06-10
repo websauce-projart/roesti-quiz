@@ -17,3 +17,12 @@
 		align-self: center;
 	}
 }
+.header--home {
+	display: flex;
+	justify-content: center;
+	margin: var(--margin-s) 0;
+	& .logo,
+	& .topnav {
+		margin-right: auto;
+	}
+}
