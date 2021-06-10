@@ -85,7 +85,7 @@ Route::group(['middleware' => ['verified']], function () {
 /********************************
  * Login & Registration
  ********************************/
-
+// Route::group(['middleware' => ['verified']], function () {
 	 //Register
 	Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
 	Route::post("/register", [AuthController::class, "register"]);
@@ -115,7 +115,7 @@ Route::group(['middleware' => ['verified']], function () {
 		->name('password.reset');
 
 	Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
-
+// });
 
 //Logout
 Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
