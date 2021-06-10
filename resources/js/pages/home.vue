@@ -17,11 +17,10 @@
 </template>
 
 <script>
-import navbar from "../elements/nav.vue";
 import gameHome from "../components/gameHome.vue";
 
 export default {
-  components: { navbar, gameHome },
+  components: { gameHome },
 
   data() {
     return {

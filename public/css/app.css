@@ -593,6 +593,7 @@ textarea,
 	--color-text-alpha: rgba(51,94,135,0.23137);
 
 	--color-background: #e7f9fd;
+	--color-background-darker: #7895b0;
 	--color-white: #fff;
 	--color-disable: #b3b7c2;
 
@@ -710,6 +711,8 @@ a {
 }
 
 button {
+	padding: 0;
+	background: none;
 	border: none;
 }
 
@@ -1249,6 +1252,20 @@ img {
 
 .iconBadge--unanswered {
 	background: var(--color-disable);
+}
+
+/********************************
+ * Modal
+ ********************************/
+.modal {
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 0;
 }
 
 /********************************
