@@ -1,0 +1,82 @@
+/********************************
+ * Games in home view
+ ********************************/
+.gameBadge__container {
+	display: flex;
+	flex-direction: column;
+}
+
+.gameBadge__title {
+	font-family: var(--font-main);
+	font-size: var(--fontsize-l);
+	font-weight: normal;
+	margin-bottom: var(--margin-m);
+}
+
+.gameBadge--wrapper {
+	margin-bottom: var(--margin-s);
+}
+
+.gameBadge {
+	display: flex;
+	align-items: center;
+	padding: var(--margin-s);
+	width: 100%;
+	border-radius: var(--borderradius-m);
+	border-style: none;
+	background: var(--color-white);
+	box-shadow: var(--boxshadow-secondLight);
+	transition: var(--animation-hover);
+	text-decoration: none;
+}
+
+.gameBadge:hover {
+	transform: translate(2px, -2px);
+	box-shadow: var(--boxshadow-secondLight-hover);
+}
+
+.gameBadge:active {
+	transform: translate(-6px, 6px);
+	box-shadow: none;
+}
+
+.gameBadge--wait {
+	opacity: 0.5;
+}
+
+.gameBadge__avatar {
+	width: 50px;
+	height: 50px;
+}
+
+.gameBadge__info {
+	margin-left: var(--margin-s);
+}
+
+.gameBadge__info__pseudo {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-m);
+	letter-spacing: var(--fontspacing-headings);
+	color: var(--color-text);
+}
+
+.gameBadge__play {
+	width: 50px;
+	height: 50px;
+	border-radius: 45%;
+	background: var(--color-secondary);
+	color: var(--color-white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: auto;
+}
+
+.gameBadge--play--text {
+	display: table-cell;
+	vertical-align: middle;
+	font-family: "Luckiest Guy", sans-serif;
+	position: relative;
+	align-content: center;
+	text-align: center;
+}

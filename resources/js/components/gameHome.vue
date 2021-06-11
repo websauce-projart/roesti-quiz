@@ -33,44 +33,55 @@
 
 <script>
 export default {
-  data() {
-    return {
-      avatarData: Object,
-      urlApi: "/api/avatar/",
-      urlImg: "/img/avatar/",
-      pose: String,
-      eye: String,
-      mouth: String,
-      loaded: false,
-    };
-  },
-  props: {
-    data: Object,
-  },
-  mounted: async function () {
-    await this.fetchData();
-    this.concatUrl();
-    this.loaded = true;
-  },
+	data() {
+		return {
+			avatarData: Object,
+			urlApi: "/api/avatar/",
+			urlImg: "/img/avatar/",
+			pose: String,
+			eye: String,
+			mouth: String,
+			loaded: false,
+		};
+	},
+	props: {
+		data: Object,
+	},
+	mounted: async function () {
+		await this.fetchData();
+		this.concatUrl();
+		this.loaded = true;
+	},
 
-  methods: {
-    fetchData() {
-      let user = this.$props.data.opponent.id;
-      return axios
-        .get(this.urlApi + user)
-        .then((response) => {
-          this.avatarData = response.data;
-        })
-        .catch((errors) => console.log(errors));
-    },
-    concatUrl(){
-      this.pose = this.urlImg + 'poses/assets_avatar_pose' + this.avatarData.pose + '.svg';
-      this.eye = this.urlImg + 'eyes/assets_avatar_yeux' + this.avatarData.eye + '.svg';
-      this.mouth = this.urlImg + 'mouths/assets_avatar_bouche' + this.avatarData.mouth + '.svg';
-    }
-  },
+	methods: {
+		fetchData() {
+			let user = this.$props.data.opponent.id;
+			return axios
+				.get(this.urlApi + user)
+				.then((response) => {
+					this.avatarData = response.data;
+				})
+				.catch((errors) => console.log(errors));
+		},
+		concatUrl() {
+			this.pose =
+				this.urlImg +
+				"poses/assets_avatar_pose" +
+				this.avatarData.pose +
+				".svg";
+			this.eye =
+				this.urlImg +
+				"eyes/assets_avatar_yeux" +
+				this.avatarData.eye +
+				".svg";
+			this.mouth =
+				this.urlImg +
+				"mouths/assets_avatar_bouche" +
+				this.avatarData.mouth +
+				".svg";
+		},
+	},
 };
 </script>
 
-<style>
-</style>
+<style></style>

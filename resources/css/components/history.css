@@ -11,6 +11,7 @@
 	padding: var(--margin-m);
 	margin-bottom: var(--margin-xs);
 	background: var(--color-background);
+	border-radius: var(--borderradius-m);
 }
 
 .history__question {

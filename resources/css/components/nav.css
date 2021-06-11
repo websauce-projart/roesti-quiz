@@ -8,7 +8,10 @@
 	& a,
 	& button {
 		padding: var(--margin-s);
-		margin-left: var(--margin-s-negative);
+		/* margin-left: var(--margin-s-negative); */
+	}
+	& a:hover {
+		color: var(--color-text-lighter);
 	}
 }
 
@@ -16,6 +19,6 @@
 	justify-content: right;
 	& a,
 	& button {
-		margin-right: var(--margin-s-negative);
+		/* margin-right: var(--margin-s-negative); */
 	}
 }

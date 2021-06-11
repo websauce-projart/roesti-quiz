@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
-<body>
+<body class="@stack('body-classes')">
     @yield('content')
+
+    <script src="{{ asset('js/app.js') }}"></script>
     @stack('script')
 </body>
-
 
 </html>

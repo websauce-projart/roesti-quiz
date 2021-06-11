@@ -4,6 +4,10 @@
     Historique des réponses
 @endsection
 
+@push('body-classes')
+bg--white
+@endpush
+
 @section('content')
 
     <body class="bg--white">

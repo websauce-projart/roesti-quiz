@@ -13,7 +13,18 @@
 	flex-direction: column;
 	margin-bottom: var(--margin-m);
 	& .logo {
-		max-width: 375px;
+		max-height: 115px;
 		align-self: center;
+	}
+}
+.header--home {
+	display: flex;
+	justify-content: center;
+	& .logo,
+	& .topnav {
+		margin-right: auto;
+	}
+	& .logo {
+		max-height: 90px;
 	}
 }

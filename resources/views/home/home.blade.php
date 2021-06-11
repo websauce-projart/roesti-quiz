@@ -1,27 +1,34 @@
 @extends('template')
 
 @section('title')
-Accueil
+    Accueil
 @endsection
 
+@push('body-classes')
+bg--white
+@endpush
+
 @section('content')
-<div class="speech-bubble">
-<!--******** Cards section ******** -->
-<!-- <div id="cards">
-		<div class="cards-container">
-        <cards-app></cards-app>
-		</div>
-</div> -->
-<!-- **************************#*** -->
+<div class="container speech-bubble">
 
-    <div id="vue_home">
-        <home data_url='/api/home'></home>
-    </div>
+		<header class="header header--home">
+			<nav class="topnav">
+				<a href="{{ route("profile") }}" class="icon-user"></a>
+			</nav>
+			<img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
+		</header>
 
-    <script src="js/app.js"></script>
+		<main>
+			<div id="vue_home">
+				<home data_url='/api/home'></home>
+			</div>
+
+			<form class="bottombar" method="POST" action="" accept-charset="UTF-8">
+					@csrf
+					<x-input-submit label="Nouvelle partie"></x-input-submit>
+			</form>
+		</main>
+
 </div>
-<form class="bottombar" method="POST" action="" accept-charset="UTF-8">
-    @csrf
-    <x-input-submit label="Nouvelle partie"></x-input-submit>
-</form>
+
 @endsection

@@ -3,7 +3,7 @@
  * Basically a container for the button
  ********************************/
 .bottombar {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	bottom: 0;
 	width: 100%;
