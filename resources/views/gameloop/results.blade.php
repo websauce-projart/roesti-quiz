@@ -8,7 +8,7 @@
 
 
     <nav class="container topnav topnav--right">
-        <a href="{{ route('home') }}">X</a>
+        <a href="{{ route('home') }}" class="icon-close"></a>
     </nav>
 
     <main>

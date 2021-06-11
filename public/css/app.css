@@ -1205,6 +1205,7 @@ img {
 }
 .icon-close:before {
 	content: "\e906";
+	font-weight: bold;
 }
 .icon-search:before {
 	content: "\e986";
