@@ -56,10 +56,6 @@
                         😔 Désolé, le pseudo ou le mot de passe n'est pas correct... 😔
                     @endif
 
-                    @if ($errors->has('account-verified'))
-                        ✔️ Merci d'avoir confirmé votre adresse email! ✔️
-                    @endif
-
                 </div>
             </main>
         </div>

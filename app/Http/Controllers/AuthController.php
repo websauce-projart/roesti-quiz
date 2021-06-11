@@ -64,8 +64,6 @@ class AuthController extends Controller
                 // redirect where user usually attempted to go, but on homepage as a fallback
                 return redirect()->route('home');
             }
-
-            
         }
 
         //Nope, something wrong during authentication 
@@ -169,7 +167,7 @@ class AuthController extends Controller
     public function handleVerificationEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect()->route('login')->withErrors(['account-verified' => true]);;
+        return redirect()->route('login');
     }
 
     public function resendVerificationEmail(Request $request)

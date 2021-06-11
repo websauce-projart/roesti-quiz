@@ -16,7 +16,7 @@ Vérifie ton email
 
             <div>
 
-                😊 Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz! 😊
+                😊 Votre compte a été créé, merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz! 😊
 
                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                     @csrf
