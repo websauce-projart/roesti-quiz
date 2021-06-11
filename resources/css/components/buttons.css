@@ -55,3 +55,23 @@
 	transform: translateY(3px);
 	box-shadow: none;
 }
+
+.game__btn{
+	justify-content:center;
+ 	height: 100px;
+	width: 100px;
+ 	border-radius: 50%;
+	color: #fff;
+	font-family:  "Luckiest Guy", sans-serif;
+	font-size: var(--fontsize-xl);
+}
+
+.reject{
+	background-color: var(--color-contrast);
+	float:left;
+}
+.accept{
+	background-color: var(--color-secondary);
+	float:right;
+}
+

@@ -10,3 +10,16 @@
 .container--fullheight {
 	height: 100vh;
 }
+
+.game__btn__container{
+	margin: 0 auto;
+	height: 100vh;
+	margin-top: 70vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	max-width: 600px;
+
+}
+
+

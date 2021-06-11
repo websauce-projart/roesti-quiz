@@ -5,14 +5,12 @@
 @endsection
 
 @section('content')
-<div class="speech-bubble">
 <div id="cards">
 		<div class="cards-container">
         <cards-app :datas="{{ $questions }}"></cards-app>
 		</div>
 </div>
-<script src="/js/app.js"></script>
-</div>
+
 
     <form action="{{ route('postquiz', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result_id]) }}"
         method="POST"
@@ -32,6 +30,9 @@
         </div>
     </form>
 
-
+<div id='vue_game_buttons'>
+	<game-buttons></game-buttons>
+</div>
+<script src="/js/app.js"></script>
 @endsection
 

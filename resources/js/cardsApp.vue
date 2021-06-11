@@ -35,7 +35,6 @@ export default {
 
   methods: {
     handleCardAccepted() {
-      // console.log(this.qid[0]);
 		document.getElementById(this.qid[0]).checked = true;
     },
     handleCardRejected() {

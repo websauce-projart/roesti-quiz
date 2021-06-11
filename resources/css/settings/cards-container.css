@@ -1,5 +1,5 @@
 .cards-container{
-	display:block;
-	width: 20rem;
-	margin:auto;
+	display: flex;
+	justify-content: center;
 }
+
