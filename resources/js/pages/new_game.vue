@@ -41,7 +41,7 @@ export default {
 
   setup(props) {
     let searchText = ref("");
-    
+
     let list = [];
 
     //Show or hide the button for a random player depending on the input text value
@@ -61,7 +61,7 @@ export default {
       }
 
       this.playerSelected;
-      
+
       for (let index in datas) {
         list.push(datas[index].pseudo);
       }
@@ -112,7 +112,7 @@ export default {
         this.returnValue = true
       }
   })
-    
+
   }
 };
 </script>
