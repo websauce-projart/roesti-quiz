@@ -61,7 +61,6 @@ class CategoryController extends Controller
 
 			//The current round is not over, user shouldn't choose a category
 			if($results_count !== 2) {
-				dd($results_count);
 				return redirect()->route('home');
 			}
 		}

@@ -2,10 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Game;
-use App\Models\Eye;
-use App\Models\Mouth;
-use App\Models\Pose;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -120,25 +116,15 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
 	public function getOtherUser($gameId)
 	{
-		$user1 = Game::where('id', $gameId)->first()->users[0];
-		$user2 = Game::where('id', $gameId)->first()->users[1];
+		$users = $this->games()->get()->where('id', $gameId)->first()->users()->get();
+		$user1 = $users->get(0);
+		$user2 = $users->get(1);
 
 		if ($user1->id == $this->id) {
 			return $user2;
 		}
 		return $user1;
 	}
-
-	// public function getUserScore($gameId)
-	// {
-	// 	if ($this->isUser1($gameId)) {
-	// 		$score = Game::where('id', $gameId)->first()->user1_score;
-	// 	} else {
-	// 		$score = Game::where('id', $gameId)->first()->user2_score;
-	// 	}
-
-	// 	return $score;
-	// }
 
 	public function getAllPotentialOpponents() {
 		$games = $this->games()->get();
@@ -156,17 +142,14 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 	}
 
 	public function getPosePath() {
-		$pose_id = $this->pose_id;
-		return Pose::where('id', $pose_id)->first()->path;
+		return $this->pose()->first()->path;
 	}
 
 	public function getMouthPath() {
-		$mouth_id = $this->mouth_id;
-		return Mouth::where('id', $mouth_id)->first()->path;
+		return $this->mouth()->first()->path;
 	}
 
 	public function getEyePath() {
-		$eye_id = $this->eye_id;
-		return Eye::where('id', $eye_id)->first()->path;
+		return $this->eye()->first()->path;	
 	}
 }

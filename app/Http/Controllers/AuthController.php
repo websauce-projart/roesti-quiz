@@ -57,10 +57,13 @@ class AuthController extends Controller
         //was any of those correct ?
         if (Auth::check()) {
             $request->session()->regenerate();
-            // redirect where user usually attempted to go, but on homepage as a fallback
-            // dd('auth 1');
-            // return back();
-            return redirect()->intended('/home');
+            if(!User::where('id', Auth::user()->id)->first()->has_onboarded) {
+                // user has not onboarded yet
+                return redirect()->route('onboardingWelcome');
+            } else {
+                // redirect where user usually attempted to go, but on homepage as a fallback
+                return redirect()->route('home');
+            }
         }
 
         //Nope, something wrong during authentication 
@@ -114,15 +117,9 @@ class AuthController extends Controller
 
         $data = $request->all();
         $user = $this->create($data);
-        
-        $user->eye_id = 1;
-        $user->mouth_id = 1;
-        $user->pose_id = 1;
-        $user->save();
-
 
         event(new Registered($user)); //dispatch event to send verification email
-        return redirect()->route('verification.notice');
+        return redirect()->route('login');
     }
 
     /**
@@ -133,14 +130,18 @@ class AuthController extends Controller
      */
     public function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'pseudo' => $data['pseudo'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'eye_id' => 1,
-            'mouth_id' => 1,
-            'pose_id' => 1
         ]); 
+        
+        $user->pose_id = 1;
+        $user->mouth_id = 1;
+        $user->eye_id = 1;
+        $user->save();
+
+        return $user;
     }
 
     /********************************
@@ -154,7 +155,6 @@ class AuthController extends Controller
      */
     public function showVerifyEmailView()
     {
-        // dd('show verify email view');
         return view("auth/verify");
     }
 
@@ -167,13 +167,12 @@ class AuthController extends Controller
     public function handleVerificationEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect()->route('login')->withErrors(['account-verified' => true]);;
+        return redirect()->route('login');
     }
 
     public function resendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        // dd('resend verification email');
         return redirect()->route('verification.notice')->withErrors(['email-resent' => true]);
     }
 
@@ -251,7 +250,8 @@ class AuthController extends Controller
            if (Hash::check($request->oldpassword , $hashedPassword )) {
     
              if (!Hash::check($request->newpassword , $hashedPassword)) {
-                $user = Auth::user();
+                $user_id = Auth::user()->id;
+                $user = User::where('id', $user_id)->first();
                 $user->password = $request->newpassword;
                 $user->save();
                 session()->flash('message','Le mot de passe a été changé avec succès !');
