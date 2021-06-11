@@ -10,7 +10,6 @@ import NewGame from "./pages/new_game.vue";
 import GameButtons from "./components/GameButtons.vue";
 
 
-
 const app = createApp({
     components: {
 		CardsApp,
@@ -43,3 +42,6 @@ const gameButtons = createApp({
 	}
 
 }).mount('#vue_game_buttons')
+
+
+

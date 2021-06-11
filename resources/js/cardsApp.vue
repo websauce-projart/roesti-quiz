@@ -13,12 +13,13 @@
 
 <script>
 import GameCardsStack from "./components/GameCardsStack";
+let emitter = require('tiny-emitter/instance');
+emitter.on("buttonRejected", console.log("GNEU"));
 
 export default {
   name: "CardsApp",
   components: {
-    GameCardsStack
-
+    GameCardsStack,
   },
 
   data() {
@@ -31,7 +32,6 @@ export default {
   props: {
 	  datas: Object,
   },
-
 
   methods: {
     handleCardAccepted() {
@@ -64,13 +64,25 @@ export default {
 
 		this.visibleCards = labels;
 		this.qid = ids;
-	  }
+	  },
+
+	  SwipeLeft(){
+		  console.log("Ok, on lance à gauche!");
+	  },
+
+	  SwipeRight(){
+		  console.log("Ok, on lance a droite!");
+	  },
 
   },
 
   created() {
 	  this.createQuestionsArray();
   },
+
+  mounted(){
+  }
+
 };
 </script>
 

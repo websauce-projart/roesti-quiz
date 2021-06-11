@@ -23,6 +23,7 @@
 	"dependencies": {
 		"interactjs": "^1.10.11",
 		"sanitize.css": "^12.0.1",
+		"tiny-emitter": "^2.1.0",
 		"vue": "^3.0.11"
 	}
 }
