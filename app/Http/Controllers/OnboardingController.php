@@ -9,14 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class OnboardingController extends Controller
 {
     public function displayWelcome() {
-        //Retrieve data
-        $user_id = Auth::user()->id;
-        $user = User::where('id', $user_id)->first();
-
-        //Toggle has_onboarded
-        $user->has_onboarded = true;
-        $user->save();
-
         //Return view
         return view('/onboarding/welcome');
     }

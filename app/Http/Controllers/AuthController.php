@@ -57,13 +57,10 @@ class AuthController extends Controller
         //was any of those correct ?
         if (Auth::check()) {
             $request->session()->regenerate();
-            if(!User::where('id', Auth::user()->id)->first()->has_onboarded) {
-                // user has not onboarded yet
-                return redirect()->route('onboardingWelcome');
-            } else {
+            
                 // redirect where user usually attempted to go, but on homepage as a fallback
                 return redirect()->route('home');
-            }
+            
         }
 
         //Nope, something wrong during authentication 

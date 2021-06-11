@@ -102,6 +102,12 @@ class GameController extends Controller
 	//Returning vie Home with the datas
 	public function displayHome()
 	{
+		//Checks if user has onboarded yet
+		if(!User::where('id', Auth::user()->id)->first()->has_onboarded) {
+			
+			return redirect()->route('onboardingWelcome');
+		}
+
 		return view('home/home');
 	}
 

@@ -1,14 +1,20 @@
-<div id="avatarEditor">
-    <div id="avatarContainer">
-        <div id="poses" class="avatar"></div>
-        <div id="eyes" class="avatar"></div>
-        <div id="mouths" class="avatar"></div>
+<div id="avatarEditor" class="avatar__editor">
+    <div id="avatarContainer" class="avatar__container">
+        <div id="poses" class="avatar__element avatar__element__poses"></div>
+        <div id="eyes" class="avatar__element avatar__element__eyes"></div>
+        <div id="mouths" class="avatar__element avatar__element__mouths"></div>
 
     </div>
-    <div id="buttonsContainer">
-        <span id="eyesRight">○</span>
-        <span id="mouthsRight">○</span>
-        <span id="posesRight">○</span>
+    <div class="buttons__container">
+        <span id="eyesRight">
+            <img src="https://via.placeholder.com/80" alt="Bouton de changement d'yeux">
+        </span>
+        <span id="mouthsRight">
+            <img src="https://via.placeholder.com/80" alt="Bouton de changement de bouche">
+        </span>
+        <span id="posesRight">
+            <img src="https://via.placeholder.com/80" alt="Bouton de changement de pose">
+        </span>
     </div>
 </div>
 

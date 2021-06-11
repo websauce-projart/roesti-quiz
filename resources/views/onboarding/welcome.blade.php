@@ -11,5 +11,5 @@ Bienvenue au meilleur jeu de Romandie, Rösti Quiz !
 
 En tant que présentateur, c’est ma mission de te guider à travers ton aventure röstienne... Allons-y !
 
-<a href="{{route('onboardingWelcome')}}">Suivant</a>
+<a href="{{route('onboardingAvatar')}}">Suivant</a>
 @endsection

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Round;
-use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 
 class CategoryController extends Controller

@@ -83,7 +83,7 @@ Route::group(['middleware' => ['verified']], function () {
 	 ********************************/
 	Route::group(['middleware' => ['onboarded']], function () {	//
 		Route::get('/welcome/1', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
-		Route::get('/welcome/2', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingWelcome');
+		Route::get('/welcome/2', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingAvatar');
 		Route::post('/welcome/2', [AvatarController::class, 'createAvatar']);
 		Route::get('/welcome/3', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
 		Route::get('/welcome/4', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
