@@ -772,6 +772,13 @@ input[type="checkbox"]:checked::before {
 }
 
 /********************************
+ * Table
+ ********************************/
+table {
+	width: 100%;
+}
+
+/********************************
  * Images
  ********************************/
 img {
@@ -810,6 +817,10 @@ img {
 
 .container--fullheight {
 	height: 100vh;
+}
+
+.container--large {
+	max-width: 1200px;
 }
 
  /** GRID SETTINGS */
@@ -1021,14 +1032,6 @@ img {
 	z-index: 1;
  }
 
-/********************************
- * checkboxes
- ********************************/
-
- .checkbox{
-     
-    padding: 1rem;
- }
 /********************************
  * Forms
  ********************************/
@@ -1420,6 +1423,10 @@ img {
 	.topnav--right button {
 		 margin-right: var(--margin-s-negative);
 	}
+
+.topnav--center {
+	justify-content: center;
+}
 
 /********************************
  * Results
