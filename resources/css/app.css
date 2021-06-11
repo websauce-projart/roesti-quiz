@@ -41,7 +41,7 @@
 @import "components/headers";
 @import "components/headings";
 @import "components/history";
-@import "components/home-game";
+@import "components/game-badge";
 @import "components/icons";
 @import "components/modal";
 @import "components/nav";
