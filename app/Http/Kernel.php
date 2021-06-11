@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'guest' => \App\Http\Middleware\Guest::class,
         'onboarded' => \App\Http\Middleware\HasNotOnboardedYet::class,
+        'notadmin' => \App\Http\Middleware\NotAdmin::class,
     ];
 }

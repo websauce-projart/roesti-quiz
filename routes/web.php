@@ -26,7 +26,7 @@ use App\Http\Controllers\OnboardingController;
 /********************************
  * Verified user
  ********************************/
-Route::group(['middleware' => ['verified']], function () {
+Route::group(['middleware' => ['verified', 'notadmin']], function () {
 
 	/********************************
 	 * Api homemade
@@ -139,7 +139,7 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
 Route::group(['middleware' => ['admin']], function () {
 	Route::get('/backoffice', function () {
 		return view('backoffice/home_backoffice');
-	});
+	})->name('backoffice');
 	Route::resource('/backoffice/question', QuestionController::class);
 	Route::resource('/backoffice/user', UserController::class);
 });

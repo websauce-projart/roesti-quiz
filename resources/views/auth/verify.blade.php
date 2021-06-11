@@ -13,6 +13,9 @@ Vérifie ton email
         </header>
 
         <main>
+        <nav class="container topnav topnav--right">
+            <a href="{{ route('logout') }}">Retour au login</a>
+        </nav>
 
             <div>
 
