@@ -6,10 +6,15 @@
 	 ********************************/
 	--boxshadow-main: -6px 6px var(--color-contrast);
 	--boxshadow-main-hover: -8px 8px var(--color-contrast);
+
 	--boxshadow-second: -6px 6px var(--color-text);
 	--boxshadow-second-hover: -8px 8px var(--color-text);
 	--boxshadow-second-small: -3px 3px var(--color-text);
 	--boxshadow-second-small-hover: -5px 5px var(--color-text);
+
+	--boxshadow-secondLight: -6px 6px var(--color-secondary);
+	--boxshadow-secondLight-hover: -8px 8px var(--color-secondary);
+
 	--boxshadow-tertiary: -3px 3px var(--color-background);
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
@@ -17,6 +22,7 @@
 
 	/* Border radius
 	 ********************************/
+	--borderradius-xl: 3rem;
 	--borderradius-m: 1rem; /* 16px */
 	--borderradius-s: 0.625rem; /* 10px */
 }
