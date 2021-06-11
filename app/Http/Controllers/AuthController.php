@@ -22,7 +22,7 @@ class AuthController extends Controller
 
     /**
      * Return login view with form
-     * @return view
+     * @return view login
      **/
     public function showLoginView()
     {
@@ -33,7 +33,7 @@ class AuthController extends Controller
      * Handle an authentication attempt
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return redirect to login or home route
      */
     public function authenticate(Request $request)
     {
@@ -57,10 +57,9 @@ class AuthController extends Controller
         //was any of those correct ?
         if (Auth::check()) {
             $request->session()->regenerate();
-            
-                // redirect where user usually attempted to go, but on homepage as a fallback
-                return redirect()->route('home');
-            
+
+            // redirect where user usually attempted to go, but on homepage as a fallback
+            return redirect()->route('home');
         }
 
         //Nope, something wrong during authentication 
@@ -75,7 +74,7 @@ class AuthController extends Controller
 
     /**
      * Logout and redirect to homepage
-     * @return redirect
+     * @return redirect to login route
      */
     public function logout(Request $request)
     {
@@ -91,7 +90,7 @@ class AuthController extends Controller
 
     /**
      * Return register view with form
-     * @return view
+     * @return view register
      **/
     public function showRegisterView()
     {
@@ -99,10 +98,10 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a user
+     * Register a user and redirect to login
      *
      * @param  mixed $request
-     * @return void
+     * @return redirect to login route
      */
     public function register(Request $request)
     {
@@ -123,7 +122,7 @@ class AuthController extends Controller
      * Create a user in the BDD
      *
      * @param  mixed $data
-     * @return void
+     * @return User
      */
     public function create(array $data)
     {
@@ -131,8 +130,8 @@ class AuthController extends Controller
             'pseudo' => $data['pseudo'],
             'email' => $data['email'],
             'password' => $data['password'],
-        ]); 
-        
+        ]);
+
         $user->pose_id = 1;
         $user->mouth_id = 1;
         $user->eye_id = 1;
@@ -148,7 +147,7 @@ class AuthController extends Controller
     /**
      * Return verify email notice view
      *
-     * @return view
+     * @return view verify
      */
     public function showVerifyEmailView()
     {
@@ -159,7 +158,7 @@ class AuthController extends Controller
      * Handle requests generated when the user clicks the email verification link
      *
      * @param  mixed $request
-     * @return void
+     * @return redirect to login route
      */
     public function handleVerificationEmail(EmailVerificationRequest $request)
     {
@@ -167,6 +166,12 @@ class AuthController extends Controller
         return redirect()->route('login');
     }
 
+    /**
+     * Resend a verification email
+     *
+     * @param  mixed $request
+     * @return redirect to verify route
+     */
     public function resendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
@@ -177,94 +182,121 @@ class AuthController extends Controller
     /********************************
      * Password reset
      ********************************/
-    public function showForgotPasswordView() {
+
+    /**
+     * Return forgot password view with form to enter an email
+     *
+     * @return view forgot_password
+     */
+    public function showForgotPasswordView()
+    {
         return view("auth/forgot_password");
     }
 
-    public function sendPasswordEmail(Request $request) {
+    /**
+     * Send a email to reset password to the specified email
+     *
+     * @param  mixed $request
+     * @return redirect to login
+     */
+    public function sendPasswordEmail(Request $request)
+    {
         $request->validate(['email' => 'required|email']);
 
         $status = Password::sendResetLink(
             $request->only('email')
         );
-    
+
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
-    public function showResetForm($token) {
+    /**
+     * Return reset password view with a form to enter a new password
+     *
+     * @param  mixed $token
+     * @return view reset_password
+     */
+    public function showResetForm($token)
+    {
         return view('auth/reset_password', ['token' => $token]);
     }
 
-    public function handleResetForm(Request $request) {
+    /**
+     * Handle the reset password form, validate the request and update the password
+     *
+     * @param  mixed $request
+     * @return redirect to login route
+     */
+    public function handleResetForm(Request $request)
+    {
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:6|confirmed',
         ]);
-    
+
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
                 $user->forceFill([
                     'password' => $password
                 ])->setRememberToken(Str::random(60));
-    
+
                 $user->save();
-    
+
                 event(new PasswordReset($user));
             }
         );
-    
+
         return $status == Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
 
-    public function showUpdatePassword(){
+    /**
+     * Return update password view
+     *
+     * @return view update_password
+     */
+    public function showUpdatePassword()
+    {
         return view('profile/update_password');
     }
-    
+
     /**
-     * User changing his password in his profile. Calidate the old and new password, if matching and updates the database.
+     * User changing his password in his profile. Validate the old and new password, if matching and updates the database.
      *
      * @param  mixed $request
-     * @return void
+     * @return redirect to login route
      */
-
-    public function updatePassword(Request $request) {
-
-            
-             $this->validate($request, [
+    public function updatePassword(Request $request)
+    {
+        $this->validate($request, [
             'oldpassword' => 'required',
             'newpassword' => 'required|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'required|min:6'
-            ]);
+        ]);
 
-           $hashedPassword = Auth::user()->password;
-     
-           if (Hash::check($request->oldpassword , $hashedPassword )) {
-    
-             if (!Hash::check($request->newpassword , $hashedPassword)) {
+        $hashedPassword = Auth::user()->password;
+
+        if (Hash::check($request->oldpassword, $hashedPassword)) {
+
+            if (!Hash::check($request->newpassword, $hashedPassword)) {
                 $user_id = Auth::user()->id;
                 $user = User::where('id', $user_id)->first();
                 $user->password = $request->newpassword;
                 $user->save();
-                session()->flash('message','Le mot de passe a été changé avec succès !');
+                session()->flash('message', 'Le mot de passe a été changé avec succès !');
                 return redirect()->back();
-                }
-     
-                else{
-                      session()->flash('message','Le nouveau mot de passe doit être différent de l\'ancien !');
-                      return redirect()->back();
-                    }
-     
-               }
-     
-              else{
-                   session()->flash('message','L\'ancien mot de passe n\'est pas le bon ...');
-                   return redirect()->back();
-                 }
+            } else {
+                session()->flash('message', 'Le nouveau mot de passe doit être différent de l\'ancien !');
+                return redirect()->back();
+            }
+        } else {
+            session()->flash('message', 'L\'ancien mot de passe n\'est pas le bon ...');
+            return redirect()->back();
+        }
     }
 }

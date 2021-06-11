@@ -11,7 +11,7 @@ Profil
     eyePath="{{$data['user']->getMouthPath()}}"
     mouthPath="{{$data['user']->getEyePath()}}"
     ></x-avatar>
-    <a href="{{route('updateAvatar')}}">Edit avatar</a>
+    <a href="{{route('updateAvatar', [$data['user']->id])}}">Edit avatar</a>
 </div>
 </br>
 <div>
@@ -21,9 +21,9 @@ Profil
 </div>
 </br>
 <div>
-    <a href="{{route('updatePasswordForm')}}">Modifier mon mot de passe</a></li>
+    <a href="{{route('updatePasswordForm', [$data['user']->id])}}">Modifier mon mot de passe</a></li>
     </br>
-    <form class="form-horizontal" method="post" action="{{route('deleteAccount')}}" onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte ?');">
+    <form class="form-horizontal" method="post" action="" onsubmit="return confirm('Voulez-vous vraiment supprimer votre compte ?');">
         @csrf
         <input type="submit" value="Supprimer mon compte">
     </form>

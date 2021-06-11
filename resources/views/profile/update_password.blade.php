@@ -8,7 +8,7 @@ Modifier le mot de passe
     @if (Session::has('message'))
     {{ Session::get('message') }}
     @endif
-     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="{{ route('updatePassword') }}" method="post">
+     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="" method="post">
            @csrf
             <div class="form-group">
             <x-input-text label="Ancien mot de passe" id="oldpassword" placeholder="Entrez votre ancien mot de passe" type="password"></x-input-text>

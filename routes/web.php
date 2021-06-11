@@ -46,12 +46,12 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	/********************************
 	 * Profile
 	 ********************************/
-	Route::get('/profile', [UserController::class, 'displayProfile'])->name('profile');
-	Route::post('/profile', [UserController::class, 'deleteAccount'])->name('deleteAccount');
-	Route::get('/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
-	Route::post('/update-password', [AuthController::class, 'updatePassword'])->name('updatePassword');
-	Route::get('/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
-	Route::post('/update-avatar', [AvatarController::class, 'updateAvatar']);
+	Route::get('/user/{user_id}', [UserController::class, 'displayProfile'])->name('profile');
+	Route::post('/user/{user_id}', [UserController::class, 'deleteAccount']);
+	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::post('/user/{user_id}/update-password', [AuthController::class, 'updatePassword']);
+	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
+	Route::post('/user/{user_id}/update-avatar', [AvatarController::class, 'updateAvatar']);
 
 
 	/********************************

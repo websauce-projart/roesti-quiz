@@ -13,7 +13,7 @@ bg--white
 
 		<header class="header header--home">
 			<nav class="topnav">
-				<a href="{{ route("profile") }}" class="icon-user"></a>
+				<a href="{{ route('profile', [$user_id]) }}" class="icon-user"></a>
 			</nav>
 			<img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
 		</header>

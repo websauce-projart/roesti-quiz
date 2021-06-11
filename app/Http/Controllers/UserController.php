@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\Game;
@@ -91,20 +90,27 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function displayProfile()
+    public function displayProfile($user_id)
     {
-        $ranking = [
-            '0' => 'egal 0',
-            '1000' => 'moins de milles',
-            '5000' => 'moins de 5 milles',
-        ];
-    
         $currentUser = Auth::user();
+
+        $ranking = [
+            '0' => 'Bobet de service',
+            '10000' => 'Topio de première',
+            '20000' => 'Taguenasset',
+            '30000' => 'Frontalier·ère',
+            '40000' => 'Apprenti·e romand·e',
+            '50000' => 'Thé froid de la Migros',
+            '60000' => 'Rösti confirmé',
+            '70000' => 'Expert·e romand·e',
+            '80000' => 'Champion·ne de Romandie',
+            '90000' => 'Roi·Reine des Röstis ',
+        ];
 
         $scores = Result::all()->where('user_id', $currentUser->id);
         $scoreTotal = 0;
         foreach($scores as $score){
-            $scoreTotal = $scoreTotal + $score->score;
+            $scoreTotal += $score->score;
         };
 
         foreach($ranking as $condition => $label){
@@ -120,7 +126,7 @@ class UserController extends Controller
 
         $score = array(
             "points" => $scoreTotal,
-            "titleScore" => $labelTitle.'Change in UserController function displayProfile to adapt the labels of each ranking',
+            "titleScore" => $labelTitle,
         );
 
         $data = array(

@@ -71,5 +71,5 @@ Modifier mon avatar
 @endpush
 
 @section('content')
-<x-avatar-editor label="Modifier" route="{{route('updateAvatar')}}"></x-avatar-editor>
+<x-avatar-editor label="Modifier" route="{{route('updateAvatar', [$user_id])}}"></x-avatar-editor>
 @endsection
