@@ -19,7 +19,7 @@
       >À toi de jouer</span
     >
     <span class="home--game--info" v-else
-      >N'a pas encore relevé ton défi...</span
+      >C'est au tour de</span
     >
     <span
       class="home--game--play"
