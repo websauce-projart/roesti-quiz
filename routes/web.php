@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AvatarController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OnboardingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,8 +58,6 @@ Route::group(['middleware' => ['verified']], function () {
 	 * Gameloop
 	 ********************************/
 
-	// Route::post('/game', [GameController::class, 'displayGame'])->name('displayGame');
-
 	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
 
 	Route::post('/game', [GameController::class, 'createGame'])->name('creategame'); //Checké
@@ -79,6 +77,16 @@ Route::group(['middleware' => ['verified']], function () {
 	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Terminé
 
 	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
+
+	/********************************
+	 * Onboarding
+	 ********************************/
+	Route::get('/welcome/1', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
+	Route::get('/welcome/2', [OnboardingController::class, 'displayAvatarCreator'])->name('onboardingWelcome');
+	// Route::post('/welcome/2', [OnboardingController::class, 'createAvatar']);
+	// Route::get('/welcome/3', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
+	// Route::get('/welcome/4', [OnboardingController::class, 'displayFriendsTutorial'])->name('onboardingFriends');
+	// Route::get('/welcome/5', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
 });
 
 
@@ -86,24 +94,25 @@ Route::group(['middleware' => ['verified']], function () {
 /********************************
  * Login & Registration
  ********************************/
-// Route::group(['middleware' => ['verified']], function () {
-	 //Register
+Route::group(['middleware' => ['guest']], function () {
+
+	//Register
 	Route::get("/register", [AuthController::class, "showRegisterView"])->name('register');
 	Route::post("/register", [AuthController::class, "register"]);
 
+	//Login
+	Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
+	Route::post("/login", [AuthController::class, "authenticate"]);
+
 	//Email confirmation
 	Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
-		->middleware('auth')->name('verification.notice');
+		->name('verification.notice');
 
 	Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
 		->middleware(['auth', 'signed'])->name('verification.verify');
 
 	Route::post('/email/verification-notification', [AuthController::class, 'resendVerificationEmail'])
 		->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
-
-	//Login
-	Route::get("/login", [AuthController::class, "showLoginView"])->name('login');
-	Route::post("/login", [AuthController::class, "authenticate"]);
 
 	//Password reset
 	Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
@@ -116,10 +125,10 @@ Route::group(['middleware' => ['verified']], function () {
 		->name('password.reset');
 
 	Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
-// });
+});
 
 //Logout
-Route::get("/logout", [AuthController::class, "logout"])->name('logout');;
+Route::get("/logout", [AuthController::class, "logout"])->name('logout');
 
 
 /********************************

@@ -57,10 +57,15 @@ class AuthController extends Controller
         //was any of those correct ?
         if (Auth::check()) {
             $request->session()->regenerate();
-            // redirect where user usually attempted to go, but on homepage as a fallback
-            // dd('auth 1');
-            // return back();
-            return redirect()->intended('/home');
+            if(!User::where('id', Auth::user()->id)->first()->has_onboarded) {
+                // user has not onboarded yet
+                return redirect()->route('onboardingWelcome');
+            } else {
+                // redirect where user usually attempted to go, but on homepage as a fallback
+                return redirect()->route('home');
+            }
+
+            
         }
 
         //Nope, something wrong during authentication 
@@ -114,12 +119,6 @@ class AuthController extends Controller
 
         $data = $request->all();
         $user = $this->create($data);
-        
-        $user->eye_id = 1;
-        $user->mouth_id = 1;
-        $user->pose_id = 1;
-        $user->save();
-
 
         event(new Registered($user)); //dispatch event to send verification email
         return redirect()->route('verification.notice');
@@ -154,7 +153,6 @@ class AuthController extends Controller
      */
     public function showVerifyEmailView()
     {
-        // dd('show verify email view');
         return view("auth/verify");
     }
 
