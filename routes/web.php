@@ -81,12 +81,14 @@ Route::group(['middleware' => ['verified']], function () {
 	/********************************
 	 * Onboarding
 	 ********************************/
-	Route::get('/welcome/1', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
-	Route::get('/welcome/2', [OnboardingController::class, 'displayAvatarCreator'])->name('onboardingWelcome');
-	// Route::post('/welcome/2', [OnboardingController::class, 'createAvatar']);
-	// Route::get('/welcome/3', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
-	// Route::get('/welcome/4', [OnboardingController::class, 'displayFriendsTutorial'])->name('onboardingFriends');
-	// Route::get('/welcome/5', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
+	Route::group(['middleware' => ['onboarded']], function () {	//
+		Route::get('/welcome/1', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
+		Route::get('/welcome/2', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingWelcome');
+		Route::post('/welcome/2', [AvatarController::class, 'createAvatar']);
+		Route::get('/welcome/3', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
+		Route::get('/welcome/4', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
+		Route::get('/welcome/5', [OnboardingController::class, 'displayFriendsTutorial'])->name('onboardingFriends');
+	});
 });
 
 
@@ -106,7 +108,7 @@ Route::group(['middleware' => ['guest']], function () {
 
 	//Email confirmation
 	Route::get("/verify", [AuthController::class, "showVerifyEmailView"])
-		->name('verification.notice');
+		->middleware(['auth'])->name('verification.notice');
 
 	Route::get('/login/{id}/{hash}', [AuthController::class, "handleVerificationEmail"])
 		->middleware(['auth', 'signed'])->name('verification.verify');

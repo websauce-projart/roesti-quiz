@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -10,20 +9,38 @@ use Illuminate\Support\Facades\Auth;
 class OnboardingController extends Controller
 {
     public function displayWelcome() {
+        //Retrieve data
         $user_id = Auth::user()->id;
         $user = User::where('id', $user_id)->first();
 
-        //Checks if user has already onboarded
-        //TO IMPLEMENT
-
-        //Toggle has_onboarded and return view
+        //Toggle has_onboarded
         $user->has_onboarded = true;
         $user->save();
 
+        //Return view
         return view('/onboarding/welcome');
     }
+    
+    public function displayQuizTutorial() {
+        //Return view
+        return view('/onboarding/quiz');
+    }
 
-    public function displayAvatarCreator() {
-        
+    public function displayHistoryTutorial () {
+        //Return view
+        return view('/onboarding/history');
+    }
+
+    public function displayFriendsTutorial() {
+        //Retrieve data
+        $user_id = Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
+
+        //Toggle has_onboarded
+        $user->has_onboarded = true;
+        $user->save();
+
+        //Return view
+        return view('/onboarding/friends');
     }
 }

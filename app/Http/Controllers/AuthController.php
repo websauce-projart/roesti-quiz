@@ -121,7 +121,7 @@ class AuthController extends Controller
         $user = $this->create($data);
 
         event(new Registered($user)); //dispatch event to send verification email
-        return redirect()->route('verification.notice');
+        return redirect()->route('login');
     }
 
     /**
@@ -132,14 +132,18 @@ class AuthController extends Controller
      */
     public function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'pseudo' => $data['pseudo'],
             'email' => $data['email'],
             'password' => $data['password'],
-            'eye_id' => 1,
-            'mouth_id' => 1,
-            'pose_id' => 1
         ]); 
+        
+        $user->pose_id = 1;
+        $user->mouth_id = 1;
+        $user->eye_id = 1;
+        $user->save();
+
+        return $user;
     }
 
     /********************************
@@ -249,7 +253,8 @@ class AuthController extends Controller
            if (Hash::check($request->oldpassword , $hashedPassword )) {
     
              if (!Hash::check($request->newpassword , $hashedPassword)) {
-                $user = Auth::user();
+                $user_id = Auth::user()->id;
+                $user = User::where('id', $user_id)->first();
                 $user->password = $request->newpassword;
                 $user->save();
                 session()->flash('message','Le mot de passe a été changé avec succès !');

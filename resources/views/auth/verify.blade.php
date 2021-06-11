@@ -9,9 +9,6 @@ Vérifie ton email
 <body>
     <div class="container">
         <header class="header header--login">
-            <nav class="topnav topnav--right">
-                <a href="{{ route('login') }}">Retour au login</a>
-            </nav>
             <img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
         </header>
 
@@ -19,7 +16,7 @@ Vérifie ton email
 
             <div>
 
-                😊 Merci de confirmer votre adresse email pour pouvoir vous connecter au RöstiQuiz! 😊
+                😊 Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz! 😊
 
                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                     @csrf

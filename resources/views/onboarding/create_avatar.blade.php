@@ -10,6 +10,7 @@ Quel rösti es-tu {{$pseudo}} ?
 
 
 <form method="post" action="">
+@csrf
     <input type="submit" value="Suivant"/>
 </form>
 @endsection
