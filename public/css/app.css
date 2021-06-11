@@ -609,6 +609,7 @@ textarea,
  ********************************/
 :root {
 	--margin-xl: 150px;
+	--margin-l: 50px;
 	--margin-m: 25px;
 	--margin-s: 18px;
 	--margin-xs: 14px;
@@ -801,6 +802,7 @@ img {
  * Containers
  ********************************/
 .container {
+	width: 100%;
 	max-width: 650px;
 	margin: 0 auto;
 	padding: 0 var(--margin-s);
@@ -1416,7 +1418,7 @@ img {
 
 .topnav--right a,
 	.topnav--right button {
-		/* margin-right: var(--margin-s-negative); */
+		 margin-right: var(--margin-s-negative);
 	}
 
 /********************************
@@ -1430,8 +1432,9 @@ img {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	max-width: 400px; /* same as round-badge */
+	/*max-width: 400px;  same as round-badge */
 	margin: 0 auto;
+	padding-bottom: var(--margin-l);
 }
 
 .results__versusLabel {
@@ -1513,7 +1516,7 @@ img {
 
 .roundBadge--phantom {
 	display: block;
-	min-height: 20px;
+	min-height: 100px;
 	width: 1px;
 	opacity: 0;
 }
@@ -1582,7 +1585,6 @@ img {
 	position: relative;
 	background: var(--color-background);
 	border-radius: var(--borderradius-xl);
-	margin: var(--margin-s) auto;
 	padding: var(--margin-m);
 }
 

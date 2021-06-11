@@ -39,7 +39,7 @@
 
 .roundBadge--phantom {
 	display: block;
-	min-height: 20px;
+	min-height: 100px;
 	width: 1px;
 	opacity: 0;
 }

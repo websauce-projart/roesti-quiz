@@ -5,7 +5,6 @@
 	position: relative;
 	background: var(--color-background);
 	border-radius: var(--borderradius-xl);
-	margin: var(--margin-s) auto;
 	padding: var(--margin-m);
 }
 

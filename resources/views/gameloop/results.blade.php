@@ -6,10 +6,11 @@
 
 @section('content')
 
-
-    <nav class="container topnav topnav--right">
-        <a href="{{ route('home') }}" class="icon-close"></a>
-    </nav>
+	<div class="container">
+  	  	<nav class="topnav topnav--right">
+        	<a href="{{ route('home') }}" class="icon-close"></a>
+   	</nav>
+	</div>
 
     <main>
         <section class="container">

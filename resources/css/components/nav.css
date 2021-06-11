@@ -19,6 +19,6 @@
 	justify-content: right;
 	& a,
 	& button {
-		/* margin-right: var(--margin-s-negative); */
+		 margin-right: var(--margin-s-negative);
 	}
 }

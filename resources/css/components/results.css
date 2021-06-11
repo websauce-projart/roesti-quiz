@@ -7,8 +7,9 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	max-width: 400px; /* same as round-badge */
+	/*max-width: 400px;  same as round-badge */
 	margin: 0 auto;
+	padding-bottom: var(--margin-l);
 }
 
 .results__versusLabel {
