@@ -7,6 +7,10 @@
 	max-width: 346px;
 }
 
+.form--large {
+	max-width: 500px;
+}
+
 .form__field {
 	position: relative;
 	& [class^="icon-"] {
@@ -33,4 +37,13 @@
 
 .form__row--space {
 	margin-bottom: var(--margin-m);
+}
+
+.form__row--displayCondition {
+	margin: var(--margin-s) 0;
+	display: none;
+}
+
+input:checked~.form__row--displayCondition {
+	display: block;
 }

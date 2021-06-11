@@ -775,7 +775,32 @@ input[type="checkbox"]:checked::before {
  * Table
  ********************************/
 table {
-	width: 100%;
+	width: 100%
+}
+table button {
+		font-weight: bold;
+		cursor: pointer;
+	}
+table [class^="icon-"] {
+		font-size: var(--fonsize-m);
+		padding: 0 5px;
+	}
+table [class="icon-close"] {
+		color: var(--color-contrast);
+	}
+
+thead {
+	border-bottom: 1px solid var(--color-text-lighter);
+}
+
+th {
+	text-align: left;
+}
+
+th,
+td {
+	margin: 0 5px;
+	padding: var(--margin-xs) 0;
 }
 
 /********************************
@@ -1043,6 +1068,10 @@ img {
 	max-width: 346px;
 }
 
+.form--large {
+	max-width: 500px;
+}
+
 .form__field {
 	position: relative
 }
@@ -1070,6 +1099,15 @@ img {
 
 .form__row--space {
 	margin-bottom: var(--margin-m);
+}
+
+.form__row--displayCondition {
+	margin: var(--margin-s) 0;
+	display: none;
+}
+
+input:checked~.form__row--displayCondition {
+	display: block;
 }
 
 /********************************

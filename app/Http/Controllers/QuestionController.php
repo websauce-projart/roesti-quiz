@@ -66,7 +66,7 @@ class QuestionController extends Controller
             'author_id' => $user,
         ];
 
-        
+
         $question = Question::create($response);
 
         $question->categories()->attach($request->categories);
@@ -122,11 +122,11 @@ class QuestionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function getCategories()
     {
-        return Category::getAll();
+        return Category::all();
     }
 }

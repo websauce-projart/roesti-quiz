@@ -11,3 +11,7 @@
 .container--fullheight {
 	height: 100vh;
 }
+
+.container--large {
+	max-width: 1200px;
+}
