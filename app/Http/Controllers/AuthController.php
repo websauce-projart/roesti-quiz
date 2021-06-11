@@ -173,7 +173,6 @@ class AuthController extends Controller
     public function resendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        // dd('resend verification email');
         return redirect()->route('verification.notice')->withErrors(['email-resent' => true]);
     }
 
