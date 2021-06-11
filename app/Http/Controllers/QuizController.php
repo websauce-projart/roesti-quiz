@@ -69,7 +69,6 @@ class QuizController extends Controller
 
 	private static function handleQuitting($user_id, $round_id, $game_id, $questions)
 	{
-
 		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
 		if ($results_count != 2) {
 			//Retrieve data
@@ -126,7 +125,7 @@ class QuizController extends Controller
 
 		//Checks if result has not already some UserAnswers
 		if ($result->UserAnswers()->count() != 0) {
-			return redirect()->route('home');
+			return redirect()->route('results', [$game_id]);
 		}
 
 		//Calculate time to finish the quizz
@@ -230,7 +229,6 @@ class QuizController extends Controller
 				}
 			}
 		}
-
 
 		//Retrieve time
 		// This is duplicated code with createAnswers --> refactoring needed !

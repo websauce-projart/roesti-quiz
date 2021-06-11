@@ -815,12 +815,12 @@ img {
     grid-area: buttons;
 }
 
-.avatar__container {
+.avatar__editor__container {
     grid-area: avatar;
 }
 
 /**AVATAR SETTINGS */
-.avatar__container {
+.avatar__editor__container {
     position: relative;
     width: 200px;
     height: 200px;
@@ -828,7 +828,7 @@ img {
     margin: 0 auto;
 }
 
-.avatar__element {
+.avatar__editor__element {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -857,6 +857,19 @@ img {
 
 .buttons__container > span {
     font-size: 10rem;
+}
+
+/**DISPLAYED AVATAR */
+.avatar__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar__element {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 /********************************
  * Bottom bar
@@ -1558,12 +1571,12 @@ img {
     grid-area: buttons;
 }
 
-.avatar__container {
+.avatar__editor__container {
     grid-area: avatar;
 }
 
 /**AVATAR SETTINGS */
-.avatar__container {
+.avatar__editor__container {
     position: relative;
     width: 200px;
     height: 200px;
@@ -1571,7 +1584,7 @@ img {
     margin: 0 auto;
 }
 
-.avatar__element {
+.avatar__editor__element {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -1600,6 +1613,19 @@ img {
 
 .buttons__container > span {
     font-size: 10rem;
+}
+
+/**DISPLAYED AVATAR */
+.avatar__container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.avatar__element {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 /********************************
  * Colors

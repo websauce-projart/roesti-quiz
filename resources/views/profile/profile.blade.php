@@ -17,7 +17,7 @@ Profil
 <div>
     {{$data['user']->pseudo}}
     </br>
-    {{$data['score']['titleScore']}} - {{$data['score']['points']}}
+    {{$data['score']['titleScore']}} - {{$data['score']['points']}} points
 </div>
 </br>
 <div>
