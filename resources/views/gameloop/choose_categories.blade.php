@@ -1,24 +1,37 @@
 @extends('template')
 
 @section('title')
-    Choix de ta catégorie
+Choix de ta catégorie
 @endsection
 
+@push('body-classes')
+bg--white
+@endpush
+
 @section('content')
-    <h1>
-        <a href="{{ url()->previous() }}">
-            <- </a>
-                Choix de ta catégorie
-    </h1>
+<main class="container speech-bubble">
+
+	<nav class="topnav">
+		<a class="icon-arrow-left" href="{{ route("home") }}" aria-label="Retour"></a>
+		<h1 class="pageTitle">Choisis ta catégorie</h1>
+	</nav>
+
 
     <form action="{{ route('category', $data) }}" method="post">
         @csrf
 
-        @foreach ($categories as $category)
-            <input required name="categories" id="{{ $category }}" type="radio" value="{{ $category }}">
-            <label for="{{ $category }}">{{ $category }}</label>
-        @endforeach
+		  <div class="category__container">
+			@foreach ($categories as $category)
+			<div class="category">
+					<input required name="categories" id="{{ $category }}" type="radio" value="{{ $category }}">
+					<label class="btn btn--secondary" for="{{ $category }}">{{ $category }}</label>
+				</div>
+			@endforeach
+		</div>
 
-        <input type="submit" value="C'est parti mon roesti">
+		<div class="bottombar">
+      	<button class="btn btn--primary" type="submit">C'est parti mon rösti !</button>
+		</div>
     </form>
+	</main>
 @endsection

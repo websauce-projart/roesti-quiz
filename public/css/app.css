@@ -1069,6 +1069,44 @@ img {
  }
 
 /********************************
+ * Categories
+ ********************************/
+.category__container {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: var(--margin-l) 0;
+}
+
+.category {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: var(--margin-s)
+}
+
+.category label {
+		color: var(--color-white);
+		cursor: pointer;
+		display: block;
+		width: 100%;
+	}
+
+.category input[type="radio"] {
+		display: none;
+	}
+
+.category input[type="radio"]:checked + label {
+		background-color: var(--color-main);
+		color: var(--color-text);
+		box-shadow: var(--boxshadow-main);
+	}
+
+/********************************
  * Forms
  ********************************/
 .form {

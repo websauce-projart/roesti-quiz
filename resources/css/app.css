@@ -37,6 +37,7 @@
 @import "components/bottombar"; /* for next buttons */
 @import "components/buttons";
 @import "components/card";
+@import "components/categories";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
