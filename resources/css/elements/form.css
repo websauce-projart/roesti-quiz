@@ -4,7 +4,8 @@
 label {
 	color: var(--color-text);
 }
-input {
+input, 
+textarea {
 	color: var(--color-text-lighter);
 	background-color: var(--color-white);
 	padding: var(--margin-s);
@@ -14,6 +15,10 @@ input {
 	width: 100%;
 	border-radius: 0.5rem;
 	display: block;
+}
+
+textarea {
+	font-family: var(--font-text);
 }
 
 input[type="checkbox"],

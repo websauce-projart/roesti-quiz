@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
 
             $table->string('label');
-            $table->string('answer_label');
+            $table->string('answer_label')->nullable();
             $table->boolean('answer_boolean');
 
             $table->timestamps();

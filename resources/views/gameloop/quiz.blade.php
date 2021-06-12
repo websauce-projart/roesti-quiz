@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-    Quiz
+Quiz
 @endsection
 
 @section('content')
@@ -32,4 +32,3 @@
 </div>
 
 @endsection
-

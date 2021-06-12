@@ -27,5 +27,10 @@ th {
 th,
 td {
 	margin: 0 5px;
-	padding: var(--margin-xs) 0;
+	padding: var(--margin-xs) 5px;
+	min-width: 90px;
+}
+
+tr:nth-child(even) {
+	background-color: var(--color-background-sligthly-darker);
 }

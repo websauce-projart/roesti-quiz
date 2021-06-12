@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-Modifier un utilisateur
+Modifier un administrateur
 @endsection
 
 @section('content')
@@ -9,10 +9,10 @@ Modifier un utilisateur
 <div class="container container--large">
 
     <div class="center">
-        <a href="{{route('users.index')}}">Retour à la liste d'utilisateur</a>
+        <a href="{{route('admins.index')}}">Retour à la liste d'administrateurs</a>
     </div>
 
-    <form class="form form--center" method="POST" action="{{route('users.update', [$user->id])}}"
+    <form class="form form--center" method="POST" action="{{route('admins.update', $user->id)}}"
         accept-charset="UTF-8">
         @csrf
         @method('PUT')

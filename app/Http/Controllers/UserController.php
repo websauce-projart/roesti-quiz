@@ -17,8 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('backoffice/user_list')->with('users',$users);
+        $users = User::where('admin', 0)->get();
+        return view('backoffice/list_user')->with('users', $users);
     }
 
     /**
@@ -27,9 +27,9 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($user_id)
     {
-        $user = User::FindOrFail($id);
+        $user = User::FindOrFail($user_id);
         return view('backoffice/edit_user', compact('user'));
     }
 
@@ -42,9 +42,8 @@ class UserController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
-        $this->setAdmin($request);
         User::findOrFail($id)->update($request->all());
-        return redirect('backoffice/user')->withOk("L'utilisateur " . $request->input('pseudo') . " a été modifié");
+        return redirect()->route('users.index')->withOk("L'utilisateur " . $request->input('pseudo') . " a été modifié.");
     }
 
     /**
@@ -57,18 +56,13 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $games = $user->games;
+        $pseudo = $user->pseudo;
 
         foreach($games as $game) {
             Game::findOrFail($game->id)->delete();
         }
         User::findOrFail($id)->delete();
-        return redirect()->back();
-    }
-
-    private function setAdmin($request) {
-        if (!$request->has('admin')) {
-           $request->merge(['admin'=>0]);
-        }
+        return redirect()->route('users.index')->withOk("L'utilisateur " . $pseudo . " a été supprimé.");
     }
     
     /**
@@ -92,7 +86,10 @@ class UserController extends Controller
      */
     public function displayProfile($user_id)
     {
-        $currentUser = Auth::user();
+        $user = User::where('id', Auth::user()->id)->first();
+        if($user_id != $user->id) {
+            return redirect()->route('profile', [$user->id]);
+        }
 
         $ranking = [
             '0' => 'Bobet de service',
@@ -107,30 +104,26 @@ class UserController extends Controller
             '90000' => 'Roi·Reine des Röstis ',
         ];
 
-        $scores = Result::all()->where('user_id', $currentUser->id);
-        $scoreTotal = 0;
-        foreach($scores as $score){
-            $scoreTotal += $score->score;
-        };
+        $totalScore = $user->getTotalScore();
 
         foreach($ranking as $condition => $label){
 
-            if($scoreTotal == 0){
+            if($totalScore == 0){
                 $labelTitle = $label;
                 break;
-            }else if($scoreTotal < $condition){
+            }else if($totalScore < $condition){
                 $labelTitle = $label;
                 break;
             }
         }
 
         $score = array(
-            "points" => $scoreTotal,
+            "points" => $totalScore,
             "titleScore" => $labelTitle,
         );
 
         $data = array(
-            "user" => $currentUser,
+            "user" => $user,
             "score" => $score,
         );
         return view('profile/profile')->with('data', $data);
@@ -151,7 +144,7 @@ class UserController extends Controller
         }
         
         User::findOrFail($user->id)->delete();
-        session()->flash('account-deleted','Votre compte a bien été supprimé !');
+        session()->flash('account-deleted','Le compte a bien été supprimé !');
         return redirect()->route('login');
     }
 }

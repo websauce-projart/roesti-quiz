@@ -2,14 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoundController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\OnboardingController;
 
 /*
@@ -137,7 +139,8 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
  * Admin backoffice
  ********************************/
 Route::group(['middleware' => ['admin']], function () {
-	Route::view('/backoffice', 'backoffice/home_backoffice')->name('backoffice');
-	Route::resource('/backoffice/question', QuestionController::class);
-	Route::resource('/backoffice/user', UserController::class);
+	Route::get('/backoffice', [BackofficeController::class, 'showBackofficeView'])->name('backoffice');
+	Route::resource('/backoffice/users', UserController::class)->except(['show', 'create', 'store']);
+	Route::resource('/backoffice/admins', AdminController::class)->except(['show']);
+	Route::resource('/backoffice/questions', QuestionController::class)->except(['show']);
 });

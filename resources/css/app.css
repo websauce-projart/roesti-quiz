@@ -58,4 +58,5 @@
  ********************************/
 @import "utilities/colors";
 @import "utilities/align";
-@import "utilities/display.css";
+@import "utilities/display";
+@import "utilities/text";

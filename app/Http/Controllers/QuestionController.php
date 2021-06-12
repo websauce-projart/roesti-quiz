@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionRequest;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -20,7 +20,6 @@ class QuestionController extends Controller
         $this->middleware('admin');
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +27,8 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $data = $this->getCategories();
-        return view('backoffice/add_question')->with('data', $data);
+        $questions = Question::all();
+        return view('backoffice/list_question')->with('questions', $questions);
     }
 
     /**
@@ -39,7 +38,8 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //dd('hey');
+        $data = $this->getCategories();
+        return view('backoffice/add_question')->with('data', $data);
     }
 
     /**
@@ -50,39 +50,35 @@ class QuestionController extends Controller
      */
     public function store(QuestionRequest $request)
     {
-        if($request->answer_label == null){
-            $request->answer_label = 'none';
+        //If checkbox is unchecked, question is true
+        if($request->answer_boolean == 1){
+            $answer_boolean = 0;
+        } else {
+            $answer_boolean = 1;
         };
 
-        if($request->answer_boolean == null){
-            $request->answer_boolean = 0;
-        };
+        //If question is true, wipe recieved answer_label
+        if($answer_boolean == 1) {
+            $answer_label = null;
+        } else {
+            $answer_label = $request->answer_label;
+        }
 
-        $user = auth()->user()->id;
+        //Process data
+        $user_id = Auth::user()->id;
         $response = [
             'label' => $request->label,
-            'answer_label' => $request->answer_label,
-            'answer_boolean' => $request->answer_boolean,
-            'author_id' => $user,
+            'answer_label' => $answer_label,
+            'answer_boolean' => $answer_boolean,
+            'author_id' => $user_id,
         ];
 
-
+        //Create question
         $question = Question::create($response);
-
         $question->categories()->attach($request->categories);
 
-        return redirect('question')->withOk("La question a été créée.");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        //
+        //Return redirect
+        return redirect()->route('questions.index')->withOk("La question #" . $question->id ." a été créée.");
     }
 
     /**
@@ -91,9 +87,12 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit($id)
     {
-        //
+        $question = Question::FindOrFail($id);
+        $categories = Category::all();
+        return view('backoffice/edit_question', compact('question'))->with('categories', $categories);
+
     }
 
     /**
@@ -103,9 +102,11 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(QuestionRequest $request, $id)
     {
-        //
+        Question::findOrFail($id)->update($request->all());
+        return redirect()->route('questions.index')->withOk("La question #" . $id ." a été modifiée.");
+
     }
 
     /**
@@ -114,9 +115,10 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Question $question)
+    public function destroy($id)
     {
-        //
+        Question::findOrFail($id)->delete();
+        return redirect()->route('questions.index')->withOk("La question #" . $id ." a été modifiée.");
     }
 
     /**
