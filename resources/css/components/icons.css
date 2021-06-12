@@ -6,10 +6,10 @@
   ********************************/
 @font-face {
 	font-family: "icomoon";
-	src: url("/fonts/icomoon.eot?whvtr9");
-	src: url("/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
-		url("/fonts/icomoon.ttf?whvtr9") format("truetype"),
-		url("/fonts/icomoon.woff?whvtr9") format("woff");
+	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9");
+	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
+		url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.ttf?whvtr9") format("truetype"),
+		url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.woff?whvtr9") format("woff");
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
