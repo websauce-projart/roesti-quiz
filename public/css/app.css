@@ -1726,6 +1726,7 @@ input:checked~.form__row--displayCondition {
 	background: var(--color-background);
 	border-radius: var(--borderradius-xl);
 	padding: 0 var(--margin-m);
+	padding-bottom: var(--margin-l);
 }
 
 .speech-bubble:before {
