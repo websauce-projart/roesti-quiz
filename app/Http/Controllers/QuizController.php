@@ -23,7 +23,6 @@ class QuizController extends Controller
 		$result = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
 		$game = Game::where('id', $game_id)->first();
 
-		/*
 		//Checks if round belongs to the game
 		if ($round->game()->first()->id != $game_id) {
 			return redirect()->route('home');
@@ -51,7 +50,6 @@ class QuizController extends Controller
 			}
 			return redirect()->route('results', [$game->id]);	//User has played trough the game already
 		}
-		 */
 
 		//Create Result
 		$result = Result::create([
