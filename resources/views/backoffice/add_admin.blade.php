@@ -10,21 +10,21 @@ Ajouter un administrateur
 
 <div class="container container--large">
     <div class="center">
-        <a href="{{route('indexAdmin')}}">Liste des administrateurs</a> | <strong>Créer un administrateur</strong>
+        <a href="{{route('admins.index')}}">Liste des administrateurs</a> | <strong>Créer un administrateur</strong>
     </div>
 
-    <form action="" method="post" class="form form--center">
+    <form action="{{route('admins.store')}}" method="post" class="form form--center">
         @csrf
 
         {{-- Gérer les erreurs de saisie avec vue --}}
 
         <div class="form__row">
-            <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez un pseudo..." icon="user"></x-input-text>
+            <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez un pseudo..." icon="user" value="{{ old('pseudo') }}"></x-input-text>
             {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div class="form__row">
-            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez un adresse e-mail..." icon="envelope">
+            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez un adresse e-mail..." icon="envelope" value="{{ old('email') }}">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>

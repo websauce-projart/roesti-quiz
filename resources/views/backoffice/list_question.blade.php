@@ -10,16 +10,22 @@ Questions
 
 <div class="container container--large">
 	<div class="center">
-		<strong>Liste des questions</strong> | <a href="{{route('addQuestion')}}">Créer une question</a>
+		<strong>Liste des questions</strong> | <a href="{{route('questions.create')}}">Créer une question</a>
 	</div>
+
+    @if(session()->has('ok'))
+    <div>
+        {!! session('ok') !!}
+    </div>
+    @endif
 
     <table>
         <thead>
             <tr>
+                <th>#</th>
                 <th>Question</th>
                 <th>Réponse</th>
                 <th>Catégories</th>
-                <th>Auteur</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -27,17 +33,17 @@ Questions
         <tbody>
             @foreach ($questions as $question)
             <tr>
+                <td class="text__small">{{$question->id}}</td>
                 <td class="text__small">{{$question->label}}</td>
                 <td class="text__small">{{$question->getLitteralAnswer()}} {{$question->answer_label}}</td>
                 <td class="text__small">{{$question->getCategoriesTitles()}}</td>
-                <td class="text__small">{{$question->author_id}}</td>
-                <td class="text__small"><a class="icon-edit-pencil" href=""></a></td>
+                <td class="text__small"><a class="icon-edit-pencil" href="{{route('questions.edit', [$question->id])}}"></a></td>
                 <td>
-                    <form method="POST" action="">
+                    <form method="POST" action="{{route('questions.destroy', [$question->id])}}">
                         @csrf
                         @method('DELETE')
                         <button class="icon-close" type="submit"
-                            onclick="return confirm('Vraiment supprimer cet utilisateur ?')"></button>
+                            onclick="return confirm('Vraiment supprimer cette question ?')"></button>
                     </form>
                 </td>
             </tr>

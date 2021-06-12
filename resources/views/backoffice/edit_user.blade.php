@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-Backoffice: Questions
+Modifier un utilisateur
 @endsection
 
 @section('content')
@@ -31,6 +31,7 @@ Backoffice: Questions
             </div>
         </div>
 
+        <input type="hidden" name="id" value="{{$user->id}}">
         <input class="btn btn--primary" type="submit" value="Modifier">
     </form>
 </div>

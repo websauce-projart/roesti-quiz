@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserUpdateRequest;
 
 class BackofficeController extends Controller
 {
@@ -12,27 +13,22 @@ class BackofficeController extends Controller
     }
 
     public function displayAddAdminView() {
-        return view('backoffice/add_admin');
+        dd('create');
     }
 
     public function createAdmin(Request $request) {
-        $request->validate([
-            'pseudo' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
+        dd('store');
+    }
 
-        $user = User::create([
-            'pseudo' => $request->pseudo,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
-        
-        $user->admin = 1;
-        $user->has_onboarded = 1;
-        $user->email_verified_at = now();
-        $user->save();
+    public function indexAdmin() {
+        dd('index');
+    }
 
-        return redirect()->route('adminIndex');
+    public function editAdmin($user_id) {
+        dd('edit');
+    }
+
+    public function updateAdmin(UserUpdateRequest $request, $id) {
+        dd('update');
     }
 }

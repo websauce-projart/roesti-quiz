@@ -28,7 +28,7 @@ th,
 td {
 	margin: 0 5px;
 	padding: var(--margin-xs) 5px;
-	min-width: 60px;
+	min-width: 90px;
 }
 
 tr:nth-child(even) {

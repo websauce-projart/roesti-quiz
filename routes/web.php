@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AvatarController;
-use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\RoundController;
-use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\RoundController;
+use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\ResultController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\OnboardingController;
 
 /*
@@ -139,17 +140,7 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
  ********************************/
 Route::group(['middleware' => ['admin']], function () {
 	Route::get('/backoffice', [BackofficeController::class, 'showBackofficeView'])->name('backoffice');
-
-	Route::resource('/backoffice/users', UserController::class);
-
-	Route::get('/backoffice/questions/', [QuestionController::class, 'indexQuestion'])->name('indexQuestion');
-	Route::get('/backoffice/questions/add', [QuestionController::class, 'displayAddQuestionView'])->name('addQuestion');
-	Route::post('/backoffice/questions/add', [QuestionController::class, 'createQuestion']);
-	// Route::get('/backoffice/question/{question_id}/update', [QuestionController::class, '']);
-	// Route::post('/backoffice/question/{question_id}/update', [QuestionController::class, '']);
-
-	Route::get('/backoffice/admins', [UserController::class, 'indexAdmin'])->name('indexAdmin');
-	Route::get('/backoffice/admins/add', [BackofficeController::class, 'displayAddAdminView'])->name('addAdmin');
-	Route::post('/backoffice/admins/add', [BackofficeController::class, 'createAdmin']);
-	Route::get('/backoffice/admins/{user_id}/edit', [UserController::class, 'editAdmin'])->name('editAdmin');
+	Route::resource('/backoffice/users', UserController::class)->except(['show', 'create', 'store']);
+	Route::resource('/backoffice/admins', AdminController::class)->except(['show']);
+	Route::resource('/backoffice/questions', QuestionController::class)->except(['show']);
 });

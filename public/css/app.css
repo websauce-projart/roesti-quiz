@@ -614,6 +614,7 @@ textarea,
 	--margin-m: 25px;
 	--margin-s: 18px;
 	--margin-xs: 14px;
+	--margin-xxs: 5px;
 
 	--margin-s-negative: -18px;
 }
@@ -729,7 +730,8 @@ button {
 label {
 	color: var(--color-text);
 }
-input {
+input, 
+textarea {
 	color: var(--color-text-lighter);
 	background-color: var(--color-white);
 	padding: var(--margin-s);
@@ -739,6 +741,10 @@ input {
 	width: 100%;
 	border-radius: 0.5rem;
 	display: block;
+}
+
+textarea {
+	font-family: var(--font-text);
 }
 
 input[type="checkbox"],
@@ -802,7 +808,7 @@ th,
 td {
 	margin: 0 5px;
 	padding: var(--margin-xs) 5px;
-	min-width: 60px;
+	min-width: 90px;
 }
 
 tr:nth-child(even) {
@@ -1742,6 +1748,22 @@ input:checked~.form__row--displayCondition {
 
 .no-display{
 	display:none;
+}
+
+.flex-column {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.margin-small {
+	margin: var(--margin-xxs) 0; 
+}
+
+.margin-auto {
+	margin: 0 auto;
 }
 
 .active {

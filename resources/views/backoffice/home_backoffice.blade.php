@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-	 Backoffice: Home
+Backoffice
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@
 	<p>Bienvenue dans l'espace de gestion destiné aux administrateurs.</p>
 
 	<ul>
-		<li><strong>Home:</strong> C'est la page d'accueil, celle-là même.
-		</li>
-		<li><strong>Utilisateurs:</strong> Vous pouvez modifier et supprimer des utilisateurs depuis ici</li>
-		<li><strong>Questions:</strong> Vous pouvez créer une nouvelle question et en choisir la catégorie</li>
+		<li><strong>Home:</strong> C'est la page d'accueil, celle-là même.</li>
+		<li><strong>Utilisateurs:</strong> Vous pouvez modifier et supprimer des utilisateurs.</li>
+		<li><strong>Administrateur:</strong> Vous pouvez créer, modifier et supprimer des administrateurs.</li>
+		<li><strong>Questions:</strong> Vous pouvez créer, modifier et supprimer des questions.</li>
 		<li><strong>Logout:</strong> Pour se déconnecter</li>
 	</ul>
 

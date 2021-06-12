@@ -46,6 +46,10 @@ class Question extends Model
         return $categoriesList;
     }
 
+    public function getCategories() {
+        return Question::categories()->get();
+    }
+
     public function getLitteralAnswer() {
         if($this->answer_boolean == 0) {
             return 'Faux: ';

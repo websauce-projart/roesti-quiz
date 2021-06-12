@@ -17,15 +17,15 @@
 	>Utilisateurs</a>
 
 
-	<a href="{{ route('indexAdmin') }}"
-	@if ($route == 'indexAdmin' || $route == 'addAdmin')
+	<a href="{{ route('admins.index') }}"
+	@if ($route == 'admins.index' || $route == 'admins.create')
 	class="active"
 	@endif
 	>Administrateurs</a>
 
 
-	<a href="{{ route('indexQuestion') }}"
-	@if ($route == 'indexQuestion' || $route == 'addQuestion')
+	<a href="{{ route('questions.index') }}"
+	@if ($route == 'questions.index' || $route == 'questions.create')
 	class="active"
 	@endif
 	>Questions</a>

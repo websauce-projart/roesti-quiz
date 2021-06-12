@@ -10,7 +10,7 @@ Administrateurs
 
 <div class="container container--large">
 	<div class="center">
-		<strong>Liste des administrateurs</strong> | <a href="{{route('addAdmin')}}">Créer un administrateur</a>
+		<strong>Liste des administrateurs</strong> | <a href="{{route('admins.create')}}">Créer un administrateur</a>
 	</div>
 
     <table>
@@ -27,7 +27,7 @@ Administrateurs
                 <td>{!! $user->id !!}</td>
                 <td><strong>{!! $user->pseudo !!}</strong></td>
                 <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
-                <td><a class="icon-edit-pencil" href="{{route('editAdmin', [$user->id])}}"></a></td>
+                <td><a class="icon-edit-pencil" href="{{route('admins.edit', [$user->id])}}"></a></td>
                 <td>
                     <form method="POST" action="{{route('users.destroy', [$user->id])}}">
                         @csrf
