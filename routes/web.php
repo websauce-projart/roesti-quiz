@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AvatarController;
+use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoundController;
@@ -137,7 +138,18 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
  * Admin backoffice
  ********************************/
 Route::group(['middleware' => ['admin']], function () {
-	Route::view('/backoffice', 'backoffice/home_backoffice')->name('backoffice');
-	Route::resource('/backoffice/question', QuestionController::class);
-	Route::resource('/backoffice/user', UserController::class);
+	Route::get('/backoffice', [BackofficeController::class, 'showBackofficeView'])->name('backoffice');
+
+	Route::resource('/backoffice/users', UserController::class);
+
+	Route::get('/backoffice/questions/', [QuestionController::class, 'indexQuestion'])->name('indexQuestion');
+	Route::get('/backoffice/questions/add', [QuestionController::class, 'displayAddQuestionView'])->name('addQuestion');
+	Route::post('/backoffice/questions/add', [QuestionController::class, 'createQuestion']);
+	// Route::get('/backoffice/question/{question_id}/update', [QuestionController::class, '']);
+	// Route::post('/backoffice/question/{question_id}/update', [QuestionController::class, '']);
+
+	Route::get('/backoffice/admins', [UserController::class, 'indexAdmin'])->name('indexAdmin');
+	Route::get('/backoffice/admins/add', [BackofficeController::class, 'displayAddAdminView'])->name('addAdmin');
+	Route::post('/backoffice/admins/add', [BackofficeController::class, 'createAdmin']);
+	Route::get('/backoffice/admins/{user_id}/edit', [UserController::class, 'editAdmin'])->name('editAdmin');
 });

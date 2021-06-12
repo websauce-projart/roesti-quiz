@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionRequest;
 use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\QuestionRequest;
 
 class QuestionController extends Controller
 {
-
     /**
      * Create a new controller instance.
      *
@@ -22,56 +22,44 @@ class QuestionController extends Controller
 
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $data = $this->getCategories();
-        return view('backoffice/add_question')->with('data', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //dd('hey');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(QuestionRequest $request)
+    public function createQuestion(QuestionRequest $request)
     {
-        if($request->answer_label == null){
-            $request->answer_label = 'none';
-        };
-
+        //If checkbox is unchecked, question is true
         if($request->answer_boolean == null){
-            $request->answer_boolean = 0;
+            $request->answer_boolean = 1;
         };
 
-        $user = auth()->user()->id;
+        //Process data
+        $user_id = Auth::user()->id;
         $response = [
             'label' => $request->label,
             'answer_label' => $request->answer_label,
             'answer_boolean' => $request->answer_boolean,
-            'author_id' => $user,
+            'author_id' => $user_id,
         ];
 
-
+        //Create question
         $question = Question::create($response);
-
         $question->categories()->attach($request->categories);
 
-        return redirect('question')->withOk("La question a été créée.");
+        //Return redirect
+        return redirect()->route('addQuestion')->withOk("La question a été créée.");
+    }
+
+    /**
+     * Display a listing of questions.
+     *
+     * @return view list_question
+     */
+    public function indexQuestion()
+    {
+        $questions = Question::all();
+        return view('backoffice/list_question')->with('questions', $questions);
     }
 
     /**
@@ -117,6 +105,11 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+    }
+
+    public function displayAddQuestionView() {
+        $data = $this->getCategories();
+        return view('backoffice/add_question')->with('data', $data);
     }
 
     /**

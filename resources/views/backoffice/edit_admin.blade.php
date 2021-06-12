@@ -9,10 +9,10 @@ Backoffice: Questions
 <div class="container container--large">
 
     <div class="center">
-        <a href="{{route('users.index')}}">Retour à la liste d'utilisateur</a>
+        <a href="{{route('indexAdmin')}}">Retour à la liste d'administrateurs</a>
     </div>
 
-    <form class="form form--center" method="POST" action="{{route('users.update', [$user->id])}}"
+    <form class="form form--center" method="POST" action=""
         accept-charset="UTF-8">
         @csrf
         @method('PUT')

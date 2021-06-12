@@ -593,6 +593,7 @@ textarea,
 	--color-text-alpha: rgba(51,94,135,0.23137);
 
 	--color-background: #e7f9fd;
+	--color-background-sligthly-darker: rgba(214,234,238,0.56078);
 	--color-background-darker: #7895b0;
 	--color-white: #fff;
 	--color-disable: #b3b7c2;
@@ -800,7 +801,12 @@ th {
 th,
 td {
 	margin: 0 5px;
-	padding: var(--margin-xs) 0;
+	padding: var(--margin-xs) 5px;
+	min-width: 60px;
+}
+
+tr:nth-child(even) {
+	background-color: var(--color-background-sligthly-darker);
 }
 
 /********************************
@@ -1738,6 +1744,14 @@ input:checked~.form__row--displayCondition {
 	display:none;
 }
 
+.active {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.text__small {
+    font-size: 0.8rem;
+}
 /********************************
  * CSS ENTRY POINT
  ********************************/

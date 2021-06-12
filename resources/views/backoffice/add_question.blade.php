@@ -1,12 +1,18 @@
 @extends('template')
 
+@section('title')
+Ajouter une question
+@endsection
+
 @section('content')
 
 <x-backoffice-nav></x-backoffice-nav>
 
-<div class="container">
+<div class="container container--large">
 
-	<h1>Ajouter une question</h1>
+	<div class="center">
+		<a href="{{route('indexQuestion')}}">Liste des questions</a> | <strong>Créer une question</strong>
+	</div>
 
 	@if(session()->has('ok'))
 		<div class="alert alert-success alert-dismissible">
@@ -14,7 +20,7 @@
 		</div>
 	@endif
 
-	<form class="form form--large" action="{{ route('question.store') }}" method="post" accept-charset="UTF-8">
+	<form class="form form--center" action="{{ route('addQuestion') }}" method="post" accept-charset="UTF-8">
 		@csrf
 		<div class="form__row">
 			<label for="label">Entrez la question: </label>
@@ -26,7 +32,7 @@
 			<input type="checkbox" id="answer_boolean" name="answer_boolean" value=1>
 			<label for="answer_boolean">Cochez si la question est fausse</label>
 			<div class="form__row--displayCondition">
-				<label for="answer_label">Entrez la réponse si vous avez cochez en dessus: </label>
+				<label for="answer_label">Entrez la réponse à la question ci-dessus: </label>
 				<input name="answer_label" type="text" id="answer_label">
 			</div>
 		</div>

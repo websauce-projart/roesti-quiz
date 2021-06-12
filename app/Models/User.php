@@ -80,17 +80,20 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $this->belongsTo(Round::class);
 	}
 
-	public function eye() {
-        return $this->belongsTo(Eye::class);
-    }
+	public function eye()
+	{
+		return $this->belongsTo(Eye::class);
+	}
 
-	public function mouth() {
-        return $this->belongsTo(Mouth::class);
-    }
+	public function mouth()
+	{
+		return $this->belongsTo(Mouth::class);
+	}
 
-	public function pose() {
-        return $this->belongsTo(Pose::class);
-    }
+	public function pose()
+	{
+		return $this->belongsTo(Pose::class);
+	}
 
 	/**
 	 * Send the email verification notification.
@@ -126,10 +129,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $user1;
 	}
 
-	public function getAllPotentialOpponents() {
+	public function getAllPotentialOpponents()
+	{
 		$games = $this->games()->get();
 		$opponents = collect();
-		foreach($games as $game) {
+		foreach ($games as $game) {
 			$opponent = $this->getOtherUser($game->id);
 			$opponents->push($opponent);
 		}
@@ -141,15 +145,28 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $potentialOpponents;
 	}
 
-	public function getPosePath() {
+	public function getPosePath()
+	{
 		return $this->pose()->first()->path;
 	}
 
-	public function getMouthPath() {
+	public function getMouthPath()
+	{
 		return $this->mouth()->first()->path;
 	}
 
-	public function getEyePath() {
-		return $this->eye()->first()->path;	
+	public function getEyePath()
+	{
+		return $this->eye()->first()->path;
+	}
+
+	public function getTotalScore()
+	{
+		$totalScore = 0;
+		$results = $this->results()->get();
+		foreach ($results as $result) {
+			$totalScore += $result->score;
+		}
+		return $totalScore;
 	}
 }
