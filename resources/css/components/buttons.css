@@ -37,9 +37,13 @@
 .btn--tertiary {
 	background-color: var(--color-white);
 	color: var(--color-text);
-	box-shadow: -3px 3px var(--color-background);
+	box-shadow: -3px 3px var(--color-secondary);
 	font-family: var(--font-text);
-	font-weight: 900;
+	letter-spacing: 0;
+}
+.btn--tertiary:hover {
+	box-shadow: -5px 5px var(--color-secondary);
+	transform: translate(2px, -2px);
 }
 
 .btn--primary:active,

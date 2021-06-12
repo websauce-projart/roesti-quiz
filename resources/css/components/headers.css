@@ -3,6 +3,7 @@
  ********************************/
 .header {
 	display: flex;
+	padding: var(--margin-m) 0;
 	& .pageTitle {
 		margin-left: var(--margin-m);
 	}

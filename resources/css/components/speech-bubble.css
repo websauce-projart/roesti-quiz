@@ -5,7 +5,7 @@
 	position: relative;
 	background: var(--color-background);
 	border-radius: var(--borderradius-xl);
-	padding: var(--margin-m);
+	padding: 0 var(--margin-m);
 }
 
 .speech-bubble:before {
