@@ -873,7 +873,7 @@ img {
     position: relative;
     width: 200px;
     height: 200px;
-    background-image: url('/img/avatar/assets_avatar_background.svg');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/assets_avatar_background.svg');
     margin: 0 auto;
 }
 
@@ -884,15 +884,15 @@ img {
 }
 
 .avatar__element__eyes {
-    background-image: url('/img/avatar/eyes/assets_avatar_yeux.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux.png');
 }
 
 .avatar__element__mouths {
-    background-image: url('/img/avatar/mouths/assets_avatar_bouches.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/mouths/assets_avatar_bouches.png');
 }
 
 .avatar__element__poses {
-    background-image: url('/img/avatar/poses/assets_avatar_poses.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/poses/assets_avatar_poses.png');
 }
 
 /**BUTTONS SETTINGS */
@@ -1351,10 +1351,10 @@ input:checked~.form__row--displayCondition {
   ********************************/
 @font-face {
 	font-family: "icomoon";
-	src: url("/fonts/icomoon.eot?whvtr9");
-	src: url("/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
-		url("/fonts/icomoon.ttf?whvtr9") format("truetype"),
-		url("/fonts/icomoon.woff?whvtr9") format("woff");
+	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9");
+	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
+		url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.ttf?whvtr9") format("truetype"),
+		url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.woff?whvtr9") format("woff");
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
@@ -1880,7 +1880,7 @@ input:checked~.form__row--displayCondition {
     position: relative;
     width: 200px;
     height: 200px;
-    background-image: url('/img/avatar/assets_avatar_background.svg');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/assets_avatar_background.svg');
     margin: 0 auto;
 }
 
@@ -1891,15 +1891,15 @@ input:checked~.form__row--displayCondition {
 }
 
 .avatar__element__eyes {
-    background-image: url('/img/avatar/eyes/assets_avatar_yeux.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux.png');
 }
 
 .avatar__element__mouths {
-    background-image: url('/img/avatar/mouths/assets_avatar_bouches.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/mouths/assets_avatar_bouches.png');
 }
 
 .avatar__element__poses {
-    background-image: url('/img/avatar/poses/assets_avatar_poses.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/poses/assets_avatar_poses.png');
 }
 
 /**BUTTONS SETTINGS */
