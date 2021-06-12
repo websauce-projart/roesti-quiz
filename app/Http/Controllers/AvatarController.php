@@ -86,7 +86,7 @@ class AvatarController extends Controller
         $poses = Pose::all();
 
         //Return view
-        return view('/onboarding/create_avatar')
+        return view('onboarding/create_avatar')
         ->with('pseudo', $user->pseudo)
         ->with('eyes', $eyes)
         ->with('mouths', $mouths)
