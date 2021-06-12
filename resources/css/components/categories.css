@@ -1,0 +1,30 @@
+/********************************
+ * Categories
+ ********************************/
+.category__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: var(--margin-l) 0;
+}
+
+.category {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: var(--margin-s);
+	& label {
+		color: var(--color-white);
+		cursor: pointer;
+		display: block;
+		width: 100%;
+	}
+	& input[type="radio"] {
+		display: none;
+	}
+	& input[type="radio"]:checked + label {
+		background-color: var(--color-main);
+		color: var(--color-text);
+		box-shadow: var(--boxshadow-main);
+	}
+}

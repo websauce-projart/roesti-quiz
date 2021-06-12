@@ -15,8 +15,6 @@
         <form action="" method="post" class="form form--center">
             @csrf
 
-            {{-- Gérer les erreurs de saisie avec vue --}}
-
             <div class="form__row">
                 <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." icon="user"></x-input-text>
                 {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}

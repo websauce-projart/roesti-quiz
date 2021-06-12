@@ -1,0 +1,74 @@
+/********************************
+ * Profile
+ ********************************/
+.profile__avatar {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: var(--margin-m);
+}
+
+.profile__avatar__image {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	background-color: var(--color-white);
+	box-shadow: var(--boxshadow-second-blurred);
+	padding: var(--margin-m);
+	position: relative;
+}
+
+.profile__avatar__editButton a {
+	background-color: var(--color-white);
+	box-shadow: var(--boxshadow-second-blurred);
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: var(--fontsize-l);
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+
+.profile__info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: var(--margin-m);
+}
+
+.profile__info__pseudo {
+	font-family: var(--font-headings);
+	letter-spacing: var(--fontspacing-headings);
+}
+
+.profile__info__score {
+	color: var(--color-secondary);
+}
+
+.profile__actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: var(--margin-m);
+	& a {
+		margin-bottom: var(--margin-s);
+	}
+	& a:last-of-type {
+		margin-bottom: var(--margin-l);
+	}
+	& form {
+		display: flex;
+		justify-content: center;
+		& button {
+			font-size: var(--fontsize-m);
+			text-decoration: underline;
+			text-align: center;
+			color: var(--color-text);
+		}
+	}
+}

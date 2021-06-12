@@ -37,6 +37,7 @@
 @import "components/bottombar"; /* for next buttons */
 @import "components/buttons";
 @import "components/card";
+@import "components/categories";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
@@ -45,8 +46,10 @@
 @import "components/icons";
 @import "components/modal";
 @import "components/nav";
+@import "components/profile";
 @import "components/results";
 @import "components/round-badge";
+@import "components/search-friends";
 @import "components/speech-bubble";
 @import "components/avatar";
 
