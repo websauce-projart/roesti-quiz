@@ -137,9 +137,7 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
  * Admin backoffice
  ********************************/
 Route::group(['middleware' => ['admin']], function () {
-	Route::get('/backoffice', function () {
-		return view('backoffice/home_backoffice');
-	})->name('backoffice');
+	Route::view('/backoffice', 'backoffice/home_backoffice')->name('backoffice');
 	Route::resource('/backoffice/question', QuestionController::class);
 	Route::resource('/backoffice/user', UserController::class);
 });

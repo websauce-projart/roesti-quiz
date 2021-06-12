@@ -17,7 +17,7 @@ const app = createApp({
 
 const home = createApp({
 	components: {
-		Home,
+		Home
 	},
 }).mount("#vue_home");
 

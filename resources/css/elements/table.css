@@ -1,0 +1,31 @@
+/********************************
+ * Table
+ ********************************/
+table {
+	width: 100%;
+	& button {
+		font-weight: bold;
+		cursor: pointer;
+	}
+	& [class^="icon-"] {
+		font-size: var(--fonsize-m);
+		padding: 0 5px;
+	}
+	& [class="icon-close"] {
+		color: var(--color-contrast);
+	}
+}
+
+thead {
+	border-bottom: 1px solid var(--color-text-lighter);
+}
+
+th {
+	text-align: left;
+}
+
+th,
+td {
+	margin: 0 5px;
+	padding: var(--margin-xs) 0;
+}

@@ -23,6 +23,7 @@
 @import "elements/headings";
 @import "elements/text"; /* button, p, a, … */
 @import "elements/form";
+@import "elements/table";
 @import "elements/images";
 
 /* Objects (layouts, grid, wrapper)
@@ -36,7 +37,6 @@
 @import "components/bottombar"; /* for next buttons */
 @import "components/buttons";
 @import "components/card";
-@import "components/checkbox";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
