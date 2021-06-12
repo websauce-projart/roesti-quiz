@@ -1,7 +1,7 @@
 <template>
   <div class="avatar__container">
     <img
-      src="/img/avatar/assets_avatar_background.svg"
+      src="img/avatar/assets_avatar_background.svg"
       class="avatar__element"
     />
 
@@ -23,7 +23,7 @@ export default {
   setup(props) {
     let dataAvatar = ref([]);
     let loaded = ref(props.loaded);
-    const urlImg = "/img/avatar/";
+    const urlImg = "img/avatar/";
     let pose = ref();
     let mouth = ref();
     let eye = ref();
@@ -48,7 +48,7 @@ export default {
       }
 
       async function getData() {
-        await fetch("/api/avatar/" + props.dataSearch)
+        await fetch("api/avatar/" + props.dataSearch)
           .then((response) => response.json())
           .then((e) => (dataAvatar.value = e))
           .then(() => {

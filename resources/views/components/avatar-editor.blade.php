@@ -3,7 +3,6 @@
         <div id="poses" class="avatar__editor__element avatar__element__poses"></div>
         <div id="eyes" class="avatar__editor__element avatar__element__eyes"></div>
         <div id="mouths" class="avatar__editor__element avatar__element__mouths"></div>
-
     </div>
     <div class="buttons__container">
         <span id="eyesRight">

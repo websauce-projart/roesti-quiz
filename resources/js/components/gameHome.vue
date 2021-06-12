@@ -7,7 +7,7 @@
 		<div class="gameBadge__avatar">
 			<div class="avatar__container">
 				<img
-					src="/img/avatar/assets_avatar_background.svg"
+					src="img/avatar/assets_avatar_background.svg"
 					class="avatar__element"
 				/>
 				<img v-if="loaded" :src="this.pose" class="avatar__element" />
@@ -42,8 +42,8 @@ export default {
 	data() {
 		return {
 			avatarData: Object,
-			urlApi: "/api/avatar/",
-			urlImg: "/img/avatar/",
+			urlApi: "api/avatar/",
+			urlImg: "img/avatar/",
 			pose: String,
 			eye: String,
 			mouth: String,

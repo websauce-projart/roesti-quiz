@@ -11,7 +11,7 @@
         <cards-app :datas="{{ $questions }}"></cards-app>
 		</div>
 </div>
-<script src="/js/app.js"></script>
+
 </div>
 
     <form action="{{ route('postquiz', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result_id]) }}"

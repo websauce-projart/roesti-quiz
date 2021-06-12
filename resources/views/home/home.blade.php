@@ -20,7 +20,7 @@ bg--white
 
 		<main>
 			<div id="vue_home">
-				<home data_url='/api/home'></home>
+				<home data_url='api/home'></home>
 			</div>
 
 			<form class="bottombar" method="POST" action="" accept-charset="UTF-8">
