@@ -30,7 +30,7 @@ bg--white
 		</div>
 
 		<div class="bottombar">
-      	<button class="btn btn--primary" type="submit">C'est parti mon rösti !</button>
+      	<button class="btn btn--primary" type="submit">Suivant</button>
 		</div>
     </form>
 	</main>

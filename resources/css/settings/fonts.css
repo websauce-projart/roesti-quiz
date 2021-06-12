@@ -1,13 +1,14 @@
 /********************************
  * Fonts
  ********************************/
-@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@500&display=swap"); /* fonts */
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@300;500&display=swap"); /* fonts */
 
 :root {
 	--font-headings: "Luckiest Guy", sans-serif;
 	--font-text: "Roboto", sans-serif;
 
 	--fontsize-xl: 2.813rem; /* 45px */
+	--fontsize-ll: 2rem; /* 32px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
 	--fontsize-s: 0.875rem; /* 14px */

@@ -1,5 +1,5 @@
 <template>
-  <div id="cardscontainer">
+	<div id="cardscontainer">
 		<GameCardsStack
 			:cards="visibleCards"
 			:qid="qid"
@@ -8,78 +8,146 @@
 			@cardSkipped="handleCardSkipped"
 			@hideCard="removeCardFromDeck"
 		/>
-  </div>
+	</div>
 </template>
 
 <script>
 import GameCardsStack from "./components/GameCardsStack";
 
 export default {
-  name: "CardsApp",
-  components: {
-    GameCardsStack
+	name: "CardsApp",
+	components: {
+		GameCardsStack,
+	},
 
-  },
+	data() {
+		return {
+			visibleCards: [],
+			qid: Array,
+		};
+	},
 
-  data() {
-    return {
-      visibleCards: [],
-		qid: Array,
-    };
-  },
+	props: {
+		datas: Object,
+	},
 
-  props: {
-	  datas: Object,
-  },
+	methods: {
+		handleCardAccepted() {
+			// console.log(this.qid[0]);
+			document.getElementById(this.qid[0]).checked = true;
+		},
+		handleCardRejected() {
+			console.log("handleCardRejected");
+		},
+		handleCardSkipped() {
+			console.log("handleCardSkipped");
+		},
+		removeCardFromDeck() {
+			this.visibleCards.shift();
+			this.qid.shift();
+			let test = [];
+			if (this.qid.length === test.length) {
+				document.getElementById("quizForm").submit();
+			}
+		},
 
+		createQuestionsArray() {
+			let datas = this.$props.datas;
+			let labels = [];
+			let ids = [];
 
-  methods: {
-    handleCardAccepted() {
-      // console.log(this.qid[0]);
-		document.getElementById(this.qid[0]).checked = true;
-    },
-    handleCardRejected() {
-      console.log("handleCardRejected");
-    },
-    handleCardSkipped() {
-      console.log("handleCardSkipped");
-    },
-    removeCardFromDeck() {
-      this.visibleCards.shift();
-		this.qid.shift();
-		let test= [];
-		if(this.qid.length === test.length){
-			document.getElementById('quizForm').submit();
-		}
-    },
+			for (let index in datas) {
+				labels.push(datas[index].label);
+				ids.push(datas[index].id);
+			}
 
-	 createQuestionsArray(){
-		 let datas = this.$props.datas;
-		 let labels = [];
-		 let ids = [];
+			this.visibleCards = labels;
+			this.qid = ids;
+		},
+	},
 
-		for (let index in datas) {
-       labels.push(datas[index].label);
-		 ids.push(datas[index].id);
-      }
-
-		this.visibleCards = labels;
-		this.qid = ids;
-	  }
-
-  },
-
-  created() {
-	  this.createQuestionsArray();
-  },
+	created() {
+		this.createQuestionsArray();
+	},
 };
 </script>
 
 <style>
-
-
 #cardscontainer {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  text-align: center;
+	text-align: center;
+}
+
+.card {
+	box-shadow: var(--boxshadow-card);
+	transition: 0.3s;
+	border-radius: 5px; /* 5px rounded corners */
+	background: var(--color-white);
+	border-radius: var(--borderradius-m);
+	padding: var(--margin-l);
+	display: flex;
+	height: 30rem;
+	/* max-height: 350px; */
+	width: 20rem;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	margin-top: 3rem;
+}
+
+.cardTitle {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-ll);
+	font-weight: 300;
+}
+
+.card,
+.card * {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.isCurrent {
+	margin-top: 1rem;
+}
+
+.a0 {
+	z-index: 10;
+}
+
+.a1 {
+	z-index: 9;
+	margin-top: 2rem;
+}
+
+.a2 {
+	z-index: 8;
+}
+
+.a3 {
+	z-index: 7;
+}
+
+.a4 {
+	z-index: 6;
+}
+
+.a5 {
+	z-index: 5;
+}
+
+.a6 {
+	z-index: 4;
+}
+
+.a7 {
+	z-index: 3;
+}
+
+.a8 {
+	z-index: 2;
+}
+
+.a9 {
+	z-index: 1;
 }
 </style>

@@ -116,6 +116,7 @@ class RoundController extends Controller
 		// Retrieve answers for user and opponent
 		$round_result = Result::where("round_id", $round_id);
 		$user_result = $round_result->where("user_id", $user->id)->first();
+		// dd($user_result->id);
 		$opponent_result = $round_result->where("user_id", $opponent->id)->first();
 
 		$user_answers = null;
@@ -127,6 +128,8 @@ class RoundController extends Controller
 		if ($opponent_result) {
 			$opponent_answers = UserAnswer::where("result_id", $opponent_result->id)->get();
 		}
+
+		// dd($user_answers[4]["user_answer"]);
 
 		return view("gameloop.round_history", [
 			"game_id" => $game_id,

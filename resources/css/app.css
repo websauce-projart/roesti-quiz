@@ -38,6 +38,7 @@
 @import "components/buttons";
 @import "components/card";
 @import "components/categories";
+@import "components/endgame";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
@@ -51,7 +52,7 @@
 @import "components/round-badge";
 @import "components/search-friends";
 @import "components/speech-bubble";
-@import "components/avatar";
+@import "components/timer";
 
 /* Utilities (helpers)
  ********************************/

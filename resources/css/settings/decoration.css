@@ -20,6 +20,8 @@
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
 	--boxshadow--innerWhite: var(--color-white) 0px -230px 15px -6em inset;
 
+	--boxshadow-card: 0 4px 8px 0 #69696933;
+
 	/* Border radius
 	 ********************************/
 	--borderradius-xl: 3rem;
