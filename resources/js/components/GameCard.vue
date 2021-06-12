@@ -170,11 +170,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-.isCurrent{
-	color:blue;
-	margin-top: 1rem;
-}
-</style>

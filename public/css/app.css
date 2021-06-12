@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:wght@300;500&display=swap);
 /* Document
  * ========================================================================== */
 
@@ -627,6 +627,7 @@ textarea,
 	--font-text: "Roboto", sans-serif;
 
 	--fontsize-xl: 2.813rem; /* 45px */
+	--fontsize-ll: 2rem; /* 32px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
 	--fontsize-s: 0.875rem; /* 14px */
@@ -656,6 +657,8 @@ textarea,
 
 	--boxshadow-second-blurred: 0px 2px 5px 2px var(--color-text-alpha);
 	--boxshadow--innerWhite: var(--color-white) 0px -230px 15px -6em inset;
+
+	--boxshadow-card: 0 4px 8px 0 rgba(105,105,105,0.2);
 
 	/* Border radius
 	 ********************************/
@@ -1003,70 +1006,6 @@ img {
 	box-shadow: none;
 }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-  background: #f5f5f5;
-  border-radius: 0.4em;
-  padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 30rem;
-  /* max-height: 350px; */
-  width: 20rem;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  margin-top: 3rem;
-}
-
-.card,
-.card * {
-  touch-action: none;
-}
-
-.a0 {
-	z-index: 10;
- }
-
- .a1 {
-	z-index: 9;
-	margin-top: 2rem;
- }
-
- .a2 {
-	z-index: 8;
- }
-
- .a3 {
-	z-index: 7;
- }
-
- .a4 {
-	z-index: 6;
- }
-
- .a5 {
-	z-index: 5;
- }
-
- .a6 {
-	z-index: 4;
- }
-
- .a7 {
-	z-index: 3;
- }
-
- .a8 {
-	z-index: 2;
- }
-
- .a9 {
-	z-index: 1;
- }
 
 /********************************
  * Categories
@@ -1195,6 +1134,9 @@ input:checked~.form__row--displayCondition {
 .header--home .logo {
 		max-height: 90px;
 	}
+.header--cards {
+	padding-bottom: 0;
+}
 
 /********************************
  * Headings
@@ -1631,6 +1573,7 @@ input:checked~.form__row--displayCondition {
 }
 
 .results__player {
+	width: 33.3%;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -1855,6 +1798,22 @@ input:checked~.form__row--displayCondition {
 
 .speech-bubble--minHeight {
 	min-height: 500px;
+}
+
+/********************************
+ * Timer
+ ********************************/
+.timer {
+	background-color: var(--color-white);
+	border-radius: var(--borderradius-xl);
+	padding: 5px var(--margin-s);
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	margin-left: auto;
 }
 
  /** GRID SETTINGS */

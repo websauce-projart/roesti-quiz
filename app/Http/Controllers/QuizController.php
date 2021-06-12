@@ -21,14 +21,15 @@ class QuizController extends Controller
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
 		$round = Round::where('id', $round_id)->first();
 		$result = Result::where('user_id', $user_id)->where('round_id', $round_id)->first();
+		$game = Game::where('id', $game_id)->first();
 
+		/*
 		//Checks if round belongs to the game
 		if ($round->game()->first()->id != $game_id) {
 			return redirect()->route('home');
 		}
 
 		//Checks if this user is in the game
-		$game = Game::where('id', $game_id)->first();
 		if (!$game->userExistsInGame($user_id)) {
 			return redirect()->route('home');
 		}
@@ -50,6 +51,7 @@ class QuizController extends Controller
 			}
 			return redirect()->route('results', [$game->id]);	//User has played trough the game already
 		}
+		 */
 
 		//Create Result
 		$result = Result::create([
@@ -97,7 +99,6 @@ class QuizController extends Controller
 
 			return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id]);
 		}
-
 	}
 
 	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
@@ -167,7 +168,7 @@ class QuizController extends Controller
 			$score = 1000;
 		} else {
 			$score = round($correct_answers_count + ($correct_answers_count * (13 / $time) * 40));
-			if($score > 1000) {
+			if ($score > 1000) {
 				$score = 1000;
 			}
 		}

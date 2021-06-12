@@ -29,3 +29,6 @@
 		max-height: 90px;
 	}
 }
+.header--cards {
+	padding-bottom: 0;
+}
