@@ -8,7 +8,7 @@
 
     <div class="container container--fullheight">
         <nav class="topnav">
-            <a href="{{ route('login') }}" class="icon-arrow-left"></a>
+            <a href="{{ route('login') }}" class="icon-arrow-left" aria-label="Retour"></a>
             <h1 class="pageTitle">Créer un compte</h1>
         </nav>
 
