@@ -32,15 +32,15 @@
 }
 
 .avatar__element__eyes {
-    background-image: url('img/avatar/eyes/assets_avatar_yeux.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux.png');
 }
 
 .avatar__element__mouths {
-    background-image: url('img/avatar/mouths/assets_avatar_bouches.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_bouches.png');
 }
 
 .avatar__element__poses {
-    background-image: url('img/avatar/poses/assets_avatar_poses.png');
+    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_poses.png');
 }
 
 /**BUTTONS SETTINGS */
