@@ -1,33 +1,53 @@
 <template>
-	<input type="text" v-model="searchText" />
-	<ul>
-		<li v-for="data in filteredList()" :key="data">
+	<div class="form__row">
+		<div class="form__field">
 			<input
-				@click="playerSelected()"
-				type="radio"
-				:id="`${data}`"
-				name="user"
-				:value="`${data}`"
+				type="search"
+				placeholder="Recherche un ami…"
+				v-model="searchText"
 			/>
-			<label :for="`${data}`">{{ data }}</label>
-			<avatar :dataSearch="this.findId(data)"></avatar>
-		</li>
-	</ul>
-	<div class="" v-if="showRandomPlayer()" :key="searchText">
-		<div class="">Tu n'as pas d'ami ?</div>
+			<i class="icon-search"></i>
+		</div>
+	</div>
+
+	<div class="searchFriends__container">
+		<ul class="searchFriends">
+			<li v-for="data in filteredList()" :key="data">
+				<input
+					@click="playerSelected()"
+					type="radio"
+					:id="`${data}`"
+					name="user"
+					:value="`${data}`"
+				/>
+				<label :for="`${data}`">
+					<div class="searchFriends__avatar">
+						<avatar :dataSearch="this.findId(data)"></avatar>
+					</div>
+
+					{{ data }}
+				</label>
+			</li>
+		</ul>
+	</div>
+
+	<div class="searchFriends--noFriend" v-if="showRandomPlayer()" :key="searchText">
+		<div class="searchFriends__title">Tu n'as pas d'ami ?</div>
 
 		<div class="btn btn--secondary" @click="this.randomPlayer()">
 			Victime aléatoire
 		</div>
 	</div>
 
-	<input
-		v-if="this.returnValue"
-		class=""
-		id="submit--new--game"
-		type="submit"
-		value="Suivant"
-	/>
+	<div class="bottombar">
+		<input
+			v-if="this.returnValue"
+			class="btn btn--primary"
+			id="submit--new--game"
+			type="submit"
+			value="Suivant"
+		/>
+	</div>
 </template>
 
 <script>

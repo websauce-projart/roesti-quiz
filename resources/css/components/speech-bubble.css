@@ -25,3 +25,7 @@
 	transform: rotate(15deg);
 	z-index: -1;
 }
+
+.speech-bubble--minHeight {
+	min-height: 500px;
+}

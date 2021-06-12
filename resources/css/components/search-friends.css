@@ -1,0 +1,68 @@
+/********************************
+ * Search Friends Module
+ ********************************/
+.searchFriends {
+	margin: 0;
+	padding: 0;
+	max-height: 50vh;
+	overflow: scroll;
+	& li {
+		list-style: none;
+		margin-bottom: var(--margin-s);
+		& label {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding: var(--margin-xs);
+			transition: var(--animation-hover);
+			border-radius: var(--borderradius-s);
+		}
+		& label:hover {
+			cursor: pointer;
+			background-color: var(--color-secondary-alpha);
+			transform: scale(0.95);
+		}
+		& input[type="radio"] {
+			display: none;
+		}
+		& input[type="radio"]:checked + label {
+			transform: none;
+			background: var(--color-text-alpha);
+		}
+	}
+}
+.searchFriends__container {
+	position: relative;
+}
+.searchFriends__container:after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 25%;
+	box-shadow: var(--color-background) 0px -125px 35px -6em inset;
+}
+
+.searchFriends__avatar {
+	width: 50px;
+	height: 50px;
+	margin-right: var(--margin-m);
+}
+
+.searchFriends__title {
+	font-family: var(--font-headings);
+	letter-spacing: var(--fontspacing-headings);
+	color: var(--color-secondary);
+	font-size: var(--fontsize-l);
+}
+
+.searchFriends--noFriend {
+	margin: var(--margin-l) 0;
+	height: 30vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}

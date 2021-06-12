@@ -601,6 +601,7 @@ textarea,
 	--color-main-darker: #ffa012;
 	--color-secondary: #4092e8;
 	--color-secondary-darker: #3e78c5;
+	--color-secondary-alpha: rgba(64,145,232,0.09412);
 	--color-contrast: #fe450e;
 }
 
@@ -947,10 +948,10 @@ img {
 	text-align: center;
 	font-size: var(--fontsize-l);
 	font-family: var(--font-headings);
+	letter-spacing: var(--fontspacing-headings);
 	border-radius: var(--borderradius-m);
 	cursor: pointer;
 	transition: var(--animation-hover);
-	letter-spacing: var(--fontspacing-headings);
 	text-decoration: none;
 }
 
@@ -969,6 +970,11 @@ img {
 	background-color: var(--color-secondary);
 	color: var(--color-white);
 	box-shadow: var(--boxshadow-second);
+}
+.btn--secondary:hover {
+	box-shadow: var(--boxshadow-second-hover);
+	transform: translate(2px, -2px);
+	background-color: var(--color-secondary-darker);
 }
 
 .btn--tertiary {
@@ -1448,7 +1454,7 @@ input:checked~.form__row--displayCondition {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	margin: var(--margin-s) 0
+	padding: var(--margin-s) 0
 }
 .topnav a,
 	.topnav button {
@@ -1719,6 +1725,79 @@ input:checked~.form__row--displayCondition {
 }
 
 /********************************
+ * Search Friends Module
+ ********************************/
+.searchFriends {
+	margin: 0;
+	padding: 0;
+	max-height: 50vh;
+	overflow: scroll
+}
+.searchFriends li {
+		list-style: none;
+		margin-bottom: var(--margin-s)
+	}
+.searchFriends li label {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding: var(--margin-xs);
+			transition: var(--animation-hover);
+			border-radius: var(--borderradius-s);
+		}
+.searchFriends li label:hover {
+			cursor: pointer;
+			background-color: var(--color-secondary-alpha);
+			transform: scale(0.95);
+		}
+.searchFriends li input[type="radio"] {
+			display: none;
+		}
+.searchFriends li input[type="radio"]:checked + label {
+			transform: none;
+			background: var(--color-text-alpha);
+		}
+.searchFriends__container {
+	position: relative;
+}
+.searchFriends__container:after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 25%;
+	box-shadow: var(--color-background) 0px -125px 35px -6em inset;
+}
+
+.searchFriends__avatar {
+	width: 50px;
+	height: 50px;
+	margin-right: var(--margin-m);
+}
+
+.searchFriends__title {
+	font-family: var(--font-headings);
+	letter-spacing: var(--fontspacing-headings);
+	color: var(--color-secondary);
+	font-size: var(--fontsize-l);
+}
+
+.searchFriends--noFriend {
+	margin: var(--margin-l) 0;
+	height: 30vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/********************************
  * Commentator speech bubble for BG
  ********************************/
 .speech-bubble {
@@ -1744,6 +1823,10 @@ input:checked~.form__row--displayCondition {
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
+}
+
+.speech-bubble--minHeight {
+	min-height: 500px;
 }
 
  /** GRID SETTINGS */
