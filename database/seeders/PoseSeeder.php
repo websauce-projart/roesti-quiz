@@ -16,7 +16,7 @@ class PoseSeeder extends Seeder
     {
         for ($i=1; $i < 4; $i++) { 
             DB::table('poses')->insert([
-                'path' => 'img/avatar/poses/assets_avatar_pose'.$i.'.svg'
+                'path' => '../img/avatar/poses/assets_avatar_pose'.$i.'.svg'
             ]);
         }
     }

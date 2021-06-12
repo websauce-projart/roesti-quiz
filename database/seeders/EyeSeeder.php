@@ -16,7 +16,7 @@ class EyeSeeder extends Seeder
     {
         for ($i=1; $i < 4; $i++) { 
             DB::table('eyes')->insert([
-                'path' => 'img/avatar/eyes/assets_avatar_yeux'.$i.'.svg'
+                'path' => '../img/avatar/eyes/assets_avatar_yeux'.$i.'.svg'
             ]);
         }
     }
