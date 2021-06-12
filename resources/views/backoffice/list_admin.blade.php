@@ -13,6 +13,12 @@ Administrateurs
 		<strong>Liste des administrateurs</strong> | <a href="{{route('admins.create')}}">Créer un administrateur</a>
 	</div>
 
+    @if(session()->has('ok'))
+    <div>
+        {!! session('ok') !!}
+    </div>
+    @endif
+
     <table>
         <thead>
             <tr>
@@ -29,11 +35,11 @@ Administrateurs
                 <td><a href="mailto:{!! $user->email !!}">{!! $user->email !!}</a></td>
                 <td><a class="icon-edit-pencil" href="{{route('admins.edit', [$user->id])}}"></a></td>
                 <td>
-                    <form method="POST" action="{{route('users.destroy', [$user->id])}}">
+                    <form method="POST" action="{{route('admins.destroy', [$user->id])}}">
                         @csrf
                         @method('DELETE')
                         <button class="icon-close" type="submit"
-                            onclick="return confirm('Vraiment supprimer cet utilisateur ?')"></button>
+                            onclick="return confirm('Vraiment supprimer cet administrateur ?')"></button>
                     </form>
                 </td>
             </tr>
