@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import avatar from "../elements/show_avatar.vue";
+
 export default {
 	data() {
 		return {

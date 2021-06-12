@@ -104,7 +104,9 @@ class AvatarController extends Controller
         $mouth = $user->mouth_id;
         $eye = $user->eye_id;
         $pose = $user->pose_id;
-        $data = [
+        $data =
+            [
+                'pseudo' => $user->pseudo,
                 'mouth' => $mouth,
                 'eye' => $eye,
                 'pose' => $pose,
