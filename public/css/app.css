@@ -1115,6 +1115,7 @@ img {
 	display: flex;
 	flex-direction: column;
 	max-width: 346px;
+	width: 100%;
 }
 
 .form--large {

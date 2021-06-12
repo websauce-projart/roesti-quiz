@@ -17,9 +17,9 @@ bg--white
   </nav>
 
   <section class="category__container">
-		<form class="form form--center" style="text-align:center;" method="POST" action="{{ route('creategame') }}" accept-charset="UTF-8">
+		<form class="form form--center form--large" style="text-align:center;" method="POST" action="{{ route('creategame') }}" accept-charset="UTF-8">
 				@csrf
-				<div style="max-width:100rem;  display:inline-block; text-align:center;" id="vue_new_game">
+				<div id="vue_new_game">
 					<new-game :datas=<?php echo json_encode($opponents); ?>></new-game>
 				</div>
 		</form>
