@@ -242,6 +242,7 @@ class QuizController extends Controller
 		$score = $result->score;
 
 		return view('gameloop/endgame')
+			->with("round_id", $round_id)
 			->with('count', $correct_answers_count)
 			->with('time', $time)
 			->with('score', $score)

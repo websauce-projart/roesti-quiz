@@ -26,9 +26,7 @@
         @foreach ($questions as $question)
 		  	<input type="checkbox" id="{{ $question->id }}">
         @endforeach
-        <div>
-            <x-input-submit label="Envoyer"></x-input-submit>
-        </div>
+         <x-input-submit label="Envoyer"></x-input-submit>
 	</form>
 
 </div>

@@ -1,0 +1,35 @@
+/********************************
+ * Endgame
+ ********************************/
+.endgame__sentence {
+	font-family: var(--font-headings);
+	font-size: var(--fontsize-xl);
+	letter-spacing: var(--fontspacing-headings);
+	line-height: 3rem;
+	color: var(--color-main);
+	text-shadow: var(--boxshadow-second-small);
+	text-align: center;
+	width: 75%;
+	margin: auto;
+}
+.endgame__score__container {
+	display: flex;
+	margin: var(--margin-m) 0;
+}
+
+.endgame__score {
+	padding: 0;
+	margin: 0 auto;
+	list-style: none;
+	display: inline-block;
+	& li {
+		font-family: var(--font-headings);
+		letter-spacing: var(--fontspacing-headings);
+		font-size: var(--fontsize-l);
+
+		& strong {
+
+			color: var(--color-secondary);
+		}
+	}
+}
