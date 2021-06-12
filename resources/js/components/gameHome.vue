@@ -3,15 +3,7 @@
     class="home--game"
     :class="data.game.active_user_id !== data.user.id && 'home--game--wait'"
   >
-    <div class="avatar__container">
-      <img
-        src="/img/avatar/assets_avatar_background.svg"
-        class="avatar__element"
-      />
-      <img v-if="loaded" :src="this.pose" class="avatar__element" />
-      <img v-if="loaded" :src="this.eye" class="avatar__element" />
-      <img v-if="loaded" :src="this.mouth" class="avatar__element" />
-    </div>
+    <avatar v-if="loaded" :dataHome="avatarData" :loaded="loaded"></avatar>
     <span class="home--game--pseudo">{{ data.opponent.pseudo }}</span>
     <span
       class="home--game--info"
@@ -32,7 +24,11 @@
 </template>
 
 <script>
+import avatar from "../elements/show_avatar.vue";
+
 export default {
+  components: { avatar },
+
   data() {
     return {
       avatarData: Object,
