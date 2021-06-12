@@ -22,4 +22,5 @@
 	margin-left: -17.5px;
 	margin-bottom: -35px;
 	transform: rotate(15deg);
+	z-index: -1;
 }
