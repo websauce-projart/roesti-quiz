@@ -29,6 +29,30 @@ Modifier mon avatar
             case width * 2:
                 return data[2].id;
                 break;
+            case width * 3:
+                return data[3].id;
+                break;
+            case width * 4:
+                return data[4].id;
+                break;
+            case width * 5:
+                return data[5].id;
+                break;
+            case width * 6:
+                return data[6].id;
+                break;
+            case width * 7:
+                return data[7].id;
+                break;
+            case width * 8:
+                return data[8].id;
+                break;
+            case width * 9:
+                return data[9].id;
+                break;
+            case width * 10:
+                return data[10].id;
+                break;
         }
     }
 
