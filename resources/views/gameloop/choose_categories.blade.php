@@ -34,4 +34,7 @@ bg--white
 		</div>
     </form>
 	</main>
-@endsection
+
+	<x-presenter></x-presenter>
+
+	@endsection

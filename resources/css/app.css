@@ -48,6 +48,7 @@
 @import "components/modal";
 @import "components/nav";
 @import "components/profile";
+@import "components/presenter";
 @import "components/results";
 @import "components/round-badge";
 @import "components/search-friends";
@@ -60,3 +61,4 @@
 @import "utilities/align";
 @import "utilities/display";
 @import "utilities/text";
+@import "utilities/pattern";

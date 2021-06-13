@@ -19,7 +19,6 @@ bg--white
     </header>
 
     <main>
-
         <div id="vue_home">
             <home data_url='api/home'></home>
         </div>
@@ -31,5 +30,8 @@ bg--white
     </main>
 
 </div>
+
+<x-presenter></x-presenter>
+
 
 @endsection
