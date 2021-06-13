@@ -23,14 +23,6 @@
 	box-shadow: var(--boxshadow-main);
 }
 
-@media (max-width: 575.98px) {
-	.btn {
-		font-size: var(--fontsize-l);
-		padding: var(--margin-xs);
-		padding-top: 1.4rem; /* fix weird font placement */
-	}
-}
-
 .btn--primary:hover {
 	box-shadow: -8px 8px var(--color-contrast);
 	transform: translate(2px, -2px);
@@ -72,4 +64,15 @@
 	transform: translateX(-3px);
 	transform: translateY(3px);
 	box-shadow: none;
+}
+
+@media (max-width: 575.98px) {
+	.btn {
+		font-size: var(--fontsize-l);
+		padding: var(--margin-xs);
+		padding-top: 1.4rem; /* fix weird font placement */
+	}
+	.btn--tertiary {
+		padding: var(--margin-xs);
+	}
 }

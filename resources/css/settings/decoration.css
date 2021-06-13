@@ -10,6 +10,7 @@
 	--boxshadow-second: -6px 6px var(--color-text);
 	--boxshadow-second-hover: -8px 8px var(--color-text);
 	--boxshadow-second-small: -3px 3px var(--color-text);
+	--boxshadow-second-smaller: -2px 2px var(--color-text);
 	--boxshadow-second-small-hover: -5px 5px var(--color-text);
 
 	--boxshadow-secondLight: -6px 6px var(--color-secondary);

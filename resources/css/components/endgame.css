@@ -33,3 +33,10 @@
 		}
 	}
 }
+
+@media (max-width: 575.98px) {
+	.endgame__sentence {
+		font-size: var(--fontsize-ll);
+		text-shadow: var(--boxshadow-second-smaller);
+	}
+}

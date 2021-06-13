@@ -11,7 +11,7 @@ bg--white
 @section('content')
 <main class="container speech-bubble">
 
-	<nav class="topnav topnav--right">
+	<nav class="topnav">
 		<a href="{{ route('home') }}" class="icon-close"></a>
 	</nav>
 
@@ -38,4 +38,7 @@ bg--white
 	</div>
 
 </main>
+
+<x-presenter></x-presenter>
+
 @endsection

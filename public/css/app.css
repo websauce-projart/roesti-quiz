@@ -632,7 +632,7 @@ textarea,
 	--font-text: "Roboto", sans-serif;
 
 	--fontsize-xl: 2.375rem; /* 38px */
-	--fontsize-ll: 2rem; /* 32px */
+	--fontsize-ll: 2.125rem; /* 34px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
 	--fontsize-s: 0.875rem; /* 14px */
@@ -653,6 +653,7 @@ textarea,
 	--boxshadow-second: -6px 6px var(--color-text);
 	--boxshadow-second-hover: -8px 8px var(--color-text);
 	--boxshadow-second-small: -3px 3px var(--color-text);
+	--boxshadow-second-smaller: -2px 2px var(--color-text);
 	--boxshadow-second-small-hover: -5px 5px var(--color-text);
 
 	--boxshadow-secondLight: -6px 6px var(--color-secondary);
@@ -1125,14 +1126,6 @@ img {
 	box-shadow: var(--boxshadow-main);
 }
 
-@media (max-width: 575.98px) {
-	.btn {
-		font-size: var(--fontsize-l);
-		padding: var(--margin-xs);
-		padding-top: 1.4rem; /* fix weird font placement */
-	}
-}
-
 .btn--primary:hover {
 	box-shadow: -8px 8px var(--color-contrast);
 	transform: translate(2px, -2px);
@@ -1174,6 +1167,17 @@ img {
 	transform: translateX(-3px);
 	transform: translateY(3px);
 	box-shadow: none;
+}
+
+@media (max-width: 575.98px) {
+	.btn {
+		font-size: var(--fontsize-l);
+		padding: var(--margin-xs);
+		padding-top: 1.4rem; /* fix weird font placement */
+	}
+	.btn--tertiary {
+		padding: var(--margin-xs);
+	}
 }
 
 
@@ -1259,6 +1263,13 @@ img {
 
 			color: var(--color-secondary);
 		}
+
+@media (max-width: 575.98px) {
+	.endgame__sentence {
+		font-size: var(--fontsize-ll);
+		text-shadow: var(--boxshadow-second-smaller);
+	}
+}
 
 /********************************
  * Forms
@@ -1351,8 +1362,8 @@ input:checked~.form__row--displayCondition {
 		margin-left: -50px;
 		/* it fix the nav icon pushing the logo to the right */
 	}
-.header--cards {
-	padding-bottom: 0;
+.header.header--cards {
+	padding: 0;
 }
 
 @media (max-width: 575.98px) {
@@ -2054,7 +2065,7 @@ input:checked~.form__row--displayCondition {
 .searchFriends {
 	margin: 0;
 	padding: 0;
-	max-height: 30vh;
+	max-height: 40vh;
 	overflow: scroll
 }
 .searchFriends li {

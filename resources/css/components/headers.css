@@ -31,8 +31,8 @@
 		/* it fix the nav icon pushing the logo to the right */
 	}
 }
-.header--cards {
-	padding-bottom: 0;
+.header.header--cards {
+	padding: 0;
 }
 
 @media (max-width: 575.98px) {
