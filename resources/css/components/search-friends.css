@@ -4,7 +4,7 @@
 .searchFriends {
 	margin: 0;
 	padding: 0;
-	max-height: 50vh;
+	max-height: 30vh;
 	overflow: scroll;
 	& li {
 		list-style: none;
@@ -48,8 +48,7 @@
 }
 
 .searchFriends--noFriend {
-	margin: var(--margin-l) 0;
-	height: 30vh;
+	height: 20vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

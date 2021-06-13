@@ -4,6 +4,10 @@
 Quiz
 @endsection
 
+@push('body-classes')
+pattern-body-fix
+@endpush
+
 @section('content')
 
 <div class="container">

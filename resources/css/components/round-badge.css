@@ -7,7 +7,7 @@
 	align-items: center;
 	background-color: var(--color-white);
 	overflow: scroll;
-	padding: var(--margin-m) 0;
+	padding: var(--margin-m) var(--margin-s);
 	height: calc(100vh - 380px);
 }
 
