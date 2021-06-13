@@ -6,7 +6,7 @@ Tutoriel
 
 @section('content')
 <div class="container">
-	<nav class="topnav topnav--right">
+	<nav class="topnav">
 		<a href="{{ route('onboardingExit') }}" class="icon-close"></a>
 	</nav>
 

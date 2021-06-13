@@ -6,6 +6,7 @@
 	grid-template-areas:
 		"buttons"
 		"avatar";
+	margin-top: var(--margin-l);
 }
 
 .buttons__container {
@@ -90,4 +91,14 @@
 	position: absolute;
 	width: 100%;
 	height: 100%;
+}
+
+@media (max-width: 575.98px) {
+	.avatar__editor {
+		margin-top: var(--margin-m);
+	}
+	.buttons__container button {
+		width: 65px;
+		height: 65px;
+	}
 }
