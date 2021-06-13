@@ -66,11 +66,29 @@ class ResultController extends Controller
 		$rounds = RoundController::getRounds($game_id);
 		$lastRound = $rounds->sortByDesc('id')->first();
 
+		//Calculate score
+		$userWonRounds = 0;
+		$opponentWonRounds = 0;
+		foreach($rounds as $round) {
+			if($round->results()->get()->count() == 2) {
+				if($user->getScore($round->id) == $opponent->getScore($round->id)) {
+					$userWonRounds += 1;
+					$opponentWonRounds += 1;
+				} else if ($user->getScore($round->id) > $opponent->getScore($round->id)) {
+					$userWonRounds += 1;
+				} else {
+					$opponentWonRounds += 1;
+				}
+			}
+		}
+
 		//Return view
 		return view('gameloop/results')->with([
 			"game" => $game,
 			"user" => $user,
+			"userWonRounds" => $userWonRounds,
 			"opponent" => $opponent,
+			"opponentWonRounds" => $opponentWonRounds,
 			"rounds" => $rounds->reverse(),
 			"lastRound" => $lastRound
 		]);

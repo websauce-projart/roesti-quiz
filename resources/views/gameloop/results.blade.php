@@ -21,7 +21,7 @@
                             mouthPath="{{ $user->getEyePath() }}"></x-avatar>
                     </div>
                     <div class="results__player__pseudo">{{ $user->pseudo }}</div>
-                    <div class="results__player__score">1</div>
+                    <div class="results__player__score">{{ $userWonRounds }}</div>
                 </div>
 
                 <span class="results__versusLabel" aria-label="Versus">VS</span>
@@ -32,7 +32,7 @@
                             mouthPath="{{ $opponent->getEyePath() }}"></x-avatar>
                     </div>
                     <div class="results__player__pseudo">{{ $opponent->pseudo }}</div>
-                    <div class="results__player__score">0</div>
+                    <div class="results__player__score">{{ $opponentWonRounds }}</div>
                 </div>
             </div>
         </section>
@@ -44,8 +44,8 @@
                     href="{{ route('round_history', [$game, $round->id]) }}">
                     <div class="roundBadge__score">
                         @if ($game->active_user_id == $user->id &&
-        $lastRound->id == $round->id &&
-        $round->results()->get()->count() != 2)
+                        $lastRound->id == $round->id &&
+                        $round->results()->get()->count() != 2)
                             À ton tour
                         @elseif($game->active_user_id == $user->id && $lastRound->id == $round->id &&
                             $round->results()->get()->count() == 2)
@@ -67,8 +67,8 @@
 
                     <div class="roundBadge__score">
                         @if ($game->active_user_id == $opponent->id &&
-        $lastRound->id == $round->id &&
-        $round->results()->get()->count() != 2)
+                        $lastRound->id == $round->id &&
+                        $round->results()->get()->count() != 2)
                             À son tour
                         @elseif($game->active_user_id != $opponent->id && $lastRound->id == $round->id &&
                             $round->results()->get()->count() == 0)

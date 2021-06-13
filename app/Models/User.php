@@ -160,6 +160,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		return $this->eye()->first()->path;
 	}
 
+	public function getScore($round_id) {
+		$result = $this->results()->where('user_id', $this->id)->where('round_id', $round_id)->first();
+		return $result->score;
+	}
+
 	public function getTotalScore()
 	{
 		$totalScore = 0;
