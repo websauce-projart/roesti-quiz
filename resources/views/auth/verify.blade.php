@@ -21,7 +21,7 @@ Vérifie ton email
 
                 @if (Session::has('ok'))
                 <!-- email resent (AuthC.) -->
-                <div>{{ Session::get('ok') }}</div>
+                <div class="status"><i class="icon-checkmark"></i>{{ Session::get('ok') }}</div>
                 @endif
 
                 Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz!

@@ -7,22 +7,24 @@ Modifier le mot de passe
 @section('content')
 <div class="container">
 
+    
+
+	 <header class="header">
+		<nav class="topnav">
+			<a href="{{ route('profile', [$user_id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
+			<h1 class="pageTitle">Modifier le mot de passe</h1>
+		</nav>
+	</header>
+
     @if (Session::has('ok'))
     <!-- updatePassword (AuthC.) -->
-    <div>{{ Session::get('ok') }}</div>
+    <div class="status container"><i class="icon-checkmark"></i>{{ Session::get('ok') }}</div>
     @endif
 
     @if (Session::has('error'))
     <!-- updatePassword (AuthC.) -->
-    <div>{{ Session::get('error') }}</div>
+    <div class="status container"><i class="icon-checkmark"></i>{{ Session::get('error') }}</div>
     @endif
-
-	 <header class="header">
-		<nav class="topnav">
-			<a href="{{url()->previous()}}" class="icon-arrow-left" aria-label="Retour"></a>
-			<h1 class="pageTitle">Modifier le mot de passe</h1>
-		</nav>
-	</header>
 
      <form class="form form--center" action="" method="post">
            @csrf
