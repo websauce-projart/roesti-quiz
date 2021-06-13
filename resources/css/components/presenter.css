@@ -4,17 +4,16 @@
 .presenter__container {
 	display: block;
 	position: fixed;
-	bottom: 0;
+	bottom: -30px;
 	left: 0;
 	width: 100vw;
 	height: 40vh;
-	z-index: -1;
 }
 
 .presenter {
 	position: absolute;
 	height: 100%;
-	bottom: -50px;
+	bottom: 0;
 	animation-name: hello-presenter;
 	animation-duration: 1s;
 	animation-iteration-count: 1;
@@ -22,5 +21,15 @@
 	& img {
 		min-width: 100%;
 		height: 100%;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.presenter__container {
+		width: 100vw;
+		height: 40vh;
+	}
+	.presenter {
+		left: -30px;
 	}
 }

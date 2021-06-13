@@ -4,18 +4,23 @@
 .unboarding {
 	text-align: center;
 	padding: 0 var(--margin-m);
+	padding-top: var(--margin-ll);
 	font-size: var(--fontsize-m);
 	font-weight: 300;
 }
 
+.topnav + .unboarding {
+	padding-top: 0;
+}
+
 .unboarding__title {
 	font-family: var(--font-headings);
-	font-size: var(--fontsize-l);
+	font-size: var(--fontsize-ll);
 	letter-spacing: var(--fontspacing-headings);
 }
 
 .unboarding__title--big {
-	font-size: var(--fontsize-ll);
+	font-size: var(--fontsize-xl);
 	line-height: 3rem;
 }
 
@@ -40,5 +45,17 @@
 	}
 	& li.active {
 		background-color: var(--color-gray);
+	}
+}
+
+@media (max-width: 575.98px) {
+	.unboarding {
+		padding-top: var(--margin-l);
+	}
+	.unboarding__title {
+		font-size: var(--fontsize-l);
+	}
+	.unboarding__title--big {
+		font-size: var(--fontsize-ll);
 	}
 }

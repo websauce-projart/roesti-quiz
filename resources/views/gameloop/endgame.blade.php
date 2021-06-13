@@ -11,11 +11,11 @@ bg--white
 @section('content')
 <main class="container speech-bubble">
 
-	<nav class="topnav topnav--right">
+	<nav class="topnav">
 		<a href="{{ route('home') }}" class="icon-close"></a>
 	</nav>
 
-	<div class="section">
+	<section class="endgame__container">
 		<div class="endgame__sentence">
 			{{$sentence}}
 		</div>
@@ -31,11 +31,14 @@ bg--white
 		<div class="center">
 			<a href="{{ route("round_history", [$game, $round_id]) }}">Voir mes réponses</a>
 		</div>
-	</div>
+	</section>
 
 	<div class="bottombar">
   	  <a class="btn btn--primary" href="{{ route('results', [$game]) }}">Score général</a>
 	</div>
 
 </main>
+
+<x-presenter></x-presenter>
+
 @endsection

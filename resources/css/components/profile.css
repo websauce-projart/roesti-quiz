@@ -15,7 +15,7 @@
 	border-radius: 50%;
 	background-color: var(--color-white);
 	box-shadow: var(--boxshadow-second-blurred);
-	padding: var(--margin-m);
+	padding: 40px;
 	position: relative;
 }
 

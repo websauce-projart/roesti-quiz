@@ -8,7 +8,6 @@
 	& a,
 	& button {
 		padding: var(--margin-s);
-		/* margin-left: var(--margin-s-negative); */
 	}
 	& a:hover {
 		color: var(--color-text-lighter);
@@ -19,10 +18,19 @@
 	justify-content: right;
 	& a,
 	& button {
-		 margin-right: var(--margin-s-negative);
+		margin-right: var(--margin-s-negative);
 	}
 }
 
 .topnav--center {
 	justify-content: center;
+}
+
+@media (max-width: 575.98px) {
+	.topnav {
+		& a,
+		& button {
+			padding: var(--margin-xs);
+		}
+	}
 }

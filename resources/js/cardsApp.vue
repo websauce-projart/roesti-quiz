@@ -86,12 +86,26 @@ export default {
 	padding: var(--margin-l);
 	display: flex;
 	height: 30rem;
-	/* max-height: 350px; */
 	width: 20rem;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
 	margin-top: 3rem;
+}
+
+@media (max-width: 575.98px) {
+	.cards {
+		display: flex;
+		justify-content: center;
+	}
+	.card {
+		padding: var(--margin-m);
+		width: 17rem;
+		height: 22rem;
+	}
+	.cardTitle {
+		font-size: var(--fontsize-l);
+	}
 }
 
 .cardTitle {

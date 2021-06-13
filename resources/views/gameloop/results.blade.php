@@ -11,7 +11,7 @@ pattern-body-fix
 @section('content')
 
 <div class="container">
-    <nav class="topnav topnav--right">
+    <nav class="topnav">
         <a href="{{ route('home') }}" class="icon-close"></a>
     </nav>
 </div>
