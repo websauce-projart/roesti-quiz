@@ -1,38 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Réinitialisation du mot de passe</title>
+@section('title')
+	 Réinitialiser le mot de passe
+@endsection
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
-</head>
-
-<body>
+@section('content')
+<div class="container">
 
     @if (Session::has('status'))
     <!-- handleResetForm (AuthC.) -->
     <div>{{ Session::get('status') }}</div>
     @endif
 
-    <form action="" method="post">
+	 <header>
+		<nav class="topnav">
+		  <a href="{{ route('login') }}" class="icon-arrow-left" aria-label="Retour"></a>
+		  <h1 class="pageTitle">Réinitialiser le mot de passe</h1>
+		</nav>
+	</header>
+
+    <form action="" class="form form--center" method="post">
         @csrf
 
-        <div>
+        <div class="form__row">
             <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
+        <div class="form__row">
             <x-input-text label="Nouveau mot de passe" id="password" placeholder="Entrez votre mot de passe..."
                 type="password" icon="🔒"></x-input-text>
             {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div>
+        <div class="form__row">
             <x-input-text label="Confirmation du nouveau mot de passe" id="password_confirmation"
                 placeholder="Confirmez votre mot de passe..." type="password" icon="🔒"></x-input-text>
             {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
@@ -40,11 +42,11 @@
 
         <input id="token" name="token" type="hidden" value="{{$token}}">
 
-        <div>
+        <div class="bottombar">
             <x-input-submit label="Modifier mon mot de passe!"></x-input-submit>
         </div>
 
-        <div>
+        <div class="form__row">
             @if (Session::has('status'))
             {{ Session::get('status') }}
             @endif

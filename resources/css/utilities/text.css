@@ -6,3 +6,10 @@
 .text__small {
     font-size: 0.8rem;
 }
+
+.link {
+	font-family: var(--font-text);
+	font-size: var(--fontsize-m);
+	color: var(--color-text);
+	text-decoration: underline;
+}

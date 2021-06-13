@@ -6,36 +6,32 @@ Vérifie ton email
 
 @section('content')
 
-<body>
-    <div class="container">
-        <header class="header header--login">
-            <img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
-        </header>
+	<div class="container">
 
-        <main>
-            <nav class="container topnav topnav--right">
-                <a href="{{ route('logout') }}">Retour au login</a>
-            </nav>
+		<nav class="topnav">
+			<a href="{{ route('logout') }}" class="icon-arrow-left"></a>
+			<h1 class="pageTitle">Vérification du compte</h1>
+		</nav>
 
-            <div>
+		<main>
 
-                @if (Session::has('ok'))
-                <!-- email resent (AuthC.) -->
-                <div>{{ Session::get('ok') }}</div>
-                @endif
-
-                Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz!
-
-                <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                    @csrf
-                    <button type="submit" class="btn btn--primary">Renvoyer un mail de vérification</button>
-                </form>
+					@if (Session::has('ok'))
+					<!-- email resent (AuthC.) -->
+					<div>{{ Session::get('ok') }}</div>
+					@endif
 
 
+					<form class="form form--center" method="POST" action="{{ route('verification.resend') }}">
+					@csrf
 
-            </div>
-        </main>
-    </div>
-</body>
+						<div class="form__row">
+							<p>Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz!</p>
+						</div>
+
+							<button type="submit" class="link">Renvoyer un mail de vérification</button>
+					</form>
+
+		</main>
+	</div>
 
 @endsection
