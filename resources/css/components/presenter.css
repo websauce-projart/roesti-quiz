@@ -1,13 +1,24 @@
 /********************************
  * Presenter
  ********************************/
-.presenter {
+.presenter__container {
 	display: block;
-	position: absolute;
-	bottom: -50px;
+	position: fixed;
+	bottom: 0;
 	left: 0;
-	height: 50vh;
+	width: 100vw;
+	height: 40vh;
 	z-index: -1;
+}
+
+.presenter {
+	position: absolute;
+	height: 100%;
+	bottom: -50px;
+	animation-name: hello-presenter;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
 	& img {
 		width: 100%;
 		height: 100%;

@@ -16,3 +16,7 @@
 .container--large {
 	max-width: 1200px;
 }
+
+.container--presenter {
+	overflow: hidden;
+}

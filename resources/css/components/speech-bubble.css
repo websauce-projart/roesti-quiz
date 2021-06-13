@@ -9,9 +9,15 @@
 	padding-bottom: var(--margin-l);
 	background-image: url("/img/pattern.svg");
 	background-repeat: no-repeat;
-	background-size: 125%;
+	background-size: 200%;
 	background-position: center center;
 	min-height: 50vh;
+	margin-bottom: 45%;
+	animation-name: pattern;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: ease-in-out;
 }
 
 .speech-bubble:before {
@@ -29,8 +35,4 @@
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
-}
-
-.speech-bubble--minHeight {
-	min-height: 500px;
 }

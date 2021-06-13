@@ -9,7 +9,7 @@ bg--white
 @endpush
 
 @section('content')
-<main class="container speech-bubble speech-bubble--minHeight">
+<main class="container speech-bubble">
 
 	<nav class="topnav">
 		<a href="{{ route('login') }}" class="icon-arrow-left"></a>
@@ -26,4 +26,7 @@ bg--white
 	</section>
 
 </main>
+
+<x-presenter></x-presenter>
+
 @endsection

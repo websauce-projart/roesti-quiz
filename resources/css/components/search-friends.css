@@ -4,7 +4,7 @@
 .searchFriends {
 	margin: 0;
 	padding: 0;
-	max-height: 50vh;
+	max-height: 30vh;
 	overflow: scroll;
 	& li {
 		list-style: none;

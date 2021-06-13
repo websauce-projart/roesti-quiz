@@ -676,6 +676,48 @@ textarea,
 	--animation-hover: all 0.2s ease-out;
 }
 
+@-webkit-keyframes pattern {
+	from {
+		background-size: 125%;
+	}
+	to {
+		background-size: 140%;
+	}
+}
+
+@keyframes pattern {
+	from {
+		background-size: 125%;
+	}
+	to {
+		background-size: 140%;
+	}
+}
+
+@-webkit-keyframes hello-presenter {
+	0% {
+		transform: translateY(100%);
+	}
+	80% {
+		transform: translateY(-20px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes hello-presenter {
+	0% {
+		transform: translateY(100%);
+	}
+	80% {
+		transform: translateY(-20px);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
 .cards-container{
 	display:block;
 	width: 20rem;
@@ -700,6 +742,16 @@ body {
 	background-repeat: no-repeat;
 	background-size: 125%;
 	background-position: center center;
+	-webkit-animation-name: pattern;
+	        animation-name: pattern;
+	-webkit-animation-duration: 5s;
+	        animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	        animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
 }
 body.bg--white {
 	background-image: none;
@@ -871,6 +923,10 @@ img {
 
 .container--large {
 	max-width: 1200px;
+}
+
+.container--presenter {
+	overflow: hidden;
 }
 
  /** GRID SETTINGS */
@@ -1610,14 +1666,30 @@ input:checked~.form__row--displayCondition {
 /********************************
  * Presenter
  ********************************/
-.presenter {
+.presenter__container {
 	display: block;
-	position: absolute;
-	bottom: -50px;
+	position: fixed;
+	bottom: 0;
 	left: 0;
-	height: 50vh;
-	z-index: -1
+	width: 100vw;
+	height: 40vh;
+	z-index: -1;
 }
+
+.presenter {
+	position: absolute;
+	height: 100%;
+	bottom: -50px;
+	-webkit-animation-name: hello-presenter;
+	        animation-name: hello-presenter;
+	-webkit-animation-duration: 1s;
+	        animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	        animation-iteration-count: 1;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out
+}
+
 .presenter img {
 		width: 100%;
 		height: 100%;
@@ -1685,7 +1757,7 @@ input:checked~.form__row--displayCondition {
 	align-items: center;
 	background-color: var(--color-white);
 	overflow: scroll;
-	padding: var(--margin-m) 0;
+	padding: var(--margin-m) var(--margin-s);
 	height: calc(100vh - 380px);
 }
 
@@ -1787,7 +1859,7 @@ input:checked~.form__row--displayCondition {
 .searchFriends {
 	margin: 0;
 	padding: 0;
-	max-height: 50vh;
+	max-height: 30vh;
 	overflow: scroll
 }
 .searchFriends li {
@@ -1853,9 +1925,20 @@ input:checked~.form__row--displayCondition {
 	padding-bottom: var(--margin-l);
 	background-image: url("/img/pattern.svg");
 	background-repeat: no-repeat;
-	background-size: 125%;
+	background-size: 200%;
 	background-position: center center;
 	min-height: 50vh;
+	margin-bottom: 45%;
+	-webkit-animation-name: pattern;
+	        animation-name: pattern;
+	-webkit-animation-duration: 5s;
+	        animation-duration: 5s;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	        animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+	        animation-timing-function: ease-in-out;
 }
 
 .speech-bubble:before {
@@ -1873,10 +1956,6 @@ input:checked~.form__row--displayCondition {
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
-}
-
-.speech-bubble--minHeight {
-	min-height: 500px;
 }
 
 /********************************
@@ -1938,6 +2017,13 @@ input:checked~.form__row--displayCondition {
 .text__small {
     font-size: 0.8rem;
 }
+/********************************
+ * Pattern fixes
+ ********************************/
+.pattern-body-fix {
+	background-position: top center;
+}
+
 /********************************
  * CSS ENTRY POINT
  ********************************/

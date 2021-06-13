@@ -4,6 +4,10 @@
     Quiz
 @endsection
 
+@push('body-classes')
+pattern-body-fix
+@endpush
+
 @section('content')
 
 	<div class="container">
@@ -13,7 +17,7 @@
 	</div>
 
     <main>
-        <section class="container">
+        <section class="container pattern">
             <div class="results">
                 <div class="results__player">
                     <div class="results__player__img">
