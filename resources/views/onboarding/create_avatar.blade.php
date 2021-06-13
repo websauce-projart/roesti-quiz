@@ -5,14 +5,15 @@ Création d'avatar
 @endsection
 
 @section('content')
+<div class="container">
+	<div class="unboarding">
+		<h1 class="unboarding__title">Quel rösti es-tu, {{$pseudo}} ?</h1>
+	</div>
 
-Quel rösti es-tu {{$pseudo}} ?
+	<x-avatar-editor label="Suivant" route=""></x-avatar-editor>
 
-
-<x-avatar-editor label="Suivant" route=""></x-avatar-editor>
-
+</div>
 @endsection
-
 
 @push('script')
 <script>
