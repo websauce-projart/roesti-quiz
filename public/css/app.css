@@ -760,7 +760,7 @@ body {
 	font-weight: normal;
 	background: var(--color-background);
 	color: var(--color-text);
-	background-image: url("/img/pattern.svg");
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 125%;
 	background-position: center center;
@@ -2152,7 +2152,7 @@ input:checked~.form__row--displayCondition {
 	border-radius: var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
-	background-image: url("/img/pattern.svg");
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
