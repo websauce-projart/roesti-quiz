@@ -12,7 +12,7 @@ Modifier mon rösti
 	<header class="header">
 		<nav class="topnav">
 			<a href="{{ route('profile', [$user_id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
-			<h1 class="pageTitle">Modifier ton rösti</h1>
+			<h1 class="pageTitle">Modifier mon rösti</h1>
 		</nav>
 	</header>
 
