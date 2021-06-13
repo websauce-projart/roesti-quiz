@@ -11,61 +11,29 @@ use App\Http\Requests\NewGameRequest;
 
 class GameController extends Controller
 {
-    /**
-     * Display the home page when a user is logged in with his datas, the opponents and his current games.
-     *
-     * @return void
-     */
-    public function edit(Game $game)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Game  $game
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Game $game)
-    {
-        //
-    }
+	// À SUPPRIMER SI UTILISÉE NULLE PART !!!!
+	// /**
+	//  * Get the two users from a game
+	//  * @param $game_id ID of the game
+	//  * @return Array the two users
+	//  */
+	// public static function getPlayers($game_id)
+	// {
+	// 	$gameUsers_data = DB::table("game_user")->where("game_id", $game_id)->get();
+	// 	$users = [];
+	// 	foreach ($gameUsers_data as $data) {
+	// 		$user_id = $data->user_id;
+	// 		$user = User::find($user_id);
+	// 		array_push($users, $user);
+	// 	}
+	// 	return $users;
+	// }
 
 	/**
-	 * Get the two users from a game
-	 * @param $game_id ID of the game
-	 * @return Array the two users
-	 */
-	public static function getPlayers($game_id)
-	{
-		$gameUsers_data = DB::table("game_user")->where("game_id", $game_id)->get();
-		$users = [];
-		foreach ($gameUsers_data as $data) {
-			$user_id = $data->user_id;
-			$user = User::find($user_id);
-			array_push($users, $user);
-		}
-		return $users;
-	}
-
-	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created game in storage.
 	 *
 	 * @param Request $request
-	 * @return view Categories
+	 * @return redirect to categories or results route
 	 */
 	public function createGame(NewGameRequest $request)
 	{
@@ -99,7 +67,11 @@ class GameController extends Controller
 		return redirect()->route('category', [$game]);		
 	}
 
-	//Returning vie Home with the datas
+	/**
+	 * Return home view with user data
+	 *
+	 * @return view home/home
+	 */
 	public function displayHome()
 	{
 		//Checks if user has onboarded yet
@@ -109,18 +81,25 @@ class GameController extends Controller
 			return redirect()->route('onboardingWelcome');
 		}
 
+		//Return view
 		return view('home/home')
 		->with('user_id', $user_id);
 	}
-
-	//Returning vie Home with the datas
+	
+	/**
+	 * Return games data needed for home view
+	 *
+	 * @return array games data in json
+	 */
 	public function requestHomeData()
 	{
+		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
 		$games = $user->games()->get();
 		$data = array();
 		
+		//Process data
 		foreach ($games as $game) {
 			
 			$game_id = $game->id;
@@ -134,15 +113,7 @@ class GameController extends Controller
 			array_push($data, $gameData);
 		}
 		
-		
+		//Return data
 		return response()->json($data);;
 	}
-
-
-	// Cette fonction est-elle utilisée quelque part?????
-	// public function displayGame(Request $request)
-	// {
-	// 	$game_id = $request->game_id;
-	// 	return ResultController::showResultsView($game_id);
-	// }
 }

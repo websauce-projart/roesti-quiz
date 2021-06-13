@@ -12,7 +12,7 @@ use App\Models\Pose;
 class AvatarController extends Controller
 {    
     /**
-     * Update avatar, called by other methods in this controller
+     * Update avatar in BDD, called by other methods in this controller
      *
      * @param  mixed $request
      * @return void
@@ -55,7 +55,7 @@ class AvatarController extends Controller
     /**
      * Return avatar editor view accessed from profile page
      *
-     * @return view update_avatar
+     * @return view profile/update_avatar
      */
     public function displayAvatarEditor() {
         //Retrieve data

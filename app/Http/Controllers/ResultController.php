@@ -10,38 +10,39 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoundController;
-use App\Http\Controllers\CategoryController;
 
 class ResultController extends Controller
 {
 
-	/**
-	 * Get round's score of a user
-	 * @param User $user
-	 * @param Round $round
-	 * @return int User's round score
-	 */
-	public static function getScore(User $user, Round $round)
-	{
-		$result = DB::table("results")
-			->where("user_id", $user->id)
-			->where("round_id", $round->id)
-			->first();
-		$score = null;
-		if ($result) {
-			$score = $result->score;
-		}
-		return $score;
-	}
+	// À SUPPRIMER SI UTILISÉE NULLE PART !!!!
+	// /**
+	//  * Return round's score of a user
+	//  * @param User $user
+	//  * @param Round $round
+	//  * @return int User's round score
+	//  */
+	// public static function getScore(User $user, Round $round)
+	// {
+	// 	$result = DB::table("results")
+	// 		->where("user_id", $user->id)
+	// 		->where("round_id", $round->id)
+	// 		->first();
+	// 	$score = null;
+	// 	if ($result) {
+	// 		$score = $result->score;
+	// 	}
+	// 	return $score;
+	// }
 
 
 	/**
-	 * Show the results view
+	 * Return the results view
 	 * @param $game_id ID of the game which contains the results
-	 * @return view gameloop.results
+	 * @return view gameloop/results
 	 */
 	public static function showResultsView($game_id)
 	{
+		//Retrieve data
 		$game = Game::where('id', $game_id)->first();
 		$user_id = Auth::user()->id;
 
@@ -62,8 +63,8 @@ class ResultController extends Controller
 
 		//Retrieve data
 		$user = User::where('id', $user_id)->first();
-		$opponent = $user->getOtherUser($game_id);
-		$rounds = RoundController::getRounds($game_id);
+		$opponent = $user->getOtherUser($game_id);		
+		$rounds = $game->getAllRounds();
 		$lastRound = $rounds->sortByDesc('id')->first();
 
 		//Calculate score
@@ -93,7 +94,13 @@ class ResultController extends Controller
 			"lastRound" => $lastRound
 		]);
 	}
-
+	
+	/**
+	 * Redirect the user from the home page to where he needs to go according to the game state
+	 *
+	 * @param  Request $request
+	 * @return redirect to home, category or results route
+	 */
 	public function redirectFromHome(Request $request)
 	{
 		$user = User::where('id', Auth::user()->id)->first();

@@ -174,4 +174,29 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 		}
 		return $totalScore;
 	}
+
+	public function getTitle() {
+		$totalScore = $this->getTotalScore();
+
+		$ranking = [
+            '0' => 'Bobet de service',
+            '10000' => 'Topio de première',
+            '20000' => 'Taguenasset',
+            '30000' => 'Frontalier·ère',
+            '40000' => 'Apprenti·e romand·e',
+            '50000' => 'Thé froid de la Migros',
+            '60000' => 'Rösti confirmé',
+            '70000' => 'Expert·e romand·e',
+            '80000' => 'Champion·ne de Romandie',
+            '90000' => 'Roi·Reine des Röstis',
+        ];
+
+		foreach($ranking as $condition => $label) {
+            if($totalScore >= $condition) {
+				$title = $label;
+			}
+        }
+
+		return $title;
+	}
 }

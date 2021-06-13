@@ -13,7 +13,14 @@ use Illuminate\Support\Carbon;
 
 class QuizController extends Controller
 {
-
+	
+	/**
+	 * Return quiz view if all the requirements are met and create result in BDD
+	 *
+	 * @param  int $game_id
+	 * @param  int $round_id
+	 * @return view gameloop/quiz
+	 */
 	public function showQuizView($game_id, $round_id)
 	{
 		//Retrieve data
@@ -66,7 +73,16 @@ class QuizController extends Controller
 			"result_id" => $result->id
 		]);
 	}
-
+	
+	/**
+	 * Restores consistency in the BDD if the user quits during the quiz, only used in this controller
+	 *
+	 * @param  int $user_id
+	 * @param  int $round_id
+	 * @param  int $game_id
+	 * @param  array $questions
+	 * @return redirect to endgame route
+	 */
 	private static function handleQuitting($user_id, $round_id, $game_id, $questions)
 	{
 		$results_count = count(Round::where('id', $round_id)->first()->results()->get());
@@ -95,10 +111,20 @@ class QuizController extends Controller
 				]);
 			}
 
+			//Return redirect
 			return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id]);
 		}
 	}
-
+	
+	/**
+	 * Create UserAnswers, update game active player and result if all the requirements are met, then redirect to endgame
+	 *
+	 * @param  Request $request
+	 * @param  int $game_id
+	 * @param  int $round_id
+	 * @param  int $result_id
+	 * @return redirect to endgame route
+	 */
 	public function createAnswers(Request $request, $game_id, $round_id, $result_id)
 	{
 		//Retrieve data
@@ -130,9 +156,7 @@ class QuizController extends Controller
 		//Calculate time to finish the quizz
 		$result->timestamp_end = now();
 		$result->save();
-		$timestamp_start = new Carbon($result->timestamp_start);
-		$timestamp_end = new Carbon($result->timestamp_end);
-		$time = $timestamp_start->diffInSeconds($timestamp_end);
+		$time = $this->getTimeDiff($result);
 
 		//Create UserAnswers for each question
 		foreach ($questions as $question) {
@@ -182,46 +206,18 @@ class QuizController extends Controller
 			$game->save();
 		}
 
-
+		//Return redirect
 		return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id])->with(['result' => $result]);
 	}
-
-	private static function getSentence($score) {
-		$defeatSentences = [
-			"Tcheu t'es pas en forme !",
-			"Ben j'te dis pas bravo !",
-			"Ça va le chalet, ou bien ?",
-			"Réveille-toi un peu !",
-			"T'es sur Soleure ou quoi ?",
-			"C'est quoi cette gogne ?",
-			"T'es bobet ou bien ?",
-			"Tcheu c'te molle...",
-			"T'as pecloté là...",
-			"Fais un effort nom de bleu !"
-
-		];
-		$victorySentences = [
-			"Bravo topio !",
-			"Tcheu t'es en forme !",
-			"T'as triché, avoue !",
-			"J'aurais pas mieux fait",
-			"T'étais bien vigousse là !",
-			"T'es royé ou bien ?!",
-			"Je suis déçu en bien...",
-			"Alain Berset te félicite !",
-			"De bleu de bleu !",
-			"Sacré rösti !"
-		];
-
-		if($score <= 500) {
-			$i = array_rand($defeatSentences);
-			return $defeatSentences[$i];
-		} else {
-			$i = array_rand($victorySentences);
-			return $victorySentences[$i];
-		}
-	}
-
+	
+	/**
+	 * Return endgame view if all requirements are met
+	 *
+	 * @param  int $game_id
+	 * @param  int $round_id
+	 * @param  int $result_id
+	 * @return view endgame/loop
+	 */
 	public function showEndgameView($game_id, $round_id, $result_id)
 	{
 		//Retrieve data
@@ -265,11 +261,7 @@ class QuizController extends Controller
 		}
 
 		//Retrieve time
-		// This is duplicated code with createAnswers --> refactoring needed !
-		$timestamp_start = new Carbon($result->timestamp_start);
-		$timestamp_end = new Carbon($result->timestamp_end);
-		$time = $timestamp_start->diffInSeconds($timestamp_end);
-
+		$time = $this->getTimeDiff($result);
 
 		//Retrieve score
 		$score = $result->score;
@@ -277,6 +269,7 @@ class QuizController extends Controller
 		//Get announcer sentence
 		$sentence = $this->getSentence($score);
 
+		//Return view
 		return view('gameloop/endgame')
 			->with("round_id", $round_id)
 			->with('count', $correct_answers_count)
@@ -285,9 +278,16 @@ class QuizController extends Controller
 			->with('game', $game)
 			->with('sentence', $sentence);
 	}
-
+	
+	/**
+	 * Redirect the user from the results page to where he needs to go according to the game state
+	 *
+	 * @param  int $game_id
+	 * @return redirect to home, category or quiz route
+	 */
 	public function redirectFromResults($game_id)
 	{
+		//Retrieve data
 		$game = Game::where('id', $game_id)->first();
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
@@ -297,6 +297,7 @@ class QuizController extends Controller
 			return redirect()->route('home');
 		}
 
+		//Checks if user is the active user in game
 		if ($game->active_user_id != $user->id) {
 			return redirect()->route('home');
 		}
@@ -305,13 +306,75 @@ class QuizController extends Controller
 		$round = $game->getLastRound();
 		$results_count = $round->results()->get()->count();
 
-
 		if ($results_count == 2) {
 			//just ended the round and now must choose a new category
 			return redirect()->route('category', [$game]);
+
 		} else if ($results_count == 0 || $results_count == 1) {
 			//start the round
 			return redirect()->route('quiz', ['game_id' => $game->id, 'round_id' => $round->id]);
 		}
+	}
+
+	/**
+	 * Return a random sentence according to the user score, only used in this controller
+	 *
+	 * @param  int $score
+	 * @return String $sentence
+	 */
+	private static function getSentence($score) {
+
+		$defeatSentences = [
+			"Tcheu t'es pas en forme !",
+			"Ben j'te dis pas bravo !",
+			"Ça va le chalet, ou bien ?",
+			"Réveille-toi un peu !",
+			"T'es sur Soleure ou quoi ?",
+			"C'est quoi cette gogne ?",
+			"T'es bobet ou bien ?",
+			"Tcheu c'te molle...",
+			"T'as pecloté là...",
+			"Fais un effort nom de bleu !"
+
+		];
+		
+		$victorySentences = [
+			"Bravo topio !",
+			"Tcheu t'es en forme !",
+			"T'as triché, avoue !",
+			"J'aurais pas mieux fait",
+			"T'étais bien vigousse là !",
+			"T'es royé ou bien ?!",
+			"Je suis déçu en bien...",
+			"Alain Berset te félicite !",
+			"De bleu de bleu !",
+			"Sacré rösti !"
+		];
+
+		//Pick a random sentence
+		if($score <= 500) {
+			$i = array_rand($defeatSentences);
+			$sentence = $defeatSentences[$i];
+		} else {
+			$i = array_rand($victorySentences);
+			$sentence = $victorySentences[$i];
+		}
+		
+		//Return the sentence
+		return $sentence;
+	}
+	
+	/**
+	 * Return the time taken to complete the quiz, used only in this controller
+	 *
+	 * @param  Result $result
+	 * @return int $time
+	 */
+	private static function getTimeDiff(Result $result) {
+		$timestamp_start = new Carbon($result->timestamp_start);
+		$timestamp_end = new Carbon($result->timestamp_end);
+		$time = $timestamp_start->diffInSeconds($timestamp_end);
+
+		return $time;
 	}
 }

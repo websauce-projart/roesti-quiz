@@ -25,7 +25,7 @@ class AuthController extends Controller
 
     /**
      * Return login view with form
-     * @return view login
+     * @return view auth/login
      **/
     public function showLoginView()
     {
@@ -90,7 +90,7 @@ class AuthController extends Controller
 
     /**
      * Return register view with form
-     * @return view register
+     * @return view auth/register
      **/
     public function showRegisterView()
     {
@@ -141,7 +141,7 @@ class AuthController extends Controller
     /**
      * Return verify email notice view
      *
-     * @return view verify
+     * @return view auth/verify
      */
     public function showVerifyEmailView()
     {
@@ -180,7 +180,7 @@ class AuthController extends Controller
     /**
      * Return forgot password view with form to enter an email
      *
-     * @return view forgot_password
+     * @return view auth/forgot_password
      */
     public function showForgotPasswordView()
     {
@@ -191,7 +191,7 @@ class AuthController extends Controller
      * Send a email to reset password to the specified email
      *
      * @param  mixed $request
-     * @return redirect to login
+     * @return redirect to login route
      */
     public function sendPasswordEmail(PasswordForgotRequest $request)
     {
@@ -208,7 +208,7 @@ class AuthController extends Controller
      * Return reset password view with a form to enter a new password
      *
      * @param  mixed $token
-     * @return view reset_password
+     * @return view auth/reset_password
      */
     public function showResetForm($token)
     {
@@ -254,7 +254,7 @@ class AuthController extends Controller
     /**
      * Return update password view
      *
-     * @return view update_password
+     * @return view profile/update_password
      */
     public function showUpdatePassword()
     {
@@ -265,7 +265,7 @@ class AuthController extends Controller
      * User changing his password in his profile. Validate the old and new password, if matching and updates the database.
      *
      * @param  mixed $request
-     * @return redirect to login route
+     * @return redirect back
      */
     public function updatePassword(PasswordUpdateRequest $request)
     {

@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 
 class AdminController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all admins.
      *
-     * @return \Illuminate\Http\Response
+     * @return view backoffice/list_admin
      */
     public function index()
     {
@@ -21,9 +20,9 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new admin.
      *
-     * @return \Illuminate\Http\Response
+     * @return view backoffice/add_admin
      */
     public function create()
     {
@@ -31,10 +30,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created admin in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  UserCreateRequest  $request
+     * @return redirect to admins.index route
      */
     public function store(UserCreateRequest $request)
     {
@@ -53,10 +52,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing an admin.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return view backoffice/edit_admin
      */
     public function edit($id)
     {
@@ -65,11 +64,11 @@ class AdminController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the admin in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserUpdateRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return redirect to admins.index route
      */
     public function update(UserUpdateRequest $request, $id)
     {
@@ -78,10 +77,10 @@ class AdminController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the admin from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return redirect to admins.index route
      */
     public function destroy($id)
     {

@@ -50,6 +50,11 @@ class Game extends Model
         return $round;
     }
 
+    public function getAllRounds() {
+        $rounds = $this->rounds()->get();
+        return $rounds;
+    }
+
     public function userExistsInGame($user_id) {
         $users = $this->users()->get();
         foreach($users as $user) {

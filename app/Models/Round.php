@@ -36,7 +36,6 @@ class Round extends Model
 		return $this->belongsToMany(Question::class);
 	}
 
-	
 	public function getQuestions()
 	{
 		$questions = $this->questions();

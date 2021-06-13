@@ -9,37 +9,20 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
-	/**
-	 * Get all categories
-	 *
-	 * @return class All categories
-	 */
-	public static function getAll()
-	{
-		return Category::all();
-	}
-
-	/**
-	 *	Return 3 random categories
-	 * @return array contains 3 random categories
-	 **/
-	public static function getRandomCategories($round_count, $game_id)
-	{
-		// Define a seed so the player doesn't manipulate category generation
-		$user_id = Auth::id();
-
-		$faker = \Faker\Factory::create();
-		$faker->seed(($user_id + $round_count + $game_id) * $user_id);
-
-		// Get titles from category
-		$categories_titles = Category::pluck("title");
-		$categories = $faker->randomElements($categories_titles, 3);
-
-		return $categories;
-	}
+	// À SUPPRIMER SI UTILISÉE NULLE PART !!!!
+	// /**
+	//  * Get all categories
+	//  *
+	//  * @return class All categories
+	//  */
+	// public static function getAll()
+	// {
+	// 	return Category::all();
+	// }
 
 	public static function displayCategoryView($game_id)
 	{
+		//Retrieve data
 		$user_id = Auth::user()->id;
 		$game = Game::where('id', $game_id)->first();
 
@@ -63,10 +46,12 @@ class CategoryController extends Controller
 			}
 		}
 
+		//Get 3 random categories
 		$rounds = Round::where('game_id', $game_id)->get();
 		$round_count = $rounds->count();
-		$categories = CategoryController::getRandomCategories($round_count, $game_id);
+		$categories = Category::getRandomCategories($round_count, $game_id, $user_id);
 
+		//Return view
 		return view('gameloop/choose_categories')
 			->with('categories', $categories)
 			->with('data', $game_id);
