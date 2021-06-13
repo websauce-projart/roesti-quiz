@@ -29,7 +29,7 @@
 }
 
 .form__row {
-	margin-bottom: var(--margin-xs);
+	margin-bottom: var(--margin-m);
 }
 
 .form__row--left {

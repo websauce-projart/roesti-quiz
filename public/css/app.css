@@ -1228,6 +1228,14 @@ img {
 /********************************
  * Endgame
  ********************************/
+.endgame__container {
+	min-height: 50vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+}
+
 .endgame__sentence {
 	font-family: var(--font-headings);
 	font-size: var(--fontsize-xl);
@@ -1260,7 +1268,6 @@ img {
 	}
 
 .endgame__score li strong {
-
 			color: var(--color-secondary);
 		}
 
@@ -1305,7 +1312,7 @@ img {
 }
 
 .form__row {
-	margin-bottom: var(--margin-xs);
+	margin-bottom: var(--margin-m);
 }
 
 .form__row--left {
@@ -1335,7 +1342,7 @@ input:checked~.form__row--displayCondition {
 	padding: var(--margin-m) 0
 }
 .header .pageTitle {
-		margin-left: var(--margin-m);
+		margin-left: var(--margin-xs);
 	}
 .header--login {
 	justify-content: center;
@@ -1376,8 +1383,8 @@ input:checked~.form__row--displayCondition {
 	.header--home .topnav {
 		padding: 0;
 	}
-	.header--login .logo {
-		max-height: 70px;
+	.header--login {
+		padding: 0;
 	}
 }
 
@@ -1447,6 +1454,10 @@ input:checked~.form__row--displayCondition {
 	display: -ms-flexbox;
 	display: flex;
 	flex-direction: column;
+	overflow: scroll;
+	padding: var(--margin-xs);
+	margin: -15px;
+	height: 55vh;
 }
 
 .gameBadge__noGame {
@@ -1491,6 +1502,13 @@ input:checked~.form__row--displayCondition {
 	box-shadow: var(--boxshadow-secondLight);
 	transition: var(--animation-hover);
 	text-decoration: none;
+}
+
+.gameBadge--phantom {
+	display: block;
+	min-height: 100px;
+	width: 1px;
+	opacity: 0;
 }
 
 .gameBadge:hover {
@@ -1549,6 +1567,9 @@ input:checked~.form__row--displayCondition {
 @media (max-width: 575.98px) {
 	.gameBadge {
 		padding: var(--margin-xs);
+	}
+	.gameBadge--phantom {
+		min-height: 50px;
 	}
 }
 
@@ -1836,7 +1857,7 @@ input:checked~.form__row--displayCondition {
 .presenter__container {
 	display: block;
 	position: fixed;
-	bottom: 0;
+	bottom: -30px;
 	left: 0;
 	width: 100vw;
 	height: 40vh;
@@ -1845,7 +1866,7 @@ input:checked~.form__row--displayCondition {
 .presenter {
 	position: absolute;
 	height: 100%;
-	bottom: -50px;
+	bottom: 0;
 	-webkit-animation-name: hello-presenter;
 	        animation-name: hello-presenter;
 	-webkit-animation-duration: 1s;
@@ -1864,11 +1885,10 @@ input:checked~.form__row--displayCondition {
 @media (max-width: 575.98px) {
 	.presenter__container {
 		width: 100vw;
-		height: 45vh;
+		height: 40vh;
 	}
 	.presenter {
 		left: -30px;
-		bottom: -30px;
 	}
 }
 
@@ -1949,7 +1969,7 @@ input:checked~.form__row--displayCondition {
 	background-color: var(--color-white);
 	overflow: scroll;
 	padding: var(--margin-m) var(--margin-s);
-	height: calc(100vh - 380px);
+	height: calc(100vh - 350px);
 }
 
 .roundBadge__container:after {
@@ -1959,7 +1979,7 @@ input:checked~.form__row--displayCondition {
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	box-shadow: var(--boxshadow--innerWhite);
 }
 
@@ -2015,7 +2035,7 @@ input:checked~.form__row--displayCondition {
 	box-shadow: var(--boxshadow-second-blurred);
 	position: absolute;
 	top: -12px;
-	left: calc(50% - (var(--size) / 2)); /* width and  */
+	left: calc(50% - (var(--size) / 2));
 }
 
 .roundBadge__score,
@@ -2056,6 +2076,9 @@ input:checked~.form__row--displayCondition {
 	}
 	.roundBadge__category {
 		width: 50%;
+	}
+	.roundBadge--phantom {
+		min-height: 50px;
 	}
 }
 
@@ -2133,7 +2156,7 @@ input:checked~.form__row--displayCondition {
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	min-height: 70vh;
+	height: 75vh;
 	-webkit-animation-name: pattern;
 	        animation-name: pattern;
 	-webkit-animation-duration: 5s;
@@ -2161,6 +2184,13 @@ input:checked~.form__row--displayCondition {
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
+}
+
+@media (max-width: 575.98px) {
+	.speech-bubble {
+		padding: 0 var(--margin-xs);
+		padding-bottom: var(--margin-m);
+	}
 }
 
 /********************************

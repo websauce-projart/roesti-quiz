@@ -8,7 +8,7 @@
 	background-color: var(--color-white);
 	overflow: scroll;
 	padding: var(--margin-m) var(--margin-s);
-	height: calc(100vh - 380px);
+	height: calc(100vh - 350px);
 }
 
 .roundBadge__container:after {
@@ -18,7 +18,7 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 150px;
+	height: 100px;
 	box-shadow: var(--boxshadow--innerWhite);
 }
 
@@ -70,7 +70,7 @@
 	box-shadow: var(--boxshadow-second-blurred);
 	position: absolute;
 	top: -12px;
-	left: calc(50% - (var(--size) / 2)); /* width and  */
+	left: calc(50% - (var(--size) / 2));
 }
 
 .roundBadge__score,
@@ -109,5 +109,8 @@
 	}
 	.roundBadge__category {
 		width: 50%;
+	}
+	.roundBadge--phantom {
+		min-height: 50px;
 	}
 }

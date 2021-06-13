@@ -4,6 +4,10 @@
 .gameBadge__container {
 	display: flex;
 	flex-direction: column;
+	overflow: scroll;
+	padding: var(--margin-xs);
+	margin: -15px;
+	height: 55vh;
 }
 
 .gameBadge__noGame {
@@ -43,6 +47,13 @@
 	box-shadow: var(--boxshadow-secondLight);
 	transition: var(--animation-hover);
 	text-decoration: none;
+}
+
+.gameBadge--phantom {
+	display: block;
+	min-height: 100px;
+	width: 1px;
+	opacity: 0;
 }
 
 .gameBadge:hover {
@@ -99,5 +110,8 @@
 @media (max-width: 575.98px) {
 	.gameBadge {
 		padding: var(--margin-xs);
+	}
+	.gameBadge--phantom {
+		min-height: 50px;
 	}
 }

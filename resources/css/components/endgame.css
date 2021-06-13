@@ -1,6 +1,12 @@
 /********************************
  * Endgame
  ********************************/
+.endgame__container {
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+}
+
 .endgame__sentence {
 	font-family: var(--font-headings);
 	font-size: var(--fontsize-xl);
@@ -28,7 +34,6 @@
 		font-size: var(--fontsize-l);
 
 		& strong {
-
 			color: var(--color-secondary);
 		}
 	}

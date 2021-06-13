@@ -12,6 +12,8 @@
 		<div class="gameBadge--wrapper" v-for="data in datasOrderd" :key="data">
 			<game-home :data="data"></game-home>
 		</div>
+
+		<div class="gameBadge--phantom"></div>
 	</div>
 </template>
 
