@@ -19,19 +19,28 @@
 	position: relative;
 }
 
-.profile__avatar__editButton a {
-	background-color: var(--color-white);
-	box-shadow: var(--boxshadow-second-blurred);
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: var(--fontsize-l);
-	position: absolute;
-	bottom: 0;
-	right: 0;
+.profile__avatar__editButton {
+	& a {
+		background-color: var(--color-white);
+		box-shadow: var(--boxshadow-second-blurred);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: var(--fontsize-l);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transition: var(--animation-hover);
+	}
+	& a:hover {
+		transform: scale(1.1);
+	}
+	& a:active {
+		transform: scale(0.8);
+	}
 }
 
 .profile__info {

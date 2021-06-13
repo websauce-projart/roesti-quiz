@@ -718,6 +718,24 @@ textarea,
 	}
 }
 
+@-webkit-keyframes roesti-dance {
+	0% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(5deg);
+	}
+}
+
+@keyframes roesti-dance {
+	0% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(5deg);
+	}
+}
+
 .cards-container{
 	display:block;
 	width: 20rem;
@@ -936,76 +954,110 @@ img {
 	overflow: hidden;
 }
 
- /** GRID SETTINGS */
- .avatar__editor {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-        "buttons"
-        "avatar"
+/** GRID SETTINGS */
+.avatar__editor {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto 1fr;
+	grid-template-areas:
+		"buttons"
+		"avatar";
 }
 
 .buttons__container {
-    grid-area: buttons;
+	grid-area: buttons;
 }
 
 .avatar__editor__container {
-    grid-area: avatar;
+	grid-area: avatar;
 }
 
 /**AVATAR SETTINGS */
 .avatar__editor__container {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/assets_avatar_background.svg');
-    margin: 0 auto;
+	position: relative;
+	width: 200px;
+	height: 200px;
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/avatar/assets_avatar_background.svg");
+	margin: var(--margin-l) auto;
+
+	-webkit-animation-name: roesti-dance;
+
+	        animation-name: roesti-dance;
+	-webkit-animation-duration: 2s;
+	        animation-duration: 2s;
+	animation-direction: alternate-reverse;
+	-webkit-animation-iteration-count: infinite;
+	        animation-iteration-count: infinite;
+	-webkit-animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+	        animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
 }
 
 .avatar__editor__element {
-    width: 100%;
-    height: 100%;
-    position: absolute;
+	width: 100%;
+	height: 100%;
+	position: absolute;
 }
 
 .avatar__element__eyes {
-    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux.png');
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux.png");
 }
 
 .avatar__element__mouths {
-    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/mouths/assets_avatar_bouches.png');
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/avatar/mouths/assets_avatar_bouches.png");
 }
 
 .avatar__element__poses {
-    background-image: url('https://pingouin.heig-vd.ch/websauce/img/avatar/poses/assets_avatar_poses.png');
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/avatar/poses/assets_avatar_poses.png");
 }
 
 /**BUTTONS SETTINGS */
 .buttons__container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
 }
 
-.buttons__container > span {
-    font-size: 10rem;
-}
+.buttons__container button {
+		width: 85px;
+		height: 85px;
+		border-radius: 50%;
+		background: var(--color-white);
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		box-shadow: var(--boxshadow-second-blurred);
+		transition: var(--animation-hover);
+	}
+
+.buttons__container button:hover {
+		transform: scale(1.1);
+	}
+
+.buttons__container button:active {
+		transform: scale(0.8)
+	}
+
+.buttons__container img {
+		padding: var(--margin-s);
+	}
 
 /**DISPLAYED AVATAR */
 .avatar__container {
-    position: relative;
-    width: 100%;
-    height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 .avatar__element {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
+
 /********************************
  * Bottom bar
  * Basically a container for the button
@@ -1623,21 +1675,30 @@ input:checked~.form__row--displayCondition {
 }
 
 .profile__avatar__editButton a {
-	background-color: var(--color-white);
-	box-shadow: var(--boxshadow-second-blurred);
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: var(--fontsize-l);
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
+		background-color: var(--color-white);
+		box-shadow: var(--boxshadow-second-blurred);
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		display: -webkit-box;
+		display: -ms-flexbox;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: var(--fontsize-l);
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		transition: var(--animation-hover);
+	}
+
+.profile__avatar__editButton a:hover {
+		transform: scale(1.1);
+	}
+
+.profile__avatar__editButton a:active {
+		transform: scale(0.8);
+	}
 
 .profile__info {
 	display: -webkit-box;
@@ -1716,7 +1777,7 @@ input:checked~.form__row--displayCondition {
 }
 
 .presenter img {
-		width: 100%;
+		min-width: 100%;
 		height: 100%;
 	}
 
