@@ -99,7 +99,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a user and redirect to login
+     * Register a user and auto login
      *
      * @param  UserCreateRequest $request
      * @return redirect to login route
@@ -113,8 +113,16 @@ class AuthController extends Controller
         //Dispatch event to send verification email
         event(new Registered($user)); 
 
-        //Return redirect
-        return redirect()->route('login')->withOk('Votre compte a été crée.');
+        //Retrieve data to login
+        $pseudo = $request->pseudo;
+        $password = $request->password;
+
+        //Login and redirect to verify
+        Auth::attempt(['pseudo' => $pseudo, 'password' => $password]);
+        if (Auth::check()) {
+            $request->session()->regenerate();
+            return redirect()->route('verification.notice');
+        }
     }
 
     /**
