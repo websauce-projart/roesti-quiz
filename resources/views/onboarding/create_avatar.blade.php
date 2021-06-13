@@ -5,8 +5,11 @@ Création d'avatar
 @endsection
 
 @section('content')
-Quel rösti es-tu {{$pseudo}} ?
+<nav class="topnav topnav--right">
+    <a href="{{ route('onboardingExit') }}" class="icon-close"></a>
+</nav>
 
+Quel rösti es-tu {{$pseudo}} ?
 
 
 <x-avatar-editor label="Suivant" route=""></x-avatar-editor>

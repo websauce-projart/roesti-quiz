@@ -44,6 +44,16 @@ class OnboardingController extends Controller
      * @return view onboarding/friends
      */
     public function displayFriendsTutorial() {
+        //Return view
+        return view('/onboarding/friends');
+    }
+    
+    /**
+     * Redirect the user when he quits the unboarding and considers him as already onboarded
+     *
+     * @return void
+     */
+    public function quitOnboarding() {
         //Retrieve data
         $user_id = Auth::user()->id;
         $user = User::where('id', $user_id)->first();
@@ -52,7 +62,7 @@ class OnboardingController extends Controller
         $user->has_onboarded = true;
         $user->save();
 
-        //Return view
-        return view('/onboarding/friends');
+        //Return redirect
+        return redirect()->route('home');
     }
 }
