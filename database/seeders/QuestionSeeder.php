@@ -72,8 +72,8 @@ class QuestionSeeder extends Seeder
 							]
 							],
 							['label' => '"Bobet", "tocson" et "dadet" veulent tous trois dire "stupide"',
-							'answer_label' => 'Une tchette veut dire "une petite quantité"',
-							'answer_boolean' => false,
+							'answer_label' => '',
+							'answer_boolean' => true,
 							'author_id' => '1',
 							'categories' => [
 								'1',
@@ -239,17 +239,17 @@ class QuestionSeeder extends Seeder
 								'3',
 							]
 							],
-							['label' => 'TODOALAN',
-							'answer_label' => 'TODOALAN',
-							'answer_boolean' => false,
+							['label' => 'Le Comité international olympique se trouve à la Maison olympique, à Lausanne.',
+							'answer_label' => '',
+							'answer_boolean' => true,
 							'author_id' => '1',
 							'categories' => [
 								'3',
 							]
 							],
-							['label' => 'TODOALAN',
-							'answer_label' => 'TODOALAN',
-							'answer_boolean' => false,
+							['label' => 'Les Sports Universitaires Lausanne offrent plus de 125 programmes sportifs.',
+							'answer_label' => '',
+							'answer_boolean' => true,
 							'author_id' => '1',
 							'categories' => [
 								'3',
@@ -319,7 +319,7 @@ class QuestionSeeder extends Seeder
 								'4',
 							]
 							],
-							['label' => 'Vallais a été le dernier canton à rejoindre la Suisse',
+							['label' => 'Le Valais a été le dernier canton à rejoindre la Suisse',
 							'answer_label' => 'C\'était le canton Jura en 1979',
 							'answer_boolean' => false,
 							'author_id' => '1',
@@ -327,9 +327,9 @@ class QuestionSeeder extends Seeder
 								'4',
 							]
 							],
-							['label' => 'Zurich était la capitale avant Berne.',
-							'answer_label' => 'Oui, en rotation annuelle avec Lucerne et Berne.',
-							'answer_boolean' => false,
+							['label' => 'Zürich était la capitale avant Berne.',
+							'answer_label' => '',
+							'answer_boolean' => true,
 							'author_id' => '1',
 							'categories' => [
 								'4',
