@@ -14,7 +14,7 @@ class EyeSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 4; $i++) { 
+        for ($i=1; $i < 12; $i++) { 
             DB::table('eyes')->insert([
                 'path' => 'https://pingouin.heig-vd.ch/websauce/img/avatar/eyes/assets_avatar_yeux'.$i.'.svg'
             ]);

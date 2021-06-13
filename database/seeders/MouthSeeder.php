@@ -14,7 +14,7 @@ class MouthSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 4; $i++) { 
+        for ($i=1; $i < 12; $i++) { 
             DB::table('mouths')->insert([
                 'path' => 'https://pingouin.heig-vd.ch/websauce/img/avatar/mouths/assets_avatar_bouche'.$i.'.svg'
             ]);

@@ -28,17 +28,21 @@ use App\Http\Controllers\OnboardingController;
 /********************************
  * Verified user
  ********************************/
+
 Route::group(['middleware' => ['verified', 'notadmin']], function () {
 
 	/********************************
 	 * Api homemade
 	 ********************************/
+
 	Route::get('/api/home', [GameController::class, 'requestHomeData']);
 	Route::get('/api/avatar/{user_id}', [AvatarController::class, 'dataAvatar']);
+
 
 	/********************************
 	 * Home
 	 ********************************/
+
 	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
 	Route::get('/', function () {
 		return redirect()->route('home');
@@ -48,10 +52,13 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	/********************************
 	 * Profile
 	 ********************************/
+
 	Route::get('/user/{user_id}', [UserController::class, 'displayProfile'])->name('profile');
 	Route::post('/user/{user_id}', [UserController::class, 'deleteAccount']);
+
 	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
 	Route::post('/user/{user_id}/update-password', [AuthController::class, 'updatePassword']);
+
 	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
 	Route::post('/user/{user_id}/update-avatar', [AvatarController::class, 'updateAvatar']);
 
@@ -60,44 +67,48 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	 * Gameloop
 	 ********************************/
 
-	Route::post('/home', [UserController::class, 'displaySearch']); //Checké
+	Route::post('/home', [UserController::class, 'displaySearch']);
 
-	Route::post('/game', [GameController::class, 'createGame'])->name('creategame'); //Checké
+	Route::post('/game', [GameController::class, 'createGame'])->name('creategame');
 
-	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category'); //Checké - contrôle à tester
-	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']); //Terminé
+	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category');
+	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']);
 
-	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results'); //Terminé
+	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results');
 
-	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz'); //Terminé
-
-	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz'); //Terminé
-
-	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame'); //Terminé
-
-	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join'); //Terminé
-	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play'); //Terminé
+	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz');
 
 	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
+
+	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz');
+
+	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame');
+
+	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join');
+	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play');
+
 
 	/********************************
 	 * Onboarding
 	 ********************************/
-	Route::group(['middleware' => ['onboarded']], function () {	//
+
+	Route::group(['middleware' => ['onboarded']], function () {
+
 		Route::get('/welcome/1', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
 		Route::get('/welcome/2', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingAvatar');
 		Route::post('/welcome/2', [AvatarController::class, 'createAvatar']);
 		Route::get('/welcome/3', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
 		Route::get('/welcome/4', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
 		Route::get('/welcome/5', [OnboardingController::class, 'displayFriendsTutorial'])->name('onboardingFriends');
+
 	});
 });
-
 
 
 /********************************
  * Login & Registration
  ********************************/
+
 Route::group(['middleware' => ['guest']], function () {
 
 	//Register
@@ -138,9 +149,12 @@ Route::get("/logout", [AuthController::class, "logout"])->name('logout');
 /********************************
  * Admin backoffice
  ********************************/
+
 Route::group(['middleware' => ['admin']], function () {
+
 	Route::get('/backoffice', [BackofficeController::class, 'showBackofficeView'])->name('backoffice');
 	Route::resource('/backoffice/users', UserController::class)->except(['show', 'create', 'store']);
 	Route::resource('/backoffice/admins', AdminController::class)->except(['show']);
 	Route::resource('/backoffice/questions', QuestionController::class)->except(['show']);
+	
 });

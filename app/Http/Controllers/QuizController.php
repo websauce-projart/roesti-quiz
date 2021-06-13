@@ -224,7 +224,6 @@ class QuizController extends Controller
 
 	public function showEndgameView($game_id, $round_id, $result_id)
 	{
-
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();

@@ -3,30 +3,102 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 200 200" style="enable-background:new 0 0 200 200;" xml:space="preserve">
 <style type="text/css">
-	.st0{display:none;}
-	.st1{fill:#FFBF2F;}
-	.st2{fill:none;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st3{fill:#FE450E;stroke:#FE450E;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st4{fill:#003769;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st6{fill:#FE450E;}
+	.st0{fill:#FFAC2F;}
+	.st1{fill:none;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st2{fill:#FFFFFF;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{fill:#003769;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st4{fill:#FE450E;stroke:#FE450E;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st5{fill:#FFFFFF;}
+	.st6{fill:#FE450E;stroke:#003769;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st7{fill:#003769;}
+	.st8{fill:#FE450E;}
+	.st9{fill:#FF0000;}
+	.st10{fill:#FFE500;}
+	.st11{fill:#A100FF;}
+	.st12{fill:#04B846;}
+	.st13{fill:#4092E8;}
+	.st14{fill:#B05B00;}
+	.st15{fill:#89E2F5;}
+	.st16{fill:#FF87A9;}
+	.st17{fill:none;stroke:#003769;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st18{fill:#FFFFFF;stroke:#003769;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st19{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st20{fill:none;stroke:#003769;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 </style>
-<g id="Calque_1" class="st0">
-</g>
 <g id="Calque_2">
 	<g id="Calque_5">
 	</g>
 </g>
-<g id="Calque_6">
+<g id="Calque_4">
+</g>
+<g id="Calque_24">
+</g>
+<g id="Calque_25">
+</g>
+<g id="Calque_26">
+</g>
+<g id="Calque_27">
+</g>
+<g id="Calque_28">
+</g>
+<g id="Calque_29">
+</g>
+<g id="Calque_30">
+</g>
+<g id="Calque_31">
+</g>
+<g id="Calque_32">
+</g>
+<g id="Calque_33">
+</g>
+<g id="Calque_34">
+</g>
+<g id="Calque_35">
+</g>
+<g id="Calque_7">
+	<path class="st2" d="M139.1,53c-4.2-3.2-10.2-3.3-15.1-1.3c-4.9,2-8.8,5.9-11.9,10.2c-4,5.6-6.9,13-4.3,19.4
+		c2.7,6.5,10.1,9.7,16.9,11.3c6.4,1.5,13.5,2.2,19.4-0.7c7.5-3.7,11.4-12.9,9.9-21.2C152.5,62.5,145.2,57.6,139.1,53z"/>
+	<path class="st1" d="M130.4,94.3c-1.3,4-2.5,8.2-2,12.4s3.6,8.3,7.8,8.7c2.1,0.2,4.3-0.6,5.8-2.1c1.5-1.5,2.2-3.8,1.9-5.9"/>
+	<path class="st1" d="M119.6,74.2c7-6.1,14.3-11.8,22-17"/>
+	<path class="st1" d="M131.6,79.9c6.9-4.2,13.5-9,19.6-14.4"/>
+	<path class="st1" d="M63.8,67.9c-0.5,1.8,0.5,3.8,2,4.9s3.5,1.5,5.4,1.6c3,0.2,6,0,8.8-1.1s5.3-3,6.8-5.5"/>
+	<path class="st3" d="M61.5,52.1c9.5,1.8,19.8-1.4,26.6-8.3c0,3.7-0.2,7.9-3,10.1c-2.1,1.7-5.1,1.8-7.7,1.6
+		C72.1,55.2,66.8,54.3,61.5,52.1z"/>
+</g>
+<g id="Calque_10">
+</g>
+<g id="Calque_11">
+</g>
+<g id="Calque_12">
+</g>
+<g id="Calque_13">
 </g>
 <g id="Calque_3">
-	<path class="st2" d="M73.4,46.1c5.5,8,11,16.1,16.5,24.1c-9.3,2.2-18.5,4.3-27.8,6.5"/>
-	<path class="st2" d="M69.2,62.8c5.3,3.3,11.3,5.5,17.5,6.3"/>
-	<path class="st2" d="M138.1,55.8c-6.5,3.3-12.7,7.3-18.5,11.9c-1.3,1.1-2.8,2.5-2.7,4.2c0,1.2,0.8,2.2,1.6,3.1
-		c4.1,4.7,9.3,8.4,15.1,10.6"/>
-	<path class="st2" d="M117.4,72.1c7.8-0.2,15.6-0.4,23.4-0.6"/>
 </g>
-<g id="Calque_4">
+<g id="Calque_14">
+</g>
+<g id="Calque_15">
+</g>
+<g id="Calque_16">
+</g>
+<g id="Calque_19">
+</g>
+<g id="Calque_20">
+</g>
+<g id="Calque_17">
+</g>
+<g id="Calque_6">
+</g>
+<g id="Calque_9">
+</g>
+<g id="Calque_8">
+</g>
+<g id="Calque_18">
+</g>
+<g id="Calque_21">
+</g>
+<g id="Calque_22">
+</g>
+<g id="Calque_23">
 </g>
 </svg>

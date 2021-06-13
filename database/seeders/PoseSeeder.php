@@ -14,7 +14,7 @@ class PoseSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i < 4; $i++) { 
+        for ($i=1; $i < 12; $i++) { 
             DB::table('poses')->insert([
                 'path' => 'https://pingouin.heig-vd.ch/websauce/img/avatar/poses/assets_avatar_pose'.$i.'.svg'
             ]);

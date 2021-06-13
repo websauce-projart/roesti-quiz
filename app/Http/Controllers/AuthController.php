@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
+use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\PasswordForgotRequest;
+use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthController extends Controller
@@ -35,30 +38,27 @@ class AuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return redirect to login or home route
      */
-    public function authenticate(Request $request)
+    public function authenticate(LoginRequest $request)
     {
-        Validator::make($request->all(), [
-            "pseudo" => "required",
-            "password" => "required",
-        ])->validate();
-
+        //Retrieve data
         $pseudo = $request->pseudo;
         $password = $request->password;
         $remember = $request->input('remember_token');
 
+        //User used either email or username
         if (filter_var($pseudo, FILTER_VALIDATE_EMAIL)) {
             //user sent their email 
             Auth::attempt(['email' => $pseudo, 'password' => $password], $remember);
         } else {
-            //they sent their username instead 
+            //user sent their username 
             Auth::attempt(['pseudo' => $pseudo, 'password' => $password], $remember);
         }
 
-        //was any of those correct ?
+        //Was any of those correct ?
         if (Auth::check()) {
             $request->session()->regenerate();
 
-            // redirect where user usually attempted to go, but on homepage as a fallback
+            //User logged in, gets redirected to home
             return redirect()->route('home');
         }
 
@@ -103,14 +103,8 @@ class AuthController extends Controller
      * @param  mixed $request
      * @return redirect to login route
      */
-    public function register(Request $request)
+    public function register(UserCreateRequest $request)
     {
-        $request->validate([
-            'pseudo' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:6',
-        ]);
-
         $data = $request->all();
         $user = $this->create($data);
 
@@ -180,7 +174,7 @@ class AuthController extends Controller
 
 
     /********************************
-     * Password reset
+     * Password forgot
      ********************************/
 
     /**
@@ -199,10 +193,8 @@ class AuthController extends Controller
      * @param  mixed $request
      * @return redirect to login
      */
-    public function sendPasswordEmail(Request $request)
+    public function sendPasswordEmail(PasswordForgotRequest $request)
     {
-        $request->validate(['email' => 'required|email']);
-
         $status = Password::sendResetLink(
             $request->only('email')
         );
@@ -255,6 +247,10 @@ class AuthController extends Controller
             : back()->withErrors(['email' => [__($status)]]);
     }
 
+    /********************************
+     * Password update
+     ********************************/
+
     /**
      * Return update password view
      *
@@ -271,7 +267,7 @@ class AuthController extends Controller
      * @param  mixed $request
      * @return redirect to login route
      */
-    public function updatePassword(Request $request)
+    public function updatePassword(PasswordUpdateRequest $request)
     {
         $this->validate($request, [
             'oldpassword' => 'required',
