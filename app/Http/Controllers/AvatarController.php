@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Eye;
+use App\Models\Pose;
+use App\Models\User;
+use App\Models\Mouth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Models\Eye;
-use App\Models\Mouth;
-use App\Models\Pose;
 
 class AvatarController extends Controller
 {    

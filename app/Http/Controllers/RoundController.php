@@ -6,9 +6,9 @@ use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
 use App\Models\Category;
+use App\Models\UserAnswer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserAnswer;
 
 class RoundController extends Controller
 {

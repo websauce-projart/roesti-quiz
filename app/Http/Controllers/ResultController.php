@@ -7,9 +7,7 @@ use App\Models\User;
 use App\Models\Round;
 use App\Models\Result;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\RoundController;
 
 class ResultController extends Controller
 {

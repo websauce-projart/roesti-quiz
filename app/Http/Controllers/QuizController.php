@@ -8,8 +8,8 @@ use App\Models\Round;
 use App\Models\Result;
 use App\Models\UserAnswer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
