@@ -186,6 +186,42 @@ class QuizController extends Controller
 		return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id])->with(['result' => $result]);
 	}
 
+	private static function getSentence($score) {
+		$defeatSentences = [
+			"Tcheu t'es pas en forme !",
+			"Ben j'te dis pas bravo !",
+			"Ça va le chalet, ou bien ?",
+			"Réveille-toi un peu !",
+			"T'es sur Soleure ou quoi ?",
+			"C'est quoi cette gogne ?",
+			"T'es bobet ou bien ?",
+			"Tcheu c'te molle...",
+			"T'as pecloté là...",
+			"Fais un effort nom de bleu !"
+
+		];
+		$victorySentences = [
+			"Bravo topio !",
+			"Tcheu t'es en forme !",
+			"T'as triché, avoue !",
+			"J'aurais pas mieux fait",
+			"T'étais bien vigousse là !",
+			"T'es royé ou bien ?!",
+			"Je suis déçu en bien...",
+			"Alain Berset te félicite !",
+			"De bleu de bleu !",
+			"Sacré rösti !"
+		];
+
+		if($score <= 500) {
+			$i = array_rand($defeatSentences);
+			return $defeatSentences[$i];
+		} else {
+			$i = array_rand($victorySentences);
+			return $victorySentences[$i];
+		}
+	}
+
 	public function showEndgameView($game_id, $round_id, $result_id)
 	{
 
@@ -239,12 +275,16 @@ class QuizController extends Controller
 		//Retrieve score
 		$score = $result->score;
 
+		//Get announcer sentence
+		$sentence = $this->getSentence($score);
+
 		return view('gameloop/endgame')
 			->with("round_id", $round_id)
 			->with('count', $correct_answers_count)
 			->with('time', $time)
 			->with('score', $score)
-			->with('game', $game);
+			->with('game', $game)
+			->with('sentence', $sentence);
 	}
 
 	public function redirectFromResults($game_id)

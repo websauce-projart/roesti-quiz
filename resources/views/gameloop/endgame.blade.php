@@ -17,7 +17,7 @@ bg--white
 
 	<div class="section">
 		<div class="endgame__sentence">
-			phrase du présentateur
+			{{$sentence}}
 		</div>
 
 		<div class="endgame__score__container">
