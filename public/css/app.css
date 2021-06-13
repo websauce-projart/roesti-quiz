@@ -1691,7 +1691,7 @@ input:checked~.form__row--displayCondition {
 }
 
 .presenter img {
-		width: 100%;
+		min-width: 100%;
 		height: 100%;
 	}
 
