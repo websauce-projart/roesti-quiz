@@ -26,7 +26,7 @@ Tutoriel
 			<li></li>
 			<li class="active"></li>
 		</ul>
-		<a class="btn btn--primary" href="{{route('onboardingFriends')}}">Terminer</a>
+		<a class="btn btn--primary" href="{{route('onboardingExit')}}">Terminer</a>
 	</div>
 </div>
 @endsection
