@@ -42,7 +42,7 @@
 
         <input id="token" name="token" type="hidden" value="{{$token}}">
 
-        <div class="bottombar">
+        <div class="form__row">
             <x-input-submit label="Modifier mon mot de passe!"></x-input-submit>
         </div>
 

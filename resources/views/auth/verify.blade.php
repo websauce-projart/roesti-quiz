@@ -28,7 +28,10 @@ Vérifie ton email
 							<p>Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz!</p>
 						</div>
 
+						<div class="form__row">
 							<button type="submit" class="link">Renvoyer un mail de vérification</button>
+						</div>
+
 					</form>
 
 		</main>

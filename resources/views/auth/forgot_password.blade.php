@@ -37,7 +37,7 @@
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>
 
-        <div class="bottombar">
+        <div class="form__row">
             <x-input-submit label="Envoyer"></x-input-submit>
         </div>
 

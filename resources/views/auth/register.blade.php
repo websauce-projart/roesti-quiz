@@ -39,7 +39,7 @@
                 {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
             </div>
 
-            <div class="bottombar">
+            <div class="form__row">
                 <x-input-submit label="Valider"></x-input-submit>
             </div>
         </form>
