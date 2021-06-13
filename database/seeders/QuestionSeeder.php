@@ -327,7 +327,7 @@ class QuestionSeeder extends Seeder
 								'4',
 							]
 							],
-							['label' => 'Zurich était la capitale avant Berne.',
+							['label' => 'Zürich était la capitale avant Berne.',
 							'answer_label' => '',
 							'answer_boolean' => true,
 							'author_id' => '1',
