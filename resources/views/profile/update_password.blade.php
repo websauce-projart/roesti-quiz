@@ -27,6 +27,7 @@ Modifier le mot de passe
     @endif
 
      <form class="form form--center" action="" method="post">
+
            @csrf
             <div class="form__row">
             	<x-input-text label="Ancien mot de passe" id="oldpassword" placeholder="Entrez votre ancien mot de passe" type="password"></x-input-text>
@@ -42,8 +43,12 @@ Modifier le mot de passe
             	<x-input-text label="Confirmez le nouveau mot de passe" id="password_confirmation" placeholder="Confirmez votre nouveau mot de passe" type="password"></x-input-text>
             	{!! $errors->first('password_confirmation', '<small class="help-block">:message</small>') !!}
             </div>
-            <button type="submit" class="btn btn--primary">Modifier mon mot de passe!</button>
-        </form>
+
+				<div class="form__row">
+          	  <button type="submit" class="btn btn--primary">Modifier mon mot de passe!</button>
+				</div>
+
+		</form>
 
 </div>
 @endsection
