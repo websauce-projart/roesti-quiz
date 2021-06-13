@@ -4,14 +4,31 @@
 Bienvenue !
 @endsection
 
+@push('body-classes')
+bg--white
+@endpush
+
 @section('content')
+<div class="container speech-bubble">
+	<main class="unboarding unboard--welcome">
 
-Salut à toi jeune Rösti !
+			<h1 class="unboarding__title unboarding__title--big">
+				Salut à toi jeune Rösti !
+			</h1>
 
-Bienvenue au meilleur jeu de Romandie, Rösti Quiz !
+			<p>
+			Bienvenue au meilleur jeu de Romandie, Rösti Quiz !<br>
+			<br>
+			Merci d'avoir vérifié ton adresse! En tant que présentateur, c’est ma mission de te guider à travers ton aventure röstienne... Allons-y !
+			</p>
 
 
-Merci d'avoir vérifié ton adresse! En tant que présentateur, c’est ma mission de te guider à travers ton aventure röstienne... Allons-y !
+		<div class="bottombar">
+		<a class="btn btn--primary" href="{{route('onboardingAvatar')}}">Suivant</a>
+		</div>
+	</main>
+</div>
 
-<a href="{{route('onboardingAvatar')}}">Suivant</a>
+<x-presenter></x-presenter>
+
 @endsection
