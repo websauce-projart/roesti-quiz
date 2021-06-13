@@ -48,8 +48,7 @@
 }
 
 .searchFriends--noFriend {
-	margin: var(--margin-l) 0;
-	height: 30vh;
+	height: 20vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

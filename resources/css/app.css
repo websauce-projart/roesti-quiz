@@ -48,6 +48,7 @@
 @import "components/modal";
 @import "components/nav";
 @import "components/profile";
+@import "components/presenter";
 @import "components/results";
 @import "components/round-badge";
 @import "components/search-friends";

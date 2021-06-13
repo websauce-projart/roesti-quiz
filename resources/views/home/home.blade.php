@@ -28,7 +28,9 @@ bg--white
 					<x-input-submit label="Nouvelle partie"></x-input-submit>
 			</form>
 		</main>
-
 </div>
+
+<x-presenter></x-presenter>
+
 
 @endsection
