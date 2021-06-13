@@ -21,7 +21,6 @@
 .header--home {
 	display: flex;
 	justify-content: center;
-	& .logo,
 	& .topnav {
 		margin-right: auto;
 	}
@@ -31,4 +30,16 @@
 }
 .header--cards {
 	padding-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+	.header {
+		padding: var(--margin-xs) 0;
+	}
+	.header--home .logo {
+		max-height: 70px;
+	}
+	.header--login .logo {
+		max-height: 70px;
+	}
 }

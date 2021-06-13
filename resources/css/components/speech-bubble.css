@@ -11,8 +11,7 @@
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	min-height: 50vh;
-	margin-bottom: 45%;
+	min-height: 70vh;
 	animation-name: pattern;
 	animation-duration: 5s;
 	animation-iteration-count: infinite;
@@ -35,10 +34,4 @@
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
-}
-
-@media (max-width: 575.98px) {
-	.speech-bubble {
-		min-height: 70vh;
-	}
 }

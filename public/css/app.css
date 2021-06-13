@@ -943,6 +943,7 @@ img {
 	max-width: 650px;
 	margin: 0 auto;
 	padding: 0 var(--margin-s);
+	position: relative;
 }
 
 .container--fullheight {
@@ -1125,9 +1126,10 @@ img {
 }
 
 @media (max-width: 575.98px) {
-	.btn--primary {
+	.btn {
 		font-size: var(--fontsize-l);
 		padding: var(--margin-xs);
+		padding-top: 1.4rem; /* fix weird font placement */
 	}
 }
 
@@ -1334,8 +1336,7 @@ input:checked~.form__row--displayCondition {
 	display: flex;
 	justify-content: center
 }
-.header--home .logo,
-	.header--home .topnav {
+.header--home .topnav {
 		margin-right: auto;
 	}
 .header--home .logo {
@@ -1343,6 +1344,18 @@ input:checked~.form__row--displayCondition {
 	}
 .header--cards {
 	padding-bottom: 0;
+}
+
+@media (max-width: 575.98px) {
+	.header {
+		padding: var(--margin-xs) 0;
+	}
+	.header--home .logo {
+		max-height: 70px;
+	}
+	.header--login .logo {
+		max-height: 70px;
+	}
 }
 
 /********************************
@@ -1660,7 +1673,10 @@ input:checked~.form__row--displayCondition {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	padding: var(--margin-s) 0
+	padding: var(--margin-s) 0;
+	position: absolute;
+	top: var(--margin-m);
+	left: var(--margin-m)
 }
 .topnav a,
 	.topnav button {
@@ -1684,6 +1700,13 @@ input:checked~.form__row--displayCondition {
 	justify-content: center;
 }
 
+@media (max-width: 575.98px) {
+	.topnav {
+		top: 5px;
+		left: 5px;
+	}
+}
+
 /********************************
  * Profile
  ********************************/
@@ -1703,7 +1726,7 @@ input:checked~.form__row--displayCondition {
 	border-radius: 50%;
 	background-color: var(--color-white);
 	box-shadow: var(--boxshadow-second-blurred);
-	padding: var(--margin-m);
+	padding: 40px;
 	position: relative;
 }
 
@@ -2056,8 +2079,7 @@ input:checked~.form__row--displayCondition {
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	min-height: 50vh;
-	margin-bottom: 45%;
+	min-height: 70vh;
 	-webkit-animation-name: pattern;
 	        animation-name: pattern;
 	-webkit-animation-duration: 5s;
@@ -2085,12 +2107,6 @@ input:checked~.form__row--displayCondition {
 	margin-bottom: -35px;
 	transform: rotate(15deg);
 	z-index: -1;
-}
-
-@media (max-width: 575.98px) {
-	.speech-bubble {
-		min-height: 70vh;
-	}
 }
 
 /********************************

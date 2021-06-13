@@ -24,9 +24,10 @@
 }
 
 @media (max-width: 575.98px) {
-	.btn--primary {
+	.btn {
 		font-size: var(--fontsize-l);
 		padding: var(--margin-xs);
+		padding-top: 1.4rem; /* fix weird font placement */
 	}
 }
 

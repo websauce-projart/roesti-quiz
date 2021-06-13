@@ -7,6 +7,7 @@
 	max-width: 650px;
 	margin: 0 auto;
 	padding: 0 var(--margin-s);
+	position: relative;
 }
 
 .container--fullheight {
