@@ -25,3 +25,12 @@
 		transform: translateY(0);
 	}
 }
+
+@keyframes roesti-dance {
+	0% {
+		transform: rotate(-5deg);
+	}
+	100% {
+		transform: rotate(5deg);
+	}
+}
