@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('template')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Réinitialiser le mot de passe</title>
+@section('title')
+	 Mot de passe oublié
+@endsection
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
-</head>
-
-<body>
-
+@section('content')
+<div class="container">
     <header>
-        <a href="{{ route('login') }}">Retour au login</a>
+		 <nav class="topnav">
+			<a href="{{ route('login') }}" class="icon-arrow-left" aria-label="Retour"></a>
+			<h1 class="pageTitle">Mot de passé oublié</h1>
+		 </nav>
     </header>
 
     @if (Session::has('status'))
@@ -26,21 +23,24 @@
     <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}</div>
     @endif
 
-    <form action="" method="post">
+    <form action="" method="post" class="form form--center">
         @csrf
 
-        <div class="center">
-            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧">
+		  <div class="form__row">
+			  <p>Ça arrive à tout le monde d'oublier son mot de passe. Ne t'en fais pas, on est là pour toi !</p>
+			  <p>Écris juste ton adresse e-mail et on se charge de t'envoyer un lien de réinitialisation dans ta boîte mail !</p>
+		  </div>
+
+        <div class="form__row">
+            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="envelope">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
-            <br>
         </div>
 
-        <div>
-            <x-input-submit label="Envoyer un lien de réinitialisation!"></x-input-submit>
+        <div class="form__row">
+            <x-input-submit label="Envoyer"></x-input-submit>
         </div>
 
     </form>
-</body>
-
-</html>
+</div>
+@endsection
