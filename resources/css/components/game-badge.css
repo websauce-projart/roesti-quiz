@@ -6,6 +6,21 @@
 	flex-direction: column;
 }
 
+.gameBadge__noGame {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: var(--margin-m);
+	& p {
+		font-family: var(--font-headings);
+		font-size: var(--fontsize-l);
+		color: var(--color-secondary);
+		letter-spacing: var(--fontspace-headings);
+		text-align: center;
+	}
+}
+
 .gameBadge__title {
 	font-family: var(--font-main);
 	font-size: var(--fontsize-l);
