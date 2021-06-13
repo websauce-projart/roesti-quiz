@@ -42,38 +42,5 @@ class DatabaseSeeder extends Seeder
 			ResultSeeder::class,
 			UserAnswerSeeder::class
 		]);
-
-		/********************************
-		 * 2. Relationships
-		 ********************************/
-
-
-		/* Users
-		 ********************************/
-
-		// Association a game with 2 users (found by id)
-		$user1 = User::find(2);
-		$user2 = User::find(3);
-		$game = Game::find(1);
-
-		$game->users()->attach($user1);
-		$game->users()->attach($user2);
-
-
-
-		/* Questions
-		  ********************************/
-
-		/**
-		 * For each question, attach to:
-		 * - an existing round (found according to id)
-		 * - an answer from one user
-		 */
-		$questions = Question::all()->take(10);
-		$round = Round::find(1);
-
-		foreach ($questions as $question) {
-			$question->rounds()->attach($round);
-		}
 	}
 }
