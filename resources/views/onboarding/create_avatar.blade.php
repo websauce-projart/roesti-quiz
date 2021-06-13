@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-Création d'avatar
+Créer mon rösti
 @endsection
 
 @section('content')

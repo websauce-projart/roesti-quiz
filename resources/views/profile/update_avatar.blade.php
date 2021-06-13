@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('title')
-Modifier mon avatar
+Modifier mon rösti
 @endsection
 
 
@@ -11,8 +11,8 @@ Modifier mon avatar
 
 	<header class="header">
 		<nav class="topnav">
-			<a href="{{ route('register') }}" class="icon-arrow-left" aria-label="Retour"></a>
-			<h1 class="pageTitle">Modifier le rösti</h1>
+			<a href="{{ route('profile', [$user_id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
+			<h1 class="pageTitle">Modifier ton rösti</h1>
 		</nav>
 	</header>
 
