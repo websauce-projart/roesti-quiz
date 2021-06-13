@@ -16,7 +16,7 @@ Tutoriel
 		</div>
 
 		<div class="unboarding__img">
-			<img src="http://placehold.it/600" alt="">
+			<img src="{{ asset("img/unboarding/friends.svg") }}" alt="">
 		</div>
 	</div>
 
