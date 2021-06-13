@@ -2067,6 +2067,7 @@ input:checked~.form__row--displayCondition {
 .status {
     padding: var(--margin-xs);
     padding-left: 80px;
+    margin: 0 auto;
     margin-bottom: var(--margin-m);
     width: 100%;
     max-width: 400px;
