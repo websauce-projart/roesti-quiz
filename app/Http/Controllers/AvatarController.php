@@ -18,7 +18,6 @@ class AvatarController extends Controller
      * @return void
      */
     private static function setAvatar(Request $request) {
-        dd($request->all());
         //Retrieve data
         $user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
