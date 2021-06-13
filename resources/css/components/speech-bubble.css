@@ -7,6 +7,10 @@
 	border-radius: var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
+	background-image: url("/img/pattern.svg");
+	background-repeat: no-repeat;
+	background-size: 125%;
+	background-position: center center;
 }
 
 .speech-bubble:before {

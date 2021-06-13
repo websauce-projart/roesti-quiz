@@ -696,6 +696,13 @@ body {
 	font-weight: normal;
 	background: var(--color-background);
 	color: var(--color-text);
+	background-image: url("/img/pattern.svg");
+	background-repeat: no-repeat;
+	background-size: 125%;
+	background-position: center center;
+}
+body.bg--white {
+	background-image: none;
 }
 main {
 	width: 100%;
@@ -1828,6 +1835,10 @@ input:checked~.form__row--displayCondition {
 	border-radius: var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
+	background-image: url("/img/pattern.svg");
+	background-repeat: no-repeat;
+	background-size: 125%;
+	background-position: center center;
 }
 
 .speech-bubble:before {
