@@ -6,7 +6,7 @@
 	height: 100%;
 	max-width: 650px;
 	margin: 0 auto;
-	padding: 0 var(--margin-s);
+	padding: 0 var(--margin-xs);
 	position: relative;
 }
 

@@ -95,3 +95,9 @@
 	align-content: center;
 	text-align: center;
 }
+
+@media (max-width: 575.98px) {
+	.gameBadge {
+		padding: var(--margin-xs);
+	}
+}

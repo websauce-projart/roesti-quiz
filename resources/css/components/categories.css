@@ -28,3 +28,9 @@
 		box-shadow: var(--boxshadow-main);
 	}
 }
+
+@media (max-width: 575.98px) {
+	.category__container {
+		padding: 0;
+	}
+}

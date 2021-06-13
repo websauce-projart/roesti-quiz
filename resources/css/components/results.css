@@ -7,7 +7,6 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	/*max-width: 400px;  same as round-badge */
 	margin: 0 auto;
 	padding-bottom: var(--margin-l);
 }
@@ -32,6 +31,7 @@
 	font-size: var(--fontsize-l);
 	letter-spacing: var(--fontspacing-headings);
 	margin-top: var(--margin-xs);
+	text-align: center;
 }
 
 .results__player__score {
@@ -43,4 +43,18 @@
 .results__player__img {
 	width: 85px;
 	height: 85px;
+}
+
+@media (max-width: 575.98px) {
+	.results {
+		margin-top: var(--margin-s-negative);
+		padding-bottom: var(--margin-xs);
+	}
+	.results__player__img {
+		width: 65px;
+		height: 65px;
+	}
+	.results__player__score {
+		font-size: var(--fontsize-ll);
+	}
 }

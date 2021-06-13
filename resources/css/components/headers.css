@@ -26,6 +26,9 @@
 	}
 	& .logo {
 		max-height: 90px;
+		margin-right: auto;
+		margin-left: -50px;
+		/* it fix the nav icon pushing the logo to the right */
 	}
 }
 .header--cards {
@@ -38,6 +41,9 @@
 	}
 	.header--home .logo {
 		max-height: 70px;
+	}
+	.header--home .topnav {
+		padding: 0;
 	}
 	.header--login .logo {
 		max-height: 70px;

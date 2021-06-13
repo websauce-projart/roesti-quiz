@@ -5,13 +5,9 @@
 	display: flex;
 	align-items: center;
 	padding: var(--margin-s) 0;
-	position: absolute;
-	top: var(--margin-m);
-	left: var(--margin-m);
 	& a,
 	& button {
 		padding: var(--margin-s);
-		/* margin-left: var(--margin-s-negative); */
 	}
 	& a:hover {
 		color: var(--color-text-lighter);
@@ -22,7 +18,7 @@
 	justify-content: right;
 	& a,
 	& button {
-		 margin-right: var(--margin-s-negative);
+		margin-right: var(--margin-s-negative);
 	}
 }
 
@@ -32,7 +28,9 @@
 
 @media (max-width: 575.98px) {
 	.topnav {
-		top: 5px;
-		left: 5px;
+		& a,
+		& button {
+			padding: var(--margin-xs);
+		}
 	}
 }

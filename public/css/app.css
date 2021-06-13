@@ -942,7 +942,7 @@ img {
 	height: 100%;
 	max-width: 650px;
 	margin: 0 auto;
-	padding: 0 var(--margin-s);
+	padding: 0 var(--margin-xs);
 	position: relative;
 }
 
@@ -1215,6 +1215,12 @@ img {
 		box-shadow: var(--boxshadow-main);
 	}
 
+@media (max-width: 575.98px) {
+	.category__container {
+		padding: 0;
+	}
+}
+
 /********************************
  * Endgame
  ********************************/
@@ -1341,6 +1347,9 @@ input:checked~.form__row--displayCondition {
 	}
 .header--home .logo {
 		max-height: 90px;
+		margin-right: auto;
+		margin-left: -50px;
+		/* it fix the nav icon pushing the logo to the right */
 	}
 .header--cards {
 	padding-bottom: 0;
@@ -1352,6 +1361,9 @@ input:checked~.form__row--displayCondition {
 	}
 	.header--home .logo {
 		max-height: 70px;
+	}
+	.header--home .topnav {
+		padding: 0;
 	}
 	.header--login .logo {
 		max-height: 70px;
@@ -1523,6 +1535,12 @@ input:checked~.form__row--displayCondition {
 	text-align: center;
 }
 
+@media (max-width: 575.98px) {
+	.gameBadge {
+		padding: var(--margin-xs);
+	}
+}
+
 /********************************
  * Icons
  ********************************/
@@ -1673,15 +1691,11 @@ input:checked~.form__row--displayCondition {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	padding: var(--margin-s) 0;
-	position: absolute;
-	top: var(--margin-m);
-	left: var(--margin-m)
+	padding: var(--margin-s) 0
 }
 .topnav a,
 	.topnav button {
 		padding: var(--margin-s);
-		/* margin-left: var(--margin-s-negative); */
 	}
 .topnav a:hover {
 		color: var(--color-text-lighter);
@@ -1693,7 +1707,7 @@ input:checked~.form__row--displayCondition {
 
 .topnav--right a,
 	.topnav--right button {
-		 margin-right: var(--margin-s-negative);
+		margin-right: var(--margin-s-negative);
 	}
 
 .topnav--center {
@@ -1701,10 +1715,10 @@ input:checked~.form__row--displayCondition {
 }
 
 @media (max-width: 575.98px) {
-	.topnav {
-		top: 5px;
-		left: 5px;
-	}
+		.topnav a,
+		.topnav button {
+			padding: var(--margin-xs);
+		}
 }
 
 /********************************
@@ -1858,7 +1872,6 @@ input:checked~.form__row--displayCondition {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	/*max-width: 400px;  same as round-badge */
 	margin: 0 auto;
 	padding-bottom: var(--margin-l);
 }
@@ -1885,6 +1898,7 @@ input:checked~.form__row--displayCondition {
 	font-size: var(--fontsize-l);
 	letter-spacing: var(--fontspacing-headings);
 	margin-top: var(--margin-xs);
+	text-align: center;
 }
 
 .results__player__score {
@@ -1896,6 +1910,20 @@ input:checked~.form__row--displayCondition {
 .results__player__img {
 	width: 85px;
 	height: 85px;
+}
+
+@media (max-width: 575.98px) {
+	.results {
+		margin-top: var(--margin-s-negative);
+		padding-bottom: var(--margin-xs);
+	}
+	.results__player__img {
+		width: 65px;
+		height: 65px;
+	}
+	.results__player__score {
+		font-size: var(--fontsize-ll);
+	}
 }
 
 /********************************
@@ -2003,6 +2031,21 @@ input:checked~.form__row--displayCondition {
 	letter-spacing: var(--fontspacing-headings);
 	padding-top: 5px;
 	font-weight: normal;
+}
+
+@media (max-width: 575.98px) {
+	.roundBadge__container {
+		padding: var(--margin-xs);
+	}
+	.roundBadge {
+		padding: var(--margin-xs);
+	}
+	.roundBadge__score {
+		width: 25%;
+	}
+	.roundBadge__category {
+		width: 50%;
+	}
 }
 
 /********************************
@@ -2272,7 +2315,7 @@ input:checked~.form__row--displayCondition {
  * Pattern fixes
  ********************************/
 .pattern-body-fix {
-	background-position: top center;
+	background-position: 50% 100%;
 }
 
 /********************************

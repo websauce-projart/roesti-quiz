@@ -96,3 +96,18 @@
 	padding-top: 5px;
 	font-weight: normal;
 }
+
+@media (max-width: 575.98px) {
+	.roundBadge__container {
+		padding: var(--margin-xs);
+	}
+	.roundBadge {
+		padding: var(--margin-xs);
+	}
+	.roundBadge__score {
+		width: 25%;
+	}
+	.roundBadge__category {
+		width: 50%;
+	}
+}
