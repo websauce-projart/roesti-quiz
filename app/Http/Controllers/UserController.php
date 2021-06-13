@@ -149,7 +149,6 @@ class UserController extends Controller
         User::findOrFail($user->id)->delete();
 
         //Return view
-        session()->flash('account-deleted','Le compte a bien été supprimé !');
-        return redirect()->route('login');
+        return redirect()->route('login')->withOk('Votre compte a bien été supprimé !');
     }
 }

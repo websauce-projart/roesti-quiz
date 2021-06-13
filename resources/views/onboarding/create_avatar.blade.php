@@ -5,9 +5,6 @@ Création d'avatar
 @endsection
 
 @section('content')
-<nav class="topnav topnav--right">
-    <a href="{{ route('onboardingExit') }}" class="icon-close"></a>
-</nav>
 
 Quel rösti es-tu {{$pseudo}} ?
 

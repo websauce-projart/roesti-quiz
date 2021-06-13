@@ -7,8 +7,14 @@ Modifier le mot de passe
 @section('content')
 <div class="container">
 
-    @if (Session::has('message'))
-    {{ Session::get('message') }}
+    @if (Session::has('ok'))
+    <!-- updatePassword (AuthC.) -->
+    <div>{{ Session::get('ok') }}</div>
+    @endif
+
+    @if (Session::has('error'))
+    <!-- updatePassword (AuthC.) -->
+    <div>{{ Session::get('error') }}</div>
     @endif
 
 	 <header class="header">

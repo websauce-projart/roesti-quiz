@@ -13,27 +13,26 @@ Vérifie ton email
         </header>
 
         <main>
-        <nav class="container topnav topnav--right">
-            <a href="{{ route('logout') }}">Retour au login</a>
-        </nav>
+            <nav class="container topnav topnav--right">
+                <a href="{{ route('logout') }}">Retour au login</a>
+            </nav>
 
             <div>
 
-                😊 Votre compte a été créé, merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz! 😊
+                @if (Session::has('ok'))
+                <!-- email resent (AuthC.) -->
+                <div>{{ Session::get('ok') }}</div>
+                @endif
+
+                Merci de confirmer votre adresse email pour pouvoir vous accéder au RöstiQuiz!
 
                 <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                     @csrf
-                    <button type="submit" class="btn btn--primary btn-link p-0 m-0 align-baseline">si ta perdu ton
-                        mail
-                        clic
-                        ici
-                        lol</button>
+                    <button type="submit" class="btn btn--primary">Renvoyer un mail de vérification</button>
                 </form>
 
 
-                @if ($errors->has('email-resent'))
-                📧 Un nouveau mail de verification vous a été envoyé! 📧
-                @endif
+
             </div>
         </main>
     </div>

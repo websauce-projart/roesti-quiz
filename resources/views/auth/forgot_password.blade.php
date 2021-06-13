@@ -16,6 +16,16 @@
         <a href="{{ route('login') }}">Retour au login</a>
     </header>
 
+    @if (Session::has('status'))
+    <!-- forgot password (AuthC.) -->
+    <div>{{ Session::get('status') }}</div>
+    @endif
+
+    @if (Session::has('email'))
+    <!-- forgot password (AuthC.) -->
+    <div>{{ Session::get('email') }}</div>
+    @endif
+
     <form action="" method="post">
         @csrf
 
@@ -25,21 +35,11 @@
             <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
-        <br>
+            <br>
         </div>
 
         <div>
             <x-input-submit label="Envoyer un lien de réinitialisation!"></x-input-submit>
-        </div>
-
-        <div>
-            @if (Session::has('status'))
-            {{ Session::get('status') }}
-            @endif
-
-            @if (Session::has('email'))
-            {{ Session::get('email') }}
-            @endif
         </div>
 
     </form>

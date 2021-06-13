@@ -12,9 +12,10 @@
 
 <body>
 
-    <!-- <header>
-        <input type="button" value="Retour au login" onclick="window.history.back()" /> 
-    </header> -->
+    @if (Session::has('status'))
+    <!-- handleResetForm (AuthC.) -->
+    <div>{{ Session::get('status') }}</div>
+    @endif
 
     <form action="" method="post">
         @csrf
@@ -22,18 +23,21 @@
         {{-- Gérer les erreurs de saisie avec vue --}}
 
         <div>
-        <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧"></x-input-text>
-        {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
+            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="📧">
+            </x-input-text>
+            {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div>
-        <x-input-text label="Nouveau mot de passe" id="password" placeholder="Entrez votre mot de passe..." type="password" icon="🔒"></x-input-text>
-        {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
+            <x-input-text label="Nouveau mot de passe" id="password" placeholder="Entrez votre mot de passe..."
+                type="password" icon="🔒"></x-input-text>
+            {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
         <div>
-        <x-input-text label="Confirmation du nouveau mot de passe" id="password_confirmation" placeholder="Confirmez votre mot de passe..." type="password" icon="🔒"></x-input-text>
-        {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
+            <x-input-text label="Confirmation du nouveau mot de passe" id="password_confirmation"
+                placeholder="Confirmez votre mot de passe..." type="password" icon="🔒"></x-input-text>
+            {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
         </div>
 
         <input id="token" name="token" type="hidden" value="{{$token}}">

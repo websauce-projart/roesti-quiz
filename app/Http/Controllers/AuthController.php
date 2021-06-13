@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use App\Http\Requests\UserCreateRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Requests\PasswordResetRequest;
 use App\Http\Requests\PasswordForgotRequest;
 use App\Http\Requests\PasswordUpdateRequest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -35,7 +36,7 @@ class AuthController extends Controller
     /**
      * Handle an authentication attempt
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  LoginRequest  $request
      * @return redirect to login or home route
      */
     public function authenticate(LoginRequest $request)
@@ -63,9 +64,7 @@ class AuthController extends Controller
         }
 
         //Nope, something wrong during authentication 
-        return redirect()->route('login')->withErrors([
-            "login-failed" => true
-        ]);
+        return redirect()->route('login')->withError('Les informations de connexion saisies sont incorrectes.');
     }
 
     /********************************
@@ -74,6 +73,8 @@ class AuthController extends Controller
 
     /**
      * Logout and redirect to homepage
+     * 
+     * @param  Request  $request
      * @return redirect to login route
      */
     public function logout(Request $request)
@@ -100,37 +101,44 @@ class AuthController extends Controller
     /**
      * Register a user and redirect to login
      *
-     * @param  mixed $request
+     * @param  UserCreateRequest $request
      * @return redirect to login route
      */
     public function register(UserCreateRequest $request)
     {
+        //Retrieve data
         $data = $request->all();
         $user = $this->create($data);
 
-        event(new Registered($user)); //dispatch event to send verification email
-        return redirect()->route('login');
+        //Dispatch event to send verification email
+        event(new Registered($user)); 
+
+        //Return redirect
+        return redirect()->route('login')->withOk('Votre compte a été crée.');
     }
 
     /**
      * Create a user in the BDD
      *
-     * @param  mixed $data
-     * @return User
+     * @param  array $data
+     * @return User the created user
      */
-    public function create(array $data)
+    public function create($data)
     {
+        //Create user
         $user = User::create([
             'pseudo' => $data['pseudo'],
             'email' => $data['email'],
             'password' => $data['password'],
         ]);
 
+        //Add default avatar
         $user->pose_id = 1;
         $user->mouth_id = 1;
         $user->eye_id = 1;
         $user->save();
 
+        //Return user
         return $user;
     }
 
@@ -151,25 +159,25 @@ class AuthController extends Controller
     /**
      * Handle requests generated when the user clicks the email verification link
      *
-     * @param  mixed $request
+     * @param  EmailVerificationRequest $request
      * @return redirect to login route
      */
     public function handleVerificationEmail(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     /**
      * Resend a verification email
      *
-     * @param  mixed $request
+     * @param  Request $request
      * @return redirect to verify route
      */
     public function resendVerificationEmail(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return redirect()->route('verification.notice')->withErrors(['email-resent' => true]);
+        return redirect()->route('verification.notice')->withOk('Un nouveau mail de vérification vous a été envoyé!');
     }
 
 
@@ -190,18 +198,20 @@ class AuthController extends Controller
     /**
      * Send a email to reset password to the specified email
      *
-     * @param  mixed $request
+     * @param  PasswordForgotRequest $request
      * @return redirect to login route
      */
     public function sendPasswordEmail(PasswordForgotRequest $request)
     {
+        //Send a email containing reset a password link
         $status = Password::sendResetLink(
             $request->only('email')
         );
 
+        //Return on forgot_password with with status message
         return $status === Password::RESET_LINK_SENT
             ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+            : back()->with(['email' => __($status)]);
     }
 
     /**
@@ -218,17 +228,12 @@ class AuthController extends Controller
     /**
      * Handle the reset password form, validate the request and update the password
      *
-     * @param  mixed $request
+     * @param  PasswordResetRequest $request
      * @return redirect to login route
      */
-    public function handleResetForm(Request $request)
+    public function handleResetForm(PasswordResetRequest $request)
     {
-        $request->validate([
-            'token' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6|confirmed',
-        ]);
-
+        //Update the password
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function ($user, $password) {
@@ -242,9 +247,10 @@ class AuthController extends Controller
             }
         );
 
+        //Return with status message
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->withOk($status)
+            : back()->with(['email' => __($status)]);
     }
 
     /********************************
@@ -264,19 +270,15 @@ class AuthController extends Controller
     /**
      * User changing his password in his profile. Validate the old and new password, if matching and updates the database.
      *
-     * @param  mixed $request
+     * @param  PasswordUpdateRequest $request
      * @return redirect back
      */
     public function updatePassword(PasswordUpdateRequest $request)
     {
-        $this->validate($request, [
-            'oldpassword' => 'required',
-            'newpassword' => 'required|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'required|min:6'
-        ]);
-
+        //Retrieve actual password
         $hashedPassword = Auth::user()->password;
 
+        //Validate new password and return with status message
         if (Hash::check($request->oldpassword, $hashedPassword)) {
 
             if (!Hash::check($request->newpassword, $hashedPassword)) {
@@ -284,15 +286,12 @@ class AuthController extends Controller
                 $user = User::where('id', $user_id)->first();
                 $user->password = $request->newpassword;
                 $user->save();
-                session()->flash('message', 'Le mot de passe a été changé avec succès !');
-                return redirect()->back();
+                return redirect()->back()->withOk('Le mot de passe a été changé avec succès !');
             } else {
-                session()->flash('message', 'Le nouveau mot de passe doit être différent de l\'ancien !');
-                return redirect()->back();
+                return redirect()->back()->withError('Le nouveau mot de passe doit être différent de l\'ancien !');
             }
         } else {
-            session()->flash('message', 'L\'ancien mot de passe n\'est pas le bon ...');
-            return redirect()->back();
+            return redirect()->back()->withError('L\'ancien mot de passe n\'est pas le bon.');
         }
     }
 }

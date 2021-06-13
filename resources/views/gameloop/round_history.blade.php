@@ -13,7 +13,7 @@ bg--white
     <body class="bg--white">
         <div class="container">
             <nav class="topnav">
-                <a href="{{ route('join', $game_id) }}" class="icon-arrow-left" aria-label="Retour"></a>
+                <a href="{{ route('results', $game_id) }}" class="icon-arrow-left" aria-label="Retour"></a>
                 <h1 class="pageTitle">Historique des réponses</h1>
             </nav>
 

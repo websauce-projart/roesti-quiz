@@ -112,9 +112,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 	 */
 	public function sendPasswordResetNotification($token)
 	{
-		$url = 'https://pingouin.heig-vd.ch/websauce/reset-password?token=' . $token;
-
-		$this->notify(new ResetPassword($url));
+		$this->notify(new ResetPassword($token));
 	}
 
 	public function getOtherUser($gameId)
