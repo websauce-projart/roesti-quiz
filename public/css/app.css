@@ -1999,6 +1999,32 @@ input:checked~.form__row--displayCondition {
 	margin-left: auto;
 }
 
+.status {
+    padding: var(--margin-xs);
+    padding-left: 80px;
+    margin-bottom: var(--margin-m);
+    width: 100%;
+    max-width: 400px;
+    min-width: 250px;
+    text-align: left;
+    font-size: var(--fontsize-m);
+    font-family: var(--font-text);
+    letter-spacing: var(--fontspacing-headings);
+    border-radius: var(--borderradius-m);
+    background-color: var(--color-white);
+    color: var(--color-text);
+    box-shadow: var(--boxshadow-second-blurred);
+    position: relative;
+}
+
+.status [class^="icon-"] {
+    position: absolute;
+    left: var(--margin-m);
+    top: calc(50% - 8px);
+    color: var(--color-disable);
+}
+
+
 /********************************
  * Colors
  ********************************/

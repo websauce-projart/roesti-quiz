@@ -249,7 +249,7 @@ class AuthController extends Controller
 
         //Return with status message
         return $status == Password::PASSWORD_RESET
-            ? redirect()->route('login')->withOk($status)
+            ? redirect()->route('login')->withOk('Votre mot de passe a été réinitialisé !')
             : back()->with(['email' => __($status)]);
     }
 
@@ -264,7 +264,8 @@ class AuthController extends Controller
      */
     public function showUpdatePassword()
     {
-        return view('profile/update_password');
+        $user_id = Auth::user()->id;
+        return view('profile/update_password')->with('user_id', $user_id);
     }
 
     /**

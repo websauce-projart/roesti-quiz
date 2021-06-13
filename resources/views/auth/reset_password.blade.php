@@ -14,7 +14,12 @@
 
     @if (Session::has('status'))
     <!-- handleResetForm (AuthC.) -->
-    <div>{{ Session::get('status') }}</div>
+    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('status') }}</div>
+    @endif
+
+    @if (Session::has('email'))
+    <!-- handleResetForm (AuthC.) -->
+    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}</div>
     @endif
 
     <form action="" method="post">
@@ -42,16 +47,6 @@
 
         <div>
             <x-input-submit label="Modifier mon mot de passe!"></x-input-submit>
-        </div>
-
-        <div>
-            @if (Session::has('status'))
-            {{ Session::get('status') }}
-            @endif
-
-            @if (Session::has('email'))
-            {{ Session::get('email') }}
-            @endif
         </div>
     </form>
 </body>

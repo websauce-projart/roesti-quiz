@@ -140,7 +140,7 @@ Route::group(['middleware' => ['guest']], function () {
 	Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
 		->name('password.reset');
 
-	Route::post('/reset-password', [AuthController::class, 'handleResetForm']);
+	Route::post('/reset-password/{token}', [AuthController::class, 'handleResetForm']);
 });
 
 //Logout

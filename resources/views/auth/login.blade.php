@@ -20,12 +20,12 @@ Connexion
 
             @if (Session::has('ok'))
             <!-- account deleted (UserC.) || register (AuthC.) || handleResetForm (AuthC.) -->
-            <div>{{ Session::get('ok') }}</div>
+            <div class="status"><i class="icon-checkmark"></i>{{ Session::get('ok') }}</div>
             @endif
 
             @if(Session::has('error'))
             <!-- login failed (AuthC.) -->
-            <div>{{Session::get('error')}}</div>
+            <div class="status"><i class="icon-checkmark"></i>{{Session::get('error')}}</div>
             @endif
 
             <div class="form__row">
