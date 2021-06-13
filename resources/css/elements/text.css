@@ -13,3 +13,10 @@ button {
 	border: none;
 	cursor: pointer;
 }
+
+mark {
+	color: var(--color-contrast);
+	font-weight: bold;
+	background-color: transparent;
+	display: inline;
+}

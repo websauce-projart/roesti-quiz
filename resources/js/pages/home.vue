@@ -1,7 +1,9 @@
 <template>
 	<div class="gameBadge__container" v-if="datas.length == 0">
-		Tu n'as encore aucune partie en cours. Clique sur nouvelle partie pour un
-		max de fun !
+		<div class="gameBadge__noGame">
+			<p>Tu n'as encore aucune partie en cours.</p>
+			<p>Clique sur <mark>nouvelle partie</mark> pour un max de fun !</p>
+		</div>
 	</div>
 	<div class="gameBadge__container" v-else>
 		<h1 class="gameBadge__title" v-if="datas.length > 1">Parties en cours</h1>

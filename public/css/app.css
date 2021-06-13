@@ -788,6 +788,13 @@ button {
 	cursor: pointer;
 }
 
+mark {
+	color: var(--color-contrast);
+	font-weight: bold;
+	background-color: transparent;
+	display: inline;
+}
+
 /********************************
  * Form
  ********************************/
@@ -1320,6 +1327,24 @@ input:checked~.form__row--displayCondition {
 	display: flex;
 	flex-direction: column;
 }
+
+.gameBadge__noGame {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: var(--margin-m)
+}
+
+.gameBadge__noGame p {
+		font-family: var(--font-headings);
+		font-size: var(--fontsize-l);
+		color: var(--color-secondary);
+		letter-spacing: var(--fontspace-headings);
+		text-align: center;
+	}
 
 .gameBadge__title {
 	font-family: var(--font-main);
