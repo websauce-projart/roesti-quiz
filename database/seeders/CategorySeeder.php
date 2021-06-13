@@ -16,7 +16,7 @@ class CategorySeeder extends Seeder
 	public function run()
 	{
 
-		$categories = ['Langues', 'Géographie', 'Sport', 'Histoire', 'Art', 'Gastronomie', 'Média'];
+		$categories = ['Langues', 'Géographie', 'Sport', 'Histoire', 'Culture', 'Média', 'Gastronomie'];
 
 		foreach ($categories as $category) {
 			Category::factory()
