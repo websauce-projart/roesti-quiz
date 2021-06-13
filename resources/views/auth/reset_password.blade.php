@@ -7,15 +7,7 @@
 @section('content')
 <div class="container">
 
-    @if (Session::has('status'))
-    <!-- handleResetForm (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('status') }}</div>
-    @endif
-
-    @if (Session::has('email'))
-    <!-- handleResetForm (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}</div>
-    @endif
+    
 
 	 <header>
 		<nav class="topnav">
@@ -24,11 +16,15 @@
 		</nav>
 	</header>
 
+    @if (Session::has('email'))
+    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}aaaa</div>
+    @endif
+
     <form action="" class="form form--center" method="post">
         @csrf
 
         <div class="form__row">
-            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="envelope">
+            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="envelope" value="{{ old('email') }}">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>

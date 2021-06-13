@@ -32,8 +32,10 @@ pattern-body-fix
 
             <div class="results__player">
                 <div class="results__player__img">
-                    <x-avatar posePath="{{ $opponent->getPosePath() }}" eyePath="{{ $opponent->getMouthPath() }}"
-                        mouthPath="{{ $opponent->getEyePath() }}"></x-avatar>
+                    <a href="{{ route('profile', [$opponent->id]) }}">
+                        <x-avatar posePath="{{ $opponent->getPosePath() }}" eyePath="{{ $opponent->getMouthPath() }}"
+                            mouthPath="{{ $opponent->getEyePath() }}"></x-avatar>
+                    </a>
                 </div>
                 <div class="results__player__pseudo">{{ $opponent->pseudo }}</div>
                 <div class="results__player__score">{{ $opponentWonRounds }}</div>

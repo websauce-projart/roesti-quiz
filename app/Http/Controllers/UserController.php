@@ -68,7 +68,7 @@ class UserController extends Controller
         $pseudo = $user->pseudo;
 
         //Delete each game the user was part of
-        foreach($games as $game) {
+        foreach ($games as $game) {
             Game::findOrFail($game->id)->delete();
         }
 
@@ -78,7 +78,7 @@ class UserController extends Controller
         //Return redirect
         return redirect()->route('users.index')->withOk("L'utilisateur " . $pseudo . " a été supprimé.");
     }
-    
+
     /**
      * Return the view to look for a new player to play against
      *
@@ -94,8 +94,8 @@ class UserController extends Controller
         //Return view
         return view('home/search')->with('opponents', $potentialOpponents);
     }
-    
-      
+
+
     /**
      * Return the profile view of a specified user
      *
@@ -106,13 +106,20 @@ class UserController extends Controller
     {
         //Retrieve data
         $user = User::where('id', Auth::user()->id)->first();
-        $totalScore = $user->getTotalScore();
-        $title = $user->getTitle();
-
-        //Checks if the profile displayed belongs to the authentified one
-        if($user_id != $user->id) {
-            return redirect()->route('profile', [$user->id]);
+        $visitedUser = $user;
+        
+        if ($user_id != $user->id) {
+            //The authentified user visits someone else profile
+            if(!is_null(User::where('id', $user_id)->first())) {
+                $visitedUser = User::where('id', $user_id)->first();
+            } else {
+                //This someone else do not exist
+                return redirect()->route('profile', [$user->id]);
+            }
         }
+
+        $totalScore = $visitedUser->getTotalScore();
+        $title = $visitedUser->getTitle();
 
         //Rearrange data
         $score = array(
@@ -121,14 +128,24 @@ class UserController extends Controller
         );
 
         $data = array(
-            "user" => $user,
+            "user" => $visitedUser,
             "score" => $score,
         );
 
         //Return view
-        return view('profile/profile')->with('data', $data);
+        if($visitedUser != $user) {
+            $game = Game::getGameFromUsers($visitedUser, $user);
+            if(!is_null($game)) {
+                $game_id = $game->id;
+            } else {
+                $game_id = 0;
+            }
+            return view('profile/profile_other')->with('data', $data)->with('game_id', $game_id);
+        } else {
+            return view('profile/profile')->with('data', $data);
+        }
     }
-    
+
     /**
      * Delete the user with everything connected to it in the database, redirect him on the login page, made to be used by the user.
      *
@@ -141,10 +158,10 @@ class UserController extends Controller
         $games = $user->games;
 
         //Delete each game the user was part of
-        foreach($games as $game) {
+        foreach ($games as $game) {
             Game::findOrFail($game->id)->delete();
         }
-        
+
         //Delete the user
         User::findOrFail($user->id)->delete();
 
