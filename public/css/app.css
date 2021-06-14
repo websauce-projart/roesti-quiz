@@ -740,12 +740,6 @@ textarea,
 	}
 }
 
-.cards-container{
-	display:block;
-	width: 20rem;
-	margin:auto;
-}
-
 /********************************
  * Background
  ********************************/
@@ -1181,6 +1175,14 @@ img {
 	}
 }
 
+/********************************
+ * Card
+ ********************************/
+.cards-container{
+	display:block;
+	width: 20rem;
+	margin:auto;
+}
 
 /********************************
  * Categories
@@ -2155,15 +2157,15 @@ input:checked~.form__row--displayCondition {
  ********************************/
 .speech-bubble {
 	position: relative;
+	height: 75vh;
 	background: var(--color-background);
-	border-radius: var(--borderradius-xl);
+	border-radius: 0 0 var(--borderradius-xl) var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
 	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	height: 75vh;
 	-webkit-animation-name: pattern;
 	        animation-name: pattern;
 	-webkit-animation-duration: 5s;
@@ -2363,6 +2365,10 @@ input:checked~.form__row--displayCondition {
 /********************************
  * Pattern fixes
  ********************************/
+.pattern-stop {
+	background: var(--color-background);
+}
+
 .pattern-body-fix {
 	background-position: 50% 100%;
 }

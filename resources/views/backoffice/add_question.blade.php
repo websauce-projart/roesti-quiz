@@ -4,6 +4,10 @@
 Ajouter une question
 @endsection
 
+@push('body-classes')
+pattern-stop
+@endpush
+
 @section('content')
 
 <x-backoffice-nav></x-backoffice-nav>
@@ -19,7 +23,7 @@ Ajouter une question
         {!! session('ok') !!}
     </div>
     @endif
-	
+
     <form class="form margin-auto" action="{{ route('questions.store') }}" method="post" accept-charset="UTF-8">
         @csrf
         <div class="form__row">
@@ -45,12 +49,12 @@ Ajouter une question
                 @foreach($data as $category)
                 <label for="{{$category->title}}" class="margin-small">
                     <input type="checkbox" id="{{$category->title}}" name="categories[]" value="{{$category->id}}"
-					@if (is_array(old('categories')) && in_array($category->id, old('categories'))) checked @endif 
+					@if (is_array(old('categories')) && in_array($category->id, old('categories'))) checked @endif
 					>
                     {{$category->title}}
                 </label>
             	@endforeach
-				
+
 			</div>
             {!! $errors->first('categories', '<p><small class="help-block">:message</small></p>') !!}
         </div>
@@ -59,6 +63,6 @@ Ajouter une question
             <button class="btn btn--primary" type="submit" name="submit">Envoyer</button>
         </div>
 
-    </form>	
+    </form>
 </div>
 @endsection
