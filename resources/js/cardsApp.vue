@@ -10,6 +10,7 @@
 			@reject="SwipeLeft"
 			@accept="SwipeRight"
 			ref="gameCardStack"
+
 		/>
   </div>
 </template>
@@ -84,12 +85,10 @@ export default {
 
   },
 
-  created() {
-	  this.createQuestionsArray();
-  },
 
   mounted(){
-  }
+  },
+
 
 };
 </script>
