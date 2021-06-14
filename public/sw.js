@@ -1,6 +1,6 @@
 var cacheName = 'rostiquiz-pwa';
 var filesToCache = [
-  '/page/offline.html',
+  'page/offline.html',
 ];
 
 /* Start the service worker and cache all of the app's content */
