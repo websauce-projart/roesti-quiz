@@ -11,6 +11,16 @@ import NewGame from "./pages/new_game.vue";
 import Timer from "./components/Timer.vue";
 import { create } from "lodash";
 
+//When loaded, checks the service worker in the navigator
+window.onload = () => {
+	'use strict';
+  
+	if ('serviceWorker' in navigator) {
+	  navigator.serviceWorker
+			   .register('./sw.js');
+	}
+  }  
+
 const app = createApp({
 	components: {
 		CardsApp,
