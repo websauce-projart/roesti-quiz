@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Round;
 use App\Models\Question;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,18 +16,27 @@ class Category extends Model
 	protected $fillable = [
 		'title'
 	];
-
+	
+	/**
+	 * Return the questions that reference the category
+	 *
+	 */
 	public function questions()
 	{
 		return $this->belongsToMany(Question::class);
 	}
-
+    
+    /**
+     * Return the rounds that reference this category
+     *
+     */
     public function rounds() {
         return $this->hasMany(Round::class);
     }
 
 	/**
 	 *	Return 3 random categories
+	 *
 	 * @return array contains 3 random categories
 	 **/
 	public static function getRandomCategories($round_count, $game_id, $user_id)

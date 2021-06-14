@@ -251,7 +251,7 @@ class GameController extends Controller
 	{
 		// Retrieve questions of the round
 		$round = Round::find($round_id);
-		$questions = $round->getQuestions();
+		$questions = $round->questions()->get();
 
 		// Retrieve players
 		$user = User::where('id', Auth::user()->id)->first();

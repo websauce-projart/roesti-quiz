@@ -18,16 +18,20 @@ class Guest
      */
     public function handle(Request $request, Closure $next)
     {  
-        if (!is_null(Auth::user())) {   //le user est authentifié
+        if (!is_null(Auth::user())) {   //the user is authentified
             $user_id = Auth::user()->id;
             $user = User::where('id', $user_id)->first();
-            if(!is_null($user->email_verified_at)) {    //le user est verifié
+
+            if(!is_null($user->email_verified_at)) {    //the user is verified
                 return redirect()->route('home');
-            } else {    //le user n'est pas verifié
+
+            } else {    //the user is not verified
                 return $next($request);
             }
-       } else { //le user n'est pas authentifié
+
+       } else {  //the user is not authentified
         return $next($request);
        }
+
     }
 }

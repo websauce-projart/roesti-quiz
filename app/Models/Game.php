@@ -16,15 +16,30 @@ class Game extends Model
     protected $fillable =[
         'active_user_id'
     ];
-
+    
+    /**
+	 * Return the users that reference the game
+     *
+     */
     public function users() {
         return $this->belongsToMany(User::class);
     }
-
+    
+    /**
+     * Return the rounds that reference this game
+     *
+     */
     public function rounds() {
         return $this->hasMany(Round::class);
     }
-
+    
+    /**
+     * Verify if a game already exists between two specified users
+     *
+     * @param  User $user
+     * @param  User $opponent
+     * @return boolean
+     */
     public static function isExistingAlready($user, $opponent) {
         $games = $user->games()->get();
         foreach($games as $game) {
@@ -34,7 +49,14 @@ class Game extends Model
         }
         return false;
     }
-
+    
+    /**
+     * Return a game with two specified users
+     *
+     * @param  User $user1
+     * @param  User $user2
+     * @return Game | null if there is no game
+     */
     public static function getGameFromUsers($user1, $user2) {
         $games = $user1->games()->get();
         foreach($games as $game) {
@@ -44,17 +66,13 @@ class Game extends Model
         }
         return null;
     }
-
-    public function getLastRound() {
-        $round = $this->rounds()->orderBy("created_at", "desc")->first();
-        return $round;
-    }
-
-    public function getAllRounds() {
-        $rounds = $this->rounds()->get();
-        return $rounds;
-    }
-
+    
+    /**
+     * Verify if a specific user exists in the game
+     *
+     * @param  int $user_id
+     * @return boolean
+     */
     public function userExistsInGame($user_id) {
         $users = $this->users()->get();
         foreach($users as $user) {
@@ -63,6 +81,26 @@ class Game extends Model
             }
         }
         return false;
+    }
+    
+    /**
+     * Return the last round of the game
+     *
+     * @return Round
+     */
+    public function getLastRound() {
+        $round = $this->rounds()->orderBy("created_at", "desc")->first();
+        return $round;
+    }
+    
+    /**
+     * Return all rounds of the game
+     *
+     * @return Round
+     */
+    public function getAllRounds() {
+        $rounds = $this->rounds()->get();
+        return $rounds;
     }
     
 }

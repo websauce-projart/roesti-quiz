@@ -17,11 +17,19 @@ class UserAnswer extends Model
 		'user_answer'
 	];
 
+	/**
+     * Return the question to which belongs the user answer
+     *
+     */
 	public function question()
 	{
 		return $this->belongsTo(Question::class);
 	}
 
+	/**
+     * Return the result to which belongs the user answer
+     *
+     */
 	public function result()
 	{
 		return $this->belongsTo(Result::class);

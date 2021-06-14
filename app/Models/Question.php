@@ -16,24 +16,46 @@ class Question extends Model
         'author_id'
     ];
 
+        
+    /**
+     * Return the user to which belongs the question
+     *
+     */
     public function user() {
         return $this->belongsTo(User::class);
     }
 
+    /**
+	 * Return the categories that reference to the question
+     *
+     */
     public function categories() {
         return $this->belongsToMany(Category::class);
     }
 
+    /**
+	 * Return the rounds that reference the question
+     *
+     */
     public function rounds() {
         return $this->belongsToMany(Round::class);
     }
 
+    /**
+     * Return the user answers that reference the question
+     *
+     */
     public function useranswers() {
         return $this->hasMany(UserAnswer::class);
     }
-
+    
+    /**
+     * Return all category titles separated by a comma
+     *
+     * @return String 
+     */
     public function getCategoriesTitles() {
-        $categories = $this->categories()->get();
+        $categories = $this->getCategories();
         $categoriesList = "";
         if($categories->count() == 1) {
             $categoriesList = $categories->first()->title;
@@ -45,11 +67,21 @@ class Question extends Model
         }
         return $categoriesList;
     }
-
+    
+    /**
+     * Return all categories that reference the question
+     *
+     * @return Category
+     */
     public function getCategories() {
-        return Question::categories()->get();
+        return $this->categories()->get();
     }
-
+    
+    /**
+     * Return the answer (boolean) of the question as a string
+     *
+     * @return String
+     */
     public function getLitteralAnswer() {
         if($this->answer_boolean == 0) {
             return 'Faux: ';

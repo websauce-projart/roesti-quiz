@@ -14,6 +14,10 @@ class Pose extends Model
         'path'
     ];
 
+    /**
+     * Return the users that reference this pose
+     *
+     */
     public function users()
 	{
 		return $this->hasMany(User::class);

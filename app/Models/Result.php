@@ -19,17 +19,28 @@ class Result extends Model
 		'score'
 	];
 
+	/**
+     * Return the round to which belongs the result
+     *
+     */
 	public function round()
 	{
 		return $this->belongsTo(Round::class);
 	}
 
+	/**
+     * Return the user to which belongs the result
+     *
+     */
 	public function user()
 	{
 		return $this->belongsTo(User::class);
 	}
 
-	//le nommage risque de poser problème, à vérifier
+	/**
+     * Return the user answers that reference the result
+     *
+     */
 	public function useranswers()
 	{
 		return $this->hasMany(UserAnswer::class);

@@ -14,6 +14,10 @@ class Mouth extends Model
         'path'
     ];
 
+    /**
+     * Return the users that reference this mouth
+     *
+     */
     public function users()
 	{
 		return $this->hasMany(User::class);

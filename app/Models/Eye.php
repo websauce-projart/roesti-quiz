@@ -13,7 +13,11 @@ class Eye extends Model
     protected $fillable = [
         'path'
     ];
-
+    
+    /**
+     * Return the users that reference this eye
+     *
+     */
     public function users()
 	{
 		return $this->hasMany(User::class);

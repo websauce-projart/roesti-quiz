@@ -21,7 +21,6 @@ class NotAdmin
             return redirect()->route('backoffice');
        }
 
-       
        return $next($request);
     }
 }
