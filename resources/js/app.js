@@ -8,6 +8,8 @@ import { createApp } from "vue";
 import CardsApp from "./cardsApp";
 import Home from "./pages/home.vue";
 import NewGame from "./pages/new_game.vue";
+import Timer from "./components/Timer.vue";
+import { create } from "lodash";
 
 const app = createApp({
 	components: {
@@ -26,3 +28,9 @@ const newGame = createApp({
 		NewGame,
 	},
 }).mount("#vue_new_game");
+
+const timer = createApp({
+	components: {
+		Timer,
+	}
+}).mount("#timer");
