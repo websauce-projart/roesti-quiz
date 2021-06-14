@@ -4,3 +4,7 @@
 .bg--white {
 	background: var(--color-white);
 }
+
+.bg--lightblue {
+	background: var(--color-background);
+}

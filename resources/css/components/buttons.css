@@ -1,9 +1,11 @@
 /********************************
  * Buttons
  ********************************/
+
 .btn {
 	padding: var(--margin-s);
-	padding-top: 1.6rem; /* fix weird font placement */
+	padding-top: 1.6rem;
+	/* fix weird font placement */
 	width: 100%;
 	max-width: 400px;
 	min-width: 250px;
@@ -34,6 +36,7 @@
 	color: var(--color-white);
 	box-shadow: var(--boxshadow-second);
 }
+
 .btn--secondary:hover {
 	box-shadow: var(--boxshadow-second-hover);
 	transform: translate(2px, -2px);
@@ -47,15 +50,13 @@
 	font-family: var(--font-text);
 	letter-spacing: 0;
 }
+
 .btn--tertiary:hover {
 	box-shadow: -5px 5px var(--color-secondary);
 	transform: translate(2px, -2px);
 }
 
-.btn--primary:active,
-.btn--primary:focus,
-.btn--secondary:active,
-.btn--secondary:focus {
+.btn--primary:active, .btn--primary:focus, .btn--secondary:active, .btn--secondary:focus {
 	transform: translate(-6px, 6px);
 	box-shadow: none;
 }
@@ -70,7 +71,8 @@
 	.btn {
 		font-size: var(--fontsize-l);
 		padding: var(--margin-xs);
-		padding-top: 1.4rem; /* fix weird font placement */
+		padding-top: 1.4rem;
+		/* fix weird font placement */
 	}
 	.btn--tertiary {
 		padding: var(--margin-xs);
