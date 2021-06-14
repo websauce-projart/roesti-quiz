@@ -93,8 +93,8 @@ class RoundController extends Controller
 		$opponent = $user->getOtherUser($game_id);
 
 		//Checks if user has played the round already
-		$result = Result::where('user_id', $user->id)->where('round_id', $round_id)->first();
-		if(is_null($result)) {
+		$result = is_null(Result::where('user_id', $user->id)->where('round_id', $round_id)->first());
+		if($result) {
 			return redirect()->route('results', [$game_id]);
 		}
 
@@ -119,7 +119,8 @@ class RoundController extends Controller
 			"questions" => $questions,
 			"user" => [
 				"object" => $user,
-				"answers" => $user_answers
+				"answers" => $user_answers,
+				"result" => $result
 			],
 			"opponent" => [
 				"object" => $opponent,
