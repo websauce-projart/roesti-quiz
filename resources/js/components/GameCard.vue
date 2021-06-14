@@ -7,9 +7,10 @@
       isCurrent: isCurrent,
     }"
     class="card"
-    :style="{ transform: transformString }"
+    :style="{ transform: transformString,
+	 			  }"
 	 :id="id"
-  >
+  	>
     <h3 class="cardTitle">{{ card }}
 	 </h3>
 
@@ -84,7 +85,7 @@ export default {
 
   mounted() {
     const element = this.$refs.interactElement;
-	//  console.log(this.card)
+
 	//  console.log(this.id);
 
     interact(element).draggable({
@@ -122,17 +123,18 @@ export default {
   },
 
   beforeUnmount() {
+
     interact(this.$refs.interactElement).unset();
 
   },
 
   beforeUpdate(){
-      this.$nextTick(function () {
-        console.log(document.getElementsByClassName("isCurrent")[0]);
-		 console.log(" ↑");
-		 console.log("↓");
-		 console.log(this.$refs.interactElement);
-      });
+      // this.$nextTick(function () {
+      //   console.log(document.getElementsByClassName("isCurrent")[0]);
+		//  console.log(" ↑");
+		//  console.log("↓");
+		//  console.log(this.$refs.interactElement);
+      // });
   },
 
   methods: {
@@ -212,5 +214,6 @@ export default {
 .isCurrent{
 	color:blue;
 	margin-top: 1rem;
+
 }
 </style>
