@@ -2340,8 +2340,7 @@ input:checked~.form__row--displayCondition {
 	text-align: center;
 	padding: 0 var(--margin-m);
 	padding-top: var(--margin-ll);
-	font-size: var(--fontsize-m);
-	font-weight: 300;
+	font-size: var(--fontsize-l);
 }
 
 .topnav + .unboarding {
@@ -2389,7 +2388,8 @@ input:checked~.form__row--displayCondition {
 
 @media (max-width: 575.98px) {
 	.unboarding {
-		padding-top: var(--margin-l);
+		padding-top: var(--margin-m);
+		font-size: var(--fontsize-m);
 	}
 	.unboarding__title {
 		font-size: var(--fontsize-l);
@@ -2472,6 +2472,11 @@ input:checked~.form__row--displayCondition {
 
 .pattern-body-fix {
 	background-position: 50% 100%;
+}
+
+.pattern-freeze {
+	-webkit-animation: none;
+	        animation: none;
 }
 
 /********************************

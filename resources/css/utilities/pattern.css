@@ -8,3 +8,7 @@
 .pattern-body-fix {
 	background-position: 50% 100%;
 }
+
+.pattern-freeze {
+	animation: none;
+}

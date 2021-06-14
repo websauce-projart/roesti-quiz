@@ -4,7 +4,7 @@
 Quiz
 @endsection
 
-@push('body-classes', "pattern-stop")
+@push('body-classes', "pattern-freeze")
 
 @section('content')
 
