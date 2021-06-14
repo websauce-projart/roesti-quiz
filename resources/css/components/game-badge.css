@@ -18,10 +18,12 @@
 	padding: var(--margin-m);
 	& p {
 		font-family: var(--font-headings);
-		font-size: var(--fontsize-l);
+		font-size: var(--fontsize-xl);
 		color: var(--color-secondary);
 		letter-spacing: var(--fontspace-headings);
 		text-align: center;
+		margin: 0;
+		margin-bottom: var(--margin-l);
 	}
 }
 
@@ -110,6 +112,9 @@
 @media (max-width: 575.98px) {
 	.gameBadge {
 		padding: var(--margin-xs);
+	}
+	.gameBadge__noGame p {
+		font-size: var(--fontsize-ll);
 	}
 	.gameBadge--phantom {
 		min-height: 50px;

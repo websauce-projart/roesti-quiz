@@ -4,6 +4,8 @@
 Quiz
 @endsection
 
+@push('body-classes', "pattern-stop")
+
 @section('content')
 
 	<div class="container">

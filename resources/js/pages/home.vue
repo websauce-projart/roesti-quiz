@@ -2,7 +2,7 @@
 	<div class="gameBadge__container" v-if="datas.length == 0">
 		<div class="gameBadge__noGame">
 			<p>Tu n'as encore aucune partie en cours.</p>
-			<p>Clique sur <mark>nouvelle partie</mark> pour un max de fun !</p>
+			<p>Pour un max de fun, clique sur <mark>nouvelle partie</mark></p>
 		</div>
 	</div>
 	<div class="gameBadge__container" v-else>

@@ -33,6 +33,7 @@
 }
 .header.header--cards {
 	padding: 0;
+	margin-top: var(--margin-m);
 }
 
 @media (max-width: 575.98px) {

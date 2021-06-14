@@ -632,7 +632,7 @@ textarea,
 	--font-text: "Roboto", sans-serif;
 
 	--fontsize-xl: 2.375rem; /* 38px */
-	--fontsize-ll: 2.125rem; /* 34px */
+	--fontsize-ll: 1.875rem; /* 30px */
 	--fontsize-l: 1.25rem; /* 20px */
 	--fontsize-m: 1rem; /* 16px */
 	--fontsize-s: 0.875rem; /* 14px */
@@ -1176,15 +1176,6 @@ img {
 }
 
 /********************************
- * Card
- ********************************/
-.cards-container{
-	display:block;
-	width: 20rem;
-	margin:auto;
-}
-
-/********************************
  * Categories
  ********************************/
 .category__container {
@@ -1400,6 +1391,7 @@ input:checked~.form__row--displayCondition {
 	}
 .header.header--cards {
 	padding: 0;
+	margin-top: var(--margin-m);
 }
 
 @media (max-width: 575.98px) {
@@ -1541,10 +1533,12 @@ input:checked~.form__row--displayCondition {
 
 .gameBadge__noGame p {
 		font-family: var(--font-headings);
-		font-size: var(--fontsize-l);
+		font-size: var(--fontsize-xl);
 		color: var(--color-secondary);
 		letter-spacing: var(--fontspace-headings);
 		text-align: center;
+		margin: 0;
+		margin-bottom: var(--margin-l);
 	}
 
 .gameBadge__title {
@@ -1636,6 +1630,9 @@ input:checked~.form__row--displayCondition {
 @media (max-width: 575.98px) {
 	.gameBadge {
 		padding: var(--margin-xs);
+	}
+	.gameBadge__noGame p {
+		font-size: var(--fontsize-ll);
 	}
 	.gameBadge--phantom {
 		min-height: 50px;
@@ -2280,7 +2277,7 @@ input:checked~.form__row--displayCondition {
 .timer {
 	background-color: var(--color-white);
 	border-radius: var(--borderradius-xl);
-	padding: 5px var(--margin-s);
+	padding: 0px var(--margin-m);
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;

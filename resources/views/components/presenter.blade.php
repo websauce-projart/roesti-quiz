@@ -4,7 +4,7 @@
 			@if(isset($mood))
 				<img src="{{ asset('img/presenter/' . $mood . '.svg') }}" alt="">
 			@else
-				<img src="{{ asset('img/presenter/' . rand(1,5) . '.svg') }}" alt="">
+				<img src="{{ asset('img/presenter/' . rand(1,4) . '.svg') }}" alt="">
 			@endif
 		</div>
 	</div>

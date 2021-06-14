@@ -12,7 +12,7 @@ bg--white
 <main class="container speech-bubble">
 
 	<nav class="topnav">
-		<a class="icon-arrow-left" href="{{ route("home") }}" aria-label="Retour"></a>
+		<a class="icon-home" href="{{ route("home") }}" aria-label="Retour"></a>
 		<h1 class="pageTitle">Choisis ta catégorie</h1>
 	</nav>
 
@@ -35,6 +35,6 @@ bg--white
     </form>
 	</main>
 
-	<x-presenter></x-presenter>
+	<x-presenter mood="category"></x-presenter>
 
 	@endsection
