@@ -22,16 +22,15 @@ bg--white
                     <div class="history">
 
                         <div class="history__question">
-                            {{ $question->label }}
-                            @if ($question->answer_label)
-                                <div class="history__answer">
-                                    @if ($question->answer_boolean)
-                                        Vrai
-                                    @else
-                                        Faux: {{ $question->answer_label }}
-                                    @endif
-                                </div>
-                            @endif
+									{{ $question->label }}
+									<div class="history__answer">
+                            	@if ($question->answer_boolean)
+											Vrai
+										@else
+											Faux: {{ $question->answer_label }}
+                            	@endif
+									</div>
+
                         </div>
 
                         <div class="history__playersContainer">
@@ -41,27 +40,27 @@ bg--white
                                     mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
 
                                 @if (isset($user['answers'][$loop->index]['user_answer']))
-                                    <div
-                                        class="iconBadge iconBadge--small {{ $user['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+                                    <div class="history__player__answer">
+													{{ $user['answers'][$loop->index]['user_answer'] ? 'Vrai' : 'Faux' }}
                                     </div>
                                 @else
-                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                    <div class="history__player__answer">?</div>
                                 @endif
                             </div>
 
-                            <div class="history__player" aria-label="{{ $opponent['object']->pseudo }}">
+                            <div class="history__player history__player--opponent" aria-label="{{ $opponent['object']->pseudo }}">
                                 <x-avatar posePath="{{ $opponent['object']->getPosePath() }}"
                                     eyePath="{{ $opponent['object']->getMouthPath() }}"
                                     mouthPath="{{ $opponent['object']->getEyePath() }}"></x-avatar>
 
-
-                                @if (isset($opponent['answers'][$loop->index]['user_answer']))
-                                    <div
-                                        class="iconBadge iconBadge--small {{ $opponent['answers'][$loop->index]['user_answer'] ? 'iconBadge--true icon-checkmark' : 'iconBadge--false icon-close' }}">
+											@if (isset($opponent['answers'][$loop->index]['user_answer']))
+                                    <div class="history__player__answer">
+													{{ $opponent['answers'][$loop->index]['user_answer'] ? 'Vrai' : 'Faux' }}
                                     </div>
                                 @else
-                                    <div class="iconBadge iconBadge--small iconBadge--unanswered icon-question-mark"></div>
+                                    <div class="history__player__answer">?</div>
                                 @endif
+
                             </div>
                         </div>
 
