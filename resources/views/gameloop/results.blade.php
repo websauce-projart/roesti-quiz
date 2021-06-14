@@ -51,7 +51,8 @@ pattern-body-fix
 		  	{{
 			  	$game->active_user_id == $user->id &&
 				$lastRound->id == $round->id &&
-				$round->results()->get()->count() != 2
+				$round->results()->get()->count() != 2 ||
+				!$user->hasResult($round->id)
 				? 'disabled' : ''
 			}}"
 			data-index="{{ count($rounds) - $loop->index }}"
