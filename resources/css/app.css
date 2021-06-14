@@ -15,7 +15,6 @@
 @import "settings/fonts";
 @import "settings/decoration.css"; /* box-shadow, borders, … */
 @import "settings/animations";
-@import "settings/cards-container.css";
 
 /* Elements (bare HTML elements)
  ********************************/
