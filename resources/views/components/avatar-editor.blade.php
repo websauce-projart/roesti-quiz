@@ -7,13 +7,13 @@
 	</div>
 	<div class="buttons__container">
 		<button id="eyesRight">
-				<img src="https://via.placeholder.com/40" alt="Bouton de changement d'yeux">
+				<img src="{{asset('img/avatar/buttons/oeil.svg')}}" alt="Bouton de changement d'yeux">
 		</button>
 		<button id="mouthsRight">
-				<img src="https://via.placeholder.com/40" alt="Bouton de changement de bouche">
+				<img src="{{asset('img/avatar/buttons/bouche.svg')}}" alt="Bouton de changement de bouche">
 		</button>
 		<button id="posesRight">
-				<img src="https://via.placeholder.com/40" alt="Bouton de changement de pose">
+				<img src="{{asset('img/avatar/buttons/patte.svg')}}" alt="Bouton de changement de pose">
 		</button>
 	</div>
 </div>

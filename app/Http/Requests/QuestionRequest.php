@@ -24,8 +24,8 @@ class QuestionRequest extends FormRequest
     public function rules()
     {
         return [
-            'label'=> 'required|max:255',
-            'answer_label' => 'required_if:answer_boolean,1|max:255',
+            'label'=> 'required|max:85',
+            'answer_label' => 'required_if:answer_boolean,1|max:85',
             'categories' => 'required'
         ];
     }

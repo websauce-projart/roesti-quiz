@@ -24,7 +24,7 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'pseudo'=>'required|max:255|unique:users,pseudo,' . $this->id,
+            'pseudo'=>'required|min:3|max:10|alpha_num|unique:users,pseudo,' . $this->id,
             'email'=>'required|email|max:255|unique:users,email,' . $this->id
         ];
     }
