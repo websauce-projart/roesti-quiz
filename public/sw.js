@@ -1,6 +1,6 @@
 var cacheName = 'rostiquiz-pwa';
 var filesToCache = [
-  'page/offline.html',
+  'https://pingouin.heig-vd.ch/websauce/page/offline.html',
 ];
 
 /* Start the service worker and cache all of the app's content */
@@ -17,7 +17,7 @@ self.addEventListener('install', function (e) {
 self.addEventListener('fetch', function (e) {
   if (!navigator.onLine) {
     e.respondWith(
-      caches.match('/page/offline.html').then(function (response) {
+      caches.match('https://pingouin.heig-vd.ch/websauce/page/offline.html').then(function (response) {
         return response;
       })
     )
