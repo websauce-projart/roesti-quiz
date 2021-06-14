@@ -1282,6 +1282,32 @@ img {
 }
 
 /********************************
+ * Error
+ ********************************/
+.errorPage {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 50vh;
+	text-align: center
+}
+.errorPage h1 {
+		color: var(--color-main);
+		text-shadow: var(--boxshadow-second-small);
+		font-family: var(--font-headings);
+		font-size: var(--fontsize-xl);
+		letter-spacing: var(--fontspacing-headings);
+		margin-bottom: var(--margin-m);
+	}
+
+.errorPage--message {
+	font-size: var(--fontsize-l);
+}
+
+/********************************
  * Forms
  ********************************/
 .form {

@@ -38,6 +38,7 @@
 @import "components/card";
 @import "components/categories";
 @import "components/endgame";
+@import "components/error";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";
