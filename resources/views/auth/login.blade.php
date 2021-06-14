@@ -36,7 +36,7 @@ Connexion
 
             <div class="form__row">
                 <x-input-text label="Mot de passe" id="password" placeholder="Entrez votre pseudo..." icon="lock-closed"
-                    value="{{ old('password') }}" type="password"></x-input-text>
+                    type="password"></x-input-text>
                 {!! $errors->first('password', '<small class="help-block">:message</small>') !!}
             </div>
 

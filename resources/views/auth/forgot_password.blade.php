@@ -32,7 +32,7 @@
 		  </div>
 
         <div class="form__row">
-            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="envelope">
+            <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..." icon="envelope" value="{{ old('email') }}">
             </x-input-text>
             {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
         </div>

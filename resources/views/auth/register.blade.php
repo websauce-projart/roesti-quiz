@@ -16,13 +16,13 @@
             @csrf
 
             <div class="form__row">
-                <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." icon="user"></x-input-text>
+                <x-input-text label="Pseudo" id="pseudo" placeholder="Entrez votre pseudo..." icon="user" value="{{ old('pseudo') }}"></x-input-text>
                 {!! $errors->first('pseudo', '<small class="help-block">:message</small>') !!}
             </div>
 
             <div class="form__row">
                 <x-input-text label="Adresse e-mail" id="email" placeholder="Entrez votre adresse e-mail..."
-                    icon="envelope">
+                    icon="envelope" value="{{ old('email') }}">
                 </x-input-text>
                 {!! $errors->first('email', '<small class="help-block">:message</small>') !!}
             </div>

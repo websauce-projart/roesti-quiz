@@ -19,7 +19,7 @@
 
 .status [class^="icon-"] {
     position: absolute;
-    left: var(--margin-m);
+    left: calc(10%);
     top: calc(50% - 8px);
     color: var(--color-disable);
 }
