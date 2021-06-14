@@ -12,7 +12,7 @@ bg--white
 <main class="container speech-bubble">
 
 	<nav class="topnav">
-		<a href="{{ route('home') }}" class="icon-close"></a>
+		<a href="{{ route('home') }}" class="icon-home"></a>
 	</nav>
 
 	<section class="endgame__container">

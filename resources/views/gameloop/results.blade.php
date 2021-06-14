@@ -12,7 +12,7 @@ pattern-body-fix
 
 <div class="container">
     <nav class="topnav">
-        <a href="{{ route('home') }}" class="icon-close"></a>
+        <a href="{{ route('home') }}" class="icon-home"></a>
     </nav>
 </div>
 
