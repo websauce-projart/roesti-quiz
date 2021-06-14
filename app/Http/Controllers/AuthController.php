@@ -67,6 +67,7 @@ class AuthController extends Controller
         return redirect()->route('login')->withError('Les informations de connexion saisies sont incorrectes.');
     }
 
+
     /********************************
      * Logout
      ********************************/
@@ -84,6 +85,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return redirect()->route('login');
     }
+
 
     /********************************
      * Register
@@ -149,6 +151,7 @@ class AuthController extends Controller
         //Return user
         return $user;
     }
+
 
     /********************************
      * Email verification
@@ -261,6 +264,7 @@ class AuthController extends Controller
             : back()->with(['email' => __($status)]);
     }
 
+
     /********************************
      * Password update
      ********************************/
@@ -303,4 +307,5 @@ class AuthController extends Controller
             return redirect()->back()->withError('L\'ancien mot de passe n\'est pas le bon.');
         }
     }
+
 }

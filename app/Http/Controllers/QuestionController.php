@@ -133,9 +133,4 @@ class QuestionController extends Controller
         return redirect()->route('questions.index')->withOk("La question #" . $id . " a été modifiée.");
     }
 
-    //À SUPPRIMER SI UTILISÉE NULLE PART !!!!
-    // public function getCategories()
-    // {
-    //     return Category::all();
-    // }
 }

@@ -99,7 +99,7 @@ class AvatarController extends Controller
      * @param  int $user_id
      * @return array contains all the user avatar data
      */
-    public function dataAvatar($user_id){
+    public function requestAvatarData($user_id){
         $user = User::where('id', $user_id)->first();
         $mouth = $user->mouth_id;
         $eye = $user->eye_id;
@@ -111,6 +111,7 @@ class AvatarController extends Controller
                 'eye' => $eye,
                 'pose' => $pose,
         ];
+        
         return response()->json($data);
     }
 } 

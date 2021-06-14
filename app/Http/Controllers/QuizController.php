@@ -280,43 +280,6 @@ class QuizController extends Controller
 	}
 
 	/**
-	 * Redirect the user from the results page to where he needs to go according to the game state
-	 *
-	 * @param  int $game_id
-	 * @return redirect to home, category or quiz route
-	 */
-	public function redirectFromResults($game_id)
-	{
-		//Retrieve data
-		$game = Game::where('id', $game_id)->first();
-		$user_id = Auth::user()->id;
-		$user = User::where('id', $user_id)->first();
-
-		//Checks if user belongs to the game
-		if (!$game->userExistsInGame($user->id)) {
-			return redirect()->route('home');
-		}
-
-		//Checks if user is the active user in game
-		if ($game->active_user_id != $user->id) {
-			return redirect()->route('home');
-		}
-
-		//User come from results and either
-		$round = $game->getLastRound();
-		$results_count = $round->results()->get()->count();
-
-		if ($results_count == 2) {
-			//just ended the round and now must choose a new category
-			return redirect()->route('category', [$game]);
-
-		} else if ($results_count == 0 || $results_count == 1) {
-			//start the round
-			return redirect()->route('quiz', ['game_id' => $game->id, 'round_id' => $round->id]);
-		}
-	}
-
-	/**
 	 * Return a random sentence according to the user score, only used in this controller
 	 *
 	 * @param  int $score

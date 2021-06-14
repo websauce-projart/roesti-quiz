@@ -9,6 +9,7 @@ use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of users.
      *
@@ -78,23 +79,6 @@ class UserController extends Controller
         //Return redirect
         return redirect()->route('users.index')->withOk("L'utilisateur " . $pseudo . " a été supprimé.");
     }
-
-    /**
-     * Return the view to look for a new player to play against
-     *
-     * @return view home/search
-     */
-    public function displaySearch()
-    {
-        //Retrieve data
-        $user_id = Auth::user()->id;
-        $user = User::where('id', $user_id)->first();
-        $potentialOpponents = $user->getAllPotentialOpponents()->all();
-
-        //Return view
-        return view('home/search')->with('opponents', $potentialOpponents);
-    }
-
 
     /**
      * Return the profile view of a specified user
@@ -168,4 +152,5 @@ class UserController extends Controller
         //Return view
         return redirect()->route('login')->withOk('Votre compte a bien été supprimé !');
     }
+    
 }

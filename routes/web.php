@@ -3,97 +3,100 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\RoundController;
 use App\Http\Controllers\AvatarController;
-use App\Http\Controllers\ResultController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\BackofficeController;
 use App\Http\Controllers\OnboardingController;
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
-/********************************
- * Verified user
- ********************************/
 
+//Verified and not admin users
 Route::group(['middleware' => ['verified', 'notadmin']], function () {
-
-	/********************************
-	 * Api homemade
-	 ********************************/
-
-	Route::get('/api/home', [GameController::class, 'requestHomeData']);
-	Route::get('/api/avatar/{user_id}', [AvatarController::class, 'dataAvatar']);
 
 
 	/********************************
 	 * Home
 	 ********************************/
 
-	Route::get('/home', [GameController::class, 'displayHome'])->name('home');
-	Route::get('/', function () {
-		return redirect()->route('home');
-	});
+	//Return the home view
+	Route::get('/', [HomeController::class, 'redirectToHome']);
+	Route::get('/home', [HomeController::class, 'displayHome'])->name('home');
 
+	//Return the search view
+	Route::post('/home', [HomeController::class, 'displaySearch']);
 
-	/********************************
-	 * Profile
-	 ********************************/
-
-	Route::get('/user/{user_id}', [UserController::class, 'displayProfile'])->name('profile');
-	Route::post('/user/{user_id}', [UserController::class, 'deleteAccount']);
-
-	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
-	Route::post('/user/{user_id}/update-password', [AuthController::class, 'updatePassword']);
-
-	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
-	Route::post('/user/{user_id}/update-avatar', [AvatarController::class, 'updateAvatar']);
+	//Redirect from home page according to the state of the game
+	Route::get('/game/{game_id}/join', [HomeController::class, 'redirectFromHome'])->name('join');
 
 
 	/********************************
 	 * Gameloop
 	 ********************************/
 
-	Route::post('/home', [UserController::class, 'displaySearch']);
-
+	//Create game from search page
 	Route::post('/game', [GameController::class, 'createGame'])->name('creategame');
 
-	Route::get('/game/{game_id}/category', [CategoryController::class, 'displayCategoryView'])->name('category');
-	Route::post('/game/{game_id}/category', [RoundController::class, 'createRound']);
+	//Return view to choose a category after the game is created
+	Route::get('/game/{game_id}/category', [GameController::class, 'displayCategoryView'])->name('category');
 
-	Route::get('/game/{game_id}/', [ResultController::class, 'showResultsView'])->name('results');
+	//Create round with choosen category
+	Route::post('/game/{game_id}/category', [GameController::class, 'createRound']);
 
+	//Return view with game's results for each rounds
+	Route::get('/game/{game_id}/', [GameController::class, 'showResultsView'])->name('results');
+
+	//Redirect from game's results page according to the state of the game
+	Route::get('/game/{game_id}/play', [GameController::class, 'redirectFromResults'])->name('play');
+
+	//Return round history view from results page
+	Route::get("/game/{game_id}/round/{round_id}/history", [GameController::class, "showHistoryView"])->name("round_history");
+
+	//Return quiz from results page
 	Route::get("/game/{game_id}/round/{round_id}", [QuizController::class, 'showQuizView'])->name('quiz');
 
-	Route::get("/game/{game_id}/round/{round_id}/history", [RoundController::class, "showHistoryView"])->name("round_history");
-
+	//Create user's answers on quiz end
 	Route::post("/game/{game_id}/round/{round_id}/result/{result_id}", [QuizController::class, 'createAnswers'])->name('postquiz');
 
+	//Return round's result view on answers creation
 	Route::get('/game/{game_id}/round/{round_id}/result/{result_id}', [QuizController::class, 'showEndgameView'])->name('endgame');
 
-	Route::get('/game/{game_id}/join', [ResultController::class, 'redirectFromHome'])->name('join');
-	Route::get('/game/{game_id}/play', [QuizController::class, 'redirectFromResults'])->name('play');
+
+	/********************************
+	 * Profile
+	 ********************************/
+
+	//Return user profile
+	Route::get('/user/{user_id}', [UserController::class, 'displayProfile'])->name('profile');
+
+	//Delete user
+	Route::post('/user/{user_id}', [UserController::class, 'deleteAccount']);
+
+	//Update user's password
+	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::post('/user/{user_id}/update-password', [AuthController::class, 'updatePassword']);
+
+	//Update user's avatar
+	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
+	Route::post('/user/{user_id}/update-avatar', [AvatarController::class, 'updateAvatar']);
 
 
 	/********************************
 	 * Onboarding
 	 ********************************/
 
+	//Users which have not yet onboarded 
 	Route::group(['middleware' => ['onboarded']], function () {
 
+		//Return a view for each onboarding step
 		Route::get('/welcome', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
 		Route::get('/welcome/avatar', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingAvatar');
 		Route::post('/welcome/avatar', [AvatarController::class, 'createAvatar']);
@@ -103,13 +106,27 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 		Route::get('/welcome/exit', [OnboardingController::class, 'quitOnboarding'])->name('onboardingExit');
 
 	});
+
+
+	/********************************
+	 * Api homemade
+	 ********************************/
+
+	//Return data to be used in Vue.js components
+	Route::get('/api/home', [HomeController::class, 'requestHomeData']);
+	Route::get('/api/avatar/{user_id}', [AvatarController::class, 'requestAvatarData']);
+
 });
 
 
 /********************************
- * Login & Registration
+ * Authentification
  ********************************/
 
+//Logout
+Route::get("/logout", [AuthController::class, "logout"])->name('logout');
+
+//Users which are not authentified
 Route::group(['middleware' => ['guest']], function () {
 
 	//Register
@@ -133,29 +150,29 @@ Route::group(['middleware' => ['guest']], function () {
 	//Password reset
 	Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordView'])
 		->name('password.request');
-
 	Route::post('/forgot-password', [AuthController::class, 'sendPasswordEmail'])
 		->name('password.email');
 
 	Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
 		->name('password.reset');
-
 	Route::post('/reset-password/{token}', [AuthController::class, 'handleResetForm']);
-});
 
-//Logout
-Route::get("/logout", [AuthController::class, "logout"])->name('logout');
+});
 
 
 /********************************
  * Admin backoffice
  ********************************/
 
+//Users which are admins
 Route::group(['middleware' => ['admin']], function () {
 
-	Route::get('/backoffice', [BackofficeController::class, 'showBackofficeView'])->name('backoffice');
+	//Return a view for each backoffice section
+	Route::get('/backoffice', function () {
+		return view('backoffice/home_backoffice');
+	})->name('backoffice');
 	Route::resource('/backoffice/users', UserController::class)->except(['show', 'create', 'store']);
 	Route::resource('/backoffice/admins', AdminController::class)->except(['show']);
 	Route::resource('/backoffice/questions', QuestionController::class)->except(['show']);
-	
+
 });
