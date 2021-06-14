@@ -4,6 +4,8 @@
 Créer mon rösti
 @endsection
 
+@push('body-classes', "pattern-freeze")
+
 @section('content')
 <div class="container">
 	<div class="unboarding">
