@@ -39,6 +39,6 @@ bg--white
 
 </main>
 
-<x-presenter></x-presenter>
+<x-presenter mood="{{ $score > 500 ? 'happy' : 'upset' }}"></x-presenter>
 
 @endsection

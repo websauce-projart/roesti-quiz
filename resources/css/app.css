@@ -15,7 +15,6 @@
 @import "settings/fonts";
 @import "settings/decoration.css"; /* box-shadow, borders, … */
 @import "settings/animations";
-@import "settings/cards-container.css";
 
 /* Elements (bare HTML elements)
  ********************************/
@@ -39,6 +38,7 @@
 @import "components/card";
 @import "components/categories";
 @import "components/endgame";
+@import "components/error";
 @import "components/forms";
 @import "components/headers";
 @import "components/headings";

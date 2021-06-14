@@ -2,7 +2,11 @@
 
 **A progressive web application (PWA) for dueling friends with cultural questions about Switzerland**
 
+![GitHub](https://img.shields.io/github/repo-size/websauce-projart/roesti-quiz)
+![GitHub](https://img.shields.io/tokei/lines/github/websauce-projart/roesti-quiz)
 ![GitHub](https://img.shields.io/github/license/websauce-projart/roesti-quiz)
+
+**Website:** [https://pingouin.heig-vd.ch/websauce/]()
 
 ## Getting started
 
@@ -13,6 +17,7 @@ $ git clone https://github.com/websauce-projart/roesti-quiz.git
 $ cd roesti-quiz
 $ composer install
 $ npm install
+$ php artisan migrate:fresh --seed
 ```
 
 ### Configuration
@@ -26,7 +31,16 @@ Duplicate `.env.example` to `.env`, edit it at your will
 -  `npm run dev` – Build assets for developement
 -  `npm run prod` – Build assets for production (minify output)
 
-## Workflow
+## Seeding
+
+Seeders and factories from Laravel are used to populate entries in the database.
+
+-  An admin user will be generated with the username `admin` and the password `password`
+-  A player will be generated with the username `player` and the password `password`
+-  Ten other random players will be added to the database
+-  A base of actual questions from the quiz
+
+## Git workflow
 
 ### The `main` branch
 

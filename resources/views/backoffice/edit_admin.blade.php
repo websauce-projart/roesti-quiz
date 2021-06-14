@@ -4,6 +4,10 @@
 Modifier un administrateur
 @endsection
 
+@push('body-classes')
+pattern-stop
+@endpush
+
 @section('content')
 <x-backoffice-nav></x-backoffice-nav>
 <div class="container container--large">

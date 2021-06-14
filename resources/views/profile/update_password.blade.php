@@ -7,7 +7,7 @@ Modifier le mot de passe
 @section('content')
 <div class="container">
 
-    
+
 
 	 <header class="header">
 		<nav class="topnav">
@@ -30,17 +30,17 @@ Modifier le mot de passe
 
            @csrf
             <div class="form__row">
-            	<x-input-text label="Ancien mot de passe" id="oldpassword" placeholder="Entrez votre ancien mot de passe" type="password"></x-input-text>
+            	<x-input-text label="Ancien mot de passe" id="oldpassword" placeholder="Entrez votre ancien mot de passe" icon="lock-closed" type="password"></x-input-text>
             	{!! $errors->first('oldpassword', '<small class="help-block">:message</small>') !!}
             </div>
 
             <div class="form__row">
-            	<x-input-text label="Nouveau mot de passe" id="newpassword" placeholder="Entrez votre nouveau mot de passe" type="password"></x-input-text>
+            	<x-input-text label="Nouveau mot de passe" id="newpassword" placeholder="Entrez votre nouveau mot de passe" icon="lock-closed" type="password"></x-input-text>
             	{!! $errors->first('newpassword', '<small class="help-block">:message</small>') !!}
             </div>
 
             <div class="form__row">
-            	<x-input-text label="Confirmez le nouveau mot de passe" id="password_confirmation" placeholder="Confirmez votre nouveau mot de passe" type="password"></x-input-text>
+            	<x-input-text label="Confirmez le nouveau mot de passe" id="password_confirmation" placeholder="Confirmez votre nouveau mot de passe" icon="lock-closed" type="password"></x-input-text>
             	{!! $errors->first('password_confirmation', '<small class="help-block">:message</small>') !!}
             </div>
 

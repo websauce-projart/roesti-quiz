@@ -4,6 +4,10 @@
 Modifier une question
 @endsection
 
+@push('body-classes')
+pattern-stop
+@endpush
+
 @section('content')
 <x-backoffice-nav></x-backoffice-nav>
 <div class="container container--large">
@@ -24,7 +28,7 @@ Modifier une question
         </div>
 
         <div class="form__row">
-            <input type="checkbox" id="answer_boolean" name="answer_boolean" value="1" 
+            <input type="checkbox" id="answer_boolean" name="answer_boolean" value="1"
             @if (!is_null(old('answer_boolean')) && old('answer_boolean') == 1) checked @elseif(is_null(old('answer_boolean')) && $question->answer_boolean == 0) checked @endif >
             <label for="answer_boolean">Cochez si la question est fausse</label>
             <div class="form__row--displayCondition">
@@ -41,14 +45,14 @@ Modifier une question
                 @foreach($categories as $category)
                 <label for="{{$category->title}}" class="margin-small">
                     <input type="checkbox" id="{{$category->title}}" name="categories[]" value="{{$category->id}}"
-					@if (is_array(old('categories')) && in_array($category->id, old('categories'))) checked 
+					@if (is_array(old('categories')) && in_array($category->id, old('categories'))) checked
                     @elseif ($question->categories()->get()->contains($category)) checked
-                    @endif 
+                    @endif
 					>
                     {{$category->title}}
                 </label>
             	@endforeach
-				
+
 			</div>
             {!! $errors->first('categories', '<p><small class="help-block">:message</small></p>') !!}
         </div>

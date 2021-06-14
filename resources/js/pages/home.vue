@@ -49,17 +49,19 @@ export default {
 	methods: {
 		async orderData() {
 			await this.fetchText();
-			this.datasOrderd = [];
+
+			let newData = [];
 			for (var index in this.datas) {
 				if (
 					this.datas[index].user.id ==
 					this.datas[index].game.active_user_id
 				) {
-					this.datasOrderd.unshift(this.datas[index]);
+					newData.unshift(this.datas[index]);
 				} else {
-					this.datasOrderd.push(this.datas[index]);
+					newData.push(this.datas[index]);
 				}
 			}
+			if(JSON.stringify(this.datasOrderd) != JSON.stringify(newData)) this.datasOrderd = newData;
 		},
 
 		fetchText() {

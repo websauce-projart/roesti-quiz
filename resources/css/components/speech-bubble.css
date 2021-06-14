@@ -3,15 +3,15 @@
  ********************************/
 .speech-bubble {
 	position: relative;
+	height: 75vh;
 	background: var(--color-background);
-	border-radius: var(--borderradius-xl);
+	border-radius: 0 0 var(--borderradius-xl) var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
 	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	height: 75vh;
 	animation-name: pattern;
 	animation-duration: 5s;
 	animation-iteration-count: infinite;

@@ -1,6 +1,10 @@
 /********************************
  * Pattern fixes
  ********************************/
+.pattern-stop {
+	background: var(--color-background);
+}
+
 .pattern-body-fix {
 	background-position: 50% 100%;
 }

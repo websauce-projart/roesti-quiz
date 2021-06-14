@@ -740,12 +740,6 @@ textarea,
 	}
 }
 
-.cards-container{
-	display:block;
-	width: 20rem;
-	margin:auto;
-}
-
 /********************************
  * Background
  ********************************/
@@ -760,6 +754,7 @@ body {
 	font-weight: normal;
 	background: var(--color-background);
 	color: var(--color-text);
+	overflow-x: hidden;
 	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 125%;
@@ -1029,7 +1024,7 @@ img {
 		width: 85px;
 		height: 85px;
 		border-radius: 50%;
-		background: var(--color-white);
+		background: var(--color-secondary);
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -1180,6 +1175,14 @@ img {
 	}
 }
 
+/********************************
+ * Card
+ ********************************/
+.cards-container{
+	display:block;
+	width: 20rem;
+	margin:auto;
+}
 
 /********************************
  * Categories
@@ -1276,6 +1279,32 @@ img {
 		font-size: var(--fontsize-ll);
 		text-shadow: var(--boxshadow-second-smaller);
 	}
+}
+
+/********************************
+ * Error
+ ********************************/
+.errorPage {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 50vh;
+	text-align: center
+}
+.errorPage h1 {
+		color: var(--color-main);
+		text-shadow: var(--boxshadow-second-small);
+		font-family: var(--font-headings);
+		font-size: var(--fontsize-xl);
+		letter-spacing: var(--fontspacing-headings);
+		margin-bottom: var(--margin-m);
+	}
+
+.errorPage--message {
+	font-size: var(--fontsize-l);
 }
 
 /********************************
@@ -2154,15 +2183,15 @@ input:checked~.form__row--displayCondition {
  ********************************/
 .speech-bubble {
 	position: relative;
+	height: 75vh;
 	background: var(--color-background);
-	border-radius: var(--borderradius-xl);
+	border-radius: 0 0 var(--borderradius-xl) var(--borderradius-xl);
 	padding: 0 var(--margin-m);
 	padding-bottom: var(--margin-l);
 	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	height: 75vh;
 	-webkit-animation-name: pattern;
 	        animation-name: pattern;
 	-webkit-animation-duration: 5s;
@@ -2362,6 +2391,10 @@ input:checked~.form__row--displayCondition {
 /********************************
  * Pattern fixes
  ********************************/
+.pattern-stop {
+	background: var(--color-background);
+}
+
 .pattern-body-fix {
 	background-position: 50% 100%;
 }

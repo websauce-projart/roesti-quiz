@@ -8,6 +8,8 @@
     <title>Rösti Quiz | @yield('title')</title>
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png" />
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="128x128" href="{{ asset('img/pwa/hello-icon-128.png') }}">
 </head>
 
 <body class="@stack('body-classes')">

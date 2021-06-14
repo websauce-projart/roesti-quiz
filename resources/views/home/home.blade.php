@@ -31,7 +31,7 @@ bg--white
 
 </div>
 
-<x-presenter></x-presenter>
+<x-presenter/>
 
 
 @endsection

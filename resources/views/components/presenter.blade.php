@@ -1,7 +1,11 @@
 <div class="presenter__container">
 	<div class="container">
 		<div class="presenter">
-			<img src="https://pingouin.heig-vd.ch/websauce/img/presenter/presenter-happy.svg" alt="">
+			@if(isset($mood))
+				<img src="{{ asset('img/presenter/' . $mood . '.svg') }}" alt="">
+			@else
+				<img src="{{ asset('img/presenter/' . rand(1,5) . '.svg') }}" alt="">
+			@endif
 		</div>
 	</div>
 </div>
