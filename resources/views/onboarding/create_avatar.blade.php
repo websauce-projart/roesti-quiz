@@ -31,6 +31,11 @@ Créer mon rösti
         return newOffset;
     }
 
+    const moveElementRandom = (element, randomOffset) => {
+        document.getElementById(element).style.backgroundPosition = randomOffset + "px 0px";
+        return randomOffset;
+    }
+
     const getValue = (data, offset) => {
         switch (Math.abs(offset)) {
             case 0:
@@ -102,6 +107,21 @@ Créer mon rösti
     document.getElementById('avatarEditor').addEventListener('click', function() {
         eyesValue.value = getValue(eyes, eyesOffset);
         mouthsValue.value = getValue(mouths, mouthsOffset);
+        posesValue.value = getValue(poses, posesOffset);
+    })
+
+
+    /**Randomizer */
+    const randomizerButton = document.getElementById('avatar-randomizer');
+    const getRandomOffset = () => {
+        return Math.floor(Math.random() * 11) * -200;
+    }
+    randomizerButton.addEventListener('click', function() {
+        eyesOffset = moveElementRandom('eyes', getRandomOffset());
+        eyesValue.value = getValue(eyes, eyesOffset);
+        mouthsOffset = moveElementRandom('mouths', getRandomOffset());
+        mouthsValue.value = getValue(mouths, mouthsOffset);
+        posesOffset = moveElementRandom('poses', getRandomOffset());
         posesValue.value = getValue(poses, posesOffset);
     })
 </script>

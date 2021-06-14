@@ -31,3 +31,8 @@
 	</div>
 
 </form>
+<div class="buttons__container__small">
+<button id="avatar-randomizer">
+	<img src="{{ asset("img/avatar/buttons/arm.svg") }}" alt="Bouton de changement de pose">
+</button>
+</div>

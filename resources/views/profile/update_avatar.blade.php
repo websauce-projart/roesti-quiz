@@ -9,15 +9,15 @@ Modifier mon rösti
 
 <div class="container">
 
-	<header class="header">
-		<nav class="topnav">
-			<a href="{{ route('profile', [$user_id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
-			<h1 class="pageTitle">Modifier mon rösti</h1>
-		</nav>
-	</header>
+    <header class="header">
+        <nav class="topnav">
+            <a href="{{ route('profile', [$user->id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
+            <h1 class="pageTitle">Modifier mon rösti</h1>
+        </nav>
+    </header>
 
-	<x-avatar-editor label="Modifier" route="{{route('updateAvatar', [$user_id])}}">
-	</x-avatar-editor>
+    <x-avatar-editor label="Modifier" route="{{route('updateAvatar', [$user->id])}}">
+    </x-avatar-editor>
 
 </div>
 
@@ -27,6 +27,7 @@ Modifier mon rösti
 
 @push('script')
 <script>
+    
     /**Fonctions */
     const moveElement = (data, element, offset) => {
         let newOffset;
@@ -37,6 +38,11 @@ Modifier mon rösti
         }
         document.getElementById(element).style.backgroundPosition = newOffset + "px 0px";
         return newOffset;
+    }
+
+    const moveElementRandom = (element, randomOffset) => {
+        document.getElementById(element).style.backgroundPosition = randomOffset + "px 0px";
+        return randomOffset;
     }
 
     const getValue = (data, offset) => {
@@ -77,6 +83,44 @@ Modifier mon rösti
         }
     }
 
+    const getPosition = (element) => {
+        switch (element) {
+            case 1:
+                return 0
+                break;
+            case 2:
+                return -width;
+                break;
+            case 3:
+                return -width * 2;
+                break;
+            case 4:
+                return -width * 3;
+                break;
+            case 5:
+                return -width * 4;
+                break;
+            case 6:
+                return -width * 5;
+                break;
+            case 7:
+                return -width * 6;
+                break;
+            case 8:
+                return -width * 7;
+                break;
+            case 9:
+                return -width * 8;
+                break;
+            case 10:
+                return -width * 9;
+                break;
+            case 11:
+                return -width * 10;
+                break;
+        }
+    }
+
     /**Déclaration de variables */
     let width = 200;
 
@@ -110,6 +154,32 @@ Modifier mon rösti
     document.getElementById('avatarEditor').addEventListener('click', function() {
         eyesValue.value = getValue(eyes, eyesOffset);
         mouthsValue.value = getValue(mouths, mouthsOffset);
+        posesValue.value = getValue(poses, posesOffset);
+    })
+
+    /**Randomizer */
+    const randomizerButton = document.getElementById('avatar-randomizer');
+    const getRandomOffset = () => {
+        return Math.floor(Math.random() * 11) * -200;
+    }
+
+    randomizerButton.addEventListener('click', function() {
+        eyesOffset = moveElementRandom('eyes', getRandomOffset());
+        eyesValue.value = getValue(eyes, eyesOffset);
+        mouthsOffset = moveElementRandom('mouths', getRandomOffset());
+        mouthsValue.value = getValue(mouths, mouthsOffset);
+        posesOffset = moveElementRandom('poses', getRandomOffset());
+        posesValue.value = getValue(poses, posesOffset);
+    })
+
+    /**Set actual avatar */
+    window.addEventListener('load', function() {
+        eyesOffset = moveElementRandom('eyes', getPosition(<?php echo $user->eye()->first()->id; ?>));
+        console.log(eyesOffset);
+        eyesValue.value = getValue(eyes, eyesOffset);
+        mouthsOffset = moveElementRandom('mouths', getPosition(<?php echo $user->mouth()->first()->id; ?>));
+        mouthsValue.value = getValue(mouths, mouthsOffset);
+        posesOffset = moveElementRandom('poses', getPosition(<?php echo $user->pose()->first()->id; ?>));
         posesValue.value = getValue(poses, posesOffset);
     })
 </script>

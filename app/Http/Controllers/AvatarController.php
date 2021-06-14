@@ -63,13 +63,14 @@ class AvatarController extends Controller
         $mouths = Mouth::all();
         $poses = Pose::all();
         $user_id = Auth::user()->id;
+        $user = User::where('id', $user_id)->first();
         
         //Return view
         return view('profile/update_avatar')
         ->with('eyes', $eyes)
         ->with('mouths', $mouths)
         ->with('poses', $poses)
-        ->with('user_id', $user_id);
+        ->with('user', $user);
     }
     
     /**
