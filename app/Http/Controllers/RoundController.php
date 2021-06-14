@@ -120,7 +120,6 @@ class RoundController extends Controller
 			"user" => [
 				"object" => $user,
 				"answers" => $user_answers,
-				"result" => $result
 			],
 			"opponent" => [
 				"object" => $opponent,

@@ -197,4 +197,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 
 		return $title;
 	}
+
+	public function hasResult($round_id) {
+		return !is_null($this->results()->get()->where('round_id', $round_id)->first());
+	}
 }
