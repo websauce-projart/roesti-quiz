@@ -8,20 +8,28 @@
     }"
     class="card"
     :style="{ transform: transformString }"
+	 :id="id"
   >
     <h3 class="cardTitle">{{ card }}
 	 </h3>
 
-  </div>
+
+</div>
 </template>
 
 <script>
 import interact from "interactjs";
+import GameButtons from "./GameButtons.vue";
+
 const ACCEPT_CARD = "cardAccepted";
 const REJECT_CARD = "cardRejected";
-const SKIP_CARD = "cardSkipped";
+
 
 export default {
+// 	 components: {
+// 	 GameButtons
+//   },
+
   static: {
     interactMaxRotation: 15,
     interactOutOfSightXCoordinate: 180,
@@ -42,10 +50,15 @@ export default {
 	 qid:{
 		 type: Number,
 		 required: true,
+	 },
+
+	 id:{
+		 type: Number,
+		 required: true,
 	 }
   },
 
-  data() {
+  data() {;
     return {
       isShowing: true,
       isInteractAnimating: true,
@@ -71,6 +84,8 @@ export default {
 
   mounted() {
     const element = this.$refs.interactElement;
+	//  console.log(this.card)
+	//  console.log(this.id);
 
     interact(element).draggable({
       onstart: () => {
@@ -97,17 +112,27 @@ export default {
         const { interactXThreshold, interactYThreshold } = this.$options.static;
         this.isInteractAnimating = true;
 
-        if (x > interactXThreshold) this.playCard(ACCEPT_CARD);
-        else if (x < -interactXThreshold) this.playCard(REJECT_CARD);
-        //else if (y > interactYThreshold) this.playCard(SKIP_CARD);
+        if (x > interactXThreshold && this.$props.isCurrent) this.playCard(ACCEPT_CARD);
+        else if (x < -interactXThreshold && this.$props.isCurrent) this.playCard(REJECT_CARD);
         else this.resetCardPosition();
       },
+
     });
 
   },
 
   beforeUnmount() {
     interact(this.$refs.interactElement).unset();
+
+  },
+
+  beforeUpdate(){
+      this.$nextTick(function () {
+        console.log(document.getElementsByClassName("isCurrent")[0]);
+		 console.log(" ↑");
+		 console.log("↓");
+		 console.log(this.$refs.interactElement);
+      });
   },
 
   methods: {
@@ -143,12 +168,6 @@ export default {
           });
           this.$emit(REJECT_CARD);
           break;
-        //   case SKIP_CARD:
-        //     this.interactSetPosition({
-        //       y: interactOutOfSightYCoordinate
-        //     });
-        //     this.$emit(SKIP_CARD);
-        //     break;
       }
 
       this.hideCard();
@@ -167,6 +186,23 @@ export default {
     resetCardPosition() {
       this.interactSetPosition({ x: 0, y: 0, rotation: 0 });
     },
+
+	 testAccept(){
+		 console.log(document.getElementsByClassName("isCurrent")[0]);
+		 console.log("la carte voulue ↑");
+		 console.log("la carte avec laquelle on interagit ↓");
+		 console.log(this.$refs.interactElement);
+		 this.playCard(ACCEPT_CARD)
+
+	 },
+
+	 testReject(){
+		 console.log(document.getElementsByClassName("isCurrent")[0]);
+		 console.log("la carte voulue ↑");
+		 console.log("la carte avec laquelle on interagit ↓");
+		 console.log(this.$refs.interactElement);
+		 this.playCard(REJECT_CARD);
+	 },
   },
 };
 </script>

@@ -8,19 +8,27 @@
       :class="'a' + index"
       @cardAccepted="$emit('cardAccepted')"
       @cardRejected="$emit('cardRejected')"
-      @cardSkipped="$emit('cardSkipped')"
       @hideCard="$emit('hide-card')"
 		:qid="qid[index]"
+		:id="index"
+		ref="gameCard"
     >
     </GameCard>
+	<GameButtons
+	 @reject="$emit('reject')"
+	 @accept="$emit('accept')"
+	 />
   </div>
+
 </template>
 <script>
 import GameCard from "./GameCard";
+import GameButtons from"./GameButtons.vue"
 
 export default {
   components: {
     GameCard,
+	 GameButtons
   },
     data() {
     return {
@@ -37,6 +45,17 @@ export default {
       type: Array,
       required: true,
     },
+  },
+
+  methods:{
+	  testReject(){
+		  console.log('methode test reject dans GameCardsStack');
+		  this.$refs.gameCard.testReject();
+	  },
+	   testAccept(){
+		  console.log('methode test accept dans GameCardsStack');
+		  this.$refs.gameCard.testAccept();
+	  }
   },
 };
 </script>

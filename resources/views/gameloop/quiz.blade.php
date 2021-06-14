@@ -30,9 +30,9 @@
         </div>
     </form>
 
-<div id='vue_game_buttons'>
+<!-- <div id='vue_game_buttons'>
 	<game-buttons></game-buttons>
-</div>
+</div> -->
 <script src="/js/app.js"></script>
 @endsection
 

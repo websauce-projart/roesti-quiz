@@ -7,14 +7,17 @@
 			@cardRejected="handleCardRejected"
 			@cardSkipped="handleCardSkipped"
 			@hideCard="removeCardFromDeck"
+			@reject="SwipeLeft"
+			@accept="SwipeRight"
+			ref="gameCardStack"
 		/>
   </div>
 </template>
 
 <script>
 import GameCardsStack from "./components/GameCardsStack";
-let emitter = require('tiny-emitter/instance');
-emitter.on("buttonRejected", console.log("GNEU"));
+import GameCard from './components/GameCard.vue';
+
 
 export default {
   name: "CardsApp",
@@ -39,6 +42,7 @@ export default {
     },
     handleCardRejected() {
       console.log("handleCardRejected");
+
     },
     handleCardSkipped() {
       console.log("handleCardSkipped");
@@ -68,10 +72,14 @@ export default {
 
 	  SwipeLeft(){
 		  console.log("Ok, on lance à gauche!");
+		  this.$refs.gameCardStack.testReject();
+
+
 	  },
 
 	  SwipeRight(){
 		  console.log("Ok, on lance a droite!");
+		  this.$refs.gameCardStack.testAccept();
 	  },
 
   },

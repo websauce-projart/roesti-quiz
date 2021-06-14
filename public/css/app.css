@@ -805,8 +805,6 @@ img {
 
 .game__btn__container{
 	margin: 0 auto;
-	height: 100vh;
-	margin-top: 70vh;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
