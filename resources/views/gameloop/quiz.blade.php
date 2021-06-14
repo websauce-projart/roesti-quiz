@@ -9,10 +9,9 @@ Quiz
 	<div class="container">
 
 		<header class="header header--cards">
-			<nav class="topnav">
-				<a class="icon-arrow-left" href="{{ route("results", [$game_id]) }}" aria-label="Retour"></a>
-			</nav>
-			<div class="timer">timer</div>
+			<div id="timer" class="center">
+				<timer class="timer"></timer>
+			</div>
 		</header>
 
 		<div id="cards">
