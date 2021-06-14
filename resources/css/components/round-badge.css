@@ -35,6 +35,11 @@
 	text-decoration: none;
 	box-shadow: var(--boxshadow-second-small);
 	transition: var(--animation-hover);
+	&.disabled {
+		cursor: default;
+		pointer-events: none;
+		opacity: 0.5;
+	}
 }
 
 .roundBadge--phantom {
