@@ -9,6 +9,16 @@ import CardsApp from "./cardsApp";
 import Home from "./pages/home.vue";
 import NewGame from "./pages/new_game.vue";
 
+//When loaded, checks the service worker in the navigator
+window.onload = () => {
+	'use strict';
+  
+	if ('serviceWorker' in navigator) {
+	  navigator.serviceWorker
+			   .register('./sw.js');
+	}
+  }  
+
 const app = createApp({
 	components: {
 		CardsApp,
