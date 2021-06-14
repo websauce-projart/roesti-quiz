@@ -77,23 +77,30 @@ export default {
 	text-align: center;
 }
 
+.cards-container {
+	display: block;
+	width: 30rem;
+	margin: auto;
+	margin-top: var(--margin-l);
+}
+
 .card {
 	box-shadow: var(--boxshadow-card);
 	transition: 0.3s;
 	border-radius: 5px; /* 5px rounded corners */
 	background: var(--color-white);
 	border-radius: var(--borderradius-m);
-	padding: var(--margin-l);
+	padding: var(--margin-m);
 	display: flex;
-	height: 30rem;
-	width: 20rem;
+	height: 20rem;
+	width: 30rem;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
 	margin-top: 3rem;
 }
 
-@media (max-width: 575.98px) {
+@media (max-width: 768px) {
 	.cards {
 		display: flex;
 		justify-content: center;
@@ -103,7 +110,7 @@ export default {
 		width: 17rem;
 		height: 22rem;
 	}
-	.cardTitle {
+	.card .cardTitle {
 		font-size: var(--fontsize-l);
 	}
 }
