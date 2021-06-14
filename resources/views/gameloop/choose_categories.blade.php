@@ -35,6 +35,6 @@ bg--white
     </form>
 	</main>
 
-	<x-presenter></x-presenter>
+	<x-presenter mood="category"></x-presenter>
 
 	@endsection
