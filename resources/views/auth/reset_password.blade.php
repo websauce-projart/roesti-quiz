@@ -17,7 +17,7 @@
 	</header>
 
     @if (Session::has('email'))
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}aaaa</div>
+    <div class="status"><i class="icon-information"></i>{{ Session::get('email') }}aaaa</div>
     @endif
 
     <form action="" class="form form--center" method="post">

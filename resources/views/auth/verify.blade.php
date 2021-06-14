@@ -17,7 +17,7 @@ Vérifie ton email
 
         @if (Session::has('ok'))
         <!-- email resent (AuthC.) -->
-        <div class="status"><i class="icon-checkmark"></i>{{ Session::get('ok') }}</div>
+        <div class="status"><i class="icon-information"></i>{{ Session::get('ok') }}</div>
         @endif
 
         <form class="form form--center" method="POST" action="{{ route('verification.resend') }}">

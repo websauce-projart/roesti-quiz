@@ -186,14 +186,16 @@ class QuizController extends Controller
 		}
 
 		//Calculate and update "score" in Results table
-		if ($correct_answers_count == 10 && $time <= 6) {
-			$score = 1000;
-		} else {
-			$score = round($correct_answers_count + ($correct_answers_count * (13 / $time) * 40));
-			if ($score > 1000) {
-				$score = 1000;
-			}
+		if($time == 0) {
+			$time = 1500;
 		}
+
+		$score = round((1500*$correct_answers_count)/$time);
+
+		if ($score > 1000) {
+			$score = 1000;
+		}
+	
 		$result->score = $score;
 		$result->save();
 

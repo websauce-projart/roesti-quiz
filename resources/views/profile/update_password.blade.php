@@ -18,12 +18,12 @@ Modifier le mot de passe
 
     @if (Session::has('ok'))
     <!-- updatePassword (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('ok') }}</div>
+    <div class="status"><i class="icon-information"></i>{{ Session::get('ok') }}</div>
     @endif
 
     @if (Session::has('error'))
     <!-- updatePassword (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('error') }}</div>
+    <div class="status"><i class="icon-information"></i>{{ Session::get('error') }}</div>
     @endif
 
      <form class="form form--center" action="" method="post">

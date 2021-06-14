@@ -15,12 +15,12 @@
 
     @if (Session::has('status'))
     <!-- forgot password (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('status') }}</div>
+    <div class="status"><i class="icon-information"></i>{{ Session::get('status') }}</div>
     @endif
 
     @if (Session::has('email'))
     <!-- forgot password (AuthC.) -->
-    <div class="status"><i class="icon-checkmark"></i>{{ Session::get('email') }}</div>
+    <div class="status"><i class="icon-information"></i>{{ Session::get('email') }}</div>
     @endif
 
     <form action="" method="post" class="form form--center">
