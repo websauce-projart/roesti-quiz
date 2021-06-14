@@ -214,5 +214,6 @@ export default {
 .isCurrent{
 	color:blue;
 	margin-top: 1rem;
+
 }
 </style>
