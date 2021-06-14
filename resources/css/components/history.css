@@ -22,7 +22,8 @@
 
 .history__answer {
 	color: var(--color-text-lighter);
-	font-weight: normal;
+	font-size: var(--fontsize-m);
+	font-weight: 300;
 }
 
 .history__playersContainer {
@@ -33,11 +34,48 @@
 
 .history__player {
 	position: relative;
-	width: 85px;
 	height: 85px;
-	& .iconBadge {
-		position: absolute;
-		right: 0;
+	width: 85px;
+	display: flex;
+}
+
+.history__player__answer {
+	position: absolute;
+	right: -100%;
+	top: 0;
+	background: var(--color-white);
+	width: 75px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--borderradius-s);
+}
+.history__player__answer:before {
+	content: "";
+	position: absolute;
+	bottom: -10px;
+	left: 0px;
+	width: 0;
+	height: 0;
+	border: 15px solid transparent;
+	border-top-color: var(--color-white);
+	border-bottom: 0;
+	border-left: 0;
+	transform: rotate(15deg);
+	z-index: 0;
+}
+
+.history__player--opponent {
+	& .history__player__answer {
+		left: -100%;
 		bottom: 0;
+		top: auto;
+	}
+	& .history__player__answer:before {
+		transform: rotate(-30deg);
+		top: -5px;
+		right: -10px;
+		left: auto;
 	}
 }
