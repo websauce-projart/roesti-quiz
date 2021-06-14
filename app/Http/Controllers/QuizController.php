@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class QuizController extends Controller
 {
-	
+
 	/**
 	 * Return quiz view if all the requirements are met and create result in BDD
 	 *
@@ -73,7 +73,7 @@ class QuizController extends Controller
 			"result_id" => $result->id
 		]);
 	}
-	
+
 	/**
 	 * Restores consistency in the BDD if the user quits during the quiz, only used in this controller
 	 *
@@ -115,7 +115,7 @@ class QuizController extends Controller
 			return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id]);
 		}
 	}
-	
+
 	/**
 	 * Create UserAnswers, update game active player and result if all the requirements are met, then redirect to endgame
 	 *
@@ -209,7 +209,7 @@ class QuizController extends Controller
 		//Return redirect
 		return redirect()->route('endgame', ['game_id' => $game_id, 'round_id' => $round_id, 'result_id' => $result->id])->with(['result' => $result]);
 	}
-	
+
 	/**
 	 * Return endgame view if all requirements are met
 	 *
@@ -278,7 +278,7 @@ class QuizController extends Controller
 			->with('game', $game)
 			->with('sentence', $sentence);
 	}
-	
+
 	/**
 	 * Redirect the user from the results page to where he needs to go according to the game state
 	 *
@@ -325,30 +325,30 @@ class QuizController extends Controller
 	private static function getSentence($score) {
 
 		$defeatSentences = [
-			"Tcheu t'es pas en forme !",
-			"Ben j'te dis pas bravo !",
-			"Ça va le chalet, ou bien ?",
-			"Réveille-toi un peu !",
-			"T'es sur Soleure ou quoi ?",
-			"C'est quoi cette gogne ?",
-			"T'es bobet ou bien ?",
-			"Tcheu c'te molle...",
-			"T'as pecloté là...",
-			"Fais un effort nom de bleu !"
+			"Tcheu t'es pas en forme !",
+			"Ben j'te dis pas bravo !",
+			"Ça va le chalet, ou bien ?",
+			"Réveille-toi un peu !",
+			"T'es sur Soleure ou quoi ?",
+			"C'est quoi cette gogne ?",
+			"T'es bobet ou bien ?",
+			"Tcheu c'te molle…",
+			"T'as pecloté là…",
+			"Fais un effort nom de bleu !"
 
 		];
-		
+
 		$victorySentences = [
-			"Bravo topio !",
-			"Tcheu t'es en forme !",
-			"T'as triché, avoue !",
+			"Bravo topio !",
+			"Tcheu t'es en forme !",
+			"T'as triché, avoue !",
 			"J'aurais pas mieux fait",
-			"T'étais bien vigousse là !",
-			"T'es royé ou bien ?!",
-			"Je suis déçu en bien...",
-			"Alain Berset te félicite !",
-			"De bleu de bleu !",
-			"Sacré rösti !"
+			"T'étais bien vigousse là !",
+			"T'es royé ou bien ?!",
+			"Je suis déçu en bien !",
+			"Alain Berset te félicite !",
+			"De bleu de bleu !",
+			"Sacré rösti !"
 		];
 
 		//Pick a random sentence
@@ -359,11 +359,11 @@ class QuizController extends Controller
 			$i = array_rand($victorySentences);
 			$sentence = $victorySentences[$i];
 		}
-		
+
 		//Return the sentence
 		return $sentence;
 	}
-	
+
 	/**
 	 * Return the time taken to complete the quiz, used only in this controller
 	 *
