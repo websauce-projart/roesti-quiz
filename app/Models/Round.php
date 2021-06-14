@@ -76,4 +76,13 @@ class Round extends Model
 			return $result->score;
 		}
 	}
+	
+	/**
+	 * Return the category of the round
+	 *
+	 * @return Category
+	 */
+	public function getCategory() {
+		return $this->category()->first();
+	}
 }
