@@ -14,7 +14,7 @@ import { create } from "lodash";
 //When loaded, checks the service worker in the navigator
 window.onload = () => {
 	'use strict';
-  
+	
 	if ('serviceWorker' in navigator) {
 	  navigator.serviceWorker
 			   .register('./sw.js');

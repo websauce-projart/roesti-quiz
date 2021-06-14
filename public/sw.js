@@ -15,7 +15,6 @@ self.addEventListener('install', function (e) {
 
 /* Serve cached content when offline */
 self.addEventListener('fetch', function (e) {
-  console.log(e, navigator.onLine);
   if (!navigator.onLine) {
     e.respondWith(
       caches.match('/page/offline.html').then(function (response) {
