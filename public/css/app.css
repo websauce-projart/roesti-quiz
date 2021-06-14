@@ -760,6 +760,7 @@ body {
 	font-weight: normal;
 	background: var(--color-background);
 	color: var(--color-text);
+	overflow-x: hidden;
 	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
 	background-repeat: no-repeat;
 	background-size: 125%;
