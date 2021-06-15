@@ -16,63 +16,63 @@ import GameCardsStack from "./components/GameCardsStack";
 import GameCard from "./components/GameCard.vue";
 
 export default {
-  name: "CardsApp",
-  components: {
-    GameCardsStack,
-  },
+	name: "CardsApp",
+	components: {
+		GameCardsStack,
+	},
 
-  data() {
-    return {
-      visibleCards: [],
-      qid: Array,
-    };
-  },
+	data() {
+		return {
+			visibleCards: [],
+			qid: Array,
+		};
+	},
 
-  props: {
-    datas: Object,
-  },
+	props: {
+		datas: Object,
+	},
 
-  methods: {
-    handleCardAccepted() {
-      document.getElementById(this.qid[0]).checked = true;
-    },
-    removeCardFromDeck() {
-      this.visibleCards.shift();
-      this.qid.shift();
-      let test = [];
-      if (this.qid.length === test.length) {
-        document.getElementById("quizForm").submit();
-      }
-    },
+	methods: {
+		handleCardAccepted() {
+			document.getElementById(this.qid[0]).checked = true;
+		},
+		removeCardFromDeck() {
+			this.visibleCards.shift();
+			this.qid.shift();
+			let test = [];
+			if (this.qid.length === test.length) {
+				document.getElementById("quizForm").submit();
+			}
+		},
 
-    createQuestionsArray() {
-      let datas = this.$props.datas;
-      let labels = [];
-      let ids = [];
+		createQuestionsArray() {
+			let datas = this.$props.datas;
+			let labels = [];
+			let ids = [];
 
-      for (let index in datas) {
-        labels.push(datas[index].label);
-        ids.push(datas[index].id);
-      }
+			for (let index in datas) {
+				labels.push(datas[index].label);
+				ids.push(datas[index].id);
+			}
 
-      this.visibleCards = labels;
-      this.qid = ids;
-    },
+			this.visibleCards = labels;
+			this.qid = ids;
+		},
 
-    SwipeLeft() {
-      this.$refs.gameCardStack.testReject();
-    },
+		SwipeLeft() {
+			this.$refs.gameCardStack.testReject();
+		},
 
-    SwipeRight() {
-      this.$refs.gameCardStack.testAccept();
-    },
-  },
+		SwipeRight() {
+			this.$refs.gameCardStack.testAccept();
+		},
+	},
 
-  created() {
-    this.createQuestionsArray();
-  },
+	created() {
+		this.createQuestionsArray();
+	},
 
-  mounted() {},
+	mounted() {},
 };
 </script>
 
@@ -82,10 +82,9 @@ export default {
 }
 
 .cards-container {
-  display: block;
-  width: 30rem;
-  margin: auto;
-  margin-top: var(--margin-l);
+	display: block;
+	margin: auto;
+	margin-top: var(--margin-l);
 }
 
 .card {
@@ -106,18 +105,21 @@ export default {
 }
 
 @media (max-width: 768px) {
-  .cards {
-    display: flex;
-    justify-content: center;
-  }
-  .card {
-    padding: var(--margin-m);
-    width: 17rem;
-    height: 22rem;
-  }
-  .card .cardTitle {
-    font-size: var(--fontsize-l);
-  }
+	.cards {
+		display: flex;
+		justify-content: center;
+	}
+	.card {
+		padding: var(--margin-m);
+		width: 17rem;
+		height: 22rem;
+	}
+	.cards-container {
+		margin-top: 0;
+	}
+	.card .cardTitle {
+		font-size: var(--fontsize-l);
+	}
 }
 
 .cardTitle {
