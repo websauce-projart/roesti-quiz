@@ -123,5 +123,15 @@ class HomeController extends Controller
 		//Return data
 		return response()->json($data);;
 	}
+	
+	/**
+	 * Return user from / to home
+	 *
+	 * @return redirect to home
+	 */
+	public function redirectToHome()
+	{
+	return redirect()->route('home');
+	}
     
 }
