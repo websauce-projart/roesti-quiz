@@ -98,6 +98,7 @@ export default {
 	align-items: center;
 	position: absolute;
 	margin-top: 3rem;
+	pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -133,6 +134,7 @@ export default {
 
 .a0 {
 	z-index: 10;
+	pointer-events: auto;
 }
 
 .a1 {
