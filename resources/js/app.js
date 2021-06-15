@@ -10,8 +10,6 @@ import Home from "./pages/home.vue";
 import NewGame from "./pages/new_game.vue";
 import Timer from "./components/Timer.vue";
 import { create } from "lodash";
-import GameButtons from "./components/gameButtons";
-
 //When loaded, checks the service worker in the navigator
 window.onload = () => {
 	'use strict';

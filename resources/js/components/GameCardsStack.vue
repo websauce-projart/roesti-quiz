@@ -24,7 +24,7 @@
 </template>
 <script>
 import GameCard from "./GameCard";
-import GameButtons from"./GameButtons.vue"
+import GameButtons from "./GameButtons.vue";
 import { ref , onBeforeUpdate } from 'vue'
 
 export default {
