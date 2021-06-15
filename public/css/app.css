@@ -946,7 +946,6 @@ img {
 	grid-template-areas:
 		"buttons"
 		"avatar";
-	margin-top: var(--margin-l);
 }
 
 .buttons__container {
@@ -973,8 +972,8 @@ img {
 	animation-direction: alternate-reverse;
 	-webkit-animation-iteration-count: infinite;
 	        animation-iteration-count: infinite;
-	-webkit-animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
-	        animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+	-webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	        animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .avatar__editor__element {
@@ -1023,7 +1022,7 @@ img {
 	}
 
 .buttons__container button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 
 .buttons__container img {
@@ -1057,11 +1056,26 @@ img {
 	}
 
 .buttons__container__small button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 
 .buttons__container__small img {
 		padding: var(--margin-xxs);
+	}
+
+.btn.avatar__randomButton {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	padding: var(--margin-xxs) var(--margin-xs);
+	font-size: var(--fonsize-m)
+}
+
+.btn.avatar__randomButton img {
+		width: 35px;
+		height: 35px;
+		margin-right: 8px;
 	}
 
 /**DISPLAYED AVATAR */
