@@ -122,6 +122,11 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
  * Authentification
  ********************************/
 
+//Redirect to login
+Route::get('/', function () {
+	return redirect()->route('login');
+});
+
 //Logout
 Route::get("/logout", [AuthController::class, "logout"])->name('logout');
 
