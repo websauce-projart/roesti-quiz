@@ -32,7 +32,7 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	Route::get('/home', [HomeController::class, 'showHomeView'])->name('home');
 
 	//Return the search view
-	Route::post('/', [HomeController::class, 'showSearchView']);
+	Route::post('/home', [HomeController::class, 'showSearchView']);
 
 	//Redirect from home page according to the state of the game
 	Route::get('/game/{game_id}/join', [HomeController::class, 'redirectFromHome'])->name('join');
