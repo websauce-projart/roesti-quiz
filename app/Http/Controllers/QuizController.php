@@ -166,6 +166,7 @@ class QuizController extends Controller
 					"result_id" => $result_id,
 					"user_answer" => 1
 				]);
+				
 			} else {
 				UserAnswer::create([
 					"question_id" => $question->id,

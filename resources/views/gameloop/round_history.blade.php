@@ -34,7 +34,6 @@ bg--white
             <div class="history__playersContainer">
                 <div class="history__player" aria-label="{{ $user['object']->pseudo }}">
                     <x-avatar posePath="{{ $user['object']->getPosePath() }}" eyePath="{{ $user['object']->getMouthPath() }}" mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
-
                     @if (isset($user['answers'][$loop->index]['user_answer']))
                     <div class="history__player__answer">
                         {{ $user['answers'][$loop->index]['user_answer'] ? 'Vrai' : 'Faux' }}

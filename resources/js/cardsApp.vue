@@ -6,6 +6,7 @@
 			@hideCard="removeCardFromDeck"
 			@reject="SwipeLeft"
 			@accept="SwipeRight"
+			@cardAccepted="handleCardAccepted"
 			ref="gameCardStack"
 		/>
 	</div>
