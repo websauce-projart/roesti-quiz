@@ -28,7 +28,8 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	 ********************************/
 
 	//Return the home view
-	Route::get('/', [HomeController::class, 'showHomeView'])->name('home');
+	Route::get('/', [HomeController::class, 'redirectToHome']);
+	Route::get('/home', [HomeController::class, 'showHomeView'])->name('home');
 
 	//Return the search view
 	Route::post('/', [HomeController::class, 'showSearchView']);
@@ -121,11 +122,6 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 /********************************
  * Authentification
  ********************************/
-
-//Redirect to login
-Route::get('/', function () {
-	return redirect()->route('login');
-});
 
 //Logout
 Route::get("/logout", [AuthController::class, "logout"])->name('logout');
