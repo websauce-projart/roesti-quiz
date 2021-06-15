@@ -1,4 +1,4 @@
-# Roesti Quiz
+# Rösti Quiz
 
 **A progressive web application (PWA) for dueling friends with cultural questions about Switzerland**
 
