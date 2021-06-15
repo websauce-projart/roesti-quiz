@@ -61,21 +61,10 @@ bg--white
         </div>
         @endforeach
 
-        <div id="arrow__up" class="btn btn--tertiary bg--lightblue center margin-small-bottom">
-            <i class="icon-arrow-left rotate-icon"></i>
-        </div>
+        <a href="{{ route('results', $game_id) }}" class="btn btn--tertiary bg--lightblue btn--history">
+            Retour aux scores
+        </a>
 
     </div>
 </div>
 @endsection
-
-@push('script')
-<script>
-    const upButton = document.getElementById('arrow__up');
-    const goTop = () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-    upButton.addEventListener('click', goTop);
-</script>
-@endpush

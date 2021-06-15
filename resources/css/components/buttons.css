@@ -75,6 +75,12 @@
 	min-width: 190px;
 }
 
+.btn--history {
+	display: block;
+	width: 100%;
+	margin-bottom: var(--margin-xs);
+}
+
 @media (max-width: 575.98px) {
 	.btn {
 		font-size: var(--fontsize-l);
