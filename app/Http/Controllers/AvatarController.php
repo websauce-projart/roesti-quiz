@@ -57,7 +57,7 @@ class AvatarController extends Controller
      *
      * @return view profile/update_avatar
      */
-    public function displayAvatarEditor() {
+    public function showAvatarEditorView() {
         //Retrieve data
         $eyes = Eye::all();
         $mouths = Mouth::all();
@@ -78,7 +78,7 @@ class AvatarController extends Controller
      *
      * @return view create_avatar
      */
-    public function displayAvatarCreator() {
+    public function showAvatarCreatorView() {
         //Retrieve data
         $user_id = Auth::user()->id;
         $user = User::where('id', $user_id)->first();

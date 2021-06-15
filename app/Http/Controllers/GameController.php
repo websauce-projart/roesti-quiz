@@ -59,7 +59,7 @@ class GameController extends Controller
 	 * @param  int $game_id
 	 * @return view gameloop/categories
 	 */
-	public static function displayCategoryView($game_id)
+	public static function showCategoryView($game_id)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;
