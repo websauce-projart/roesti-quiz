@@ -274,7 +274,7 @@ class AuthController extends Controller
      *
      * @return view profile/update_password
      */
-    public function showUpdatePassword()
+    public function showUpdatePasswordView()
     {
         $user_id = Auth::user()->id;
         return view('profile/update_password')->with('user_id', $user_id);

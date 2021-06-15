@@ -110,7 +110,6 @@ export default {
 
 .cards-container {
 	display: block;
-	width: 30rem;
 	margin: auto;
 	margin-top: var(--margin-l);
 }
@@ -130,6 +129,7 @@ export default {
 	position: absolute;
 	margin-top: 3rem;
 	pointer-events: none;
+	left: 13%;
 }
 
 @media (max-width: 768px) {
@@ -141,6 +141,10 @@ export default {
 		padding: var(--margin-m);
 		width: 17rem;
 		height: 22rem;
+		left: auto;
+	}
+	.cards-container {
+		margin-top: 0;
 	}
 	.card .cardTitle {
 		font-size: var(--fontsize-l);
@@ -151,6 +155,12 @@ export default {
 	font-family: var(--font-text);
 	font-size: var(--fontsize-ll);
 	font-weight: 300;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .card,

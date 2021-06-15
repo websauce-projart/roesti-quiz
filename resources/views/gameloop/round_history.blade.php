@@ -34,7 +34,6 @@ bg--white
             <div class="history__playersContainer">
                 <div class="history__player" aria-label="{{ $user['object']->pseudo }}">
                     <x-avatar posePath="{{ $user['object']->getPosePath() }}" eyePath="{{ $user['object']->getMouthPath() }}" mouthPath="{{ $user['object']->getEyePath() }}"></x-avatar>
-
                     @if (isset($user['answers'][$loop->index]['user_answer']))
                     <div class="history__player__answer">
                         {{ $user['answers'][$loop->index]['user_answer'] ? 'Vrai' : 'Faux' }}
@@ -61,21 +60,10 @@ bg--white
         </div>
         @endforeach
 
-        <div id="arrow__up" class="btn btn--tertiary bg--lightblue center margin-small-bottom">
-            <i class="icon-arrow-left rotate-icon"></i>
-        </div>
+        <a href="{{ route('results', $game_id) }}" class="btn btn--tertiary bg--lightblue btn--history">
+            Retour aux scores
+        </a>
 
     </div>
 </div>
 @endsection
-
-@push('script')
-<script>
-    const upButton = document.getElementById('arrow__up');
-    const goTop = () => {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-    upButton.addEventListener('click', goTop);
-</script>
-@endpush

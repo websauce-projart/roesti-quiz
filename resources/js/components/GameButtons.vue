@@ -1,11 +1,9 @@
 <template>
   <div class="game__btn__container">
-    <button type="button" class="game__btn reject" @click="buttonRejected">
-      ✘
-    </button>
-    <button type="button" class="game__btn accept" @click="buttonAccepted">
-      ✔
-    </button>
+	  <div class="game__btn__wrapper">
+		<button type="button" class="game__btn reject icon-close" aria-label="Faux" @click="buttonRejected"></button>
+		<button type="button" class="game__btn accept icon-checkmark" aria-label="Vrai" @click="buttonAccepted"></button>
+	 </div>
   </div>
 </template>
 

@@ -112,7 +112,7 @@ pattern-body-fix
         <a class="btn btn--primary" href="{{ route('play', [$game]) }}">
             @if ($lastRound->results()->count() < 2) C'est parti mon rösti! @else Revanche @endif </a>
                 @else
-                <a class="btn btn--primary" href="{{ route('home') }}">Retour au menu</a>
+                <a class="btn btn--primary" href="{{ route('home') }}">Retour à l'accueil</a>
                 @endif
     </div>
 

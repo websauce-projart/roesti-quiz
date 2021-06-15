@@ -19,8 +19,3 @@
 .margin-auto {
 	margin: 0 auto;
 }
-
-.rotate-icon {
-	transform: rotate(90deg);
-	display: inline-block;
-}

@@ -166,6 +166,7 @@ class QuizController extends Controller
 					"result_id" => $result_id,
 					"user_answer" => 1
 				]);
+				
 			} else {
 				UserAnswer::create([
 					"question_id" => $question->id,
@@ -187,10 +188,10 @@ class QuizController extends Controller
 
 		//Calculate and update "score" in Results table
 		if($time == 0) {
-			$time = 2000;
+			$time = 1500;
 		}
 
-		$score = round((2000*$correct_answers_count)/$time);
+		$score = round((1500*$correct_answers_count)/($time*2));
 
 		if ($score > 1000) {
 			$score = 1000;

@@ -59,7 +59,7 @@ class GameController extends Controller
 	 * @param  int $game_id
 	 * @return view gameloop/categories
 	 */
-	public static function displayCategoryView($game_id)
+	public static function showCategoryView($game_id)
 	{
 		//Retrieve data
 		$user_id = Auth::user()->id;
@@ -264,9 +264,8 @@ class GameController extends Controller
 		}
 
 		// Retrieve answers for user and opponent
-		$round_result = Result::where("round_id", $round_id);
-		$user_result = $round_result->where("user_id", $user->id)->first();
-		$opponent_result = $round_result->where("user_id", $opponent->id)->first();
+		$user_result = Result::where("round_id", $round_id)->where("user_id", $user->id)->first();
+		$opponent_result = Result::where('round_id', $round_id)->where('user_id', $opponent->id)->first();
 
 		$user_answers = null;
 		if ($user_result) {
