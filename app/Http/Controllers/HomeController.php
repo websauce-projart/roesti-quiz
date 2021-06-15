@@ -102,16 +102,22 @@ class HomeController extends Controller
 		
 		//Process data
 		foreach ($games as $game) {
-			
 			$game_id = $game->id;
 			$opponent = $user->getOtherUser($game_id);
-			
+			$round_id = $game->rounds->last()->id;
+			$result = Result::where('round_id', $round_id)->count();
+
 			$gameData = array(
 				"user" => $user,
 				"opponent" => $opponent,
-				"game" => $game
+				"game" => $game,
 			);
-			array_push($data, $gameData);
+
+			if($game->rounds->count() == 1 && $game->active_user_id != Auth::user()->id && $result == 0){
+
+			} else {
+				array_push($data, $gameData);
+			}
 		}
 		
 		//Return data

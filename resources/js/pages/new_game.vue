@@ -23,7 +23,7 @@
           />
           <label :for="`${data}`">
             <div class="searchFriends__avatar">
-              <avatar :dataSearch="this.findId(data)"></avatar>
+              <avatar :data="this.findId(data)"></avatar>
             </div>
 
             {{ data }}
@@ -61,6 +61,10 @@ import { ref } from "vue";
 import avatar from "../elements/show_avatar.vue";
 
 export default {
+  /**
+   * Props
+   * @param {Object} datas Datas to order
+   */
   props: {
     datas: Object,
   },
@@ -79,10 +83,13 @@ export default {
 
   setup(props) {
     let searchText = ref("");
-
     let list = [];
 
-    //Show or hide the button for a random player depending on the input text value
+    /**
+     * Show or hide the button for a random player depending on the input text value
+     *
+     * @return {Boolean} Returns true if the value of the searchText is empty, false else
+     */
     function showRandomPlayer() {
       if (searchText.value == "") return true;
       else {
@@ -90,7 +97,11 @@ export default {
       }
     }
 
-    //Filter the list of User with the input box and returns an array of corresponding users
+    /**
+     * Filter the list of User with the input box and returns an array of corresponding users
+     *
+     * @return {Array} Returns an Array empty if searchValue is empty, or the filteredListed
+     */
     function filteredList() {
       list = [];
       let datas = props.datas;
@@ -109,10 +120,22 @@ export default {
       );
     }
 
-    return { searchText, filteredList, showRandomPlayer };
+    /**
+     * @returns {Object} Returns all the variables needed in the template
+     */
+    return { 
+      searchText, 
+      filteredList, 
+      showRandomPlayer 
+      };
   },
+
   methods: {
-    //Return a random player from the available ones, show it in the input text and selects it
+    
+    /**
+     * Return a random player from the available ones, show it in the input text and selects it
+     * @returns {String} Returns a random pseudo that can be played against
+     */
     randomPlayer() {
       this.playerSelected;
       var keys = Object.keys(this.$props.datas);
@@ -123,7 +146,10 @@ export default {
       return this.randomPlayerPseudo;
     },
 
-    //Return a true value if a player is selected
+    /**
+     * Return a true value if a player is selected
+     * 
+     */
     playerSelected() {
       this.returnValue = false;
       document.querySelectorAll("li").forEach((element) => {
@@ -133,6 +159,13 @@ export default {
       });
     },
 
+    /**
+     * Find the ID of a given pseudo
+     * @param {string} pseudo Pseudo to find
+     * 
+     * @returns ID of given Pseudo
+     * 
+     */
     findId(pseudo) {
       if (typeof pseudo == "string") {
         return this.$props.datas.find((e) => e.pseudo == pseudo).id;
@@ -141,6 +174,7 @@ export default {
   },
   updated() {
     this.findId(this.$props.datas);
+    
     //after datas and DOM are updated
     this.$nextTick(function () {
       //Hide the submit button if searchText is empty
