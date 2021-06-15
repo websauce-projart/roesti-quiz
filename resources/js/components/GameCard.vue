@@ -172,12 +172,12 @@ export default {
       this.interactSetPosition({ x: 0, y: 0, rotation: 0 });
     },
 
-	 testAccept(){
+	 cardAccept(){
 		 this.playCard(ACCEPT_CARD)
 
 	 },
 
-	 testReject(){
+	 cardReject(){
 		 this.playCard(REJECT_CARD);
 	 },
   },

@@ -11,7 +11,7 @@
 
 <script>
 import { useKeypress } from "vue3-keypress";
-import { ref } from "vue";
+
 export default {
   name: "GameButtons",
 

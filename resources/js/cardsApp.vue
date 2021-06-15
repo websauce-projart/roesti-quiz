@@ -6,7 +6,7 @@
 			@hideCard="removeCardFromDeck"
 			@reject="SwipeLeft"
 			@accept="SwipeRight"
-			ref="gameCardStack"
+			ref="gCStack"
 		/>
 	</div>
 </template>
@@ -61,13 +61,13 @@ export default {
 	  },
 
 	  SwipeLeft(){
-		  this.$refs.gameCardStack.testReject();
+		  this.$refs.gCStack.stackReject();
 
 
 	  },
 
 	  SwipeRight(){
-		  this.$refs.gameCardStack.testAccept();
+		  this.$refs.gCStack.stackAccept();
 	  },
 
   },

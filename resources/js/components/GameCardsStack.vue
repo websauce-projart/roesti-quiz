@@ -13,7 +13,6 @@
 		:id="index"
     :ref="el => { if (el) divs[index] = el }"
     >
-    		<!-- ref="gameCard" -->
     </GameCard>
 	<GameButtons
 	 @reject="$emit('reject')"
@@ -49,42 +48,18 @@ export default {
         divs.value = []
       })
 
-	  function testReject(){
-      divs.value[0].testReject()
+	  function stackReject(){
+      divs.value[0].cardReject()
 	  }
-	   function testAccept(){
-      divs.value[0].testAccept()
+	   function stackAccept(){
+      divs.value[0].cardAccept()
 	  }
 
     return {
-      testReject,
-      testAccept,
+      stackReject,
+      stackAccept,
       divs
     }
   },
-
-  // props: {
-  //   cards: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  //   qid: {
-  //     type: Array,
-  //     required: true,
-  //   },
-  // },
-
-  // methods:{
-	//   testReject(){
-	// 	  console.log('methode test reject dans GameCardsStack');
-	// 	  this.$refs.gameCard.testReject();
-	//   },
-	//    testAccept(){
-  //      this.$refs.gameCard.id = 0
-  //      console.log(this.$props.cards)
-	// 	  console.log('methode test accept dans GameCardsStack');
-	// 	  this.$refs.gameCard.testAccept();
-	//   }
-  // },
 };
 </script>
