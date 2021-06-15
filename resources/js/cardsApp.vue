@@ -1,14 +1,14 @@
 <template>
-  <div id="cardscontainer">
-    <GameCardsStack
-      :cards="visibleCards"
-      :qid="qid"
-      @hideCard="removeCardFromDeck"
-      @reject="SwipeLeft"
-      @accept="SwipeRight"
-      ref="gameCardStack"
-    />
-  </div>
+	<div id="cardscontainer">
+		<GameCardsStack
+			:cards="visibleCards"
+			:qid="qid"
+			@hideCard="removeCardFromDeck"
+			@reject="SwipeLeft"
+			@accept="SwipeRight"
+			ref="gameCardStack"
+		/>
+	</div>
 </template>
 
 <script>
@@ -78,7 +78,7 @@ export default {
 
 <style>
 #cardscontainer {
-  text-align: center;
+	text-align: center;
 }
 
 .cards-container {
@@ -88,20 +88,21 @@ export default {
 }
 
 .card {
-  box-shadow: var(--boxshadow-card);
-  transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
-  background: var(--color-white);
-  border-radius: var(--borderradius-m);
-  padding: var(--margin-m);
-  display: flex;
-  height: 20rem;
-  width: 30rem;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  margin-top: 3rem;
-  pointer-events: none;
+	box-shadow: var(--boxshadow-card);
+	transition: 0.3s;
+	border-radius: 5px; /* 5px rounded corners */
+	background: var(--color-white);
+	border-radius: var(--borderradius-m);
+	padding: var(--margin-m);
+	display: flex;
+	height: 20rem;
+	width: 30rem;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	margin-top: 3rem;
+	pointer-events: none;
+	left: 13%;
 }
 
 @media (max-width: 768px) {
@@ -113,6 +114,7 @@ export default {
 		padding: var(--margin-m);
 		width: 17rem;
 		height: 22rem;
+		left: auto;
 	}
 	.cards-container {
 		margin-top: 0;
@@ -123,66 +125,66 @@ export default {
 }
 
 .cardTitle {
-  font-family: var(--font-text);
-  font-size: var(--fontsize-ll);
-  font-weight: 300;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+	font-family: var(--font-text);
+	font-size: var(--fontsize-ll);
+	font-weight: 300;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 .card,
 .card * {
-  -ms-touch-action: none;
-  touch-action: none;
+	-ms-touch-action: none;
+	touch-action: none;
 }
 
 .isCurrent {
-  margin-top: 1rem;
+	margin-top: 1rem;
 }
 
 .a0 {
-  z-index: 10;
-  pointer-events: auto;
+	z-index: 10;
+	pointer-events: auto;
 }
 
 .a1 {
-  z-index: 9;
-  margin-top: 2rem;
+	z-index: 9;
+	margin-top: 2rem;
 }
 
 .a2 {
-  z-index: 8;
+	z-index: 8;
 }
 
 .a3 {
-  z-index: 7;
+	z-index: 7;
 }
 
 .a4 {
-  z-index: 6;
+	z-index: 6;
 }
 
 .a5 {
-  z-index: 5;
+	z-index: 5;
 }
 
 .a6 {
-  z-index: 4;
+	z-index: 4;
 }
 
 .a7 {
-  z-index: 3;
+	z-index: 3;
 }
 
 .a8 {
-  z-index: 2;
+	z-index: 2;
 }
 
 .a9 {
-  z-index: 1;
+	z-index: 1;
 }
 </style>
