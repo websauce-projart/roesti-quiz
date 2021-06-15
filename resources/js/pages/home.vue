@@ -21,61 +21,79 @@
 
 <script>
 import gameHome from "../components/gameHome.vue";
+import { ref } from "vue";
 
 export default {
   components: { gameHome },
 
-  data() {
-    return {
-      datas: {},
-      datasOrderd: [],
-      changedData: true,
-    };
-  },
-
+  /**
+   * Props
+   * @param {String} data_url URL to get the datas from
+   */
   props: {
     data_url: String,
   },
 
-  setup(props) {},
+  setup(props) {
+    let datas = ref({});
+    let datasOrderd = ref([]);
+    let newData = [];
 
-  mounted: function () {
-    this.orderData();
-  },
+    /**
+     * Wait the datas and put them in an array.
+     * If the newArray is different from the current datasOrdered, update the value of datasOrdered
+     * 
+     */
+    async function orderData() {
+      await fetchText();
+      
+      newData = [];
 
-  created() {
-    if (this.changedData)
-      this.interval = setInterval(() => this.orderData(), 5000);
-  },
-
-  methods: {
-    async orderData() {
-      await this.fetchText();
-
-      let newData = [];
-      for (var index in this.datas) {
-        if (
-          this.datas[index].user.id == this.datas[index].game.active_user_id
-        ) {
-          newData.unshift(this.datas[index]);
+      for (var index in datas) {
+        if (datas[index].user.id == datas[index].game.active_user_id) {
+          newData.unshift(datas[index]);
         } else {
-          newData.push(this.datas[index]);
+          newData.push(datas[index]);
         }
       }
-      if (JSON.stringify(this.datasOrderd) != JSON.stringify(newData))
-        this.datasOrderd = newData;
-    },
 
-    fetchText() {
+      if (JSON.stringify(datasOrderd.value) != JSON.stringify(newData))
+        datasOrderd.value = newData;
+    }
+
+    /**
+     * Returns an axios that gets the datas from the URL API
+     * Then update datas with the response datas.
+     * 
+     * @return Response or errors
+     */
+
+    function fetchText() {
       return axios
-        .get(this.$props.data_url)
+        .get(props.data_url)
         .then((response) => {
-          if (this.datas.length == response.data.length)
-            this.changedData == false;
-          this.datas = response.data;
+          datas = response.data;
         })
         .catch((errors) => console.log(errors));
-    },
+    }
+
+    orderData();
+
+
+    //Each 5 seconds, gets the data to watch for a change
+    setInterval(function () {
+      orderData();
+    }, 5000);
+
+
+     /**
+     * @returns {Object} Returns all the variables needed in the template
+     */
+    
+    return {
+      datas,
+      datasOrderd,
+    };
   },
 };
 </script>
