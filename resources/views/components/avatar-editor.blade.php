@@ -26,13 +26,13 @@
 	<input type="hidden" id="mouthsValue" name="mouths" value="1">
 	<input type="hidden" id="posesValue" name="poses" value="1">
 
+	<div id="avatar-randomizer" class="btn btn--tertiary btn--smaller center avatar__randomButton">
+		<img src="{{ asset("img/avatar/buttons/random.svg") }}">
+		<span>Rösti aléatoire</span>
+	</div>
+
 	<div class="bottombar">
 			<x-input-submit label="{{$label}}"></x-input-submit>
 	</div>
 
 </form>
-<div class="buttons__container__small">
-<button id="avatar-randomizer">
-	<img src="{{ asset("img/avatar/buttons/arm.svg") }}" alt="Bouton de changement de pose">
-</button>
-</div>

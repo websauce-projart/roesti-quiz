@@ -946,7 +946,6 @@ img {
 	grid-template-areas:
 		"buttons"
 		"avatar";
-	margin-top: var(--margin-l);
 }
 
 .buttons__container {
@@ -973,8 +972,8 @@ img {
 	animation-direction: alternate-reverse;
 	-webkit-animation-iteration-count: infinite;
 	        animation-iteration-count: infinite;
-	-webkit-animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
-	        animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+	-webkit-animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+	        animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .avatar__editor__element {
@@ -1023,7 +1022,7 @@ img {
 	}
 
 .buttons__container button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 
 .buttons__container img {
@@ -1057,11 +1056,26 @@ img {
 	}
 
 .buttons__container__small button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 
 .buttons__container__small img {
 		padding: var(--margin-xxs);
+	}
+
+.btn.avatar__randomButton {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	padding: var(--margin-xxs) var(--margin-xs);
+	font-size: var(--fonsize-m)
+}
+
+.btn.avatar__randomButton img {
+		width: 35px;
+		height: 35px;
+		margin-right: 8px;
 	}
 
 /**DISPLAYED AVATAR */
@@ -1183,6 +1197,14 @@ img {
 	box-shadow: none;
 }
 
+.btn--smaller {
+	padding: 10px 5px;
+    width: 30%;
+    border-radius: var(--borderradius-s);
+	font-size: var(--fontsize-s);
+	min-width: 190px;
+}
+
 @media (max-width: 575.98px) {
 	.btn {
 		font-size: var(--fontsize-l);
@@ -1192,6 +1214,14 @@ img {
 	}
 	.btn--tertiary {
 		padding: var(--margin-xs);
+	}
+
+	.btn--smaller {
+		padding: 10px 5px;
+		width: 30%;
+		border-radius: var(--borderradius-s);
+		font-size: var(--fontsize-s);
+		min-width: 190px;
 	}
 }
 .game__btn{
@@ -1549,6 +1579,7 @@ input:checked~.form__row--displayCondition {
 /********************************
  * Games in home view
  ********************************/
+
 .gameBadge__container {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -1558,6 +1589,20 @@ input:checked~.form__row--displayCondition {
 	padding: var(--margin-xs);
 	margin: -15px;
 	height: 55vh;
+	overflow: hidden;
+}
+
+.gameBadge__container>div {
+	height: 110%;
+	margin-bottom: -50px;
+	/* maximum width of scrollbar */
+	padding-bottom: 50px;
+	/* maximum width of scrollbar */
+	margin-right: -50px;
+	/* maximum width of scrollbar */
+	padding-right: 50px;
+	/* maximum width of scrollbar */
+	overflow: scroll;
 }
 
 .gameBadge__noGame {
@@ -1604,6 +1649,7 @@ input:checked~.form__row--displayCondition {
 	box-shadow: var(--boxshadow-secondLight);
 	transition: var(--animation-hover);
 	text-decoration: none;
+	margin-left: 6px;
 }
 
 .gameBadge--phantom {
@@ -1677,7 +1723,6 @@ input:checked~.form__row--displayCondition {
 		min-height: 50px;
 	}
 }
-
 /********************************
  * Icons
  ********************************/
@@ -2224,7 +2269,7 @@ input:checked~.form__row--displayCondition {
 	margin: 0;
 	padding: 0;
 	max-height: 40vh;
-	overflow: scroll
+	overflow: hidden
 }
 .searchFriends li {
 		list-style: none
@@ -2251,6 +2296,16 @@ input:checked~.form__row--displayCondition {
 			transform: none;
 			background: var(--color-text-alpha);
 		}
+
+.searchFriends > div {
+	height: 100%;
+	margin-bottom: -50px; /* maximum width of scrollbar */
+	padding-bottom: 50px; /* maximum width of scrollbar */
+	margin-right: -50px; /* maximum width of scrollbar */
+	padding-right: 50px; /* maximum width of scrollbar */
+	overflow: scroll;
+}
+
 .searchFriends__container {
 	position: relative;
 }
@@ -2464,10 +2519,6 @@ input:checked~.form__row--displayCondition {
 
 .margin-small {
 	margin: var(--margin-xxs) 0; 
-}
-
-.margin-small-bottom {
-	margin-bottom: var(--margin-s); 
 }
 
 .margin-auto {

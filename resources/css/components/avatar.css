@@ -6,7 +6,6 @@
 	grid-template-areas:
 		"buttons"
 		"avatar";
-	margin-top: var(--margin-l);
 }
 
 .buttons__container {
@@ -29,7 +28,7 @@
 	animation-duration: 2s;
 	animation-direction: alternate-reverse;
 	animation-iteration-count: infinite;
-	animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+	animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .avatar__editor__element {
@@ -73,7 +72,7 @@
 		transform: scale(1.1);
 	}
 	& button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 	& img {
 		padding: var(--margin-s);
@@ -102,10 +101,22 @@
 		transform: scale(1.1);
 	}
 	& button:active {
-		transform: scale(0.8)
+		transform: scale(0.8);
 	}
 	& img {
 		padding: var(--margin-xxs);
+	}
+}
+
+.btn.avatar__randomButton {
+	display: flex;
+	align-items: center;
+	padding: var(--margin-xxs) var(--margin-xs);
+	font-size: var(--fonsize-m);
+	& img {
+		width: 35px;
+		height: 35px;
+		margin-right: 8px;
 	}
 }
 

@@ -16,10 +16,6 @@
 	margin: var(--margin-xxs) 0; 
 }
 
-.margin-small-bottom {
-	margin-bottom: var(--margin-s); 
-}
-
 .margin-auto {
 	margin: 0 auto;
 }

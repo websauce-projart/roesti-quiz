@@ -67,6 +67,14 @@
 	box-shadow: none;
 }
 
+.btn--smaller {
+	padding: 10px 5px;
+    width: 30%;
+    border-radius: var(--borderradius-s);
+	font-size: var(--fontsize-s);
+	min-width: 190px;
+}
+
 @media (max-width: 575.98px) {
 	.btn {
 		font-size: var(--fontsize-l);
@@ -76,6 +84,14 @@
 	}
 	.btn--tertiary {
 		padding: var(--margin-xs);
+	}
+
+	.btn--smaller {
+		padding: 10px 5px;
+		width: 30%;
+		border-radius: var(--borderradius-s);
+		font-size: var(--fontsize-s);
+		min-width: 190px;
 	}
 }
 .game__btn{
