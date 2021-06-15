@@ -21,3 +21,13 @@
 .container--presenter {
 	overflow: hidden;
 }
+.game__btn__container{
+	margin: 0 auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	max-width: 600px;
+
+}
+
+
