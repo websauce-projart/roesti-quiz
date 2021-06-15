@@ -13,15 +13,6 @@ class HomeController extends Controller
 {
 
     /**
-     * Redirect to home route
-     *
-     * @return void
-     */
-    public function redirectToHome() {
-        return redirect()->route('home');
-    }
-
-    /**
 	 * Return home view with user data
 	 *
 	 * @return view home/home

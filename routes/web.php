@@ -28,11 +28,10 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	 ********************************/
 
 	//Return the home view
-	Route::get('/', [HomeController::class, 'redirectToHome']);
-	Route::get('/home', [HomeController::class, 'showHomeView'])->name('home');
+	Route::get('/', [HomeController::class, 'showHomeView'])->name('home');
 
 	//Return the search view
-	Route::post('/home', [HomeController::class, 'showSearchView']);
+	Route::post('/', [HomeController::class, 'showSearchView']);
 
 	//Redirect from home page according to the state of the game
 	Route::get('/game/{game_id}/join', [HomeController::class, 'redirectFromHome'])->name('join');
