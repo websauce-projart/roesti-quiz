@@ -722,7 +722,6 @@ textarea,
 	}
 }
 
-
 /********************************
  * Background
  ********************************/
@@ -791,7 +790,7 @@ mark {
 label {
 	color: var(--color-text);
 }
-input,
+input, 
 textarea {
 	color: var(--color-text-lighter);
 	background-color: var(--color-white);
@@ -919,7 +918,6 @@ img {
 	height: 100vh;
 }
 
-<<<<<<< HEAD
 .container--large {
 	max-width: 1200px;
 }
@@ -927,6 +925,18 @@ img {
 .container--presenter {
 	overflow: hidden;
 }
+.game__btn__container{
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	max-width: 600px;
+
+}
+
+
 
 /** GRID SETTINGS */
 .avatar__editor {
@@ -1055,21 +1065,6 @@ img {
 	}
 
 /**DISPLAYED AVATAR */
-=======
-.game__btn__container{
-	margin: 0 auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	max-width: 600px;
-
-}
-
-
-
->>>>>>> elem-game-buttons
 .avatar__container {
 	position: relative;
 	width: 100%;
@@ -1188,7 +1183,6 @@ img {
 	box-shadow: none;
 }
 
-<<<<<<< HEAD
 @media (max-width: 575.98px) {
 	.btn {
 		font-size: var(--fontsize-l);
@@ -1199,7 +1193,7 @@ img {
 	.btn--tertiary {
 		padding: var(--margin-xs);
 	}
-=======
+}
 .game__btn{
 	justify-content:center;
  	height: 100px;
@@ -1219,24 +1213,6 @@ img {
 	float:right;
 }
 
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  background: #f5f5f5;
-  border-radius: 0.4em;
-  padding: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 60vh;
-  width: 20rem;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  margin-top: 3rem;
->>>>>>> elem-game-buttons
-}
 
 /********************************
  * Categories
@@ -1334,26 +1310,6 @@ img {
 		text-shadow: var(--boxshadow-second-smaller);
 	}
 }
-
- @media only screen and (max-width: 600px) {
-	.card {
-		box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-		transition: 0.3s;
-		background: #f5f5f5;
-		border-radius: 0.4em;
-		padding: 2rem;
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-		height: 60vh;
-		width: 80vw;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		margin-top: 3rem;
-	 }
-
- }
 
 /********************************
  * Error
@@ -2507,11 +2463,11 @@ input:checked~.form__row--displayCondition {
 }
 
 .margin-small {
-	margin: var(--margin-xxs) 0;
+	margin: var(--margin-xxs) 0; 
 }
 
 .margin-small-bottom {
-	margin-bottom: var(--margin-s);
+	margin-bottom: var(--margin-s); 
 }
 
 .margin-auto {
