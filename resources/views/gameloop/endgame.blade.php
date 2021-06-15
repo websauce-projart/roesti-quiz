@@ -22,13 +22,13 @@ bg--white
 
 		<div class="endgame__score__container">
 			<ul class="endgame__score">
-				<li><strong>Bonnes réponses : </strong> {{$count}}/10</li>
-				<li><strong>Temps total : </strong> {{$time}} secondes</li>
-				<li><strong>Score final : </strong> {{$score}} points</li>
+				<li><strong>Bonnes réponses:</strong> {{$count}}/10</li>
+				<li><strong>Temps total:</strong> {{$time}} secondes</li>
+				<li><strong>Score final:</strong> {{$score}} points</li>
 			</ul>
 		</div>
 
-		<div class="center">
+		<div class="endgame__score__link">
 			<a href="{{ route("round_history", [$game, $round_id]) }}">Voir mes réponses</a>
 		</div>
 	</section>

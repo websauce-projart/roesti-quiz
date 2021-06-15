@@ -29,10 +29,10 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 
 	//Return the home view
 	Route::get('/', [HomeController::class, 'redirectToHome']);
-	Route::get('/home', [HomeController::class, 'displayHome'])->name('home');
+	Route::get('/home', [HomeController::class, 'showHomeView'])->name('home');
 
 	//Return the search view
-	Route::post('/home', [HomeController::class, 'displaySearch']);
+	Route::post('/home', [HomeController::class, 'showSearchView']);
 
 	//Redirect from home page according to the state of the game
 	Route::get('/game/{game_id}/join', [HomeController::class, 'redirectFromHome'])->name('join');
@@ -46,7 +46,7 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	Route::post('/game', [GameController::class, 'createGame'])->name('creategame');
 
 	//Return view to choose a category after the game is created
-	Route::get('/game/{game_id}/category', [GameController::class, 'displayCategoryView'])->name('category');
+	Route::get('/game/{game_id}/category', [GameController::class, 'showCategoryView'])->name('category');
 
 	//Create round with choosen category
 	Route::post('/game/{game_id}/category', [GameController::class, 'createRound']);
@@ -81,11 +81,11 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	Route::post('/user/{user_id}', [UserController::class, 'deleteAccount']);
 
 	//Update user's password
-	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePassword'])->name('updatePasswordForm');
+	Route::get('/user/{user_id}/update-password', [AuthController::class, 'showUpdatePasswordView'])->name('updatePasswordForm');
 	Route::post('/user/{user_id}/update-password', [AuthController::class, 'updatePassword']);
 
 	//Update user's avatar
-	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'displayAvatarEditor'])->name('updateAvatar');
+	Route::get('/user/{user_id}/update-avatar', [AvatarController::class, 'showAvatarEditorView'])->name('updateAvatar');
 	Route::post('/user/{user_id}/update-avatar', [AvatarController::class, 'updateAvatar']);
 
 
@@ -97,12 +97,12 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	Route::group(['middleware' => ['onboarded']], function () {
 
 		//Return a view for each onboarding step
-		Route::get('/welcome', [OnboardingController::class, 'displayWelcome'])->name('onboardingWelcome');
-		Route::get('/welcome/avatar', [AvatarController::class, 'displayAvatarCreator'])->name('onboardingAvatar');
+		Route::get('/welcome', [OnboardingController::class, 'showWelcomeView'])->name('onboardingWelcome');
+		Route::get('/welcome/avatar', [AvatarController::class, 'showAvatarCreatorView'])->name('onboardingAvatar');
 		Route::post('/welcome/avatar', [AvatarController::class, 'createAvatar']);
-		Route::get('/welcome/quiz', [OnboardingController::class, 'displayQuizTutorial'])->name('onboardingQuiz');
-		Route::get('/welcome/history', [OnboardingController::class, 'displayHistoryTutorial'])->name('onboardingHistory');
-		Route::get('/welcome/friends', [OnboardingController::class, 'displayFriendsTutorial'])->name('onboardingFriends');
+		Route::get('/welcome/quiz', [OnboardingController::class, 'showQuizTutorialView'])->name('onboardingQuiz');
+		Route::get('/welcome/history', [OnboardingController::class, 'showHistoryTutorialView'])->name('onboardingHistory');
+		Route::get('/welcome/friends', [OnboardingController::class, 'showFriendsTutorialView'])->name('onboardingFriends');
 		Route::get('/welcome/exit', [OnboardingController::class, 'quitOnboarding'])->name('onboardingExit');
 
 	});

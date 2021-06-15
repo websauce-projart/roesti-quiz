@@ -26,7 +26,7 @@ class HomeController extends Controller
 	 *
 	 * @return view home/home
 	 */
-	public function displayHome()
+	public function showHomeView()
 	{
 		//Checks if user has onboarded yet
 		$user_id = Auth::user()->id;
@@ -45,7 +45,7 @@ class HomeController extends Controller
      *
      * @return view home/search
      */
-    public function displaySearch()
+    public function showSearchView()
     {
         //Retrieve data
         $user_id = Auth::user()->id;

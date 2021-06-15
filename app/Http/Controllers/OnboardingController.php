@@ -13,7 +13,7 @@ class OnboardingController extends Controller
      *
      * @return view onboarding/welcome
      */
-    public function displayWelcome() {
+    public function showWelcomeView() {
         //Return view
         return view('/onboarding/welcome');
     }
@@ -23,7 +23,7 @@ class OnboardingController extends Controller
      *
      * @return view onboarding/quiz
      */
-    public function displayQuizTutorial() {
+    public function showQuizTutorialView() {
         //Return view
         return view('/onboarding/quiz');
     }
@@ -33,7 +33,7 @@ class OnboardingController extends Controller
      *
      * @return view onboarding/history
      */
-    public function displayHistoryTutorial () {
+    public function showHistoryTutorialView () {
         //Return view
         return view('/onboarding/history');
     }
@@ -43,7 +43,7 @@ class OnboardingController extends Controller
      *
      * @return view onboarding/friends
      */
-    public function displayFriendsTutorial() {
+    public function showFriendsTutorialView() {
         //Return view
         return view('/onboarding/friends');
     }
