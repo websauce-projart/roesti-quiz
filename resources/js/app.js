@@ -47,12 +47,3 @@ const timer = createApp({
 }).mount("#timer");
 
 
-const gameButtons = createApp({
-	components:{
-		GameButtons,
-	},
-
-}).mount('#vue_game_buttons')
-
-
-
