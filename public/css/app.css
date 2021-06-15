@@ -939,18 +939,6 @@ img {
 .container--presenter {
 	overflow: hidden;
 }
-.game__btn__container{
-	margin: 0 auto;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	max-width: 600px;
-
-}
-
-
 
 /** GRID SETTINGS */
 .avatar__editor {
@@ -1200,7 +1188,10 @@ img {
 	transform: translate(2px, -2px);
 }
 
-.btn--primary:active, .btn--primary:focus, .btn--secondary:active, .btn--secondary:focus {
+.btn--primary:active,
+.btn--primary:focus,
+.btn--secondary:active,
+.btn--secondary:focus {
 	transform: translate(-6px, 6px);
 	box-shadow: none;
 }
@@ -1213,8 +1204,8 @@ img {
 
 .btn--smaller {
 	padding: 10px 5px;
-    width: 30%;
-    border-radius: var(--borderradius-s);
+	width: 30%;
+	border-radius: var(--borderradius-s);
 	font-size: var(--fontsize-s);
 	min-width: 190px;
 }
@@ -1244,25 +1235,50 @@ img {
 		min-width: 190px;
 	}
 }
-.game__btn{
-	justify-content:center;
- 	height: 100px;
+
+.game__btn__container {
+	position: fixed;
+	left: 0;
+	bottom: var(--margin-m);
+	width: 100vw;
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	z-index: 10;
+}
+
+.game__btn__wrapper {
+	width: 100%;
+	max-width: 300px;
+}
+
+.game__btn {
+	justify-content: center;
+	height: 100px;
 	width: 100px;
- 	border-radius: 50%;
-	color: #fff;
-	font-family:  "Luckiest Guy", sans-serif;
+	border-radius: 50%;
+	color: var(--color-white);
+	font-family: var(--font-headings);
 	font-size: var(--fontsize-xl);
+	transition: var(--animation-hover);
+	box-shadow: var(--boxshadow-second-blurred);
 }
 
-.reject{
+.game__btn:hover {
+	transform: scale(1.1);
+}
+
+.reject {
 	background-color: var(--color-contrast);
-	float:left;
+	float: left;
 }
-.accept{
+.accept {
 	background-color: var(--color-secondary);
-	float:right;
+	float: right;
 }
-
 
 /********************************
  * Categories
@@ -1328,13 +1344,20 @@ img {
 	text-shadow: var(--boxshadow-second-small);
 	text-align: center;
 	width: 75%;
-	margin: auto;
+	margin: var(--margin-m) auto;
 }
 .endgame__score__container {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
 	margin: var(--margin-m) 0;
+}
+
+.endgame__score__link {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
 }
 
 .endgame__score {
@@ -1358,6 +1381,11 @@ img {
 	.endgame__sentence {
 		font-size: var(--fontsize-ll);
 		text-shadow: var(--boxshadow-second-smaller);
+		line-height: 2.5rem;
+		margin: 0 auto;
+	}
+	.endgame__score__container {
+		margin: var(--margin-s) 0;
 	}
 }
 

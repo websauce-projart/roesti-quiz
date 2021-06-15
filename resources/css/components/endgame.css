@@ -16,11 +16,16 @@
 	text-shadow: var(--boxshadow-second-small);
 	text-align: center;
 	width: 75%;
-	margin: auto;
+	margin: var(--margin-m) auto;
 }
 .endgame__score__container {
 	display: flex;
 	margin: var(--margin-m) 0;
+}
+
+.endgame__score__link {
+	display: flex;
+	justify-content: center;
 }
 
 .endgame__score {
@@ -43,5 +48,10 @@
 	.endgame__sentence {
 		font-size: var(--fontsize-ll);
 		text-shadow: var(--boxshadow-second-smaller);
+		line-height: 2.5rem;
+		margin: 0 auto;
+	}
+	.endgame__score__container {
+		margin: var(--margin-s) 0;
 	}
 }
