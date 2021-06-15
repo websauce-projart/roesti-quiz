@@ -31,5 +31,4 @@ Quiz
 	</form>
 
 </div>
-
 @endsection

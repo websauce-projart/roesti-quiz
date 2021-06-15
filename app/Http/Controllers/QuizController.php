@@ -50,7 +50,7 @@ class QuizController extends Controller
 			return redirect()->route('results', [$game->id]);
 		}
 
-		//Checks if there is not already results for this round for this user
+		// Checks if there is not already results for this round for this user
 		if (!is_null($result)) {
 			if ($result->UserAnswers()->get()->count() == 0) {	//User left the game before submitting
 				return QuizController::handleQuitting($user_id, $round_id, $game_id, $questions);

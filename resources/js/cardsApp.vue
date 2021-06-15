@@ -3,72 +3,82 @@
 		<GameCardsStack
 			:cards="visibleCards"
 			:qid="qid"
-			@cardAccepted="handleCardAccepted"
-			@cardRejected="handleCardRejected"
-			@cardSkipped="handleCardSkipped"
 			@hideCard="removeCardFromDeck"
+			@reject="SwipeLeft"
+			@accept="SwipeRight"
+			ref="gameCardStack"
 		/>
 	</div>
 </template>
 
 <script>
 import GameCardsStack from "./components/GameCardsStack";
+import GameCard from './components/GameCard.vue';
+
 
 export default {
-	name: "CardsApp",
-	components: {
-		GameCardsStack,
-	},
+  name: "CardsApp",
+  components: {
+    GameCardsStack,
+  },
 
-	data() {
-		return {
-			visibleCards: [],
-			qid: Array,
-		};
-	},
+  data() {
+    return {
+      visibleCards: [],
+		qid: Array,
+    };
+  },
 
-	props: {
-		datas: Object,
-	},
+  props: {
+	  datas: Object,
+  },
 
-	methods: {
-		handleCardAccepted() {
-			// console.log(this.qid[0]);
-			document.getElementById(this.qid[0]).checked = true;
-		},
-		handleCardRejected() {
-			console.log("handleCardRejected");
-		},
-		handleCardSkipped() {
-			console.log("handleCardSkipped");
-		},
-		removeCardFromDeck() {
-			this.visibleCards.shift();
-			this.qid.shift();
-			let test = [];
-			if (this.qid.length === test.length) {
-				document.getElementById("quizForm").submit();
-			}
-		},
+  methods: {
+    handleCardAccepted() {
+		document.getElementById(this.qid[0]).checked = true;
+    },
+    removeCardFromDeck() {
+      this.visibleCards.shift();
+		this.qid.shift();
+		let test= [];
+		if(this.qid.length === test.length){
+			document.getElementById('quizForm').submit();
+		}
+    },
 
-		createQuestionsArray() {
-			let datas = this.$props.datas;
-			let labels = [];
-			let ids = [];
+	 createQuestionsArray(){
+		 let datas = this.$props.datas;
+		 let labels = [];
+		 let ids = [];
 
-			for (let index in datas) {
-				labels.push(datas[index].label);
-				ids.push(datas[index].id);
-			}
+		for (let index in datas) {
+       labels.push(datas[index].label);
+		 ids.push(datas[index].id);
+      }
 
-			this.visibleCards = labels;
-			this.qid = ids;
-		},
-	},
+		this.visibleCards = labels;
+		this.qid = ids;
+	  },
 
-	created() {
-		this.createQuestionsArray();
-	},
+	  SwipeLeft(){
+		  this.$refs.gameCardStack.testReject();
+
+
+	  },
+
+	  SwipeRight(){
+		  this.$refs.gameCardStack.testAccept();
+	  },
+
+  },
+
+  created() {
+	  this.createQuestionsArray();
+  },
+
+  mounted(){
+  }
+
 };
 </script>
 

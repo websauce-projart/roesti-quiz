@@ -925,6 +925,18 @@ img {
 .container--presenter {
 	overflow: hidden;
 }
+.game__btn__container{
+	margin: 0 auto;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	max-width: 600px;
+
+}
+
+
 
 /** GRID SETTINGS */
 .avatar__editor {
@@ -1182,6 +1194,25 @@ img {
 		padding: var(--margin-xs);
 	}
 }
+.game__btn{
+	justify-content:center;
+ 	height: 100px;
+	width: 100px;
+ 	border-radius: 50%;
+	color: #fff;
+	font-family:  "Luckiest Guy", sans-serif;
+	font-size: var(--fontsize-xl);
+}
+
+.reject{
+	background-color: var(--color-contrast);
+	float:left;
+}
+.accept{
+	background-color: var(--color-secondary);
+	float:right;
+}
+
 
 /********************************
  * Categories
@@ -2441,7 +2472,7 @@ input:checked~.form__row--displayCondition {
 }
 
 .no-display{
-	display:none;
+	display: none;
 }
 
 .inline-block {
