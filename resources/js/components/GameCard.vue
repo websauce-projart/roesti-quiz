@@ -9,10 +9,9 @@
     class="card"
     :style="{ transform: transformString,
 	 			  }"
-	 :id="id"
+
   	>
-    <h3 class="cardTitle">{{ card }}
-	 </h3>
+    <h3 class="cardTitle">{{ card }}</h3>
 
 
 </div>
@@ -29,29 +28,35 @@ export default {
   static: {
     interactMaxRotation: 15,
     interactOutOfSightXCoordinate: 180,
-    interactOutOfSightYCoordinate: 600,
-    interactYThreshold: 150,
     interactXThreshold: 100,
   },
 
   props: {
+	  /**
+		* contains the card question
+	   */
     card: {
       type: String,
       required: true,
     },
+
+	 /**
+	  * Give a distinctive look to the card when needed
+	  */
     isCurrent: {
       type: Boolean,
       required: true,
     },
+
+	 /**
+	  * Question ID needed to select and check the related
+	  * checkbox
+	  */
 	 qid:{
 		 type: Number,
 		 required: true,
 	 },
 
-	 id:{
-		 type: Number,
-		 required: true,
-	 }
   },
 
   data() {;
@@ -59,6 +64,10 @@ export default {
       isShowing: true,
       isInteractAnimating: true,
       isInteractDragged: null,
+		/**
+		 * values that indicate a card’s order in the stack
+		 * when it’s moved from its original position
+		 */
       interactPosition: {
         x: 0,
         y: 0,
@@ -68,6 +77,9 @@ export default {
   },
 
   computed: {
+	  /**
+		* Creates a transform value and applies it to our element
+	   */
     transformString() {
       if (!this.isInteractAnimating || this.isInteractDragged) {
         const { x, y, rotation } = this.interactPosition;
@@ -81,6 +93,22 @@ export default {
   mounted() {
     const element = this.$refs.interactElement;
 
+	 /**
+	  * @method onstart : deactivates the transition as soon as
+	  * the card is dragged to cut the animation lag
+	  *
+	  * @method onmove : fires a custom function each
+	  * time the element is dragged.
+	  * ** @argument event carries information about
+	  * 	 how far the card is dragged. We then calculates
+	  *    the new position and sets it in the @function transformString
+	  *
+	  * @method onend : listens when user stops interacting
+	  * 	checks if card was thrown beyond thresholds or not
+	  *	* if met, accepts or rejects cards depending on the side
+	  *	* if not, resets card position
+	  *
+	  */
     interact(element).draggable({
       onstart: () => {
         this.isInteractAnimating = false;
@@ -102,8 +130,8 @@ export default {
       },
 
       onend: () => {
-        const { x, y } = this.interactPosition;
-        const { interactXThreshold, interactYThreshold } = this.$options.static;
+        const { x } = this.interactPosition;
+        const { interactXThreshold } = this.$options.static;
         this.isInteractAnimating = true;
 
         if (x > interactXThreshold && this.$props.isCurrent) this.playCard(ACCEPT_CARD);
@@ -114,13 +142,20 @@ export default {
     });
 
   },
-
+	/**
+	 * removes all event listeners and
+	 * makes interact.js completely forget about the target
+	 */
   beforeUnmount() {
     interact(this.$refs.interactElement).unset();
 
   },
 
   methods: {
+	 /**
+	  * hides the card we played and adds a timeout
+	  * to let it animate out of sight
+	  */
     hideCard() {
       setTimeout(() => {
         this.isShowing = false;
@@ -129,10 +164,13 @@ export default {
       }, 150);
     },
 
+	 /**
+	  * if treshhold met, handles the acceptation
+	  * or rejection of the card
+	  */
     playCard(interaction) {
       const {
         interactOutOfSightXCoordinate,
-        interactOutOfSightYCoordinate,
         interactMaxRotation,
       } = this.$options.static;
 
@@ -158,25 +196,44 @@ export default {
       this.hideCard();
     },
 
+	/**
+	 * calculates  cards position
+	 */
     interactSetPosition(coordinates) {
       const { x = 0, y = 0, rotation = 0 } = coordinates;
       this.interactPosition = { x, y, rotation };
     },
 
+	/**
+	 * unsets element
+	 */
     interactUnsetElement() {
       interact(this.$refs.interactElement).unset();
       this.isInteractDragged = true;
     },
 
+	 /**
+	  * resets card position
+	  */
     resetCardPosition() {
       this.interactSetPosition({ x: 0, y: 0, rotation: 0 });
     },
 
+	 /**
+		* when card is accepted,
+		* @function cardAccept is called from parent component
+		* and calls @function playCard with @param ACCEPT_CARD
+	   */
 	 cardAccept(){
 		 this.playCard(ACCEPT_CARD)
 
 	 },
 
+	 /**
+		* when card is accepted,
+		* @function cardReject is called from parent component
+		* and calls @function playCard with @param REJECT_CARD
+	   */
 	 cardReject(){
 		 this.playCard(REJECT_CARD);
 	 },

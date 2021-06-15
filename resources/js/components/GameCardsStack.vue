@@ -32,25 +32,44 @@ export default {
 	 GameButtons
   },
   props: {
+	  /**
+		* Is the array containing every card
+		* and mark the first one as current
+	   */
     cards: {
       type: Array,
       required: true,
     },
+	 /**
+	  * Array containing the questions ID
+	  */
     qid: {
       type: Array,
       required: true,
     },
   },
-  setup(props){
+  setup(){
     const divs = ref([])
 
+	 /**resets value before update */
     onBeforeUpdate(() => {
         divs.value = []
       })
 
+	  /**
+		* when card is rejected,
+		* @function stackReject is called from parent component
+		* and calls child @function cardReject through refs
+	   */
 	  function stackReject(){
       divs.value[0].cardReject()
 	  }
+
+	   /**
+		* when card is accepted,
+		* @function stackAccept is called from parent component
+		* and calls child @function cardAccept through refs
+	   */
 	   function stackAccept(){
       divs.value[0].cardAccept()
 	  }
