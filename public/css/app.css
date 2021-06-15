@@ -1549,6 +1549,7 @@ input:checked~.form__row--displayCondition {
 /********************************
  * Games in home view
  ********************************/
+
 .gameBadge__container {
 	display: -webkit-box;
 	display: -ms-flexbox;
@@ -1558,6 +1559,20 @@ input:checked~.form__row--displayCondition {
 	padding: var(--margin-xs);
 	margin: -15px;
 	height: 55vh;
+	overflow: hidden;
+}
+
+.gameBadge__container>div {
+	height: 110%;
+	margin-bottom: -50px;
+	/* maximum width of scrollbar */
+	padding-bottom: 50px;
+	/* maximum width of scrollbar */
+	margin-right: -50px;
+	/* maximum width of scrollbar */
+	padding-right: 50px;
+	/* maximum width of scrollbar */
+	overflow: scroll;
 }
 
 .gameBadge__noGame {
@@ -1604,6 +1619,7 @@ input:checked~.form__row--displayCondition {
 	box-shadow: var(--boxshadow-secondLight);
 	transition: var(--animation-hover);
 	text-decoration: none;
+	margin-left: 6px;
 }
 
 .gameBadge--phantom {
@@ -1677,7 +1693,6 @@ input:checked~.form__row--displayCondition {
 		min-height: 50px;
 	}
 }
-
 /********************************
  * Icons
  ********************************/
@@ -2224,7 +2239,7 @@ input:checked~.form__row--displayCondition {
 	margin: 0;
 	padding: 0;
 	max-height: 40vh;
-	overflow: scroll
+	overflow: hidden
 }
 .searchFriends li {
 		list-style: none
@@ -2251,6 +2266,16 @@ input:checked~.form__row--displayCondition {
 			transform: none;
 			background: var(--color-text-alpha);
 		}
+
+.searchFriends > div {
+	height: 100%;
+	margin-bottom: -50px; /* maximum width of scrollbar */
+	padding-bottom: 50px; /* maximum width of scrollbar */
+	margin-right: -50px; /* maximum width of scrollbar */
+	padding-right: 50px; /* maximum width of scrollbar */
+	overflow: scroll;
+}
+
 .searchFriends__container {
 	position: relative;
 }

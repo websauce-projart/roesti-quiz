@@ -1,6 +1,7 @@
 /********************************
  * Games in home view
  ********************************/
+
 .gameBadge__container {
 	display: flex;
 	flex-direction: column;
@@ -8,6 +9,20 @@
 	padding: var(--margin-xs);
 	margin: -15px;
 	height: 55vh;
+	overflow: hidden;
+}
+
+.gameBadge__container>div {
+	height: 110%;
+	margin-bottom: -50px;
+	/* maximum width of scrollbar */
+	padding-bottom: 50px;
+	/* maximum width of scrollbar */
+	margin-right: -50px;
+	/* maximum width of scrollbar */
+	padding-right: 50px;
+	/* maximum width of scrollbar */
+	overflow: scroll;
 }
 
 .gameBadge__noGame {
@@ -49,6 +64,7 @@
 	box-shadow: var(--boxshadow-secondLight);
 	transition: var(--animation-hover);
 	text-decoration: none;
+	margin-left: 6px;
 }
 
 .gameBadge--phantom {

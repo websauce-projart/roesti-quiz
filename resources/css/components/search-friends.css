@@ -5,7 +5,7 @@
 	margin: 0;
 	padding: 0;
 	max-height: 40vh;
-	overflow: scroll;
+	overflow: hidden;
 	& li {
 		list-style: none;
 		& label {
@@ -30,6 +30,16 @@
 		}
 	}
 }
+
+.searchFriends > div {
+	height: 100%;
+	margin-bottom: -50px; /* maximum width of scrollbar */
+	padding-bottom: 50px; /* maximum width of scrollbar */
+	margin-right: -50px; /* maximum width of scrollbar */
+	padding-right: 50px; /* maximum width of scrollbar */
+	overflow: scroll;
+}
+
 .searchFriends__container {
 	position: relative;
 }
