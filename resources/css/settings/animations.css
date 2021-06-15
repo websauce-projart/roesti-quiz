@@ -5,15 +5,6 @@
 	--animation-hover: all 0.2s ease-out;
 }
 
-@keyframes pattern {
-	from {
-		background-size: 125%;
-	}
-	to {
-		background-size: 140%;
-	}
-}
-
 @keyframes hello-presenter {
 	0% {
 		transform: translateY(100%);

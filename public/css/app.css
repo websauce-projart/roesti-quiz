@@ -680,24 +680,6 @@ textarea,
 	--animation-hover: all 0.2s ease-out;
 }
 
-@-webkit-keyframes pattern {
-	from {
-		background-size: 125%;
-	}
-	to {
-		background-size: 140%;
-	}
-}
-
-@keyframes pattern {
-	from {
-		background-size: 125%;
-	}
-	to {
-		background-size: 140%;
-	}
-}
-
 @-webkit-keyframes hello-presenter {
 	0% {
 		transform: translateY(100%);
@@ -759,16 +741,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: 125%;
 	background-position: center center;
-	-webkit-animation-name: pattern;
-	        animation-name: pattern;
-	-webkit-animation-duration: 5s;
-	        animation-duration: 5s;
-	-webkit-animation-iteration-count: infinite;
-	        animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	        animation-direction: alternate;
-	-webkit-animation-timing-function: ease-in-out;
-	        animation-timing-function: ease-in-out;
 }
 body.bg--white {
 	background-image: none;
@@ -1210,6 +1182,7 @@ img {
 		padding: var(--margin-xs);
 	}
 }
+
 /********************************
  * Categories
  ********************************/
@@ -1620,7 +1593,7 @@ input:checked~.form__row--displayCondition {
 }
 
 .gameBadge--wait {
-	opacity: 0.5;
+	opacity: 0.75;
 }
 
 .gameBadge__avatar {
@@ -2288,16 +2261,6 @@ input:checked~.form__row--displayCondition {
 	background-repeat: no-repeat;
 	background-size: 200%;
 	background-position: center center;
-	-webkit-animation-name: pattern;
-	        animation-name: pattern;
-	-webkit-animation-duration: 5s;
-	        animation-duration: 5s;
-	-webkit-animation-iteration-count: infinite;
-	        animation-iteration-count: infinite;
-	-webkit-animation-direction: alternate;
-	        animation-direction: alternate;
-	-webkit-animation-timing-function: ease-in-out;
-	        animation-timing-function: ease-in-out;
 }
 
 .speech-bubble:before {
@@ -2499,22 +2462,6 @@ input:checked~.form__row--displayCondition {
 	font-size: var(--fontsize-m);
 	color: var(--color-text);
 	text-decoration: underline;
-}
-
-/********************************
- * Pattern fixes
- ********************************/
-.pattern-stop {
-	background: var(--color-background);
-}
-
-.pattern-body-fix {
-	background-position: 50% 100%;
-}
-
-.pattern-freeze {
-	-webkit-animation: none;
-	        animation: none;
 }
 
 /********************************
