@@ -20,17 +20,12 @@
 
 <script>
 import interact from "interactjs";
-import GameButtons from "./GameButtons.vue";
 
 const ACCEPT_CARD = "cardAccepted";
 const REJECT_CARD = "cardRejected";
 
 
 export default {
-// 	 components: {
-// 	 GameButtons
-//   },
-
   static: {
     interactMaxRotation: 15,
     interactOutOfSightXCoordinate: 180,
@@ -85,9 +80,7 @@ export default {
 
   mounted() {
     const element = this.$refs.interactElement;
-
-	//  console.log(this.id);
-
+    
     interact(element).draggable({
       onstart: () => {
         this.isInteractAnimating = false;
@@ -123,18 +116,8 @@ export default {
   },
 
   beforeUnmount() {
-
     interact(this.$refs.interactElement).unset();
 
-  },
-
-  beforeUpdate(){
-      // this.$nextTick(function () {
-      //   console.log(document.getElementsByClassName("isCurrent")[0]);
-		//  console.log(" ↑");
-		//  console.log("↓");
-		//  console.log(this.$refs.interactElement);
-      // });
   },
 
   methods: {
@@ -190,19 +173,11 @@ export default {
     },
 
 	 testAccept(){
-		 console.log(document.getElementsByClassName("isCurrent")[0]);
-		 console.log("la carte voulue ↑");
-		 console.log("la carte avec laquelle on interagit ↓");
-		 console.log(this.$refs.interactElement);
 		 this.playCard(ACCEPT_CARD)
 
 	 },
 
 	 testReject(){
-		 console.log(document.getElementsByClassName("isCurrent")[0]);
-		 console.log("la carte voulue ↑");
-		 console.log("la carte avec laquelle on interagit ↓");
-		 console.log(this.$refs.interactElement);
 		 this.playCard(REJECT_CARD);
 	 },
   },

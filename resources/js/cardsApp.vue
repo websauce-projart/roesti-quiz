@@ -3,9 +3,6 @@
 		<GameCardsStack
 			:cards="visibleCards"
 			:qid="qid"
-			@cardAccepted="handleCardAccepted"
-			@cardRejected="handleCardRejected"
-			@cardSkipped="handleCardSkipped"
 			@hideCard="removeCardFromDeck"
 			@reject="SwipeLeft"
 			@accept="SwipeRight"
@@ -40,13 +37,6 @@ export default {
     handleCardAccepted() {
 		document.getElementById(this.qid[0]).checked = true;
     },
-    handleCardRejected() {
-      console.log("handleCardRejected");
-
-    },
-    handleCardSkipped() {
-      console.log("handleCardSkipped");
-    },
     removeCardFromDeck() {
       this.visibleCards.shift();
 		this.qid.shift();
@@ -71,14 +61,12 @@ export default {
 	  },
 
 	  SwipeLeft(){
-		  console.log("Ok, on lance à gauche!");
 		  this.$refs.gameCardStack.testReject();
 
 
 	  },
 
 	  SwipeRight(){
-		  console.log("Ok, on lance a droite!");
 		  this.$refs.gameCardStack.testAccept();
 	  },
 

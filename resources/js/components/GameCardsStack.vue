@@ -11,8 +11,9 @@
       @hideCard="$emit('hide-card')"
 		:qid="qid[index]"
 		:id="index"
-		ref="gameCard"
+    :ref="el => { if (el) divs[index] = el }"
     >
+    		<!-- ref="gameCard" -->
     </GameCard>
 	<GameButtons
 	 @reject="$emit('reject')"
@@ -24,18 +25,13 @@
 <script>
 import GameCard from "./GameCard";
 import GameButtons from"./GameButtons.vue"
+import { ref , onBeforeUpdate } from 'vue'
 
 export default {
   components: {
     GameCard,
 	 GameButtons
   },
-    data() {
-    return {
-      indexId: 0,
-    };
-  },
-
   props: {
     cards: {
       type: Array,
@@ -46,17 +42,50 @@ export default {
       required: true,
     },
   },
+  setup(props){
+    const divs = ref([])
 
-  methods:{
-	  testReject(){
-		  console.log('methode test reject dans GameCardsStack');
-		  this.$refs.gameCard.testReject();
-	  },
-	   testAccept(){
-		  console.log('methode test accept dans GameCardsStack');
-		  this.$refs.gameCard.testAccept();
+    onBeforeUpdate(() => {
+        divs.value = []
+      })
+
+	  function testReject(){
+      divs.value[0].testReject()
 	  }
+	   function testAccept(){
+      divs.value[0].testAccept()
+	  }
+
+    return {
+      testReject,
+      testAccept,
+      divs
+    }
   },
+
+  // props: {
+  //   cards: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  //   qid: {
+  //     type: Array,
+  //     required: true,
+  //   },
+  // },
+
+  // methods:{
+	//   testReject(){
+	// 	  console.log('methode test reject dans GameCardsStack');
+	// 	  this.$refs.gameCard.testReject();
+	//   },
+	//    testAccept(){
+  //      this.$refs.gameCard.id = 0
+  //      console.log(this.$props.cards)
+	// 	  console.log('methode test accept dans GameCardsStack');
+	// 	  this.$refs.gameCard.testAccept();
+	//   }
+  // },
 };
 </script>
 
