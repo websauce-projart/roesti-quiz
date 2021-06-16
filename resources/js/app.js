@@ -16,7 +16,7 @@ window.onload = () => {
 	
 	if ('serviceWorker' in navigator) {
 	  navigator.serviceWorker
-			   .register('/public/sw.js');
+			   .register('/websauce/sw.js');
 	}
   }
 

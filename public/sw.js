@@ -1,6 +1,8 @@
 var cacheName = 'rostiquiz-pwa';
 var filesToCache = [
-  '/public/page/offline.html',
+  '/websauce/',
+  '/websauce/page/offline.html',
+  '/websauce/css/style.css',
 ];
 
 /* Start the service worker and cache all of the app's content */
@@ -17,7 +19,7 @@ self.addEventListener('install', function (e) {
 self.addEventListener('fetch', function (e) {
   if (!navigator.onLine) {
     e.respondWith(
-      caches.match('/public/page/offline.html').then(function (response) {
+      caches.match('/websauce/page/offline.html').then(function (response) {
         return response;
       })
     )
