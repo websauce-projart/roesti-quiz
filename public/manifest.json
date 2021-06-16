@@ -27,7 +27,7 @@
       "type": "image/png"
     }],
   "lang": "fr",
-  "start_url": "/websauce/",
+  "start_url": "/websauce/home",
   "display": "standalone",
   "background_color": "white",
   "theme_color": "white"
