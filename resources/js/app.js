@@ -11,13 +11,23 @@ import NewGame from "./pages/new_game.vue";
 import Timer from "./components/Timer.vue";
 
 //When loaded, checks the service worker in the navigator
-window.onload = () => {
-	'use strict';
+// window.onload = () => {
+// 	'use strict';
 	
-	if ('serviceWorker' in navigator) {
-	  navigator.serviceWorker
-			   .register('/websauce/sw.js');
-	}
+// 	if ('serviceWorker' in navigator) {
+// 	  navigator.serviceWorker
+// 			   .register('./sw.js');
+// 	}
+//   }
+
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/websauce/sw.js', { scope: '/websauce/' }).then(function(registration) {
+	  console.log('Service worker registration succeeded:', registration);
+	}).catch(function(error) {
+	  console.log('Service worker registration failed:', error);
+	});
+  } else {
+	console.log('Service workers are not supported.');
   }
 
 const app = createApp({

@@ -1,27 +1,33 @@
 var cacheName = 'rostiquiz-pwa';
 var filesToCache = [
-  '/websauce/',
   '/websauce/page/offline.html',
-  '/websauce/css/style.css',
 ];
 
 /* Start the service worker and cache all of the app's content */
-self.addEventListener('install', function (e) {
-
-  e.waitUntil(
-    caches.open(cacheName).then(function (cache) {
-      return cache.addAll(filesToCache);
+this.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(cacheVersion).then(function(cache) {
+      return cache.addAll(urlsToPrefetch);
     })
   );
 });
 
 /* Serve cached content when offline */
-self.addEventListener('fetch', function (e) {
-  if (!navigator.onLine) {
-    e.respondWith(
-      caches.match('/websauce/page/offline.html').then(function (response) {
-        return response;
-      })
-    )
-  }
+
+this.addEventListener('fetch', event => {
+  let responsePromise = caches.match(event.request).then(response => {
+    return response || fetch(event.request)
+  });
+
+  event.respondWith(responsePromise);
 });
+
+// this.addEventListener('fetch', function (e) {
+//   if (!navigator.onLine) {
+//     e.respondWith(
+//       caches.match('/websauce/page/offline.html').then(function (response) {
+//         return response;
+//       })
+//     )
+//   }
+// });

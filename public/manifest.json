@@ -27,8 +27,10 @@
       "type": "image/png"
     }],
   "lang": "fr",
-  "start_url": "/websauce/home",
+  "start_url": "/websauce/",
+  "scope": "/websauce/",
   "display": "standalone",
   "background_color": "white",
-  "theme_color": "white"
+  "theme_color": "white",
+  "description": "Rösti Quiz, le quiz multiplayer romand!"
 }
