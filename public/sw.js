@@ -21,13 +21,3 @@ this.addEventListener('fetch', event => {
 
   event.respondWith(responsePromise);
 });
-
-// this.addEventListener('fetch', function (e) {
-//   if (!navigator.onLine) {
-//     e.respondWith(
-//       caches.match('/websauce/page/offline.html').then(function (response) {
-//         return response;
-//       })
-//     )
-//   }
-// });
