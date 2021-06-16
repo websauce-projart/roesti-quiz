@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 
 class OnboardingController extends Controller
-{    
+{
     /**
      * Return onboarding welcome view
      *
@@ -17,7 +17,7 @@ class OnboardingController extends Controller
         //Return view
         return view('/onboarding/welcome');
     }
-        
+
     /**
      * Return onboarding quiz tutorial view
      *
@@ -27,17 +27,17 @@ class OnboardingController extends Controller
         //Return view
         return view('/onboarding/quiz');
     }
-    
+
     /**
      * Return onboarding history tutorial view
      *
      * @return view onboarding/history
      */
-    public function showHistoryTutorialView () {
+    public function showSwipeTutorialView () {
         //Return view
-        return view('/onboarding/history');
+        return view('/onboarding/swipe');
     }
-    
+
     /**
      * Return onboarding friends tutorial view
      *
@@ -47,7 +47,7 @@ class OnboardingController extends Controller
         //Return view
         return view('/onboarding/friends');
     }
-    
+
     /**
      * Redirect the user when he quits the unboarding and considers him as already onboarded
      *
