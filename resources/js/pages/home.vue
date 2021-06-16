@@ -1,5 +1,5 @@
 <template>
-  <div class="gameBadge__container" v-if="datas = []">
+  <div class="gameBadge__container" v-if="datasLength == 0">
     <div class="gameBadge__noGame">
       <p>Tu n'as encore aucune partie en cours.</p>
       <p>Pour un max de fun, clique sur <mark>nouvelle partie</mark></p>
@@ -37,6 +37,7 @@ export default {
   setup(props) {
     let datas = ref({});
     let datasOrderd = ref([]);
+    let datasLength = ref(0);
     let newData = [];
   
     /**
@@ -56,7 +57,9 @@ export default {
           newData.push(datas[index]);
         }
       }
-      
+
+      datasLength.value = datas.length
+
       if (JSON.stringify(datasOrderd.value) != JSON.stringify(newData))
         datasOrderd.value = newData;
     }
@@ -73,6 +76,7 @@ export default {
         .get(props.data_url)
         .then((response) => {
           datas = response.data;
+
         })
         .catch((errors) => console.log(errors));
     }
@@ -93,6 +97,7 @@ export default {
     return {
       datas,
       datasOrderd,
+      datasLength
     };
   },
 };
