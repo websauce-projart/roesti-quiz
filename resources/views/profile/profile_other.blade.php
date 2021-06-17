@@ -11,7 +11,7 @@ Profil
 		<nav class="topnav">
 			<a href="{{ route('results', [$game_id]) }}" class="icon-arrow-left" aria-label="Retour"></a>
 		</nav>
-		<img class="logo" src="{{ asset("img/logo_v2_1.svg") }}" alt="Rösti Quiz" />
+		<img class="logo" src="{{ asset("img/logo_v2_1.svg") }}" alt="Rösti Quiz" draggable="false"/>
 	</header>
 
 	<main class="profile">
