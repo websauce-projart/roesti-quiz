@@ -14,10 +14,10 @@
         class="gameBadge__info__statut"
         v-if="data.game.active_user_id == data.user.id"
       >
-        À toi de jouer
+        À toi de jouer !
       </div>
       <div class="gameBadge__info__statut" v-else>
-        N'a pas encore relevé ton défi...
+        C'est à son tour...
       </div>
     </div>
 
