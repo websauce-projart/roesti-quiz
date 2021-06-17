@@ -29,9 +29,9 @@ class OnboardingController extends Controller
     }
 
     /**
-     * Return onboarding history tutorial view
+     * Return onboarding swipe tutorial view
      *
-     * @return view onboarding/history
+     * @return view onboarding/swipe
      */
     public function showSwipeTutorialView () {
         //Return view
