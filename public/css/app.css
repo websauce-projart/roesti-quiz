@@ -1781,14 +1781,18 @@ input:checked~.form__row--displayCondition {
 
 @font-face {
 	font-family: "icomoon";
-	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9");
-	src: url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"), url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.ttf?whvtr9") format("truetype"), url("https://pingouin.heig-vd.ch/websauce/fonts/icomoon.woff?whvtr9") format("woff");
+	src: url("/fonts/icomoon.eot?whvtr9");
+	src: url("/fonts/icomoon.eot?whvtr9#iefix") format("embedded-opentype"),
+		url("/fonts/icomoon.ttf?whvtr9") format("truetype"),
+		url("/fonts/icomoon.woff?whvtr9") format("woff"),
+		url("/fonts/icomoon.svg?9j2bh7#icomoon") format("svg");
 	font-weight: normal;
 	font-style: normal;
 	font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"],
+[class*=" icon-"] {
 	/* use !important to prevent issues with browser extensions that change fonts */
 	font-family: "icomoon" !important;
 	speak: never;
@@ -1803,86 +1807,44 @@ input:checked~.form__row--displayCondition {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-.icon-edit-pencil:before {
-	content: "\e900";
-}
-
-.icon-envelope:before {
-	content: "\e901";
-}
-
-.icon-lock-closed:before {
-	content: "\e902";
-}
-
-.icon-lock-open:before {
-	content: "\e903";
-}
-
-.icon-user:before {
-	content: "\e904";
-}
-
-.icon-checkmark:before {
-	content: "\e905";
-}
-
-.icon-close:before {
-	content: "\e906";
-	font-weight: bold;
-}
-
-.icon-search:before {
-	content: "\e986";
-}
-
-.icon-cog:before {
-	content: "\e994";
-}
-
-.icon-menu:before {
-	content: "\e9bd";
-}
-
-.icon-volume-high:before {
-	content: "\ea26";
-}
-
-.icon-volume-mute:before {
-	content: "\ea2a";
-}
-
-.icon-arrow-right:before {
-	content: "\ea3c";
-}
-
-.icon-arrow-left:before {
-	content: "\ea40";
-}
-
-.icon-circle-right:before {
-	content: "\ea42";
-}
-
-.icon-circle-left:before {
-	content: "\ea44";
-}
-
-.icon-checkbox-checked:before {
-	content: "\ea52";
-}
-
-.icon-checkbox-unchecked:before {
-	content: "\ea53";
-}
-
-.icon-information:before {
-	content: "\e908";
-}
-
 .icon-home:before {
-	content: "\e909";
+  content: "\e90e";
+}
+.icon-information-outline:before {
+  content: "\e900";
+}
+.icon-arrow-right:before {
+  content: "\e901";
+}
+.icon-arrow-left:before {
+  content: "\e902";
+}
+.icon-volume-off:before {
+  content: "\e904";
+}
+.icon-cog:before {
+  content: "\e906";
+}
+.icon-search:before {
+  content: "\e907";
+}
+.icon-close:before {
+  content: "\e908";
+}
+.icon-checkmark:before {
+  content: "\e909";
+}
+.icon-user:before {
+  content: "\e90a";
+}
+.icon-lock-closed:before {
+  content: "\e90b";
+}
+.icon-edit-pencil:before {
+  content: "\e903";
+}
+.icon-envelope:before {
+  content: "\e90d";
 }
 
 /* Custom part
@@ -1924,6 +1886,7 @@ input:checked~.form__row--displayCondition {
 .iconBadge--unanswered {
 	background: var(--color-disable);
 }
+
 /********************************
  * Modal
  ********************************/
