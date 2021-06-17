@@ -14,7 +14,7 @@ Tutoriel
 
 	<div class="onboarding">
 		<div class="onboarding__title">
-			Balaie ton écran à gauche ou à droite pour répondre
+			Réponds à <mark>10 questions</mark> le plus rapidement possible en swipant !
 		</div>
 
 		<div class="onboarding__img">

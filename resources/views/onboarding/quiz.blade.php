@@ -13,10 +13,10 @@ Tutoriel
 	<div class="onboarding">
 		<h1 class="onboarding__title">RöstiQuiz, c'est:</h1>
 		<div class="onboarding__text">
-			<p>Tous les fun facts de Romandie réunis en un seul jeu</p>
-			<p>Une manière amusante de défier tes proches ou des inconnu·es</p>
-			<p>Un présentateur particulièremment charismatique</p>
-			<p>Des parties rapides et des questions originales</p>
+			<p>Tous les <mark>fun facts</mark> de Romandie réunis en un seul jeu</p>
+			<p>Une manière amusante de <mark>défier tes proches</mark> ou des inconnu·es</p>
+			<p>Un présentateur <mark>particulièremment charismatique</mark></p>
+			<p>Des parties <mark>rapides</mark> et des questions originales</p>
 		</div>
 	</div>
 

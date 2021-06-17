@@ -17,10 +17,10 @@ bg--white
 			</h1>
 
 			<p>
-				Bienvenue au meilleur jeu de Romandie, Rösti Quiz !<br>
+				Bienvenue au <mark>meilleur jeu de Romandie</mark>, Rösti Quiz !<br>
 				Merci d'avoir vérifié ton adresse!<br>
 				<br>
-				En tant que présentateur, c’est ma mission de te guider à travers ton aventure röstienne... <br>
+				En tant que présentateur, c’est ma mission de te guider à travers ton <mark>aventure röstienne</mark>... <br>
 				<br>
 				Allons-y !
 			</p>
