@@ -175,7 +175,6 @@ Modifier mon rösti
     /**Set actual avatar */
     window.addEventListener('load', function() {
         eyesOffset = moveElementRandom('eyes', getPosition(<?php echo $user->eye()->first()->id; ?>));
-        console.log(eyesOffset);
         eyesValue.value = getValue(eyes, eyesOffset);
         mouthsOffset = moveElementRandom('mouths', getPosition(<?php echo $user->mouth()->first()->id; ?>));
         mouthsValue.value = getValue(mouths, mouthsOffset);
