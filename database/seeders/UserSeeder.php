@@ -18,10 +18,12 @@ class UserSeeder extends Seeder
 		User::factory()
 			->create([
 				'pseudo' => 'admin',
-				'email' => 'info@admin.com',
-				'password' => 'password',
+				'email' => env('MAIL_USERNAME'),
+				'password' => env('MAIL_PASSWORD'),
 				'admin' => true
 			]);
+
+		//Uncomment the lines down for testing
 
 		User::factory()
 			->create([

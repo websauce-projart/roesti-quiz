@@ -13,15 +13,6 @@ class HomeController extends Controller
 {
 
     /**
-     * Redirect to home route
-     *
-     * @return void
-     */
-    public function redirectToHome() {
-        return redirect()->route('home');
-    }
-
-    /**
 	 * Return home view with user data
 	 *
 	 * @return view home/home
@@ -113,8 +104,6 @@ class HomeController extends Controller
 		foreach ($games as $game) {
 			$game_id = $game->id;
 			$opponent = $user->getOtherUser($game_id);
-			$round_id = $game->rounds->last()->id;
-			$result = Result::where('round_id', $round_id)->count();
 
 			$gameData = array(
 				"user" => $user,
@@ -122,15 +111,22 @@ class HomeController extends Controller
 				"game" => $game,
 			);
 
-			if($game->rounds->count() == 1 && $game->active_user_id != Auth::user()->id && $result == 0){
+			array_push($data, $gameData);
 
-			} else {
-				array_push($data, $gameData);
-			}
 		}
 		
 		//Return data
 		return response()->json($data);;
+	}
+	
+	/**
+	 * Return user from / to home
+	 *
+	 * @return redirect to home
+	 */
+	public function redirectToHome()
+	{
+	return redirect()->route('home');
 	}
     
 }

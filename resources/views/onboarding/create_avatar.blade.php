@@ -8,8 +8,8 @@ Créer mon rösti
 
 @section('content')
 <div class="container">
-	<div class="unboarding">
-		<h1 class="unboarding__title">Quel rösti es-tu, {{$pseudo}} ?</h1>
+	<div class="onboarding">
+		<h1 class="onboarding__title">Quel rösti es-tu, {{$pseudo}} ?</h1>
 	</div>
 
 	<x-avatar-editor label="Suivant" route=""></x-avatar-editor>

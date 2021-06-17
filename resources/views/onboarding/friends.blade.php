@@ -10,18 +10,18 @@ Tutoriel
 		<a href="{{ route('onboardingExit') }}" class="icon-close"></a>
 	</nav>
 
-	<div class="unboarding">
-		<div class="unboarding__title">
+	<div class="onboarding">
+		<div class="onboarding__title">
 			Défie tes proches et montre leur qui est le meilleur rösti !
 		</div>
 
-		<div class="unboarding__img">
-			<img src="{{ asset("img/unboarding/friends.svg") }}" alt="">
+		<div class="onboarding__img">
+			<img src="{{ asset("img/onboarding/friends.svg") }}" alt="">
 		</div>
 	</div>
 
 	<div class="bottombar">
-		<ul class="unboarding__step">
+		<ul class="onboarding__step">
 			<li></li>
 			<li></li>
 			<li class="active"></li>

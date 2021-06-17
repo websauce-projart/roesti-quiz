@@ -9,27 +9,28 @@
       @cardAccepted="$emit('cardAccepted')"
       @cardRejected="$emit('cardRejected')"
       @hideCard="$emit('hide-card')"
-		:qid="qid[index]"
-		:id="index"
-    :ref="el => { if (el) divs[index] = el }"
+      :qid="qid[index]"
+      :id="index"
+      :ref="
+        (el) => {
+          if (el) divs[index] = el;
+        }
+      "
     >
     </GameCard>
-	<GameButtons
-	 @reject="$emit('reject')"
-	 @accept="$emit('accept')"
-	 />
-  </div>
 
+    <GameButtons @reject="$emit('reject')" @accept="$emit('accept')" />
+  </div>
 </template>
 <script>
 import GameCard from "./GameCard";
-import GameButtons from"./GameButtons.vue"
-import { ref , onBeforeUpdate } from 'vue'
+import GameButtons from "./GameButtons.vue";
+import { ref, onBeforeUpdate } from "vue";
 
 export default {
   components: {
     GameCard,
-	 GameButtons
+    GameButtons,
   },
   props: {
 	  /**
@@ -48,13 +49,13 @@ export default {
       required: true,
     },
   },
-  setup(){
-    const divs = ref([])
+  setup() {
+    const divs = ref([]);
 
 	 /**resets value before update */
     onBeforeUpdate(() => {
-        divs.value = []
-      })
+      divs.value = [];
+    });
 
 	  /**
 		* when card is rejected,

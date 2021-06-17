@@ -1,5 +1,5 @@
 <template>
-  <div class="gameBadge__container" v-if="datas.length == 0">
+  <div class="gameBadge__container" v-if="datasLength == 0">
     <div class="gameBadge__noGame">
       <p>Tu n'as encore aucune partie en cours.</p>
       <p>Pour un max de fun, clique sur <mark>nouvelle partie</mark></p>
@@ -37,8 +37,9 @@ export default {
   setup(props) {
     let datas = ref({});
     let datasOrderd = ref([]);
+    let datasLength = ref(0);
     let newData = [];
-
+  
     /**
      * Wait the datas and put them in an array.
      * If the newArray is different from the current datasOrdered, update the value of datasOrdered
@@ -57,6 +58,8 @@ export default {
         }
       }
 
+      datasLength.value = datas.length
+
       if (JSON.stringify(datasOrderd.value) != JSON.stringify(newData))
         datasOrderd.value = newData;
     }
@@ -73,6 +76,7 @@ export default {
         .get(props.data_url)
         .then((response) => {
           datas = response.data;
+
         })
         .catch((errors) => console.log(errors));
     }
@@ -85,7 +89,7 @@ export default {
       orderData();
     }, 5000);
 
-
+    
      /**
      * @returns {Object} Returns all the variables needed in the template
      */
@@ -93,6 +97,7 @@ export default {
     return {
       datas,
       datasOrderd,
+      datasLength
     };
   },
 };

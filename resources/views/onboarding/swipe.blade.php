@@ -4,20 +4,27 @@
 Tutoriel
 @endsection
 
+@push('body-classes', 'bg--lightblue')
+
 @section('content')
 <div class="container">
 	<nav class="topnav">
 		<a href="{{ route('onboardingExit') }}" class="icon-close"></a>
 	</nav>
 
-	<div class="unboarding">
-		<div class="unboarding__title">
-			Tu peux voir les réponses du quiz à la fin de chaque round !
+	<div class="onboarding">
+		<div class="onboarding__title">
+			Réponds à <mark>10 questions</mark> le plus rapidement possible en swipant !
 		</div>
+
+		<div class="onboarding__img">
+			<img src="{{ asset("img/onboarding/swipe.png") }}" alt="">
+		</div>
+
 	</div>
 
 	<div class="bottombar">
-		<ul class="unboarding__step">
+		<ul class="onboarding__step">
 			<li></li>
 			<li class="active"></li>
 			<li></li>

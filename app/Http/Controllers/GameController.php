@@ -65,6 +65,11 @@ class GameController extends Controller
 		$user_id = Auth::user()->id;
 		$game = Game::where('id', $game_id)->first();
 
+		//Checks if game exists
+		if(is_null($game)) {
+			return redirect()->route('home');
+		}
+
 		//Checks that the user is the active user in game
 		if ($game->active_user_id !== $user_id) {
 			return redirect()->route('home');
@@ -249,6 +254,19 @@ class GameController extends Controller
 	 */
 	public function showHistoryView($game_id, $round_id)
 	{
+		//Checks if game exists
+		$game = Game::where('id', $game_id)->first();
+		if(is_null($game)) {
+			dd('a');
+			return redirect()->route('home');
+		}
+
+		//Checks if the round belongs to the game
+		$round = $game->rounds()->where('id', $round_id)->first();
+		if (is_null($round)) {
+			return redirect()->route('home');
+		}
+
 		// Retrieve questions of the round
 		$round = Round::find($round_id);
 		$questions = $round->questions()->get();
