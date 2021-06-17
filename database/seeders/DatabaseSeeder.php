@@ -30,10 +30,13 @@ class DatabaseSeeder extends Seeder
 			UserSeeder::class,
 			CategorySeeder::class,
 			QuestionSeeder::class,
-			GameSeeder::class,
-			RoundSeeder::class,
-			ResultSeeder::class,
-			UserAnswerSeeder::class
+
+			//Uncomment the 4 lines down for testing
+
+			//GameSeeder::class,
+			//RoundSeeder::class,
+			//ResultSeeder::class,
+			//UserAnswerSeeder::class
 		]);
 	}
 }
