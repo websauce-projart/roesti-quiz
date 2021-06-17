@@ -23,6 +23,12 @@ class QuizController extends Controller
 	 */
 	public function showQuizView($game_id, $round_id)
 	{
+
+		//Checks if round exists
+		if(is_null(Round::where('id', $round_id)->first())) {
+			return redirect()->route('home');
+		}
+
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$questions = Round::where('id', $round_id)->first()->questions()->get();
@@ -226,17 +232,21 @@ class QuizController extends Controller
 		//Retrieve data
 		$user_id = Auth::user()->id;
 		$user = User::where('id', $user_id)->first();
+		$round = Round::where('id', $round_id)->first();
 		$result = Result::where('id', $result_id)->first();
-		$round_id = $result->round()->first()->id;
-		$game = Round::where('id', $round_id)->first()->game;
+		
+		//Checks if the result exists 
+		if(is_null($result)) {
+			return redirect()->route('home');
+		}
 
 		//Checks if the result belongs to the round
 		if ($result->round()->first()->id != $round_id) {
 			return redirect()->route('home');
 		}
-
+		
 		//Checks if the round belongs to the game
-		if (Round::where('id', $round_id)->first()->game()->first()->id != $game_id) {
+		if ($round->game()->first()->id != $game_id) {
 			return redirect()->route('home');
 		}
 
@@ -246,12 +256,13 @@ class QuizController extends Controller
 		}
 
 		//Checks if the round is the last in the game
+		$game = $round->game;
 		if ($game->getLastRound()->id != $round_id) {
 			return redirect()->route('results', [$game_id]);
 		}
 
 		//Count correct answers
-		$questions = Round::where('id', $round_id)->first()->questions()->get();
+		$questions = $round->questions()->get();
 		$correct_answers_count = 0;
 		if (!is_null(UserAnswer::where('result_id', $result_id)->first())) {
 			foreach ($questions as $question) {
