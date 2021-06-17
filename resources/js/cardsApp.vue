@@ -7,73 +7,99 @@
 			@reject="SwipeLeft"
 			@accept="SwipeRight"
 			@cardAccepted="handleCardAccepted"
-			ref="gameCardStack"
+			ref="gCStack"
 		/>
 	</div>
 </template>
 
 <script>
 import GameCardsStack from "./components/GameCardsStack";
-import GameCard from "./components/GameCard.vue";
+
 
 export default {
-	name: "CardsApp",
-	components: {
-		GameCardsStack,
-	},
+  name: "CardsApp",
+  components: {
+    GameCardsStack,
+  },
 
-	data() {
-		return {
-			visibleCards: [],
-			qid: Array,
-		};
-	},
+  data() {
+    return {
+      visibleCards: [],
+		qid: Array,
+    };
+  },
 
-	props: {
-		datas: Object,
-	},
+  props: {
+	  datas: Object,
+  },
 
-	methods: {
-		handleCardAccepted() {
-			document.getElementById(this.qid[0]).checked = true;
-		},
-		removeCardFromDeck() {
-			this.visibleCards.shift();
-			this.qid.shift();
-			let test = [];
-			if (this.qid.length === test.length) {
-				document.getElementById("quizForm").submit();
-			}
-		},
+  methods: {
+	  /**
+		* @method handleCardAccepted is called through
+		* child-fired @event cardAccepted
+		* It checks the question-related checkbox
+	   */
+    handleCardAccepted() {
+		document.getElementById(this.qid[0]).checked = true;
+    },
 
-		createQuestionsArray() {
-			let datas = this.$props.datas;
-			let labels = [];
-			let ids = [];
+	 /**
+	  * shifts arrays to ensure we are not working on
+	  * an already treated card
+	  * then submits form when the last card is flipped
+	  */
+    removeCardFromDeck() {
+      this.visibleCards.shift();
+		this.qid.shift();
+		let testEmpty= [];
+		if(this.qid.length === testEmpty.length){
+			document.getElementById('quizForm').submit();
+		}
+    },
 
-			for (let index in datas) {
-				labels.push(datas[index].label);
-				ids.push(datas[index].id);
-			}
+	 /**
+	  * creates arrays and populates them
+	  * with the cards info in order to pass the recieved
+	  * props datas to the child component
+	  */
+	 createQuestionsArray(){
+		 let datas = this.$props.datas;
+		 let labels = [];
+		 let ids = [];
 
-			this.visibleCards = labels;
-			this.qid = ids;
-		},
+		for (let index in datas) {
+       labels.push(datas[index].label);
+		 ids.push(datas[index].id);
+      }
 
-		SwipeLeft() {
-			this.$refs.gameCardStack.testReject();
-		},
+		this.visibleCards = labels;
+		this.qid = ids;
+	  },
 
-		SwipeRight() {
-			this.$refs.gameCardStack.testAccept();
-		},
-	},
+	  /**
+		* when @event reject is recieved,
+		* @function SwipeLeft is called
+		* and calls child @function stackReject through refs
+	   */
+	  SwipeLeft(){
+		  this.$refs.gCStack.stackReject();
+	  },
 
-	created() {
-		this.createQuestionsArray();
-	},
+	  /**
+		* when @event accept is recieved,
+		* @function Swiperight is called
+		* and calls child @function stackAccept through refs
+	   */
+	  SwipeRight(){
+		  this.$refs.gCStack.stackAccept();
+	  },
 
-	mounted() {},
+  },
+
+  created() {
+	  this.createQuestionsArray();
+  },
+
 };
 </script>
 

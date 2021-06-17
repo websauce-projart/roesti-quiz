@@ -9,11 +9,20 @@
 
 <script>
 import { useKeypress } from "vue3-keypress";
-import { ref } from "vue";
+
 export default {
   name: "GameButtons",
 
   setup(_, { emit }) {
+	  /**
+		* Checks keycode of pressed key & fires one of two events
+		*
+		* @emits reject - fires a custom event to the parent
+	   * component when the left arrow key (←) is pressed
+		*
+		* @emits accept - fires a custom event to the parent
+	   * component when the right arrow key (→) is pressed
+	   */
     const someSuccessCallback = ({ keyCode }) => {
       if (keyCode === 37) {
         emit("reject");
@@ -21,7 +30,14 @@ export default {
         emit("accept");
       }
     };
-
+	 /**
+	  * Reacts on when a key event.
+	  *
+	  * @method keyEvent : "keydown" precises the event
+	  * @method keyBinds : specifies which keys are listened to
+	  * 						  & what to do when the event is triggered
+	  *
+	  */
     useKeypress({
       keyEvent: "keydown",
       keyBinds: [
@@ -39,10 +55,26 @@ export default {
     });
   },
 
+  /**
+	* following methods are called from parent via ref
+   */
   methods: {
+	/**
+	 *
+	 * @emits reject - fires a custom event to the parent
+	 * component when the reject button is clicked
+	 *
+	 */
     buttonRejected() {
       this.$emit("reject");
     },
+
+	 /**
+	 * @emits accept - fires a custom event to the parent
+	 * component when the accept button is clicked
+	 *
+	 *
+	 */
     buttonAccepted() {
       this.$emit("accept");
     },
