@@ -39,7 +39,10 @@ Profil
 				<button type="submit">Supprimer mon compte</button>
 			</form>
 		</section>
-
+		<div class="contact">
+		Un problème ? Contactez-nous<br>
+			<a href="mailto:roestiquiz@gmail.com">roestiquiz@gmail.com</a>
+		</div>
 	</main>
 
 </div>
