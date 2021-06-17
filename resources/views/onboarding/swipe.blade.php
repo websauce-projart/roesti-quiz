@@ -18,7 +18,7 @@ Tutoriel
 		</div>
 
 		<div class="onboarding__img">
-			<img src="{{ asset("img/onboarding/swipe.png") }}" alt="">
+			<img src="{{ asset("img/onboarding/swipe.png") }}" alt="Tutoriel swipe" draggable="false">
 		</div>
 
 	</div>

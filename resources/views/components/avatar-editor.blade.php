@@ -7,13 +7,13 @@
 	</div>
 	<div class="buttons__container">
 		<button id="eyesRight">
-				<img src="{{ asset("img/avatar/buttons/eye.svg") }}" alt="Bouton de changement d'yeux">
+				<img src="{{ asset("img/avatar/buttons/eye.svg") }}" alt="Bouton de changement d'yeux" draggable="false">
 		</button>
 		<button id="mouthsRight">
-				<img src="{{ asset("img/avatar/buttons/mouth.svg") }}" alt="Bouton de changement de bouche">
+				<img src="{{ asset("img/avatar/buttons/mouth.svg") }}" alt="Bouton de changement de bouche" draggable="false">
 		</button>
 		<button id="posesRight">
-				<img src="{{ asset("img/avatar/buttons/arm.svg") }}" alt="Bouton de changement de pose">
+				<img src="{{ asset("img/avatar/buttons/arm.svg") }}" alt="Bouton de changement de pose" draggable="false">
 		</button>
 	</div>
 </div>
@@ -27,7 +27,7 @@
 	<input type="hidden" id="posesValue" name="poses" value="1">
 
 	<div id="avatar-randomizer" class="btn btn--tertiary btn--smaller center avatar__randomButton">
-		<img src="{{ asset("img/avatar/buttons/random.svg") }}">
+		<img src="{{ asset("img/avatar/buttons/random.svg") }}" draggable="false">
 		<span>Rösti aléatoire</span>
 	</div>
 

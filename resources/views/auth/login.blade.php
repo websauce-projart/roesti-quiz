@@ -11,7 +11,7 @@ Connexion
         <nav class="topnav topnav--right">
             <a href="{{ route('register') }}">Créer un compte</a>
         </nav>
-        <img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" />
+        <img class="logo" src="img/logo_v2_1.svg" alt="Rösti Quiz" draggable="false"/>
     </header>
 
     <main>

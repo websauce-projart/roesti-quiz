@@ -16,7 +16,7 @@ Tutoriel
 		</div>
 
 		<div class="onboarding__img">
-			<img src="{{ asset("img/onboarding/friends.svg") }}" alt="">
+			<img src="{{ asset("img/onboarding/friends.svg") }}" alt="Tutorial friends" draggable="false">
 		</div>
 	</div>
 

@@ -892,11 +892,15 @@ tr:nth-child(even) {
 /********************************
  * Images
  ********************************/
+
 img {
 	display: block;
 	max-width: 100%;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
-
 /********************************
  * Grid CSS
  ********************************/
