@@ -32,7 +32,7 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	Route::get('/home', [HomeController::class, 'showHomeView'])->name('home');
 
 	//Return the search view
-	Route::post('/home', [HomeController::class, 'showSearchView']);
+	Route::post('/', [HomeController::class, 'showSearchView']);
 
 	//Redirect from home page according to the state of the game
 	Route::get('/game/{game_id}/join', [HomeController::class, 'redirectFromHome'])->name('join');
@@ -93,7 +93,7 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 	 * Onboarding
 	 ********************************/
 
-	//Users which have not yet onboarded
+	//Users which have not yet onboarded 
 	Route::group(['middleware' => ['onboarded']], function () {
 
 		//Return a view for each onboarding step
@@ -101,7 +101,7 @@ Route::group(['middleware' => ['verified', 'notadmin']], function () {
 		Route::get('/welcome/avatar', [AvatarController::class, 'showAvatarCreatorView'])->name('onboardingAvatar');
 		Route::post('/welcome/avatar', [AvatarController::class, 'createAvatar']);
 		Route::get('/welcome/quiz', [OnboardingController::class, 'showQuizTutorialView'])->name('onboardingQuiz');
-		Route::get('/welcome/swipe', [OnboardingController::class, 'showSwipeTutorialView'])->name('onboardingSwipe');
+		Route::get('/welcome/history', [OnboardingController::class, 'showHistoryTutorialView'])->name('onboardingHistory');
 		Route::get('/welcome/friends', [OnboardingController::class, 'showFriendsTutorialView'])->name('onboardingFriends');
 		Route::get('/welcome/exit', [OnboardingController::class, 'quitOnboarding'])->name('onboardingExit');
 

@@ -191,7 +191,7 @@ class QuizController extends Controller
 			$time = 1500;
 		}
 
-		$score = round((1500*$correct_answers_count)/($time*2));
+		$score = round(((1500*$correct_answers_count) * 2)/($time));
 
 		if ($score > 1000) {
 			$score = 1000;
