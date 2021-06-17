@@ -784,6 +784,17 @@ mark {
 	display: inline;
 }
 
+.contact{
+	margin-top: 5rem;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.75em;
+}
+
 /********************************
  * Form
  ********************************/

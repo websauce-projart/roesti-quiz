@@ -20,3 +20,12 @@ mark {
 	background-color: transparent;
 	display: inline;
 }
+
+.contact{
+	margin-top: 5rem;
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 0.75em;
+}
