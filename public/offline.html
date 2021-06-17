@@ -1,24 +1,188 @@
 <!DOCTYPE html>
+<style>
+    /********************************
+ * Background
+ ********************************/
+    body,
+    html {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 1rem;
+        /* 16px */
+        font-weight: normal;
+        background: #e7f9fd;
+        color: #003769;
+        overflow-x: hidden;
+        background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
+        background-repeat: no-repeat;
+        background-size: 125%;
+        background-position: center center;
+    }
+
+    body.bg--white {
+        background-image: none;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    /********************************
+ * Headings HTML Elements
+ ********************************/
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        max-width: 650px;
+        margin: 0 auto;
+        padding: 0 var(--margin-xs);
+        position: relative;
+    }
+
+    .container--fullheight {
+        height: 100vh;
+    }
+
+    .container--large {
+        max-width: 1200px;
+    }
+
+    .container--presenter {
+        overflow: hidden;
+    }
+    /********************************
+ * Presenter
+ ********************************/
+.presenter__container {
+	display: block;
+	position: fixed;
+	bottom: -30px;
+	left: 0;
+	width: 100vw;
+	height: 40vh;
+}
+
+.presenter {
+	position: absolute;
+	height: 80%;
+	bottom: 0;
+	animation-name: hello-presenter;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in-out;
+}
+
+img {
+    min-width: 100%;
+		height: 100%;
+}
+
+@media (max-width: 575.98px) {
+	.presenter__container {
+		width: 100vw;
+		height: 40vh;
+	}
+	.presenter {
+		left: -30px;
+	}
+}
+
+.speech-bubble {
+	position: relative;
+	height: 75vh;
+	background: #e7f9fd;
+	border-radius: 0 0 3rem 3rem;
+	padding: 0 25px;
+	padding-bottom: 50px;
+	background-image: url("https://pingouin.heig-vd.ch/websauce/img/pattern.svg");
+	background-repeat: no-repeat;
+	background-size: 200%;
+	background-position: center center;
+}
+
+.speech-bubble:before {
+	content: "";
+	position: absolute;
+	bottom: -10px;
+	right: 30%;
+	width: 0;
+	height: 0;
+	border: 55px solid transparent;
+	border-top-color: #e7f9fd;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -17.5px;
+	margin-bottom: -35px;
+	transform: rotate(15deg);
+	z-index: -1;
+}
+
+@media (max-width: 575.98px) {
+	.speech-bubble {
+		padding: 0 14px;
+		padding-bottom: 25px;
+	}
+}
+</style>
 <html>
-<div>Désolé, il semble que tu ne sois pas connecté à internet !</div>
-</br>
-<div>
-    En attendant que tu trouves une connexion, voici une recette pour faire des röstis :
-</div>
-</br>
-<div>
-    Comment c'est fait:
-    Peler les pommes de terre, passer à la râpe à röstis dans un grand bol, saler.
-    Bien faire chauffer le beurre à rôtir dans une poêle antiadhésive. Ajouter les pommes de terre, saisir env. 5 min en
-    retournant de temps en temps. Façonner une galette avec une spatule, ne plus remuer. Poursuivre la cuisson env. 15
-    min à découvert sur feu moyen. Poser une assiette plate sur la poêle, renverser les röstis sur l’assiette. Mettre un
-    peu de beurre à rôtir dans la poêle, y faire glisser les röstis, poursuivre la cuisson env. 15 min à découvert.
-</div>
-</br>
-<div>
-    Ingrédients
-    1 kg de pomme de terre en robe des champs (variété à chair ferme) de la veille
-    1 c.c. de sel
-</div>
+
+<header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Rösti Quiz | Hors connexion</title>
+</header>
+
+<body>
+    <div class ="container speech-bubble">
+        <h1>Désolé, il semble que tu ne sois pas connecté à internet !</h1>
+    </br>
+        <h2>
+            En attendant que tu trouves une connexion, voici une recette pour faire des röstis :
+        </h2>
+    </br>
+        <h3>Comment c'est fait:</h3>
+    
+        <p>
+            Peler les pommes de terre, passer à la râpe à röstis dans un grand bol, saler.
+            Bien faire chauffer le beurre à rôtir dans une poêle antiadhésive. Ajouter les pommes de terre, saisir env. 5
+            min en
+            retournant de temps en temps. Façonner une galette avec une spatule, ne plus remuer. Poursuivre la cuisson env.
+            15
+            min à découvert sur feu moyen. Poser une assiette plate sur la poêle, renverser les röstis sur l’assiette.
+            Mettre un
+            peu de beurre à rôtir dans la poêle, y faire glisser les röstis, poursuivre la cuisson env. 15 min à découvert.
+        </p>
+        </br>
+        <div>
+            <h3>Ingrédients</h3>
+        </br>
+            1 kg de pomme de terre en robe des champs (variété à chair ferme) de la veille
+            1 c.c. de sel
+        </div>
+    
+    </div>
+    
+    <div class="presenter__container">
+        <div class="container">
+            <div class="presenter">
+                    <img src="https://pingouin.heig-vd.ch/websauce/img/presenter/2.svg" alt="Présentateur du RöestiQuiz" draggable="false">
+            </div>
+        </div>
+    </div>
+</body>
 
 </html>

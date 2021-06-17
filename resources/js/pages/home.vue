@@ -5,9 +5,9 @@
       <p>Pour un max de fun, clique sur <mark>nouvelle partie</mark> !</p>
     </div>
   </div>
-  <div class="gameBadge__container" v-else>
+  <div class="gameBadge__container" v-else-if="datasLength > 0">
     <div>
-      <h1 class="gameBadge__title" v-if="datas.length > 1">Parties en cours</h1>
+      <h1 class="gameBadge__title" v-if="datasLength > 1">Parties en cours</h1>
       <h1 class="gameBadge__title" v-else>Partie en cours</h1>
 
       <div class="gameBadge--wrapper" v-for="data in datasOrderd" :key="data">
@@ -37,9 +37,9 @@ export default {
   setup(props) {
     let datas = ref({});
     let datasOrderd = ref([]);
-    let datasLength = ref(0);
+    let datasLength = ref();
     let newData = [];
-  
+
     /**
      * Wait the datas and put them in an array.
      * If the newArray is different from the current datasOrdered, update the value of datasOrdered
@@ -47,7 +47,7 @@ export default {
      */
     async function orderData() {
       await fetchText();
-      
+
       newData = [];
 
       for (var index in datas) {
@@ -57,7 +57,7 @@ export default {
           newData.push(datas[index]);
         }
       }
-
+      
       datasLength.value = datas.length
 
       if (JSON.stringify(datasOrderd.value) != JSON.stringify(newData))
